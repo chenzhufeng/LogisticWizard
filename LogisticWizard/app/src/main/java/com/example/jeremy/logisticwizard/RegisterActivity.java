@@ -2,6 +2,9 @@ package com.example.jeremy.logisticwizard;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -10,4 +13,10 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
     }
+
+    Button back = (Button)findViewById(R.id.Back);
+
+    back.setOnClickListener(new View.OnClickListener() {
+        @Override
+    })
 }
