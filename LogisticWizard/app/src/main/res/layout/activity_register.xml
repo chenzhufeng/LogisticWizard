@@ -26,7 +26,7 @@
         tools:layout_editor_absoluteX="260dp" />
 
     <Button
-        android:id="@+id/Back"
+        android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="29dp"
@@ -34,12 +34,12 @@
         android:layout_marginTop="32dp"
         android:layout_marginBottom="360dp"
         android:text="@string/back"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/workHours"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/enterUser"
         android:layout_width="0dp"
         android:layout_height="38dp"
         android:layout_marginStart="29dp"
@@ -56,7 +56,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/enterPassword"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="30dp"
@@ -68,13 +68,13 @@
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/editText3"
+        app:layout_constraintBottom_toTopOf="@+id/enterEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/enterUser" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/enterEmail"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="29dp"
@@ -84,10 +84,10 @@
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/editText4"
+        app:layout_constraintBottom_toTopOf="@+id/enterPhone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintTop_toBottomOf="@+id/enterPassword" />
 
     <Button
         android:id="@+id/button2"
@@ -100,19 +100,19 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/enterPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="25dp"
         android:ems="10"
         android:hint="@string/phone"
         android:inputType="phone"
-        app:layout_constraintBottom_toTopOf="@+id/editText7"
-        app:layout_constraintStart_toStartOf="@+id/editText3"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintBottom_toTopOf="@+id/enterAddress"
+        app:layout_constraintStart_toStartOf="@+id/enterEmail"
+        app:layout_constraintTop_toBottomOf="@+id/enterEmail" />
 
     <EditText
-        android:id="@+id/editText7"
+        android:id="@+id/enterAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="29dp"
@@ -122,7 +122,7 @@
         android:hint="@string/address"
         android:inputType="textPostalAddress"
         android:singleLine="false"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/workHours"
         app:layout_constraintStart_toStartOf="parent" />
 
     <CheckBox
@@ -133,10 +133,10 @@
         android:layout_marginLeft="29dp"
         android:text="M"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/workHours" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/workHours"
         android:layout_width="88dp"
         android:layout_height="22dp"
         android:layout_marginStart="29dp"
@@ -146,7 +146,7 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/checkBox"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Back" />
+        app:layout_constraintTop_toBottomOf="@+id/back" />
 
     <Spinner
         android:id="@+id/spinner11"
