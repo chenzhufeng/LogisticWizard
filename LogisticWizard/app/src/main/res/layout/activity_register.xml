@@ -7,21 +7,21 @@
     tools:context=".RegisterActivity">
 
     <CheckBox
-        android:id="@+id/checkBox10"
+        android:id="@+id/checkFriday"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/friday"
-        app:layout_constraintBottom_toBottomOf="@+id/checkBox9"
-        app:layout_constraintTop_toTopOf="@+id/checkBox9"
+        app:layout_constraintBottom_toBottomOf="@+id/checkThursday"
+        app:layout_constraintTop_toTopOf="@+id/checkThursday"
         tools:layout_editor_absoluteX="327dp" />
 
     <CheckBox
-        android:id="@+id/checkBox9"
+        android:id="@+id/checkThursday"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/thursday"
-        app:layout_constraintBottom_toBottomOf="@+id/checkBox6"
-        app:layout_constraintTop_toTopOf="@+id/checkBox6"
+        app:layout_constraintBottom_toBottomOf="@+id/checkMonday"
+        app:layout_constraintTop_toTopOf="@+id/checkMonday"
         app:layout_constraintVertical_bias="0.0"
         tools:layout_editor_absoluteX="260dp" />
 
@@ -170,7 +170,7 @@
         app:layout_constraintTop_toBottomOf="@+id/spinner11" />
 
     <CheckBox
-        android:id="@+id/checkBox6"
+        android:id="@+id/checkMonday"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -187,17 +187,17 @@
         android:layout_marginStart="76dp"
         android:layout_marginLeft="76dp"
         android:text="@string/tuesday"
-        app:layout_constraintStart_toStartOf="@+id/checkBox6"
-        app:layout_constraintTop_toTopOf="@+id/checkBox6" />
+        app:layout_constraintStart_toStartOf="@+id/checkMonday"
+        app:layout_constraintTop_toTopOf="@+id/checkMonday" />
 
     <CheckBox
-        android:id="@+id/checkBox8"
+        android:id="@+id/checkWednesday"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="152dp"
         android:layout_marginLeft="152dp"
         android:text="@string/wednesday"
-        app:layout_constraintStart_toStartOf="@+id/checkBox6"
-        app:layout_constraintTop_toTopOf="@+id/checkBox6" />
+        app:layout_constraintStart_toStartOf="@+id/checkMonday"
+        app:layout_constraintTop_toTopOf="@+id/checkMonday" />
 
 </android.support.constraint.ConstraintLayout>

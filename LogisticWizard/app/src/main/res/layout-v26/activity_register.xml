@@ -7,26 +7,26 @@
     tools:context=".RegisterActivity">
 
     <CheckBox
-        android:id="@+id/checkBox10"
+        android:id="@+id/checkFriday"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="44dp"
         android:text="@string/friday"
-        app:layout_constraintBottom_toBottomOf="@+id/checkBox9"
+        app:layout_constraintBottom_toBottomOf="@+id/checkThursday"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/checkBox9"
-        app:layout_constraintTop_toTopOf="@+id/checkBox9"
+        app:layout_constraintStart_toEndOf="@+id/checkThursday"
+        app:layout_constraintTop_toTopOf="@+id/checkThursday"
         app:layout_constraintVertical_bias="0.0" />
 
     <CheckBox
-        android:id="@+id/checkBox9"
+        android:id="@+id/checkThursday"
         android:layout_width="58dp"
         android:layout_height="wrap_content"
         android:text="@string/thursday"
-        app:layout_constraintBottom_toBottomOf="@+id/checkBox8"
-        app:layout_constraintStart_toEndOf="@+id/checkBox8"
-        app:layout_constraintTop_toTopOf="@+id/checkBox8"
+        app:layout_constraintBottom_toBottomOf="@+id/checkWednesday"
+        app:layout_constraintStart_toEndOf="@+id/checkWednesday"
+        app:layout_constraintTop_toTopOf="@+id/checkWednesday"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
@@ -141,7 +141,7 @@
         android:text="@string/hours"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox6"
+        app:layout_constraintBottom_toTopOf="@+id/checkMonday"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
@@ -164,16 +164,16 @@
         app:layout_constraintTop_toBottomOf="@+id/spinner11" />
 
     <CheckBox
-        android:id="@+id/checkBox6"
+        android:id="@+id/checkMonday"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="176dp"
         android:text="@string/monday"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/checkBox2" />
+        app:layout_constraintStart_toEndOf="@+id/checkSunday" />
 
     <CheckBox
-        android:id="@+id/checkBox7"
+        android:id="@+id/checkTuesday"
         android:layout_width="72dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -184,30 +184,30 @@
         android:layout_marginBottom="240dp"
         android:text="@string/tuesday"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/checkBox8"
+        app:layout_constraintEnd_toStartOf="@+id/checkWednesday"
         app:layout_constraintHorizontal_bias="0.285"
-        app:layout_constraintStart_toEndOf="@+id/checkBox6"
-        app:layout_constraintTop_toTopOf="@+id/checkBox6"
+        app:layout_constraintStart_toEndOf="@+id/checkMonday"
+        app:layout_constraintTop_toTopOf="@+id/checkMonday"
         app:layout_constraintVertical_bias="0.111" />
 
     <CheckBox
-        android:id="@+id/checkBox8"
+        android:id="@+id/checkWednesday"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="180dp"
         android:text="@string/wednesday"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/checkBox6" />
+        app:layout_constraintTop_toTopOf="@+id/checkMonday" />
 
     <CheckBox
-        android:id="@+id/checkBox2"
+        android:id="@+id/checkSunday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:text="@string/sunday"
-        app:layout_constraintBottom_toBottomOf="@+id/checkBox6"
+        app:layout_constraintBottom_toBottomOf="@+id/checkMonday"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/checkBox6"
+        app:layout_constraintTop_toTopOf="@+id/checkMonday"
         app:layout_constraintVertical_bias="0.0" />
 
     <CheckBox
@@ -216,9 +216,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="28dp"
         android:text="@string/saturday"
-        app:layout_constraintBottom_toBottomOf="@+id/checkBox10"
+        app:layout_constraintBottom_toBottomOf="@+id/checkFriday"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/checkBox10"
+        app:layout_constraintTop_toTopOf="@+id/checkFriday"
         app:layout_constraintVertical_bias="0.0" />
 
 </android.support.constraint.ConstraintLayout>
