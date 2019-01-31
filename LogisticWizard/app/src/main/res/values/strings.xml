@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">LogisticWizard</string>
+    <string name="name">Username</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="logo">Logo</string>
+    <string name="Login">Login</string>
+    <string name="back">Back</string>
+    <string name="fullname">Name</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="address">Address</string>
+    <string name="hours">Work Hours</string>
+    <string name="sunday">Su</string>
+    <string name="monday">M</string>
+    <string name="tuesday">Tu</string>
+    <string name="wednesday">W</string>
+    <string name="thursday">Th</string>
+    <string name="friday">F</string>
+    <string name="saturday">Sa</string>
+    <string name="submit">Submit</string>
 </resources>
