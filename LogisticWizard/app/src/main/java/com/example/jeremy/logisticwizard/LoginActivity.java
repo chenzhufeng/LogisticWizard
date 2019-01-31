@@ -19,7 +19,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         //invoking Button
-        SignupButton=(Button)findViewById(R.id.SignUpBut);
+        SignupButton=(Button)findViewById(R.id.SignupButton);
         SignupButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
