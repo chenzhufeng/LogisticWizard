@@ -13,10 +13,11 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
     }
-
+/*
     Button back = (Button)findViewById(R.id.Back);
 
     back.setOnClickListener(new View.OnClickListener() {
         @Override
     })
+    */
 }

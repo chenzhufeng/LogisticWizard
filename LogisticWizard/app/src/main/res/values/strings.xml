@@ -19,4 +19,7 @@
     <string name="friday">F</string>
     <string name="saturday">Sa</string>
     <string name="submit">Submit</string>
+    <string name="Button">Button</string>
+    <string name="signup">SIGNUP</string>
+    <string name="forget_password"><u>Forget Password</u>.</string>
 </resources>
