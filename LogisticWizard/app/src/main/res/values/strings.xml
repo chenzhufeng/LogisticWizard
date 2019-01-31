@@ -22,4 +22,6 @@
     <string name="Button">Button</string>
     <string name="signup">SIGNUP</string>
     <string name="forget_password"><u>Forget Password</u>.</string>
+    <string name="LOGIN">LOGIN</string>
+    <string name="SignUp">SignUp</string>
 </resources>

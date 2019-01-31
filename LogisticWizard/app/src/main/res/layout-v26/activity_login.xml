@@ -12,9 +12,8 @@
         android:layout_width="120dp"
         android:layout_height="150dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="129dp"
-        android:layout_marginEnd="148dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="77dp"
         android:contentDescription="@string/logo"
         app:srcCompat="@drawable/logo" />
 
@@ -23,10 +22,9 @@
         style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="92dp"
-        android:layout_marginBottom="182dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="208dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/username"
@@ -36,10 +34,9 @@
         android:id="@+id/Password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="92dp"
-        android:layout_marginBottom="120dp"
+        android:layout_below="@+id/UserName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-208dp"
         android:ems="10"
         android:hint="@string/password"
         android:importantForAutofill="no"
@@ -55,11 +52,10 @@
         android:text="@string/Login" />
 
     <Button
-        android:id="@+id/SignUpBut"
+        android:id="@+id/SignupButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/Password"
-        android:layout_alignStart="@+id/UserName"
         android:layout_marginTop="-120dp"
         android:text="@string/signup" />
 
@@ -72,5 +68,6 @@
         android:layout_marginBottom="42dp"
         android:text="@string/forget_password"
         android:textColor="#6495ED" />
+        android:text="@string/SignUp" />
 
 </RelativeLayout>
