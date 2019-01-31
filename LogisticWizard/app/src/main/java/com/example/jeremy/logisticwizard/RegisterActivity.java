@@ -19,8 +19,5 @@ public class RegisterActivity extends AppCompatActivity {
         getEmail = (EditText) findViewById(R.id.editText);
     }
 
-    Button back = (Button)findViewById(R.id.Back);
-
-
 }
 
