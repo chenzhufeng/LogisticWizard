@@ -46,7 +46,7 @@
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/LoginBut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -71,6 +71,6 @@
         android:layout_marginTop="629dp"
         android:layout_marginEnd="226dp"
         android:layout_marginBottom="54dp"
-        android:text="Button" />
+        android:text="SignUp" />
 
 </RelativeLayout>
