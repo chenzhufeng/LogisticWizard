@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+//import com.example.jeremy.logisticwizard.R;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -47,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("username");
+        mDatabase = FirebaseDatabase.getInstance().getReference("user");
         user_name = (EditText)findViewById(R.id.UserName);
         password = (EditText) findViewById(R.id.Password);
         LoginButton.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                                 if(password_s.equals(dataSnapshot.getValue())){
                                     Toast.makeText(LoginActivity.this, "Login succeed", Toast.LENGTH_SHORT).show();
                                 }else{
-                                    Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LoginActivity.this, password_s, Toast.LENGTH_SHORT).show();
                                 }
 
                         }
