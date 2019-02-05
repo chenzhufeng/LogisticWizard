@@ -70,7 +70,7 @@
         android:layout_marginRight="110dp" />
 
     <Button
-        android:id="@+id/SignUpBut"
+        android:id="@+id/SignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
