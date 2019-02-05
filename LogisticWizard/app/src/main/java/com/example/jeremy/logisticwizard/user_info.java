@@ -4,12 +4,11 @@ package com.example.jeremy.logisticwizard;
 public class user_info{
     public String user_id;
     public String password;
-//    public String name;
-//    public String position;
-//    public String phone;
-//    public String email;
-//    public String mail_address;
-//    public String work_time;
+    public String name;
+    public String email;
+    public String phone;
+    public String Address;
+    public String worktime;
 
 
     public user_info() {
