@@ -34,6 +34,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private boolean gonextpage;
     private  FirebaseAuth mAuth;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,6 +108,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         final String infoName =  getName.getText().toString().trim();
         final String infoPhone =  getPhone.getText().toString().trim();
         final String infoAddress =  getAddress.getText().toString().trim();
+
+        user_info user = new user_info();
 
         FirebaseUser usertemp = mAuth.getCurrentUser();
 
