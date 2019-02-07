@@ -14,12 +14,11 @@ public class user_info{
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public user_info(String user_id, String password, String name, String phone, String address, String worktime) {
+    public user_info(String user_id, String password, String name, String phone, String address) {
         this.user_id = user_id;
         this.password = password;
         this.name = name;
         this.phone = phone;
         this.address = address;
-        this.worktime = worktime;
     }
 }
