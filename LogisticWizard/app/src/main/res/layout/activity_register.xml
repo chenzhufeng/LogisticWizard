@@ -48,9 +48,9 @@
         android:layout_marginEnd="29dp"
         android:layout_marginRight="29dp"
         android:ems="10"
-        android:hint="@string/name"
-        android:inputType="textPersonName"
+        android:hint="@string/email"
         android:importantForAutofill="no"
+        android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -68,13 +68,13 @@
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/enterEmail"
+        app:layout_constraintBottom_toTopOf="@+id/enterName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/enterUser" />
 
     <EditText
-        android:id="@+id/enterEmail"
+        android:id="@+id/enterName"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="29dp"
@@ -82,8 +82,8 @@
         android:layout_marginEnd="29dp"
         android:layout_marginRight="29dp"
         android:ems="10"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress"
+        android:hint="Name"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/enterPhone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -95,7 +95,8 @@
         android:layout_height="wrap_content"
         android:text="Submit"
         tools:layout_editor_absoluteX="162dp"
-        tools:layout_editor_absoluteY="667dp" />
+        tools:layout_editor_absoluteY="667dp"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/enterPhone"
@@ -106,8 +107,8 @@
         android:hint="@string/phone"
         android:inputType="phone"
         app:layout_constraintBottom_toTopOf="@+id/enterAddress"
-        app:layout_constraintStart_toStartOf="@+id/enterEmail"
-        app:layout_constraintTop_toBottomOf="@+id/enterEmail" />
+        app:layout_constraintStart_toStartOf="@+id/enterName"
+        app:layout_constraintTop_toBottomOf="@+id/enterName" />
 
     <EditText
         android:id="@+id/enterAddress"

@@ -79,7 +79,7 @@
         app:layout_constraintTop_toBottomOf="@+id/enterUser" />
 
     <EditText
-        android:id="@+id/enterEmail"
+        android:id="@+id/enterName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="29dp"
@@ -116,7 +116,7 @@
         android:importantForAutofill="no"
         android:inputType="phone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enterEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/enterName" />
 
     <EditText
         android:id="@+id/enterAddress"

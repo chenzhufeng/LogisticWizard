@@ -1,15 +1,23 @@
 package com.example.jeremy.logisticwizard;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 import com.google.firebase.database.DatabaseReference;
 
@@ -20,25 +28,30 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private DatabaseReference mDatabase;
     private EditText getusername;
     private EditText getpassword;
-    private EditText getEmail;
+    private EditText getName;
     private EditText getPhone;
     private EditText getAddress;
     private boolean gonextpage;
+    private  FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        //connect to firebase
+        mAuth = FirebaseAuth.getInstance();
+
+        // evoking the button and edittext from signup.xml and make them clickable
         subButton = (Button)findViewById(R.id.subBtn);
         subButton.setOnClickListener(this);
 
         backButton = (Button)findViewById(R.id.toLoginFromReg);
         backButton.setOnClickListener(this);
 
-        getusername = (EditText)findViewById(R.id.enterEmail);
+        getusername = (EditText)findViewById(R.id.enterUser);
         getpassword = (EditText)findViewById(R.id.enterPassword);
-        getEmail = (EditText)findViewById(R.id.enterEmail);
+        getName = (EditText)findViewById(R.id.enterName);
         getPhone = (EditText)findViewById(R.id.enterPhone);
         getAddress = (EditText)findViewById(R.id.enterAddress);
     }
@@ -54,7 +67,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private boolean UserRegister(){
         String infoUsername = getusername.getText().toString().trim();
         String infoPassword = getpassword.getText().toString().trim();
-        String infoEmail =  getEmail.getText().toString().trim();
+        String infoName =  getName.getText().toString().trim();
         String infoPhone =  getPhone.getText().toString().trim();
         String infoAddress =  getAddress.getText().toString().trim();
         //if the user doesnot enter username
@@ -68,8 +81,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return false;
         }
         // if the user does not enter email
-        if (TextUtils.isEmpty(infoEmail)) {
-            Toast.makeText(this, "Please enter email !", Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(infoName)) {
+            Toast.makeText(this, "Please enter name !", Toast.LENGTH_SHORT).show();
             return false;
         }
         // if the user does not enter phone number
@@ -88,6 +101,21 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     //push user input information into firebase
     private boolean push_data_into_firebase(){
+        final String infoUsername = getusername.getText().toString().trim();
+        final String infoPassword = getpassword.getText().toString().trim();
+        final String infoName =  getName.getText().toString().trim();
+        final String infoPhone =  getPhone.getText().toString().trim();
+        final String infoAddress =  getAddress.getText().toString().trim();
+
+        FirebaseUser usertemp = mAuth.getCurrentUser();
+
+        if (usertemp != null) {
+            usertemp.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+
+                }
+            });
 
         return false;
     }
