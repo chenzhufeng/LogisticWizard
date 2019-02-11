@@ -6,23 +6,21 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.util.Log;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
-
+import java.util.regex.Pattern;
 
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
@@ -36,8 +34,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private boolean gonextpage;
     private FirebaseAuth mAuth;
     private static final String TAG = "EmailPassword";
-
-
+    Pattern emailPattern = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+    Pattern pswPattern = Pattern.compile("^[a-zA-Z]\\w{5,15}$");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,23 +74,34 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         final String infoPhone =  getPhone.getText().toString().trim();
 
         //if the user doesnot enter username
-        if (TextUtils.isEmpty(infoUsername)) {
-            Toast.makeText(this, "Please enter username !", Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(infoUsername)||TextUtils.isEmpty(infoPassword)||TextUtils.isEmpty(infoName)||TextUtils.isEmpty(infoPhone)) {
+            Toast.makeText(this, "Please enter all information!", Toast.LENGTH_SHORT).show();
             return;
         }
-        // if the user does not enter password
-        if (TextUtils.isEmpty(infoPassword)) {
-            Toast.makeText(this, "Please enter password !", Toast.LENGTH_SHORT).show();
+//        // if the user does not enter password
+//        if (TextUtils.isEmpty(infoPassword)) {
+//            Toast.makeText(this, "Please enter password !", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//        // if the user does not enter email
+//        if (TextUtils.isEmpty(infoName)) {
+//            Toast.makeText(this, "Please enter name !", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//        // if the user does not enter phone number
+//        if (TextUtils.isEmpty(infoPhone)) {
+//            Toast.makeText(this, "Please enter phone number !", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+
+        // Check email format
+        if(emailPattern.matcher(infoUsername).matches() == false){
+            Toast.makeText(this, "Please enter correct email address!", Toast.LENGTH_SHORT).show();
             return;
         }
-        // if the user does not enter email
-        if (TextUtils.isEmpty(infoName)) {
-            Toast.makeText(this, "Please enter name !", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        // if the user does not enter phone number
-        if (TextUtils.isEmpty(infoPhone)) {
-            Toast.makeText(this, "Please enter phone number !", Toast.LENGTH_SHORT).show();
+        // Check password format
+        if(pswPattern.matcher(infoPassword).matches() == false){
+            Toast.makeText(this, "Password should be start with alpha and in 6-16 characters!", Toast.LENGTH_SHORT).show();
             return;
         }
         mAuth.createUserWithEmailAndPassword(infoUsername, infoPassword)
