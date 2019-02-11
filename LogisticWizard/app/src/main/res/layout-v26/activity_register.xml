@@ -6,72 +6,47 @@
     android:layout_height="match_parent"
     tools:context=".RegisterActivity">
 
-    <CheckBox
-        android:id="@+id/checkFriday"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="44dp"
-        android:text="@string/friday"
-        app:layout_constraintBottom_toBottomOf="@+id/checkThursday"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/checkThursday"
-        app:layout_constraintTop_toTopOf="@+id/checkThursday"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <CheckBox
-        android:id="@+id/checkThursday"
-        android:layout_width="58dp"
-        android:layout_height="wrap_content"
-        android:text="@string/thursday"
-        app:layout_constraintBottom_toBottomOf="@+id/checkWednesday"
-        app:layout_constraintStart_toEndOf="@+id/checkWednesday"
-        app:layout_constraintTop_toTopOf="@+id/checkWednesday"
-        app:layout_constraintVertical_bias="0.0" />
-
     <Button
-        android:id="@+id/toLoginFromReg"
+        android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-
-        android:layout_marginTop="44dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="29dp"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="32dp"
         android:text="@string/back"
-        app:layout_constraintBottom_toTopOf="@+id/enterUser"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/enterUser"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="70dp"
         android:layout_marginStart="29dp"
-        android:layout_marginLeft="29dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="108dp"
         android:layout_marginEnd="29dp"
-        android:layout_marginRight="29dp"
+        android:layout_marginRight="30dp"
         android:ems="10"
-        android:hint="@string/name"
+        android:hint="@string/email"
         android:importantForAutofill="no"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/enterPassword"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
+        android:contentDescription="Password"
         android:ems="10"
         android:hint="@string/password"
-        android:importantForAutofill="no"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -81,17 +56,17 @@
     <EditText
         android:id="@+id/enterName"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_marginStart="29dp"
         android:layout_marginLeft="29dp"
+        android:layout_marginTop="29dp"
         android:layout_marginEnd="29dp"
         android:layout_marginRight="29dp"
         android:ems="10"
-        android:hint="@string/email"
-        android:importantForAutofill="no"
-        android:inputType="textEmailAddress"
+        android:hint="@string/fullname"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/enterPassword" />
 
@@ -99,126 +74,37 @@
         android:id="@+id/subBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="@string/submit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/enterPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:ems="10"
-        android:hint="@string/phone"
-        android:importantForAutofill="no"
-        android:inputType="phone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enterName" />
-
-    <EditText
-        android:id="@+id/enterAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginBottom="40dp"
-        android:ems="10"
-        android:hint="@string/address"
-        android:importantForAutofill="no"
-        android:inputType="textPostalAddress"
-        android:singleLine="false"
-        app:layout_constraintBottom_toTopOf="@+id/workHours"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/workHours"
-        android:layout_width="88dp"
-        android:layout_height="22dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/hours"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/checkMonday"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Spinner
-        android:id="@+id/spinner11"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="13dp"
-        app:layout_constraintBottom_toTopOf="@+id/spinner12"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Spinner
-        android:id="@+id/spinner12"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="26dp"
-        android:layout_marginBottom="158dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner11" />
-
-    <CheckBox
-        android:id="@+id/checkMonday"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="176dp"
-        android:text="@string/monday"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/checkSunday" />
-
-    <CheckBox
-        android:id="@+id/checkTuesday"
-        android:layout_width="72dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="136dp"
+        android:layout_marginLeft="136dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="240dp"
-        android:text="@string/tuesday"
+        android:layout_marginBottom="8dp"
+        android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/checkWednesday"
-        app:layout_constraintHorizontal_bias="0.285"
-        app:layout_constraintStart_toEndOf="@+id/checkMonday"
-        app:layout_constraintTop_toTopOf="@+id/checkMonday"
-        app:layout_constraintVertical_bias="0.111" />
-
-    <CheckBox
-        android:id="@+id/checkWednesday"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="180dp"
-        android:text="@string/wednesday"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/checkMonday" />
-
-    <CheckBox
-        android:id="@+id/checkSunday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:text="@string/sunday"
-        app:layout_constraintBottom_toBottomOf="@+id/checkMonday"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/checkMonday"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <CheckBox
-        android:id="@+id/checkBox3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="28dp"
-        android:text="@string/saturday"
-        app:layout_constraintBottom_toBottomOf="@+id/checkFriday"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/checkFriday"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.139"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.908"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/enterPhone"
+        android:layout_width="355dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:ems="10"
+        android:hint="@string/phone"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enterName" />
+
 
 </android.support.constraint.ConstraintLayout>

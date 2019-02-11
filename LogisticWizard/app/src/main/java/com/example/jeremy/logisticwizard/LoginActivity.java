@@ -1,9 +1,12 @@
 package com.example.jeremy.logisticwizard;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -18,6 +21,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private Button SignupButton;
@@ -25,6 +33,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText user_name;
     private EditText password;
     private DatabaseReference mDatabase;
+    private ProgressDialog progressDialog2;
+    private FirebaseAuth mAuth;
 
 
     @Override
@@ -42,6 +52,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mDatabase = FirebaseDatabase.getInstance().getReference("user");
         user_name = (EditText)findViewById(R.id.UserName);
         password = (EditText) findViewById(R.id.Password);
+
+        mAuth = FirebaseAuth.getInstance();
+//        if (mAuth.getCurrentUser() != null) {
+//            // then go into to profile page
+//            finish();
+//
+//            startActivity(new Intent(getApplicationContext(), UserProfile.class));
+//        }
 
 
         password.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -100,6 +118,41 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         actionBar.hide();
 
     }
+    private void UserLogin(){
+        String infoEmail = user_name.getText().toString().trim();
+        String infoPassword = password.getText().toString().trim();
+        if (TextUtils.isEmpty(infoEmail)) {
+            Toast.makeText(this, "Please enter an email !", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (TextUtils.isEmpty(infoPassword)) {
+            Toast.makeText(this, "Please enter password !", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        // let user to see the process of login
+        progressDialog2.setMessage("Login Account...");
+        progressDialog2.show();
+        //function to receive user email and password with firebase
+
+        mAuth.signInWithEmailAndPassword(infoEmail, infoPassword)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        //progressDialog2.dismiss();
+                        if (task.isSuccessful()) {
+                            //startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            String grab_error = task.getException().getMessage();
+                            Toast.makeText(LoginActivity.this,
+                                    "Error occur:" + grab_error, Toast.LENGTH_SHORT).show();
+                        }
+                        progressDialog2.dismiss();
+
+                    }
+                });
+    }
+
 
     @Override
     public void onClick(View view) {
@@ -109,24 +162,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         }
         if (view == LoginButton) {
-            String user_name_s = user_name.getText().toString();
-            final String password_s = password.getText().toString();
-            mDatabase.child(user_name_s).child("password").addValueEventListener(new ValueEventListener(){
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-
-                    if(password_s.equals(dataSnapshot.getValue())){
-                        Toast.makeText(LoginActivity.this, "Login succeed", Toast.LENGTH_SHORT).show();
-                    }else{
-                        Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
-                    }
-
-                }
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    Toast.makeText(LoginActivity.this, "No permission", Toast.LENGTH_SHORT).show();
-                }
-            });
+            UserLogin();
         }
     }
 }
