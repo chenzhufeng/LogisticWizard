@@ -27,7 +27,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class Login extends AppCompatActivity implements View.OnClickListener {
     private Button SignupButton;
     private Button LoginButton;
     private EditText user_name;
@@ -74,15 +74,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         public void onDataChange(DataSnapshot dataSnapshot) {
 
                                 if(password_s.equals(dataSnapshot.getValue())){
-                                    Toast.makeText(LoginActivity.this, "Login succeed", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Login.this, "Login succeed", Toast.LENGTH_SHORT).show();
                                 }else{
-                                    Toast.makeText(LoginActivity.this, password_s, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Login.this, password_s, Toast.LENGTH_SHORT).show();
                                 }
 
                         }
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
-                            Toast.makeText(LoginActivity.this, "No permission", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this, "No permission", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -144,7 +144,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         } else {
                             // If sign in fails, display a message to the user.
                             String grab_error = task.getException().getMessage();
-                            Toast.makeText(LoginActivity.this,
+                            Toast.makeText(Login.this,
                                     "Error occur:" + grab_error, Toast.LENGTH_SHORT).show();
                         }
                         progressDialog2.dismiss();
@@ -157,7 +157,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         if (view == SignupButton) {
-            Intent intent = new Intent(view.getContext(), RegisterActivity.class);
+            Intent intent = new Intent(view.getContext(), Register.class);
             startActivity(intent);
 
         }
