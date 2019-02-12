@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.regex.Pattern;
 
 
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
+public class Register extends AppCompatActivity implements View.OnClickListener{
     private Button subButton;
     private Button backButton;
     private DatabaseReference mDatabase;
@@ -101,7 +101,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
         // Check password format
         if(pswPattern.matcher(infoPassword).matches() == false){
-            Toast.makeText(this, "Password should be start with alpha and in 6-16 characters!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Password format is incorrect!", Toast.LENGTH_SHORT).show();
             return;
         }
         mAuth.createUserWithEmailAndPassword(infoUsername, infoPassword)
@@ -123,12 +123,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                     //"http://img.icons8.com/color/1600/circled-user-male-skin-type-1-2.png");
                             mDatabase.setValue(user_info);
                             finish();
-                            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                            startActivity(new Intent(getApplicationContext(), Login.class));
                             mAuth.signOut();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(RegisterActivity.this, "Authentication failed.",
+                            Toast.makeText(Register.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
 
@@ -160,7 +160,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         }
         if (view == backButton){
-            Intent intent = new Intent(view.getContext(), LoginActivity.class);
+            Intent intent = new Intent(view.getContext(), Login.class);
             startActivity(intent);
         }
     }
