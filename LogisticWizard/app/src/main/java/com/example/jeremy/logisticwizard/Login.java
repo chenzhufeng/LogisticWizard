@@ -62,33 +62,33 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 //        }
 
 
-        password.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                if (i == EditorInfo.IME_ACTION_DONE) {
-                    //Toast.makeText(LoginActivity.this, "Press Enter", Toast.LENGTH_SHORT).show();
-                    String user_name_s = user_name.getText().toString();
-                    final String password_s = password.getText().toString();
-                    mDatabase.child(user_name_s).child("password").addValueEventListener(new ValueEventListener(){
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-
-                                if(password_s.equals(dataSnapshot.getValue())){
-                                    Toast.makeText(Login.this, "Login succeed", Toast.LENGTH_SHORT).show();
-                                }else{
-                                    Toast.makeText(Login.this, password_s, Toast.LENGTH_SHORT).show();
-                                }
-
-                        }
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-                            Toast.makeText(Login.this, "No permission", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-                return false;
-            }
-        });
+//        password.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+//                if (i == EditorInfo.IME_ACTION_DONE) {
+//                    //Toast.makeText(LoginActivity.this, "Press Enter", Toast.LENGTH_SHORT).show();
+//                    String user_name_s = user_name.getText().toString();
+//                    final String password_s = password.getText().toString();
+//                    mDatabase.child(user_name_s).child("password").addValueEventListener(new ValueEventListener(){
+//                        @Override
+//                        public void onDataChange(DataSnapshot dataSnapshot) {
+//
+//                                if(password_s.equals(dataSnapshot.getValue())){
+//                                    Toast.makeText(Login.this, "Login succeed", Toast.LENGTH_SHORT).show();
+//                                }else{
+//                                    Toast.makeText(Login.this, password_s, Toast.LENGTH_SHORT).show();
+//                                }
+//
+//                        }
+//                        @Override
+//                        public void onCancelled(DatabaseError databaseError) {
+//                            Toast.makeText(Login.this, "No permission", Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//                }
+//                return false;
+//            }
+//        });
 
 
 
@@ -98,8 +98,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         decorView.setSystemUiVisibility(uiOptions);
         // Remember that you should never show the action bar if the
         // status bar is hidden, so hide that too if necessary.
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        //ActionBar actionBar = getSupportActionBar();
+        //actionBar.hide();
 
     }
 
@@ -114,8 +114,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         //decorView.setSystemUiVisibility(uiOptions);
         // Remember that you should never show the action bar if the
         // status bar is hidden, so hide that too if necessary.
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        //ActionBar actionBar = getSupportActionBar();
+        //actionBar.hide();
 
     }
     private void UserLogin(){
@@ -130,8 +130,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             return;
         }
         // let user to see the process of login
-        progressDialog2.setMessage("Login Account...");
-        progressDialog2.show();
         //function to receive user email and password with firebase
 
         mAuth.signInWithEmailAndPassword(infoEmail, infoPassword)
@@ -140,14 +138,15 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         //progressDialog2.dismiss();
                         if (task.isSuccessful()) {
-                            //startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                            Toast.makeText(Login.this, "Login Successfully!", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), Inventory.class));
                         } else {
                             // If sign in fails, display a message to the user.
                             String grab_error = task.getException().getMessage();
                             Toast.makeText(Login.this,
                                     "Error occur:" + grab_error, Toast.LENGTH_SHORT).show();
                         }
-                        progressDialog2.dismiss();
+                        //progressDialog2.dismiss();
 
                     }
                 });

@@ -62,8 +62,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
     @Override
     protected void onStart() {
         super.onStart();
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        //ActionBar actionBar = getSupportActionBar();
+        //actionBar.hide();
 
     }
 
