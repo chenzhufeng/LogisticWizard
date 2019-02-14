@@ -12,8 +12,8 @@ public class Inventory extends AppCompatActivity {
 
     //using listView and ArrayAdapter to display all sections
     ListView lv;
-    String[] inventorName= {"Machine", "equipment", "tools", "asset"};
-    String[] inventorDescription= {"this is Machine description", "this is equipment description", "this is tools description", "this is asset description"};
+    String[] inventorName= {"Assets", "equipment", "tools", "Parts"};
+    String[] inventorDescription= {"this is Assets description", "this is equipment description", "this is tools description", "this is Parts description"};
 
     ArrayAdapter<String> adapter;
 
