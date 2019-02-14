@@ -1,21 +1,36 @@
 package com.example.jeremy.logisticwizard;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 import java.util.ArrayList;
-import android.widget.ListView;
+import java.util.HashMap;
+
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
-public class Machine extends AppCompatActivity {
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+public class Machine extends AppCompatActivity implements View.OnClickListener{
+    private DatabaseReference mDatabase;
     private Button add_machine;
     private SearchView sv;
     private ListView lv;
+    private DatabaseReference machineRef;
 
     //just for now
     private ArrayAdapter<String> adapter;
@@ -41,13 +56,7 @@ public class Machine extends AppCompatActivity {
         lv.setAdapter(adapter);
 
         add_machine = (Button) findViewById(R.id.add_machine_button);
-        add_machine.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent add_machine_intent = new Intent(view.getContext() , add_a_machine.class);
-                startActivity(add_machine_intent);
-            }
-        });
+        add_machine.setOnClickListener(this);
 
         // https://www.youtube.com/watch?v=H3JAy94UFw0
         sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -72,5 +81,48 @@ public class Machine extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void add_machine (View view){
+        Intent add_machine_intent = new Intent(view.getContext() , add_a_machine.class);
+        startActivityForResult(add_machine_intent, 21);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 21 && resultCode == RESULT_OK) {
+            String machineName = data.getStringExtra("machineName");
+            saveMachineToDB(machineName);
+        }
+    }
+
+    private void saveMachineToDB(String machineName) {
+        final String machine_Name = machineName;
+        //currentUserID = mAuthSetting.getCurrentUser().getUid();
+        machineRef = FirebaseDatabase.getInstance().getReference().child("machines");
+        //userRef2 = userRef.child("comments").child(Rest_ID);
+        machineRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // Log.i("snapshot", "Inside onDataChange!!!");
+            machine_info machine = new machine_info(machine_Name);
+            mDatabase.child("machines").child(machine_Name).setValue(machine);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
+
+    @Override
+    public void onClick(View view){
+        if (view == add_machine) {
+            add_machine(view);
+        }
     }
 }
