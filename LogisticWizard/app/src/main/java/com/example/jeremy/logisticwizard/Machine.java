@@ -1,32 +1,23 @@
 package com.example.jeremy.logisticwizard;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class Machine extends AppCompatActivity implements View.OnClickListener{
-    private DatabaseReference mDatabase;
+    protected DatabaseReference mDatabase;
     private Button add_machine;
     private SearchView sv;
     private ListView lv;
@@ -42,6 +33,7 @@ public class Machine extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_machine);
 
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         final ArrayList<String> listData = new ArrayList<String>();
         listData.add("sample data 1");
@@ -93,6 +85,7 @@ public class Machine extends AppCompatActivity implements View.OnClickListener{
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 21 && resultCode == RESULT_OK) {
             String machineName = data.getStringExtra("machineName");
+            Toast.makeText(this, "machine name"+machineName+"lalal", Toast.LENGTH_SHORT).show();
             saveMachineToDB(machineName);
         }
     }
@@ -100,21 +93,21 @@ public class Machine extends AppCompatActivity implements View.OnClickListener{
     private void saveMachineToDB(String machineName) {
         final String machine_Name = machineName;
         //currentUserID = mAuthSetting.getCurrentUser().getUid();
-        machineRef = FirebaseDatabase.getInstance().getReference().child("machines");
-        //userRef2 = userRef.child("comments").child(Rest_ID);
-        machineRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//        machineRef = FirebaseDatabase.getInstance().getReference().child("machines");
+//        //userRef2 = userRef.child("comments").child(Rest_ID);
+//        machineRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // Log.i("snapshot", "Inside onDataChange!!!");
             machine_info machine = new machine_info(machine_Name);
             mDatabase.child("machines").child(machine_Name).setValue(machine);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
 
 
     }
