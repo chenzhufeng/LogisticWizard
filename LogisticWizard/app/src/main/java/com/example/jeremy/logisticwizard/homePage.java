@@ -8,12 +8,12 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ArrayAdapter;
 
-public class Inventory extends AppCompatActivity {
+public class homePage extends AppCompatActivity {
 
     //using listView and ArrayAdapter to display all sections
     ListView lv;
-    String[] inventorName= {"Assets", "equipment", "tools", "Parts"};
-    String[] inventorDescription= {"this is Assets description", "this is equipment description", "this is tools description", "this is Parts description"};
+    String[] inventorName= {"Work Orders","Assets & equipment", "Tools & Parts", "User Profile", "Calender"};
+    String[] inventorDescription= {"", "", "", ""};
 
     ArrayAdapter<String> adapter;
 
@@ -21,7 +21,7 @@ public class Inventory extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inventory);
+        setContentView(R.layout.activity_homepage);
 
         lv = (ListView) findViewById(R.id.listview); //will need this later
         customlistview customlistview = new customlistview(this,  inventorName, inventorDescription);

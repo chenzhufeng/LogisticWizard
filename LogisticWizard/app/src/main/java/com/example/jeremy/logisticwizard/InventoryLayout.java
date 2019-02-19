@@ -8,6 +8,6 @@ public class InventoryLayout extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inventory_layout);
+        setContentView(R.layout.activity_homepage_layout);
     }
 }

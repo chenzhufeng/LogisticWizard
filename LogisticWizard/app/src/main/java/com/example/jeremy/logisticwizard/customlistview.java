@@ -1,10 +1,8 @@
 package com.example.jeremy.logisticwizard;
 
 import android.app.Activity;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +16,7 @@ public class customlistview extends ArrayAdapter<String> {
     private Activity context;
 
     public customlistview(Activity context, String[] inventorName, String[] inventorDescription) {
-        super(context, R.layout.activity_inventory_layout, inventorName);
+        super(context, R.layout.activity_homepage_layout, inventorName);
 
         this.context=context;
         this.inventorName=inventorName;
@@ -34,7 +32,7 @@ public class customlistview extends ArrayAdapter<String> {
         viewHolder viewHolder=null;
         if (r==null){
             LayoutInflater layoutInflater = context.getLayoutInflater();
-            r=layoutInflater.inflate(R.layout.activity_inventory_layout,null,true);
+            r=layoutInflater.inflate(R.layout.activity_homepage_layout,null,true);
             viewHolder = new viewHolder(r);
             r.setTag(viewHolder);
         }

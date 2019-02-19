@@ -36,7 +36,7 @@ public class add_a_machine extends AppCompatActivity implements View.OnClickList
 
         Spinner machinePlanSpinner = findViewById(R.id.maintenancePlan_spinner);
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
-                R.array.machineQuantityStringArray, android.R.layout.simple_spinner_item);
+                R.array.machinePlanStringArray, android.R.layout.simple_spinner_item);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         machinePlanSpinner.setAdapter(adapter1);
         machinePlanSpinner.setOnItemSelectedListener(this);
