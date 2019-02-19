@@ -40,6 +40,7 @@ public class Machine extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listData);
         lv.setAdapter(adapter);
 
+
         add_machine = (Button) findViewById(R.id.add_machine_button);
         add_machine.setOnClickListener(new View.OnClickListener() {
             @Override
