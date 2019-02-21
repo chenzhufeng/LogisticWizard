@@ -29,6 +29,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".Register" />
+        <activity android:name=".machineDisp"
+            android:theme="@style/AppTheme.CustomTheme"
+            ></activity>
     </application>
 
 </manifest>

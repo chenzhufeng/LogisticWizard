@@ -10,6 +10,7 @@ import android.widget.SearchView;
 import java.util.ArrayList;
 import android.widget.ListView;
 import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 
 public class Machine extends AppCompatActivity {
 
@@ -39,6 +40,21 @@ public class Machine extends AppCompatActivity {
         lv = (ListView) findViewById(R.id.list_of_machines); //will need this later
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listData);
         lv.setAdapter(adapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i==0){ // "machine" was clicked
+
+                    Intent machine_intent = new Intent(view.getContext(), machineDisp.class);
+                    //no need to put extras
+                    startActivity(machine_intent);
+                }
+                //Intent intent1 = new Intent(view.getContext(), .class);
+                //intent1.putExtra(SINGLE, listData.get(i));
+                //intent1.putExtra(LINK, links.get(i));
+                //startActivity(intent1);
+            }
+        });
 
 
         add_machine = (Button) findViewById(R.id.add_machine_button);
