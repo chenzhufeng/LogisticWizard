@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".mainPage"></activity>
+        <activity android:name=".editMachine"></activity>
+        <activity android:name=".mainPage" />
         <activity android:name=".add_a_machine" />
         <activity android:name=".Machine" />
         <activity
@@ -29,9 +30,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".Register" />
-        <activity android:name=".machineDisp"
-            android:theme="@style/AppTheme.CustomTheme"
-            ></activity>
+        <activity
+            android:name=".machineDisp"
+            android:theme="@style/AppTheme.CustomTheme" />
     </application>
 
 </manifest>
