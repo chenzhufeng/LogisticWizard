@@ -26,7 +26,7 @@ public class Machine extends AppCompatActivity implements View.OnClickListener{
     private Button add_machine;
     private SearchView sv;
     private ListView lv;
-    List<machine_info> machine_infoList;
+    ArrayList<machine_info> machine_infoList;
 
     private DatabaseReference machineRef;
 
@@ -84,10 +84,12 @@ public class Machine extends AppCompatActivity implements View.OnClickListener{
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            machine_infoList.clear();
                 for(DataSnapshot machineSnapshot : dataSnapshot.getChildren()){
                     machine_info machine = machineSnapshot.getValue(machine_info.class);
                     machine_infoList.add(machine);
                 }
+                //Toast.makeText(Machine.this, machine_infoList.get(0).machine_name+machine_infoList.get(1).machine_name, Toast.LENGTH_SHORT).show();
                 MachineinfoAdapter machineinfoAdapter = new MachineinfoAdapter(Machine.this,
                         machine_infoList);
                 lv.setAdapter(machineinfoAdapter);

@@ -91,23 +91,25 @@ public class add_a_machine extends AppCompatActivity implements View.OnClickList
         String maintainPlan = machinePlanSpinner.getSelectedItem().toString().trim();
         String machineQuant = machineQuantitySpinner.getSelectedItem().toString().trim();
 
-//        if (machineName.equals("")||machineDescp.equals("")||machinePrice.equals("")||machineLocat.equals("")||maintainPlan.equals("")) {
-//            Toast.makeText(this,
-//                    "Please enter all information or leave NONE.", Toast.LENGTH_LONG).show();
-//            return;
-//        }
+        if (machineName.equals("")||machineDescp.equals("")||machinePrice.equals("")||machineLocat.equals("")
+                ||machineType.equals("")||machineParts.equals("")||maintainPlan.equals("")||machineQuant.equals("")) {
+            Toast.makeText(this,
+                    "Please enter all information or leave NONE.", Toast.LENGTH_LONG).show();
+            return;
+        }else {
 
-        Intent machine_intent = new Intent();
-        machine_intent.putExtra("machineName", machineName);
-        machine_intent.putExtra("machineDescription", machineDescp);
-        machine_intent.putExtra("machinePrice", machinePrice);
-        machine_intent.putExtra("machineLocation", machineLocat);
-        machine_intent.putExtra("machineType", machineType);
-        machine_intent.putExtra("machineParts", machineParts);
-        machine_intent.putExtra("maintainencePlan", maintainPlan);
-        machine_intent.putExtra("machineQuant", machineQuant);
-        setResult(RESULT_OK, machine_intent);
-        finish();
+            Intent machine_intent = new Intent();
+            machine_intent.putExtra("machineName", machineName);
+            machine_intent.putExtra("machineDescription", machineDescp);
+            machine_intent.putExtra("machinePrice", machinePrice);
+            machine_intent.putExtra("machineLocation", machineLocat);
+            machine_intent.putExtra("machineType", machineType);
+            machine_intent.putExtra("machineParts", machineParts);
+            machine_intent.putExtra("maintainencePlan", maintainPlan);
+            machine_intent.putExtra("machineQuant", machineQuant);
+            setResult(RESULT_OK, machine_intent);
+            finish();
+        }
     }
 
 
