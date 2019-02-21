@@ -52,7 +52,7 @@ public class machineDisp extends Activity implements View.OnClickListener{
         machineInfoHashMap.put("Price", machinePrice);
         machineInfoHashMap.put("Location", machineLocation);
         machineInfoHashMap.put("Maintenance Plan", machinePlan);
-        machineInfoHashMap.put("Description", machineDescription);
+        machineInfoHashMap.put("Description", machineQuant);
 
 
         List<HashMap<String, String>> listItems = new ArrayList<>();
