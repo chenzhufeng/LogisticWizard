@@ -16,10 +16,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".add_a_machine"></activity>
-        <activity android:name=".InventoryLayout" />
+        <activity android:name=".editMachine"></activity>
+        <activity android:name=".mainPage" />
+        <activity android:name=".add_a_machine" />
         <activity android:name=".Machine" />
-        <activity android:name=".Inventory" />
         <activity
             android:name=".Login"
             android:label="@string/app_name">
@@ -30,6 +30,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".Register" />
+        <activity
+            android:name=".machineDisp"
+            android:theme="@style/AppTheme.CustomTheme" />
     </application>
 
 </manifest>

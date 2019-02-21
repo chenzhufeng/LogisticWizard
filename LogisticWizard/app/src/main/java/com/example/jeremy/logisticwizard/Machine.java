@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
+
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -17,9 +18,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
-import java.util.List;
+import android.widget.ListView;
+import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
+
 
 public class Machine extends AppCompatActivity implements View.OnClickListener{
     protected DatabaseReference mDatabase;
@@ -27,8 +30,6 @@ public class Machine extends AppCompatActivity implements View.OnClickListener{
     private SearchView sv;
     private ListView lv;
     ArrayList<machine_info> machine_infoList;
-
-    private DatabaseReference machineRef;
 
     //just for now
     private ArrayAdapter<String> adapter;
@@ -93,6 +94,13 @@ public class Machine extends AppCompatActivity implements View.OnClickListener{
                 MachineinfoAdapter machineinfoAdapter = new MachineinfoAdapter(Machine.this,
                         machine_infoList);
                 lv.setAdapter(machineinfoAdapter);
+                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                         // "machine" was clicked
+                            machine_selected(i, machine_infoList, view);
+                    }
+                });
             }
 
 
@@ -102,6 +110,28 @@ public class Machine extends AppCompatActivity implements View.OnClickListener{
 
             }
         });
+    }
+
+    public void machine_selected(int i, ArrayList<machine_info> machine_infoList, View view){
+       String machineName = machine_infoList.get(i).machine_name;
+       String machineDescp = machine_infoList.get(i).machine_descrip;
+       String machinePrice = machine_infoList.get(i).machine_price;
+       String machineLocat = machine_infoList.get(i).machine_location;
+       String machineType = machine_infoList.get(i).machine_type;
+       String machineParts = machine_infoList.get(i).machine_parts;
+       String maintainPlan = machine_infoList.get(i).maintain_plan;
+       String machineQuant = machine_infoList.get(i).machine_quant;
+
+        Intent machine_intent = new Intent(view.getContext(), machineDisp.class);
+        machine_intent.putExtra("machineName", machineName);
+        machine_intent.putExtra("machineDescription", machineDescp);
+        machine_intent.putExtra("machinePrice", machinePrice);
+        machine_intent.putExtra("machineLocation", machineLocat);
+        machine_intent.putExtra("machineType", machineType);
+        machine_intent.putExtra("machineParts", machineParts);
+        machine_intent.putExtra("maintainencePlan", maintainPlan);
+        machine_intent.putExtra("machineQuant", machineQuant);
+        startActivity(machine_intent);
     }
 
 
@@ -128,6 +158,7 @@ public class Machine extends AppCompatActivity implements View.OnClickListener{
                     machineType, machineParts, machinePlan, machineQuant);
         }
     }
+
 
     private void saveMachineToDB(String machineName, String machineDescription, String machinePrice, String machineLocation,
                                  String machineType, String machineParts, String machinePlan, String machineQuant) {
