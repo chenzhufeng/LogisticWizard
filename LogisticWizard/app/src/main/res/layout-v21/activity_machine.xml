@@ -1,25 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
     tools:context=".Machine">
-
-    <Button
-        android:id="@+id/add_machine_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/machine_search"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="-53dp"
-        android:layout_marginEnd="13dp"
-        android:layout_marginRight="13dp"
-        android:text="Add a Machine"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="49dp" />
 
     <ListView
         android:id="@+id/list_of_machines"
@@ -27,40 +14,48 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/add_machine_button"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="15dp"
-        android:layout_marginLeft="17dp"
         android:layout_marginTop="67dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginRight="13dp"
         android:layout_marginBottom="1dp" />
 
     <View
         android:id="@+id/machine_bar"
-        android:layout_width="411dp"
-        android:layout_height="101dp"
-        android:layout_alignParentLeft="true"
+        android:layout_width="match_parent"
+        android:layout_height="133dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="-24dp"
         android:background="@drawable/inventory_bar"
-        android:elevation="4dp"/>
+        android:elevation="4dp" />
+
+    <Button
+        android:id="@+id/add_machine_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/machine_search"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="-53dp"
+        android:layout_marginEnd="13dp"
+        android:elevation="20dp"
+        android:text="@string/add_a_machine"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="49dp" />
 
     <SearchView
         android:id="@+id/machine_search"
         android:layout_width="243dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
 
         android:layout_marginTop="8dp"
         android:layout_marginBottom="5dp"
         android:clickable="true"
-        android:queryHint="Search..." />
+        android:queryHint="Search..."
+        android:elevation="4dp"/>
 
 </RelativeLayout>

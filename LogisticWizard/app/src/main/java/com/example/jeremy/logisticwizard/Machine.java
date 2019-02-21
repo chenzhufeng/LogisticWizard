@@ -4,24 +4,47 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewOutlineProvider;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.graphics.Outline;
 import java.util.ArrayList;
-import android.widget.ListView;
 import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
+import android.annotation.TargetApi;
 
 public class Machine extends AppCompatActivity {
 
     private Button add_machine;
     private SearchView sv;
     private ListView lv;
+    private View machineBar;
 
     //just for now
     private ArrayAdapter<String> adapter;
 
+    @TargetApi(21)
+    private class CustomOutlineView extends ViewOutlineProvider {
+        private int width;
+        private int height;
 
+        CustomOutlineView(int width, int height) {
+            this.width = width;
+            this.height = height;
+        }
+
+        @Override
+        public void getOutline(View view, Outline outline) {
+            outline.setRect(0, 0, width, height);
+        }
+
+    }
+
+/*    machineBar = (View) findViewById(R.id.machine_bar);
+    CustomOutlineView customOutline = new CustomOutlineView(2, 2);
+    machineBar.setOutlineProvider(customOutline);
+*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +86,7 @@ public class Machine extends AppCompatActivity {
             public void onClick(View view) {
                 Intent add_machine_intent = new Intent(view.getContext() , add_a_machine.class);
                 startActivity(add_machine_intent);
+                //finish();
             }
         });
 
