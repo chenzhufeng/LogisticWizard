@@ -60,21 +60,6 @@ public class editMachine extends AppCompatActivity implements View.OnClickListen
         }
 
         lv.setAdapter(adapter);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                foreach (ListViewItem item in listView1.Items)
-                {x
-                    total += Convert.ToInt32(item.SubItems[1].Text);
-
-                }
-
-                //Intent intent1 = new Intent(view.getContext(), .class);
-                //intent1.putExtra(SINGLE, listData.get(i));
-                //intent1.putExtra(LINK, links.get(i));
-                //startActivity(intent1);
-            }
-        });
 
 
 
