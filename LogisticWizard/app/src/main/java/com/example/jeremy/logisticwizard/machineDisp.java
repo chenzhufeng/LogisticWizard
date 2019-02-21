@@ -33,7 +33,6 @@ public class machineDisp extends Activity implements View.OnClickListener{
 
 
 
-        final ArrayList<String> listData = new ArrayList<String>();
         LinkedHashMap<String, String> machineInfoHashMap = new LinkedHashMap<>();
         machineInfoHashMap.put("Name", "Name data here");
         machineInfoHashMap.put("Type", "Type data here");
