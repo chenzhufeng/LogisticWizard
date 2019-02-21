@@ -81,7 +81,7 @@ public class Machine extends AppCompatActivity implements View.OnClickListener{
     @Override
     protected void onStart() {
         super.onStart();
-        machineRef.addValueEventListener(new ValueEventListener() {
+        mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot machineSnapshot : dataSnapshot.getChildren()){
