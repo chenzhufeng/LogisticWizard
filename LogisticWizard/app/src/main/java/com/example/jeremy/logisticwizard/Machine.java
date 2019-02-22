@@ -3,6 +3,7 @@ package com.example.jeremy.logisticwizard;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Build;
 import android.view.View;
 import android.view.ViewOutlineProvider;
 import android.widget.Button;
@@ -19,7 +20,7 @@ public class Machine extends AppCompatActivity {
     private Button add_machine;
     private SearchView sv;
     private ListView lv;
-    private View machineBar;
+    private View machineBar = (View) findViewById(R.id.machine_bar);
 
     //just for now
     private ArrayAdapter<String> adapter;
@@ -38,19 +39,16 @@ public class Machine extends AppCompatActivity {
         public void getOutline(View view, Outline outline) {
             outline.setRect(0, 0, width, height);
         }
-
     }
-
-/*    machineBar = (View) findViewById(R.id.machine_bar);
-    CustomOutlineView customOutline = new CustomOutlineView(2, 2);
-    machineBar.setOutlineProvider(customOutline);
-*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_machine);
-
+        CustomOutlineView customOutline = new CustomOutlineView(2, 2);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            machineBar.setOutlineProvider(customOutline);
+        }
 
         final ArrayList<String> listData = new ArrayList<String>();
         listData.add("sample data 1");
@@ -99,7 +97,6 @@ public class Machine extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String s) {
-
                 adapter.getFilter().filter(s);
                 return false;
             }
