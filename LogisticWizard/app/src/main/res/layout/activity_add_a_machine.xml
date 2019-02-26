@@ -12,7 +12,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
-        android:text="Add Machine"
+        android:text="Add Assets/Machine"
         android:textSize="20sp"
         android:textAlignment="center" />
 
@@ -35,7 +35,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="50dp"
                 android:layout_marginEnd="10dp"
-                android:hint="Enter Machine Name..."
+                android:hint="Enter Name..."
                 android:inputType="text"
                 android:layout_gravity="start" />
 
@@ -46,7 +46,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
-                android:hint="Enter machine type..."
+                android:hint="Enter type..."
                 android:inputType="text"
                 android:layout_gravity="start" />
 
@@ -69,7 +69,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
-                android:hint="Enter machine description..."
+                android:hint="Enter description..."
                 android:inputType="text"
                 android:layout_gravity="start" />
 
@@ -80,7 +80,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
-                android:hint="Enter machine price..."
+                android:hint="Enter price..."
                 android:inputType="text"
                 android:layout_gravity="start" />
 
@@ -91,7 +91,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
-                android:hint="Enter machine location..."
+                android:hint="Enter location..."
                 android:inputType="text"
                 android:layout_gravity="start" />
 
@@ -102,7 +102,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
-                android:text="Select quantity of this machine"
+                android:text="Select quantity"
                 android:textSize="18sp"
                 android:layout_gravity="start" />
 
@@ -149,7 +149,7 @@
                 android:id="@+id/add_machine_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Add Machine"
+                android:text="Add"
                 android:layout_marginBottom="10dp"/>
         </LinearLayout>
     </ScrollView>
