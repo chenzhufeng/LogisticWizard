@@ -66,7 +66,7 @@ public class machineDisp extends Activity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         if (v == editButton) {
-            Intent intent = new Intent(v.getContext(), editMachine.class);
+            Intent intent = new Intent(v.getContext(), editInformation.class);
             startActivity(intent);
         }
     }
