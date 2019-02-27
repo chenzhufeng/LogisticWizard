@@ -44,7 +44,6 @@ public class machineDisp extends Activity implements View.OnClickListener{
         String machineQuant = (String)data.get("machineQuant");
 
 
-        final ArrayList<String> listData = new ArrayList<String>();
         LinkedHashMap<String, String> machineInfoHashMap = new LinkedHashMap<>();
         machineInfoHashMap.put("Name", machineName);
         machineInfoHashMap.put("Type", machineType);
@@ -78,7 +77,7 @@ public class machineDisp extends Activity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         if (v == editButton) {
-            Intent intent = new Intent(v.getContext(), editMachine.class);
+            Intent intent = new Intent(v.getContext(), editInformation.class);
             startActivity(intent);
         }
     }
