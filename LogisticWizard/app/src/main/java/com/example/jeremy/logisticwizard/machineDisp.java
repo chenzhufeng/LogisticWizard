@@ -20,6 +20,14 @@ public class machineDisp extends Activity implements View.OnClickListener{
     private ListView lv;
     private Button editButton;
 
+    String machineName;
+    String machineDescription;
+    String machinePrice;
+    String machineLocation;
+    String machineType;
+    String machineParts;
+    String machinePlan;
+    String machineQuant;
 
 
     @Override
@@ -34,14 +42,14 @@ public class machineDisp extends Activity implements View.OnClickListener{
         Intent machine_info = getIntent();
         Bundle data = machine_info.getExtras();
 
-        String machineName = (String)data.get("machineName");
-        String machineDescription = (String)data.get("machineDescription");
-        String machinePrice = (String)data.get("machinePrice");
-        String machineLocation = (String)data.get("machineLocation");
-        String machineType = (String)data.get("machineType");
-        String machineParts = (String)data.get("machineParts");
-        String machinePlan = (String)data.get("maintainencePlan");
-        String machineQuant = (String)data.get("machineQuant");
+        machineName = (String)data.get("machineName");
+        machineDescription = (String)data.get("machineDescription");
+        machinePrice = (String)data.get("machinePrice");
+        machineLocation = (String)data.get("machineLocation");
+        machineType = (String)data.get("machineType");
+        machineParts = (String)data.get("machineParts");
+        machinePlan = (String)data.get("maintainencePlan");
+        machineQuant = (String)data.get("machineQuant");
 
 
         LinkedHashMap<String, String> machineInfoHashMap = new LinkedHashMap<>();
@@ -78,8 +86,16 @@ public class machineDisp extends Activity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         if (v == editButton) {
-            Intent intent = new Intent(v.getContext(), editInformation.class);
-            startActivity(intent);
+            Intent machine_intent = new Intent(v.getContext(), editInformation.class);
+            machine_intent.putExtra("machineName", machineName);
+            machine_intent.putExtra("machineDescription", machineDescription);
+            machine_intent.putExtra("machinePrice", machinePrice);
+            machine_intent.putExtra("machineLocation", machineLocation);
+            machine_intent.putExtra("machineType", machineType);
+            machine_intent.putExtra("machineParts", machineParts);
+            machine_intent.putExtra("maintainencePlan", machinePlan);
+            machine_intent.putExtra("machineQuant", machineQuant);
+            startActivity(machine_intent);
         }
     }
 }
