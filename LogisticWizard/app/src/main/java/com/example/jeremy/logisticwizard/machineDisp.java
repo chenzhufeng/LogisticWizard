@@ -20,6 +20,14 @@ public class machineDisp extends Activity implements View.OnClickListener{
     private ListView lv;
     private Button editButton;
 
+    String machineName;
+    String machineDescription;
+    String machinePrice;
+    String machineLocation;
+    String machineType;
+    String machineParts;
+    String machinePlan;
+    String machineQuant;
 
 
     @Override
@@ -31,16 +39,28 @@ public class machineDisp extends Activity implements View.OnClickListener{
         editButton.setOnClickListener(this);
         lv = findViewById(R.id.machineInfoList);
 
+        Intent machine_info = getIntent();
+        Bundle data = machine_info.getExtras();
+
+        machineName = (String)data.get("machineName");
+        machineDescription = (String)data.get("machineDescription");
+        machinePrice = (String)data.get("machinePrice");
+        machineLocation = (String)data.get("machineLocation");
+        machineType = (String)data.get("machineType");
+        machineParts = (String)data.get("machineParts");
+        machinePlan = (String)data.get("maintainencePlan");
+        machineQuant = (String)data.get("machineQuant");
 
 
         LinkedHashMap<String, String> machineInfoHashMap = new LinkedHashMap<>();
-        machineInfoHashMap.put("Name", "Name data here");
-        machineInfoHashMap.put("Type", "Type data here");
-        machineInfoHashMap.put("Parts information", "Parts data here");
-        machineInfoHashMap.put("Price", "Price data here");
-        machineInfoHashMap.put("Location", "Location data here");
-        machineInfoHashMap.put("Maintenance Plan", "Maintenance data here");
-        machineInfoHashMap.put("Description", "Description data");
+        machineInfoHashMap.put("Name", machineName);
+        machineInfoHashMap.put("Description", machineDescription);
+        machineInfoHashMap.put("Type", machineType);
+        machineInfoHashMap.put("Parts information", machineParts);
+        machineInfoHashMap.put("Price", machinePrice);
+        machineInfoHashMap.put("Location", machineLocation);
+        machineInfoHashMap.put("Maintenance Plan", machinePlan);
+        machineInfoHashMap.put("machineQuant", machineQuant);
 
 
         List<HashMap<String, String>> listItems = new ArrayList<>();
@@ -66,8 +86,16 @@ public class machineDisp extends Activity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         if (v == editButton) {
-            Intent intent = new Intent(v.getContext(), editInformation.class);
-            startActivity(intent);
+            Intent machine_intent = new Intent(v.getContext(), editInformation.class);
+            machine_intent.putExtra("machineName", machineName);
+            machine_intent.putExtra("machineDescription", machineDescription);
+            machine_intent.putExtra("machinePrice", machinePrice);
+            machine_intent.putExtra("machineLocation", machineLocation);
+            machine_intent.putExtra("machineType", machineType);
+            machine_intent.putExtra("machineParts", machineParts);
+            machine_intent.putExtra("maintainencePlan", machinePlan);
+            machine_intent.putExtra("machineQuant", machineQuant);
+            startActivity(machine_intent);
         }
     }
 }

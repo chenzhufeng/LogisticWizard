@@ -1,22 +1,35 @@
 package com.example.jeremy.logisticwizard;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
+
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import android.widget.ListView;
 import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
 
-public class Machine extends AppCompatActivity {
 
+public class Machine extends AppCompatActivity implements View.OnClickListener{
+    protected DatabaseReference mDatabase;
     private Button add_machine;
     private SearchView sv;
     private ListView lv;
+    ArrayList<machine_info> machine_infoList;
 
     //just for now
     private ArrayAdapter<String> adapter;
@@ -28,6 +41,7 @@ public class Machine extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_machine);
 
+        mDatabase = FirebaseDatabase.getInstance().getReference("machines");
 
         final ArrayList<String> listData = new ArrayList<String>();
         listData.add("sample data 1");
@@ -38,33 +52,12 @@ public class Machine extends AppCompatActivity {
 
         sv = (SearchView) findViewById(R.id.machine_search);
         lv = (ListView) findViewById(R.id.list_of_machines); //will need this later
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listData);
-        lv.setAdapter(adapter);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i==0){ // "machine" was clicked
-
-                    Intent machine_intent = new Intent(view.getContext(), machineDisp.class);
-                    //no need to put extras
-                    startActivity(machine_intent);
-                }
-                //Intent intent1 = new Intent(view.getContext(), .class);
-                //intent1.putExtra(SINGLE, listData.get(i));
-                //intent1.putExtra(LINK, links.get(i));
-                //startActivity(intent1);
-            }
-        });
-
+        machine_infoList = new ArrayList<>();
+        //adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listData);
+        //lv.setAdapter(adapter);
 
         add_machine = (Button) findViewById(R.id.add_machine_button);
-        add_machine.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent add_machine_intent = new Intent(view.getContext() , add_a_machine.class);
-                startActivity(add_machine_intent);
-            }
-        });
+        add_machine.setOnClickListener(this);
 
         // https://www.youtube.com/watch?v=H3JAy94UFw0
         sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -89,5 +82,117 @@ public class Machine extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            machine_infoList.clear();
+                for(DataSnapshot machineSnapshot : dataSnapshot.getChildren()){
+                    machine_info machine = machineSnapshot.getValue(machine_info.class);
+                    machine_infoList.add(machine);
+                }
+                //Toast.makeText(Machine.this, machine_infoList.get(0).machine_name+machine_infoList.get(1).machine_name, Toast.LENGTH_SHORT).show();
+                MachineinfoAdapter machineinfoAdapter = new MachineinfoAdapter(Machine.this,
+                        machine_infoList);
+                lv.setAdapter(machineinfoAdapter);
+                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                         // "machine" was clicked
+                            machine_selected(i, machine_infoList, view);
+                    }
+                });
+            }
+
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public void machine_selected(int i, ArrayList<machine_info> machine_infoList, View view){
+       String machineName = machine_infoList.get(i).machine_name;
+       String machineDescp = machine_infoList.get(i).machine_descrip;
+       String machinePrice = machine_infoList.get(i).machine_price;
+       String machineLocat = machine_infoList.get(i).machine_location;
+       String machineType = machine_infoList.get(i).machine_type;
+       String machineParts = machine_infoList.get(i).machine_parts;
+       String maintainPlan = machine_infoList.get(i).maintain_plan;
+       String machineQuant = machine_infoList.get(i).machine_quant;
+
+        Intent machine_intent = new Intent(view.getContext(), machineDisp.class);
+        machine_intent.putExtra("machineName", machineName);
+        machine_intent.putExtra("machineDescription", machineDescp);
+        machine_intent.putExtra("machinePrice", machinePrice);
+        machine_intent.putExtra("machineLocation", machineLocat);
+        machine_intent.putExtra("machineType", machineType);
+        machine_intent.putExtra("machineParts", machineParts);
+        machine_intent.putExtra("maintainencePlan", maintainPlan);
+        machine_intent.putExtra("machineQuant", machineQuant);
+        startActivity(machine_intent);
+    }
+
+
+
+    public void add_machine (View view){
+        Intent add_machine_intent = new Intent(view.getContext() , add_a_machine.class);
+        startActivityForResult(add_machine_intent, 21);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 21 && resultCode == RESULT_OK) {
+            String machineName = data.getStringExtra("machineName");
+            String machineDescription = data.getStringExtra("machineDescription");
+            String machinePrice = data.getStringExtra("machinePrice");
+            String machineLocation = data.getStringExtra("machineLocation");
+            String machineType = data.getStringExtra("machineType");
+            String machineParts = data.getStringExtra("machineParts");
+            String machinePlan = data.getStringExtra("maintainencePlan");
+            String machineQuant = data.getStringExtra("machineQuant");
+            Toast.makeText(this, "machine name"+machineName+"lalal", Toast.LENGTH_SHORT).show();
+            saveMachineToDB(machineName, machineDescription, machinePrice, machineLocation,
+                    machineType, machineParts, machinePlan, machineQuant);
+        }
+    }
+
+
+    private void saveMachineToDB(String machineName, String machineDescription, String machinePrice, String machineLocation,
+                                 String machineType, String machineParts, String machinePlan, String machineQuant) {
+        //final String machine_Name = machineName;
+        //currentUserID = mAuthSetting.getCurrentUser().getUid();
+//        machineRef = FirebaseDatabase.getInstance().getReference().child("machines");
+//        //userRef2 = userRef.child("comments").child(Rest_ID);
+//        machineRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // Log.i("snapshot", "Inside onDataChange!!!");
+            machine_info machine = new machine_info(machineName, machineDescription, machinePrice, machineLocation,
+                    machineType, machineParts, machinePlan, machineQuant);
+            mDatabase.child(machineName).setValue(machine);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+
+
+    }
+
+    @Override
+    public void onClick(View view){
+        if (view == add_machine) {
+            add_machine(view);
+        }
     }
 }
