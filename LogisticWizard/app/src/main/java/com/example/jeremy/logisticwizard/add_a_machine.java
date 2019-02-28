@@ -91,6 +91,7 @@ public class add_a_machine extends AppCompatActivity implements View.OnClickList
         String maintainPlan = machinePlanSpinner.getSelectedItem().toString().trim();
         String machineQuant = machineQuantitySpinner.getSelectedItem().toString().trim();
 
+
         if (machineName.equals("")||machineDescp.equals("")||machinePrice.equals("")||machineLocat.equals("")
                 ||machineType.equals("")||machineParts.equals("")||maintainPlan.equals("")||machineQuant.equals("")) {
             Toast.makeText(this,

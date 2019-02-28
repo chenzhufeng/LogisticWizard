@@ -39,6 +39,14 @@ public class machineDisp extends Activity implements View.OnClickListener{
         editButton.setOnClickListener(this);
         lv = findViewById(R.id.machineInfoList);
 
+
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         Intent machine_info = getIntent();
         Bundle data = machine_info.getExtras();
 
@@ -79,7 +87,6 @@ public class machineDisp extends Activity implements View.OnClickListener{
         }
 
         lv.setAdapter(adapter);
-
 
     }
 

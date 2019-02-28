@@ -1,8 +1,10 @@
 package com.example.jeremy.logisticwizard;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,11 +13,20 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class editInformation extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     String machineName;
+    String machineName2;
     String machineDescp;
     String machinePrice;
     String machineLocat;
@@ -23,6 +34,7 @@ public class editInformation extends AppCompatActivity implements AdapterView.On
     String machineParts;
     String maintainPlan;
     String machineQuant;
+    List<String> temple=new ArrayList<>();
     private EditText name;
     private EditText type;
     private EditText part;
@@ -30,13 +42,15 @@ public class editInformation extends AppCompatActivity implements AdapterView.On
     private EditText location;
     private Spinner machinePlanSpinner;
     private EditText description;
-    protected DatabaseReference mDatabase;
+    protected DatabaseReference mDatabase=FirebaseDatabase.getInstance().getReference("machines");;
 
     private Button save;
     private View.OnClickListener saveOnClickListener = new View.OnClickListener(){
         @Override
         public void onClick(View v){
             saveInfo();
+            Intent machine_intent = new Intent(v.getContext(), machineDisp.class);
+            startActivity(machine_intent);
         }
 
     };
@@ -45,21 +59,9 @@ public class editInformation extends AppCompatActivity implements AdapterView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_infomation);
-        mDatabase = FirebaseDatabase.getInstance().getReference("machines");
-
-<<<<<<< HEAD
-        Spinner machineQuantitySpinner = findViewById(R.id.quantitySpinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.machineQuantityStringArray, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        machineQuantitySpinner.setAdapter(adapter);
-        machineQuantitySpinner.setOnItemSelectedListener(this);
 
 
-        Spinner machinePlanSpinner = findViewById(R.id.maintenancePlanSpinner);
-=======
         machinePlanSpinner = findViewById(R.id.maintenancePlanSpinner);
->>>>>>> Zike
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
                 R.array.machinePlanStringArray, android.R.layout.simple_spinner_item);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -115,7 +117,7 @@ public class editInformation extends AppCompatActivity implements AdapterView.On
     }
 
     private void saveInfo(){
-        machineName = name.getText().toString().trim();
+        machineName2 = name.getText().toString().trim();
         machineDescp = description.getText().toString().trim();
         machinePrice = price.getText().toString().trim();
         machineLocat = location.getText().toString().trim();
@@ -124,17 +126,43 @@ public class editInformation extends AppCompatActivity implements AdapterView.On
         maintainPlan = machinePlanSpinner.getSelectedItem().toString().trim();
         //machineQuant = machineQuantitySpinner.getSelectedItem().toString().trim();
 
-        if (machineName.equals("")||machineDescp.equals("")||machinePrice.equals("")||machineLocat.equals("")
+        if (machineName2.equals("")||machineDescp.equals("")||machinePrice.equals("")||machineLocat.equals("")
                 ||machineType.equals("")||machineParts.equals("")||maintainPlan.equals("")||machineQuant.equals("")) {
             Toast.makeText(this,
                     "Please enter all information or leave NONE.", Toast.LENGTH_LONG).show();
             return;
         }else {
+            if(!machineName2.equals(machineName)) {
+                mDatabase.child(machineName).removeValue();
+            }
 
-            machine_info machine = new machine_info(machineName, machineDescp, machinePrice, machineLocat,
-                    machineType, machineParts, maintainPlan, machineQuant);
-            mDatabase.child(machineName).setValue(machine);
+            mDatabase.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                    for(DataSnapshot machineSnapshot : dataSnapshot.getChildren()){
+                        if(!machineSnapshot.getKey().equals(machineName)){
+                            temple.add(machineSnapshot.getKey());
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+            if(temple.contains(machineName2)){
+                Toast.makeText(editInformation.this,
+                        "Machine already exists, please enter a new name.", Toast.LENGTH_LONG).show();
+                return;
+
+            }
+            else {
+                machine_info machine = new machine_info(machineName2, machineDescp, machinePrice, machineLocat,
+                        machineType, machineParts, maintainPlan, machineQuant);
+                mDatabase.child(machineName2).setValue(machine);
+            }
 
         }
     }
