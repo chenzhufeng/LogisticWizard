@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".editInformation"></activity>
+        <activity android:name=".profile"></activity>
+        <activity android:name=".editInformation" />
         <activity android:name=".mainPage" />
         <activity android:name=".add_a_machine" />
         <activity android:name=".Machine" />
