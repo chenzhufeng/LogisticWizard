@@ -19,6 +19,7 @@ public class machineDisp extends Activity implements View.OnClickListener{
 
     private ListView lv;
     private Button editButton;
+    private Button backButton;
 
     String machineName;
     String machineDescription;
@@ -39,9 +40,8 @@ public class machineDisp extends Activity implements View.OnClickListener{
         editButton.setOnClickListener(this);
         lv = findViewById(R.id.machineInfoList);
 
-
-
-
+        backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(this);
     }
 
     @Override
@@ -103,6 +103,10 @@ public class machineDisp extends Activity implements View.OnClickListener{
             machine_intent.putExtra("maintainencePlan", machinePlan);
             machine_intent.putExtra("machineQuant", machineQuant);
             startActivity(machine_intent);
+        }
+        if(v == backButton){
+            Intent intent = new Intent (v.getContext(), Machine.class);
+            startActivity(intent);
         }
     }
 }

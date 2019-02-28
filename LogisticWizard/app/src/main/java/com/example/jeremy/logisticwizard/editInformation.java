@@ -50,6 +50,14 @@ public class editInformation extends AppCompatActivity implements AdapterView.On
         public void onClick(View v){
             saveInfo();
             Intent machine_intent = new Intent(v.getContext(), machineDisp.class);
+            machine_intent.putExtra("machineName", machineName2);
+            machine_intent.putExtra("machineDescription", machineDescp);
+            machine_intent.putExtra("machinePrice", machinePrice);
+            machine_intent.putExtra("machineLocation", machineLocat);
+            machine_intent.putExtra("machineType", machineType);
+            machine_intent.putExtra("machineParts", machineParts);
+            machine_intent.putExtra("maintainencePlan", maintainPlan);
+            machine_intent.putExtra("machineQuant", machineQuant);
             startActivity(machine_intent);
         }
 

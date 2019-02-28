@@ -187,7 +187,8 @@ public class tools extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View view){
         if (view == add_tool) {
-            add_tool(view);
+            Intent intent = new Intent(view.getContext(), add_a_tool.class);
+            startActivity(intent);
         }
     }
 }
