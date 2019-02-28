@@ -19,7 +19,7 @@
             android:text="Photo" />
 
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/toolsName"
             android:layout_width="match_parent"
             android:layout_height="37dp"
             android:textSize="20sp"
@@ -27,13 +27,13 @@
             android:text="Name:" />
 
         <EditText
-            android:id="@+id/nameText"
+            android:id="@+id/toolsNameText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Name of this machine"
+            android:hint="Name of this tool"
             android:inputType="textPersonName"/>
         <TextView
-            android:id="@+id/type"
+            android:id="@+id/toolsType"
             android:layout_width="match_parent"
             android:layout_height="37dp"
             android:textSize="20sp"
@@ -41,28 +41,15 @@
             android:text="Type:" />
 
         <EditText
-            android:id="@+id/typeText"
+            android:id="@+id/toolsTypeText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Parts of this machine"
+            android:hint="Parts of this tool"
             android:inputType="textPersonName"/>
 
-        <TextView
-            android:id="@+id/parts"
-            android:layout_width="match_parent"
-            android:layout_height="37dp"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:text="Parts:" />
 
-        <EditText
-            android:id="@+id/partsText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Parts of this machine"
-            android:inputType="textPersonName"/>
         <TextView
-            android:id="@+id/price"
+            android:id="@+id/toolsPrice"
             android:layout_width="match_parent"
             android:layout_height="37dp"
             android:textSize="20sp"
@@ -70,13 +57,13 @@
             android:text="Price:" />
 
         <EditText
-            android:id="@+id/priceText"
+            android:id="@+id/toolsPriceText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Price of this machine"
+            android:hint="Price of this tool"
             android:inputType="textPersonName"/>
         <TextView
-            android:id="@+id/location"
+            android:id="@+id/toolsLocation"
             android:layout_width="match_parent"
             android:layout_height="37dp"
             android:textSize="20sp"
@@ -84,27 +71,13 @@
             android:text="Location:" />
 
         <EditText
-            android:id="@+id/locationText"
+            android:id="@+id/toolsLocationText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Location of this machine"
+            android:hint="Location of this tool"
             android:inputType="textPersonName"/>
         <TextView
-            android:id="@+id/maintenancePlan"
-            android:layout_width="match_parent"
-            android:layout_height="37dp"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:text="MaintenancePlan:" />
-
-        <Spinner
-            android:id="@+id/maintenancePlanSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Type of this machine"
-            android:inputType="textPersonName"/>
-        <TextView
-            android:id="@+id/quantityMachine"
+            android:id="@+id/quantityTools"
             android:layout_width="match_parent"
             android:layout_height="37dp"
             android:textSize="20sp"
@@ -112,14 +85,14 @@
             android:text="Quantity:" />
 
         <Spinner
-            android:id="@+id/quantityMachineSpinner"
+            android:id="@+id/quantityToolsSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Type of this machine"
             android:inputType="textPersonName"/>
 
         <TextView
-            android:id="@+id/description"
+            android:id="@+id/toolsDescription"
             android:layout_width="match_parent"
             android:layout_height="37dp"
             android:textSize="20sp"
@@ -127,13 +100,15 @@
             android:text="Description:" />
 
         <EditText
-            android:id="@+id/descriptionText"
+            android:id="@+id/toolsDescriptionText"
             android:layout_width="match_parent"
             android:layout_height="99dp"
-            android:hint="Description of this machine"
+            android:hint="Description of this tool"
             android:inputType="textPersonName" />
+
+
         <Button
-            android:id="@+id/saveButton"
+            android:id="@+id/toolsSaveButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Save"/>

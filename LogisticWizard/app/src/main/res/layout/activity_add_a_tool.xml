@@ -117,26 +117,6 @@
                 android:textAlignment="center"/>
 
             <TextView
-                android:id="@+id/maintenancePlan_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="10dp"
-                android:textSize="18sp"
-                android:text="Select days to maintenance"
-                android:layout_gravity="start" />
-
-            <Spinner
-                android:id="@+id/maintenancePlan_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:textAlignment="center"/>
-
-            <TextView
                 android:id="@+id/dummy_takephoto"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"

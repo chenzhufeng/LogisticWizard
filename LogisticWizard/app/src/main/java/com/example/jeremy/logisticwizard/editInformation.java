@@ -41,6 +41,7 @@ public class editInformation extends AppCompatActivity implements AdapterView.On
     private EditText price;
     private EditText location;
     private Spinner machinePlanSpinner;
+    private Spinner machineQuantitySpinner;
     private EditText description;
     protected DatabaseReference mDatabase=FirebaseDatabase.getInstance().getReference("machines");;
 
@@ -67,6 +68,13 @@ public class editInformation extends AppCompatActivity implements AdapterView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_infomation);
+
+        machineQuantitySpinner = findViewById(R.id.quantityMachineSpinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.machineQuantityStringArray, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        machineQuantitySpinner.setAdapter(adapter);
+        machineQuantitySpinner.setOnItemSelectedListener(this);
 
 
         machinePlanSpinner = findViewById(R.id.maintenancePlanSpinner);

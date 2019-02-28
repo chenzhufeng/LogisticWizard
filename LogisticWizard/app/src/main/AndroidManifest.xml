@@ -16,14 +16,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LayoutforToolinfolist"></activity>
+        <activity android:name=".editTools"></activity>
+        <activity android:name=".LayoutforToolinfolist" />
         <activity android:name=".Tooldisp" />
         <activity android:name=".Calendar" />
         <activity android:name=".add_a_tool" />
         <activity android:name=".profile" />
         <activity android:name=".workOrders" />
         <activity android:name=".tools" />
-        <activity android:name=".editInformation"></activity>
+        <activity android:name=".editInformation" />
         <activity android:name=".Login" />
         <activity android:name=".add_a_machine" />
         <activity android:name=".Machine" />
