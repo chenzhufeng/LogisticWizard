@@ -44,12 +44,6 @@ public class add_a_tool extends AppCompatActivity implements View.OnClickListene
         toolQuantitySpinner.setAdapter(adapter);
         toolQuantitySpinner.setOnItemSelectedListener(this);
 
-        toolPlanSpinner = findViewById(R.id.maintenancePlan_spinner);
-        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
-                R.array.machinePlanStringArray, android.R.layout.simple_spinner_item);
-        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        toolPlanSpinner.setAdapter(adapter1);
-        toolPlanSpinner.setOnItemSelectedListener(this);
     }
 
 

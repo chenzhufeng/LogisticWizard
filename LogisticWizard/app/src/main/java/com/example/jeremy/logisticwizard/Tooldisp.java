@@ -27,8 +27,8 @@ public class Tooldisp extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tooldisp);
 
-        //editButton = findViewById(R.id.edittoolButton);
-        //editButton.setOnClickListener(this);
+        editButton = findViewById(R.id.editToolButton);
+        editButton.setOnClickListener(this);
         lv = findViewById(R.id.ToolInfoList);
 
         Intent tool_info = getIntent();
@@ -39,8 +39,6 @@ public class Tooldisp extends Activity implements View.OnClickListener {
         String toolPrice = (String)data.get("toolPrice");
         String toolLocation = (String)data.get("toolLocation");
         String toolType = (String)data.get("toolType");
-        String toolParts = (String)data.get("toolParts");
-        String toolPlan = (String)data.get("maintainencePlan");
         String toolQuant = (String)data.get("toolQuant");
 
 
@@ -48,11 +46,10 @@ public class Tooldisp extends Activity implements View.OnClickListener {
         LinkedHashMap<String, String> toolInfoHashMap = new LinkedHashMap<>();
         toolInfoHashMap.put("Name", toolName);
         toolInfoHashMap.put("Type", toolType);
-        toolInfoHashMap.put("Parts information", toolParts);
         toolInfoHashMap.put("Price", toolPrice);
         toolInfoHashMap.put("Location", toolLocation);
-        toolInfoHashMap.put("Maintenance Plan", toolPlan);
-        toolInfoHashMap.put("Description", toolQuant);
+        toolInfoHashMap.put("Quantity", toolQuant);
+        toolInfoHashMap.put("Description", toolDescription);
 
 
         List<HashMap<String, String>> listItems = new ArrayList<>();
@@ -78,8 +75,8 @@ public class Tooldisp extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v == editButton) {
-           // Intent intent = new Intent(v.getContext(), editTool.class);
-            //startActivity(intent);
+           Intent intent = new Intent(v.getContext(), editTools.class);
+            startActivity(intent);
         }
     }
 }
