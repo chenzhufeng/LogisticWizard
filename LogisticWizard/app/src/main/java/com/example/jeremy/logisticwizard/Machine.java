@@ -55,27 +55,27 @@ public class Machine extends AppCompatActivity implements View.OnClickListener{
         add_machine.setOnClickListener(this);
 
         // https://www.youtube.com/watch?v=H3JAy94UFw0
-        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-
-                adapter.getFilter().filter(s);
-                return false;
-            }
-        });
-
-        // https://stackoverflow.com/questions/30455723/android-make-whole-search-bar-clickable
-        sv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sv.setIconified(false);
-            }
-        });
+//        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String s) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String s) {
+//
+//                adapter.getFilter().filter(s);
+//                return false;
+//            }
+//        });
+//
+//        // https://stackoverflow.com/questions/30455723/android-make-whole-search-bar-clickable
+//        sv.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                sv.setIconified(false);
+//            }
+//        });
 
     }
 

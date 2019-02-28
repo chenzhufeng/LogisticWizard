@@ -24,11 +24,11 @@
         <activity android:name=".workOrders" />
         <activity android:name=".tools" />
         <activity android:name=".editInformation"></activity>
-        <activity android:name=".mainPage" />
+        <activity android:name=".Login" />
         <activity android:name=".add_a_machine" />
         <activity android:name=".Machine" />
         <activity
-            android:name=".Login"
+            android:name=".mainPage"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
