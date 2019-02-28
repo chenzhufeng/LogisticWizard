@@ -8,6 +8,7 @@ import android.widget.Button;
 
 public class mainPage extends AppCompatActivity implements View.OnClickListener{
     private Button assetsButton;
+    private Button workOrdersButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +17,8 @@ public class mainPage extends AppCompatActivity implements View.OnClickListener{
 
         assetsButton = findViewById(R.id.assetsButton);
         assetsButton.setOnClickListener(this);
+        workOrdersButton = findViewById(R.id.workOrdersButton);
+        workOrdersButton.setOnClickListener(this);
     }
 
 
@@ -26,7 +29,11 @@ public class mainPage extends AppCompatActivity implements View.OnClickListener{
         if (v == assetsButton) {
             Intent intent = new Intent(v.getContext(), Machine.class);
             startActivity(intent);
+        }
 
+        if (v == workOrdersButton) {
+            Intent intent = new Intent(v.getContext(), WorkOrderActivity.class);
+            startActivity(intent);
         }
     }
 }
