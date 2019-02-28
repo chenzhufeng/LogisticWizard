@@ -14,6 +14,14 @@ public class editInformation extends AppCompatActivity implements AdapterView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_infomation);
 
+        Spinner machineQuantitySpinner = findViewById(R.id.quantitySpinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.machineQuantityStringArray, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        machineQuantitySpinner.setAdapter(adapter);
+        machineQuantitySpinner.setOnItemSelectedListener(this);
+
+
         Spinner machinePlanSpinner = findViewById(R.id.maintenancePlanSpinner);
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
                 R.array.machinePlanStringArray, android.R.layout.simple_spinner_item);
