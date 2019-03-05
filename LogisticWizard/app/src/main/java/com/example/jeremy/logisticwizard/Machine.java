@@ -33,7 +33,7 @@ public class Machine extends AppCompatActivity implements View.OnClickListener{
     private ListView lv;
 
     ArrayList<machine_info> machine_infoList;
-    private View machineBar = (View) findViewById(R.id.machine_bar);
+    //private View machineBar = (View) findViewById(R.id.machine_bar);
 
     //just for now
     private ArrayAdapter<String> adapter;
@@ -60,10 +60,10 @@ public class Machine extends AppCompatActivity implements View.OnClickListener{
         setContentView(R.layout.activity_machine);
 
         mDatabase = FirebaseDatabase.getInstance().getReference("machines");
-        CustomOutlineView customOutline = new CustomOutlineView(2, 2);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            machineBar.setOutlineProvider(customOutline);
-        }
+ //       CustomOutlineView customOutline = new CustomOutlineView(2, 2);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            machineBar.setOutlineProvider(customOutline);
+//        }
 
         final ArrayList<String> listData = new ArrayList<String>();
 

@@ -26,7 +26,7 @@
         <activity android:name=".tools" />
         <activity android:name=".editInformation" />
         <activity android:name=".Login" />
-        <activity android:name=".AddOrderActivity"></activity>
+        <activity android:name=".add_a_order"></activity>
         <activity android:name=".WorkOrderActivity" />
         <activity android:name=".add_a_machine" />
         <activity android:name=".Machine" />
