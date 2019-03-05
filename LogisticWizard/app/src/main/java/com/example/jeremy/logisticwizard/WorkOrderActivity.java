@@ -21,7 +21,7 @@ public class WorkOrderActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View view) {
         if (view == newOrder) {
-            Intent intent = new Intent(view.getContext(), AddOrderActivity.class);
+            Intent intent = new Intent(view.getContext(), add_a_order.class);
             startActivity(intent);
         }
     }

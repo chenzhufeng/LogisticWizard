@@ -29,6 +29,11 @@ public class mainPage extends AppCompatActivity implements View.OnClickListener{
         tools.setOnClickListener(this);
         profile.setOnClickListener(this);
         calendar.setOnClickListener(this);
+        tools.setOnClickListener(this);
+        profile.setOnClickListener(this);
+        calendar.setOnClickListener(this);
+        workOrdersButton = findViewById(R.id.workOrdersButton);
+        workOrdersButton.setOnClickListener(this);
     }
 
 
@@ -60,6 +65,9 @@ public class mainPage extends AppCompatActivity implements View.OnClickListener{
         }
         if (v == calendar) {
             Intent intent = new Intent(v.getContext(), Calendar.class);
+        }
+        if (v == workOrdersButton) {
+            Intent intent = new Intent(v.getContext(), WorkOrderActivity.class);
             startActivity(intent);
         }
     }
