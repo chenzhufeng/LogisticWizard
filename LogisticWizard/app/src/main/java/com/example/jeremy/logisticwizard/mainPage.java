@@ -12,6 +12,7 @@ public class mainPage extends AppCompatActivity implements View.OnClickListener{
     private Button tools;
     private Button profile;
     private Button calendar;
+    private Button workOrdersButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,8 @@ public class mainPage extends AppCompatActivity implements View.OnClickListener{
         tools.setOnClickListener(this);
         profile.setOnClickListener(this);
         calendar.setOnClickListener(this);
+        workOrdersButton = findViewById(R.id.workOrdersButton);
+        workOrdersButton.setOnClickListener(this);
     }
 
 
@@ -59,6 +62,9 @@ public class mainPage extends AppCompatActivity implements View.OnClickListener{
         }
         if (v == calendar) {
             Intent intent = new Intent(v.getContext(), Calendar.class);
+        }
+        if (v == workOrdersButton) {
+            Intent intent = new Intent(v.getContext(), WorkOrderActivity.class);
             startActivity(intent);
         }
     }
