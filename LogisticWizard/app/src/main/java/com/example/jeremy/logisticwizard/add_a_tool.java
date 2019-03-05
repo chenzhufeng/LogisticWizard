@@ -16,11 +16,11 @@ public class add_a_tool extends AppCompatActivity implements View.OnClickListene
     private Button add_tool;
     private EditText tool_name;
     private EditText tool_type;
-    private EditText tool_parts;
+    //private EditText tool_parts;
     private EditText tool_descrip;
     private EditText tool_price;
     private EditText tool_location;
-    private Spinner toolPlanSpinner;
+    //private Spinner toolPlanSpinner;
     private Spinner toolQuantitySpinner;
 
     @Override
@@ -30,7 +30,7 @@ public class add_a_tool extends AppCompatActivity implements View.OnClickListene
         add_tool = (Button)findViewById(R.id.add_tool_button);
         tool_name = (EditText)findViewById(R.id.enterToolName);
         tool_type = (EditText)findViewById(R.id.toolType);
-        tool_parts = (EditText)findViewById(R.id.partsInfo);
+        //tool_parts = (EditText)findViewById(R.id.partsInfo);
         tool_descrip = (EditText)findViewById(R.id.enterToolDescription);
         tool_price = (EditText)findViewById(R.id.toolPrice);
         tool_location = (EditText)findViewById(R.id.toolLocation);
@@ -77,12 +77,12 @@ public class add_a_tool extends AppCompatActivity implements View.OnClickListene
         String toolPrice = tool_price.getText().toString().trim();
         String toolLocat = tool_location.getText().toString().trim();
         String toolType = tool_type.getText().toString().trim();
-        String toolParts = tool_parts.getText().toString().trim();
-        String toolPlan = toolPlanSpinner.getSelectedItem().toString().trim();
+        //String toolParts = tool_parts.getText().toString().trim();
+        //String toolPlan = toolPlanSpinner.getSelectedItem().toString().trim();
         String toolQuant = toolQuantitySpinner.getSelectedItem().toString().trim();
 
         if (toolName.equals("")||toolDescp.equals("")||toolPrice.equals("")||toolLocat.equals("")
-                ||toolType.equals("")||toolParts.equals("")||toolPlan.equals("")||toolQuant.equals("")) {
+                ||toolType.equals("")||toolQuant.equals("")) {
             Toast.makeText(this,
                     "Please enter all information or leave NONE.", Toast.LENGTH_LONG).show();
             return;
@@ -94,8 +94,8 @@ public class add_a_tool extends AppCompatActivity implements View.OnClickListene
             machine_intent.putExtra("toolPrice", toolPrice);
             machine_intent.putExtra("toolLocation", toolLocat);
             machine_intent.putExtra("toolType", toolType);
-            machine_intent.putExtra("toolParts", toolParts);
-            machine_intent.putExtra("maintainencePlan", toolPlan);
+            //machine_intent.putExtra("toolParts", toolParts);
+            //machine_intent.putExtra("maintainencePlan", toolPlan);
             machine_intent.putExtra("toolQuant", toolQuant);
             setResult(RESULT_OK, machine_intent);
             finish();

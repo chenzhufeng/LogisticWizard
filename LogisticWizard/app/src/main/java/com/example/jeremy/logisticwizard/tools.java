@@ -55,27 +55,27 @@ public class tools extends AppCompatActivity implements View.OnClickListener {
         add_tool.setOnClickListener(this);
 
         // https://www.youtube.com/watch?v=H3JAy94UFw0
-        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-
-                adapter.getFilter().filter(s);
-                return false;
-            }
-        });
-
-        // https://stackoverflow.com/questions/30455723/android-make-whole-search-bar-clickable
-        sv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sv.setIconified(false);
-            }
-        });
+//        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String s) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String s) {
+//
+//                adapter.getFilter().filter(s);
+//                return false;
+//            }
+//        });
+//
+//        // https://stackoverflow.com/questions/30455723/android-make-whole-search-bar-clickable
+//        sv.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                sv.setIconified(false);
+//            }
+//        });
 
     }
 
@@ -118,8 +118,8 @@ public class tools extends AppCompatActivity implements View.OnClickListener {
         String toolPrice = tool_infoList.get(i).tool_price;
         String toolLocat = tool_infoList.get(i).tool_location;
         String toolType = tool_infoList.get(i).tool_type;
-        String toolParts = tool_infoList.get(i).tool_parts;
-        String maintainPlan = tool_infoList.get(i).maintain_plan;
+        //String toolParts = tool_infoList.get(i).tool_parts;
+        //String maintainPlan = tool_infoList.get(i).maintain_plan;
         String toolQuant = tool_infoList.get(i).tool_quant;
 
         Intent tool_intent = new Intent(view.getContext(), Tooldisp.class);
@@ -128,8 +128,8 @@ public class tools extends AppCompatActivity implements View.OnClickListener {
         tool_intent.putExtra("toolPrice", toolPrice);
         tool_intent.putExtra("toolLocation", toolLocat);
         tool_intent.putExtra("toolType", toolType);
-        tool_intent.putExtra("toolParts", toolParts);
-        tool_intent.putExtra("maintainencePlan", maintainPlan);
+        //tool_intent.putExtra("toolParts", toolParts);
+        //tool_intent.putExtra("maintainencePlan", maintainPlan);
         tool_intent.putExtra("toolQuant", toolQuant);
         startActivity(tool_intent);
     }
@@ -138,30 +138,30 @@ public class tools extends AppCompatActivity implements View.OnClickListener {
 
     public void add_tool (View view){
         Intent add_tool_intent = new Intent(view.getContext() , add_a_tool.class);
-        startActivityForResult(add_tool_intent, 21);
+        startActivityForResult(add_tool_intent, 22);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 21 && resultCode == RESULT_OK) {
+        if (requestCode == 22 && resultCode == RESULT_OK) {
             String toolName = data.getStringExtra("toolName");
             String toolDescription = data.getStringExtra("toolDescription");
             String toolPrice = data.getStringExtra("toolPrice");
             String toolLocation = data.getStringExtra("toolLocation");
             String toolType = data.getStringExtra("toolType");
-            String toolParts = data.getStringExtra("toolParts");
-            String toolPlan = data.getStringExtra("maintainencePlan");
+            //String toolParts = data.getStringExtra("toolParts");
+            //String toolPlan = data.getStringExtra("maintainencePlan");
             String toolQuant = data.getStringExtra("toolQuant");
             Toast.makeText(this, "tool name"+toolName+"lalal", Toast.LENGTH_SHORT).show();
             savetoolToDB(toolName, toolDescription, toolPrice, toolLocation,
-                    toolType, toolParts, toolPlan, toolQuant);
+                    toolType, toolQuant);
         }
     }
 
 
     private void savetoolToDB(String toolName, String toolDescription, String toolPrice, String toolLocation,
-                                 String toolType, String toolParts, String toolPlan, String toolQuant) {
+                                 String toolType, String toolQuant) {
         //final String tool_Name = toolName;
         //currentUserID = mAuthSetting.getCurrentUser().getUid();
 //        toolRef = FirebaseDatabase.getInstance().getReference().child("tools");
@@ -171,7 +171,7 @@ public class tools extends AppCompatActivity implements View.OnClickListener {
 //            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
         // Log.i("snapshot", "Inside onDataChange!!!");
         tool_info tool = new tool_info(toolName, toolDescription, toolPrice, toolLocation,
-                toolType, toolParts, toolPlan, toolQuant);
+                toolType,  toolQuant);
         mDatabase.child(toolName).setValue(tool);
 //            }
 //
@@ -187,8 +187,7 @@ public class tools extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View view){
         if (view == add_tool) {
-            Intent intent = new Intent(view.getContext(), add_a_tool.class);
-            startActivity(intent);
+            add_tool(view);
         }
     }
 }

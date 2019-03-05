@@ -24,11 +24,7 @@
         <activity android:name=".profile" />
         <activity android:name=".workOrders" />
         <activity android:name=".tools" />
-<<<<<<< HEAD
-        <activity android:name=".editInformation"></activity>
-=======
         <activity android:name=".editInformation" />
->>>>>>> origin/Zhufeng
         <activity android:name=".Login" />
         <activity android:name=".add_a_machine" />
         <activity android:name=".Machine" />
