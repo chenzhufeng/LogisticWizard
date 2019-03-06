@@ -15,7 +15,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Tooldisp extends Activity implements View.OnClickListener {
+public class tool_disp extends Activity implements View.OnClickListener {
 
     private ListView lv;
     private Button editButton;
@@ -33,7 +33,7 @@ public class Tooldisp extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tooldisp);
+        setContentView(R.layout.tool_disp);
 
         editButton = findViewById(R.id.editToolButton);
         editButton.setOnClickListener(this);
@@ -70,7 +70,7 @@ public class Tooldisp extends Activity implements View.OnClickListener {
 
 
         List<HashMap<String, String>> listItems = new ArrayList<>();
-        SimpleAdapter adapter = new SimpleAdapter(this, listItems, R.layout.layoutfor_toolinfolist,
+        SimpleAdapter adapter = new SimpleAdapter(this, listItems, R.layout.tool_disp_list,
                 new String[]{"First Line", "Second Line"},
                 new int[]{R.id.item, R.id.data});
 
@@ -90,7 +90,7 @@ public class Tooldisp extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v == editButton) {
-            Intent intent = new Intent(v.getContext(), editTools.class);
+            Intent intent = new Intent(v.getContext(), tool_edit.class);
             intent.putExtra("toolName", toolName);
             intent.putExtra("toolDescription", toolDescription);
             intent.putExtra("toolPrice", toolPrice);
@@ -101,7 +101,7 @@ public class Tooldisp extends Activity implements View.OnClickListener {
             startActivity(intent);
         }
         if (v == backButton) {
-            Intent intent = new Intent(v.getContext(), tools.class);
+            Intent intent = new Intent(v.getContext(), tool_main.class);
             startActivity(intent);
         }
     }

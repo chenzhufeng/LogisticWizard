@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.EditText;
 
-public class add_a_order extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+public class workorder_add extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     final static int galleryPic = 1;
 
     private TextInputEditText orderTitle;
@@ -35,7 +35,7 @@ public class add_a_order extends AppCompatActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_order);
+        setContentView(R.layout.workorder_add);
         orderTitle = findViewById(R.id.titleInput);
         orderDescription = findViewById(R.id.textInputLayout);
         image = findViewById(R.id.imageButton);

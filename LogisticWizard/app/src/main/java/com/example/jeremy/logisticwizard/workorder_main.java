@@ -6,13 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class WorkOrderActivity extends AppCompatActivity implements View.OnClickListener {
+public class workorder_main extends AppCompatActivity implements View.OnClickListener {
     private Button newOrder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_work_order);
+        setContentView(R.layout.workorder_main);
 
         newOrder = findViewById(R.id.new_order);
         newOrder.setOnClickListener(this);
@@ -21,7 +21,7 @@ public class WorkOrderActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View view) {
         if (view == newOrder) {
-            Intent intent = new Intent(view.getContext(), add_a_order.class);
+            Intent intent = new Intent(view.getContext(), workorder_add.class);
             startActivity(intent);
         }
     }

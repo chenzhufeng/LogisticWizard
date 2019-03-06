@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class mainPage extends AppCompatActivity implements View.OnClickListener{
+public class home_page extends AppCompatActivity implements View.OnClickListener{
     private Button assetsButton;
     private Button workOrdersButton;
     private Button tools;
@@ -16,7 +16,7 @@ public class mainPage extends AppCompatActivity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_page);
+        setContentView(R.layout.home_page);
 
         workOrdersButton = (Button) findViewById(R.id.workOrdersButton);
         assetsButton = (Button) findViewById(R.id.assetsButton);
@@ -48,26 +48,26 @@ public class mainPage extends AppCompatActivity implements View.OnClickListener{
         //        break;
         //}
         if (v == assetsButton) {
-            Intent intent = new Intent(v.getContext(), Machine.class);
+            Intent intent = new Intent(v.getContext(), machine_main.class);
             startActivity(intent);
         }
 
         if (v == workOrdersButton) {
-            Intent intent = new Intent(v.getContext(), WorkOrderActivity.class);
+            Intent intent = new Intent(v.getContext(), workorder_main.class);
         }
         if(v == tools) {
-            Intent intent = new Intent(v.getContext(), tools.class);
+            Intent intent = new Intent(v.getContext(), tool_main.class);
             startActivity(intent);
         }
         if (v == profile) {
-            Intent intent = new Intent(v.getContext(), profile.class);
+            Intent intent = new Intent(v.getContext(), profile_main.class);
             startActivity(intent);
         }
         if (v == calendar) {
-            Intent intent = new Intent(v.getContext(), Calendar.class);
+            Intent intent = new Intent(v.getContext(), calendar_main.class);
         }
         if (v == workOrdersButton) {
-            Intent intent = new Intent(v.getContext(), WorkOrderActivity.class);
+            Intent intent = new Intent(v.getContext(), workorder_main.class);
             startActivity(intent);
         }
     }

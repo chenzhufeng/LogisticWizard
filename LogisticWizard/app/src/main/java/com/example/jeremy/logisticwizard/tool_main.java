@@ -19,11 +19,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
-import android.widget.ListView;
-import android.widget.ArrayAdapter;
+
 import android.widget.AdapterView;
 
-public class tools extends AppCompatActivity implements View.OnClickListener {
+public class tool_main extends AppCompatActivity implements View.OnClickListener {
 
     protected DatabaseReference mDatabase;
     private Button add_tool;
@@ -39,9 +38,9 @@ public class tools extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tools);
+        setContentView(R.layout.tool_main);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("tools");
+        mDatabase = FirebaseDatabase.getInstance().getReference("tool_main");
 
         final ArrayList<String> listData = new ArrayList<String>();
 
@@ -91,7 +90,7 @@ public class tools extends AppCompatActivity implements View.OnClickListener {
                     tool_infoList.add(tool);
                 }
                 //Toast.makeText(tool.this, tool_infoList.get(0).tool_name+tool_infoList.get(1).tool_name, Toast.LENGTH_SHORT).show();
-                ToolinfoAdapter toolinfoAdapter = new ToolinfoAdapter(tools.this,
+                ToolinfoAdapter toolinfoAdapter = new ToolinfoAdapter(tool_main.this,
                         tool_infoList);
                 lv.setAdapter(toolinfoAdapter);
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -122,7 +121,7 @@ public class tools extends AppCompatActivity implements View.OnClickListener {
         //String maintainPlan = tool_infoList.get(i).maintain_plan;
         String toolQuant = tool_infoList.get(i).tool_quant;
 
-        Intent tool_intent = new Intent(view.getContext(), Tooldisp.class);
+        Intent tool_intent = new Intent(view.getContext(), tool_disp.class);
         tool_intent.putExtra("toolName", toolName);
         tool_intent.putExtra("toolDescription", toolDescp);
         tool_intent.putExtra("toolPrice", toolPrice);
@@ -137,7 +136,7 @@ public class tools extends AppCompatActivity implements View.OnClickListener {
 
 
     public void add_tool (View view){
-        Intent add_tool_intent = new Intent(view.getContext() , add_a_tool.class);
+        Intent add_tool_intent = new Intent(view.getContext() , tool_add.class);
         startActivityForResult(add_tool_intent, 22);
     }
 
@@ -164,7 +163,7 @@ public class tools extends AppCompatActivity implements View.OnClickListener {
                                  String toolType, String toolQuant) {
         //final String tool_Name = toolName;
         //currentUserID = mAuthSetting.getCurrentUser().getUid();
-//        toolRef = FirebaseDatabase.getInstance().getReference().child("tools");
+//        toolRef = FirebaseDatabase.getInstance().getReference().child("tool_main");
 //        //userRef2 = userRef.child("comments").child(Rest_ID);
 //        toolRef.addListenerForSingleValueEvent(new ValueEventListener() {
 //            @Override

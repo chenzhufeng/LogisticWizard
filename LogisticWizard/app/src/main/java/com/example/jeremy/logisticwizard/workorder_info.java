@@ -1,6 +1,6 @@
 package com.example.jeremy.logisticwizard;
 
-public class order_info {
+public class workorder_info {
     public String order_title;
     public String order_descrip;
     public String order_image;
@@ -11,12 +11,12 @@ public class order_info {
     public String order_dates;
     public String order_cost;
 
-    public order_info() {
+    public workorder_info() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public order_info(String order_title, String order_descrip, String order_image, String order_priority,
-                      String maintain_plan, String order_note, String order_status, String order_dates,String order_cost){
+    public workorder_info(String order_title, String order_descrip, String order_image, String order_priority,
+                          String maintain_plan, String order_note, String order_status, String order_dates, String order_cost){
         this.order_title=order_title;
         this.order_descrip=order_descrip;
         this.order_image=order_image;
