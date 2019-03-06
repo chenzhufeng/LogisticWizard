@@ -7,6 +7,7 @@
     tools:context=".add_a_order">
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -47,7 +48,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/descriptionText">
 
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/orderDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -83,10 +83,8 @@
                 android:layout_width="395dp"
                 android:layout_height="5dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
                 android:layout_marginTop="11dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
                 android:background="@drawable/inventory_bar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -124,11 +122,11 @@
                 android:layout_width="202dp"
                 android:layout_height="25dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="29dp"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/maintenanceText"
-                app:layout_constraintTop_toTopOf="@+id/maintenanceText" />
+                app:layout_constraintTop_toTopOf="@+id/divider" />
 
             <TextView
                 android:id="@+id/notesText"
@@ -157,7 +155,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/notesText">
 
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/orderNote"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
@@ -233,7 +230,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/dueDateText" />
 
             <EditText
-                android:id="@+id/costEdit"
+                android:id="@+id/orderCost"
                 android:layout_width="312dp"
                 android:layout_height="46dp"
                 android:layout_marginStart="8dp"
@@ -251,9 +248,9 @@
                 android:layout_width="388dp"
                 android:layout_height="172dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageText"
                 app:srcCompat="@android:drawable/ic_menu_add" />
@@ -282,7 +279,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/titleTextView">
 
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/orderTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </android.support.design.widget.TextInputLayout>
@@ -297,7 +293,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.495"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/costEdit" />
+                app:layout_constraintTop_toBottomOf="@+id/orderCost" />
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
