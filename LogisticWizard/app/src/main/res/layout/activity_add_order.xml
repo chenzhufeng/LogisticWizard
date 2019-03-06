@@ -21,7 +21,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/description_textview"
+                android:id="@+id/descriptionText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -29,7 +29,7 @@
                 android:textColor="@android:color/holo_green_dark"
                 android:textSize="30sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
+                app:layout_constraintTop_toBottomOf="@+id/titleInput" />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/textInputLayout"
@@ -44,7 +44,7 @@
                 app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/description_textview">
+                app:layout_constraintTop_toBottomOf="@+id/descriptionText">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/orderDescription"
@@ -54,7 +54,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <TextView
-                android:id="@+id/image_textview"
+                android:id="@+id/imageText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -67,7 +67,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
             <TextView
-                android:id="@+id/priority_textview"
+                android:id="@+id/priorityText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -90,7 +90,7 @@
                 android:background="@drawable/inventory_bar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/priority_textview" />
+                app:layout_constraintTop_toBottomOf="@+id/priorityText" />
 
             <Spinner
                 android:id="@+id/orderPriority"
@@ -103,11 +103,11 @@
                 android:layout_marginRight="8dp"
                 android:entries="@array/priorities"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/priority_textview"
-                app:layout_constraintTop_toTopOf="@+id/priority_textview" />
+                app:layout_constraintStart_toEndOf="@+id/priorityText"
+                app:layout_constraintTop_toTopOf="@+id/priorityText" />
 
             <TextView
-                android:id="@+id/maintenance_textview"
+                android:id="@+id/maintenanceText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -120,20 +120,18 @@
                 app:layout_constraintTop_toBottomOf="@+id/divider" />
 
             <Spinner
-                android:id="@+id/maintenancePlan_spinner"
+                android:id="@+id/maintenanceSpinner"
                 android:layout_width="202dp"
                 android:layout_height="25dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/maintenance_textview"
-                app:layout_constraintTop_toTopOf="@+id/maintenance_textview" />
+                app:layout_constraintStart_toEndOf="@+id/maintenanceText"
+                app:layout_constraintTop_toTopOf="@+id/maintenanceText" />
 
             <TextView
-                android:id="@+id/notes_textview"
+                android:id="@+id/notesText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -143,7 +141,7 @@
                 android:textColor="@android:color/holo_green_dark"
                 android:textSize="30sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/maintenance_textview" />
+                app:layout_constraintTop_toBottomOf="@+id/maintenanceText" />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/textInputLayout2"
@@ -156,7 +154,7 @@
                 android:layout_marginRight="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/notes_textview">
+                app:layout_constraintTop_toBottomOf="@+id/notesText">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/orderNote"
@@ -194,7 +192,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 
             <TextView
-                android:id="@+id/duedate_textview"
+                android:id="@+id/dueDateText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -207,14 +205,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/textInputLayout3"
+                android:id="@+id/dueDateInput"
                 android:layout_width="262dp"
                 android:layout_height="42dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintStart_toEndOf="@+id/duedate_textview"
-                app:layout_constraintTop_toBottomOf="@+id/status_spinner">
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/dueDateText">
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
@@ -223,7 +219,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <TextView
-                android:id="@+id/cost_textview"
+                android:id="@+id/costText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -234,22 +230,21 @@
                 android:textColor="@android:color/holo_green_dark"
                 android:textSize="30sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/duedate_textview" />
+                app:layout_constraintTop_toBottomOf="@+id/dueDateText" />
 
             <EditText
-                android:id="@+id/editText2"
-                android:layout_width="259dp"
-                android:layout_height="56dp"
+                android:id="@+id/costEdit"
+                android:layout_width="312dp"
+                android:layout_height="46dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
                 android:ems="10"
                 android:inputType="numberDecimal"
+                android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/cost_textview"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
+                app:layout_constraintHorizontal_bias="0.676"
+                app:layout_constraintStart_toEndOf="@+id/costText"
+                app:layout_constraintTop_toTopOf="@+id/costText" />
 
             <ImageButton
                 android:id="@+id/imageButton"
@@ -260,7 +255,7 @@
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image_textview"
+                app:layout_constraintTop_toBottomOf="@+id/imageText"
                 app:srcCompat="@android:drawable/ic_menu_add" />
 
             <TextView
@@ -276,7 +271,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/textInputLayout4"
+                android:id="@+id/titleInput"
                 android:layout_width="391dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -291,6 +286,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/submitButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/submit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.495"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/costEdit" />
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
