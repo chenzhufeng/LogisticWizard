@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,11 +19,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class editInformation extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class machine_edit extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     String machineName;
     String machineName2;
     String machineDescp;
@@ -50,7 +47,7 @@ public class editInformation extends AppCompatActivity implements AdapterView.On
         @Override
         public void onClick(View v){
             saveInfo();
-            Intent machine_intent = new Intent(v.getContext(), machineDisp.class);
+            Intent machine_intent = new Intent(v.getContext(), machine_disp.class);
             machine_intent.putExtra("machineName", machineName2);
             machine_intent.putExtra("machineDescription", machineDescp);
             machine_intent.putExtra("machinePrice", machinePrice);
@@ -67,7 +64,7 @@ public class editInformation extends AppCompatActivity implements AdapterView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_infomation);
+        setContentView(R.layout.machine_edit);
 
         machineQuantitySpinner = findViewById(R.id.quantityMachineSpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -169,8 +166,8 @@ public class editInformation extends AppCompatActivity implements AdapterView.On
                 }
             });
             if(temple.contains(machineName2)){
-                Toast.makeText(editInformation.this,
-                        "Machine already exists, please enter a new name.", Toast.LENGTH_LONG).show();
+                Toast.makeText(machine_edit.this,
+                        "machine_main already exists, please enter a new name.", Toast.LENGTH_LONG).show();
                 return;
 
             }
