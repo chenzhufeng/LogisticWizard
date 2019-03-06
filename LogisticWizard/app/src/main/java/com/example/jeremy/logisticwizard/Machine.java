@@ -38,7 +38,7 @@ public class Machine extends AppCompatActivity implements View.OnClickListener{
     private Button add_machine;
     private SearchView sv;
     private ListView lv;
-    private View machineBar = (View) findViewById(R.id.machine_bar);
+    //private View machineBar = (View) findViewById(R.id.machine_bar);
     ArrayList<machine_info> machine_infoList;
     //private View machineBar = (View) findViewById(R.id.machine_bar);
 
