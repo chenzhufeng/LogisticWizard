@@ -12,7 +12,7 @@ public class editTools extends AppCompatActivity implements AdapterView.OnItemSe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_tools);
+        setContentView(R.layout.tool_edit);
 
 
 

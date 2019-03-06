@@ -16,7 +16,7 @@ public class mainPage extends AppCompatActivity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_page);
+        setContentView(R.layout.home_page);
 
         workOrders = (Button) findViewById(R.id.workOrdersButton);
         assetsButton = (Button) findViewById(R.id.assetsButton);

@@ -25,7 +25,7 @@ public class Tooldisp extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tooldisp);
+        setContentView(R.layout.tool_disp);
 
         editButton = findViewById(R.id.editToolButton);
         editButton.setOnClickListener(this);
@@ -53,7 +53,7 @@ public class Tooldisp extends Activity implements View.OnClickListener {
 
 
         List<HashMap<String, String>> listItems = new ArrayList<>();
-        SimpleAdapter adapter = new SimpleAdapter(this, listItems, R.layout.layoutfor_toolinfolist,
+        SimpleAdapter adapter = new SimpleAdapter(this, listItems, R.layout.tool_disp_list,
                 new String[]{"First Line", "Second Line"},
                 new int[]{R.id.item, R.id.data});
 

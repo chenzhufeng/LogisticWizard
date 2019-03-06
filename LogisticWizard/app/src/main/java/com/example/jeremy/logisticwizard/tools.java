@@ -19,8 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
-import android.widget.ListView;
-import android.widget.ArrayAdapter;
+
 import android.widget.AdapterView;
 
 public class tools extends AppCompatActivity implements View.OnClickListener {
@@ -39,7 +38,7 @@ public class tools extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tools);
+        setContentView(R.layout.tool_main);
 
         mDatabase = FirebaseDatabase.getInstance().getReference("tools");
 
