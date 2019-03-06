@@ -47,6 +47,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/description_textview">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/orderDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -92,7 +93,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/priority_textview" />
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/orderPriority"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -119,7 +120,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/divider" />
 
             <Spinner
-                android:id="@+id/spinner2"
+                android:id="@+id/maintenancePlan_spinner"
                 android:layout_width="202dp"
                 android:layout_height="25dp"
                 android:layout_marginStart="8dp"
@@ -158,6 +159,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/notes_textview">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/orderNote"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
@@ -178,7 +180,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 
             <Spinner
-                android:id="@+id/status_spinner"
+                android:id="@+id/orderStatus"
                 android:layout_width="218dp"
                 android:layout_height="36dp"
                 android:layout_marginStart="8dp"
@@ -267,7 +269,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="TextView"
+                android:text="Title"
                 android:textColor="@android:color/holo_green_dark"
                 android:textSize="30sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -285,6 +287,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/titleTextView">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/orderTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </android.support.design.widget.TextInputLayout>

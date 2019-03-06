@@ -143,6 +143,11 @@ public class Machine extends AppCompatActivity implements View.OnClickListener{
                     }
                 });
             }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
         });
     }
 
