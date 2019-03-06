@@ -2,6 +2,13 @@ package com.example.jeremy.logisticwizard;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Build;
+import android.view.View;
+import android.view.ViewOutlineProvider;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.SearchView;
+import android.graphics.Outline;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -31,7 +38,7 @@ public class Machine extends AppCompatActivity implements View.OnClickListener{
     private Button add_machine;
     private SearchView sv;
     private ListView lv;
-
+    private View machineBar = (View) findViewById(R.id.machine_bar);
     ArrayList<machine_info> machine_infoList;
     //private View machineBar = (View) findViewById(R.id.machine_bar);
 
@@ -58,6 +65,9 @@ public class Machine extends AppCompatActivity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_machine);
+        CustomOutlineView customOutline = new CustomOutlineView(2, 2);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference("machines");
 
         mDatabase = FirebaseDatabase.getInstance().getReference("machines");
  //       CustomOutlineView customOutline = new CustomOutlineView(2, 2);
@@ -74,6 +84,15 @@ public class Machine extends AppCompatActivity implements View.OnClickListener{
         //lv.setAdapter(adapter);
 
         add_machine = (Button) findViewById(R.id.add_machine_button);
+        add_machine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent add_machine_intent = new Intent(view.getContext() , add_a_machine.class);
+                startActivity(add_machine_intent);
+                //finish();
+            }
+        });
+        add_machine.setOnClickListener(this);
         add_machine.setOnClickListener(this);
 
         // https://www.youtube.com/watch?v=H3JAy94UFw0
@@ -123,12 +142,6 @@ public class Machine extends AppCompatActivity implements View.OnClickListener{
                             machine_selected(i, machine_infoList, view);
                     }
                 });
-            }
-
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
     }
