@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.Button;
 
 public class mainPage extends AppCompatActivity implements View.OnClickListener{
-    private Button workOrders;
     private Button assetsButton;
+    private Button workOrdersButton;
     private Button tools;
     private Button profile;
     private Button calendar;
@@ -16,19 +16,24 @@ public class mainPage extends AppCompatActivity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_page);
+        setContentView(R.layout.activity_main_page);
 
-        workOrders = (Button) findViewById(R.id.workOrdersButton);
+        workOrdersButton = (Button) findViewById(R.id.workOrdersButton);
         assetsButton = (Button) findViewById(R.id.assetsButton);
         tools = (Button) findViewById(R.id.toolsButton);
         profile = (Button) findViewById(R.id.profileButton);
         calendar = (Button) findViewById(R.id.calenderButton);
 
-        workOrders.setOnClickListener(this);
         assetsButton.setOnClickListener(this);
+        workOrdersButton.setOnClickListener(this);
         tools.setOnClickListener(this);
         profile.setOnClickListener(this);
         calendar.setOnClickListener(this);
+        tools.setOnClickListener(this);
+        profile.setOnClickListener(this);
+        calendar.setOnClickListener(this);
+        workOrdersButton = findViewById(R.id.workOrdersButton);
+        workOrdersButton.setOnClickListener(this);
     }
 
 
@@ -42,12 +47,13 @@ public class mainPage extends AppCompatActivity implements View.OnClickListener{
         //    case R.id.workOrdersButton:
         //        break;
         //}
-        if (v == workOrders) {
-
-        }
         if (v == assetsButton) {
             Intent intent = new Intent(v.getContext(), Machine.class);
             startActivity(intent);
+        }
+
+        if (v == workOrdersButton) {
+            Intent intent = new Intent(v.getContext(), WorkOrderActivity.class);
         }
         if(v == tools) {
             Intent intent = new Intent(v.getContext(), tools.class);
@@ -59,6 +65,9 @@ public class mainPage extends AppCompatActivity implements View.OnClickListener{
         }
         if (v == calendar) {
             Intent intent = new Intent(v.getContext(), Calendar.class);
+        }
+        if (v == workOrdersButton) {
+            Intent intent = new Intent(v.getContext(), WorkOrderActivity.class);
             startActivity(intent);
         }
     }

@@ -34,7 +34,7 @@ public class machineDisp extends Activity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.machine_disp);
+        setContentView(R.layout.machinedisp_layout);
 
         editButton = findViewById(R.id.editMachineButton);
         editButton.setOnClickListener(this);
@@ -72,7 +72,7 @@ public class machineDisp extends Activity implements View.OnClickListener{
 
 
         List<HashMap<String, String>> listItems = new ArrayList<>();
-        SimpleAdapter adapter = new SimpleAdapter(this, listItems, R.layout.machine_disp_list,
+        SimpleAdapter adapter = new SimpleAdapter(this, listItems, R.layout.layoutfor_machineinfolist,
                 new String[]{"First Line", "Second Line"},
                 new int[]{R.id.item, R.id.data});
 

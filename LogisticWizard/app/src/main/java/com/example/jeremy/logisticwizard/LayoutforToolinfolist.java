@@ -8,6 +8,6 @@ public class LayoutforToolinfolist extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tool_disp_list);
+        setContentView(R.layout.layoutfor_toolinfolist);
     }
 }

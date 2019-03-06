@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.EditText;
 
@@ -29,7 +30,7 @@ public class add_a_machine extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.machine_add);
+        setContentView(R.layout.activity_add_a_machine);
         add_machine = (Button)findViewById(R.id.add_machine_button);
         machine_name = (EditText)findViewById(R.id.enterMachineName);
         machine_type = (EditText)findViewById(R.id.machineType);

@@ -183,6 +183,28 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string name="work_orders">Work Orders</string>
+    <string name="add_a_machine">Add a Machine</string>
+    <string name="password_should_be_start_with_alpha_and_in_6_16_characters">Password should be start with alpha and in 6-16 characters !</string>
+    <string name="new_order">New Order</string>
+    <string name="title_activity_add_order">AddOrderActivity</string>
+    <string name="description">Description</string>
+    <string name="image">Image</string>
+    <string name="priority">Priority</string>
+
+    <string-array name="priorities">
+        <item>None</item>
+        <item>Low</item>
+        <item>Medium</item>
+        <item>High</item>
+    </string-array>
+
+    <string-array name="statuses">
+        <item>Open</item>
+        <item>In Progress</item>
+        <item>Hold</item>
+        <item>Complete</item>
+    </string-array>
 
 
 </resources>
