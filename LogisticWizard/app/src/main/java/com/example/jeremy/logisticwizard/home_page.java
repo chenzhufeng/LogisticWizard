@@ -56,11 +56,11 @@ public class home_page extends AppCompatActivity implements View.OnClickListener
             Intent intent = new Intent(v.getContext(), workorder_main.class);
         }
         if(v == tools) {
-            Intent intent = new Intent(v.getContext(), tools.class);
+            Intent intent = new Intent(v.getContext(), tool_main.class);
             startActivity(intent);
         }
         if (v == profile) {
-            Intent intent = new Intent(v.getContext(), profile.class);
+            Intent intent = new Intent(v.getContext(), profile_main.class);
             startActivity(intent);
         }
         if (v == calendar) {

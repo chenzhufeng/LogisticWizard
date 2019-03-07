@@ -60,7 +60,7 @@ public class machine_add extends AppCompatActivity implements View.OnClickListen
     public void onClick(View view) {
         if(view == add_machine){
             addMachine();
-            //Intent intent = new Intent(view.getContext(),Machine.class);
+            //Intent intent = new Intent(view.getContext(),machine_main.class);
             //startActivity(intent);
         }
     }

@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 import android.widget.AdapterView;
 
-public class tools extends AppCompatActivity implements View.OnClickListener {
+public class tool_main extends AppCompatActivity implements View.OnClickListener {
 
     protected DatabaseReference mDatabase;
     private Button add_tool;
@@ -40,7 +40,7 @@ public class tools extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tool_main);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("tools");
+        mDatabase = FirebaseDatabase.getInstance().getReference("tool_main");
 
         final ArrayList<String> listData = new ArrayList<String>();
 
@@ -90,7 +90,7 @@ public class tools extends AppCompatActivity implements View.OnClickListener {
                     tool_infoList.add(tool);
                 }
                 //Toast.makeText(tool.this, tool_infoList.get(0).tool_name+tool_infoList.get(1).tool_name, Toast.LENGTH_SHORT).show();
-                ToolinfoAdapter toolinfoAdapter = new ToolinfoAdapter(tools.this,
+                ToolinfoAdapter toolinfoAdapter = new ToolinfoAdapter(tool_main.this,
                         tool_infoList);
                 lv.setAdapter(toolinfoAdapter);
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -163,7 +163,7 @@ public class tools extends AppCompatActivity implements View.OnClickListener {
                                  String toolType, String toolQuant) {
         //final String tool_Name = toolName;
         //currentUserID = mAuthSetting.getCurrentUser().getUid();
-//        toolRef = FirebaseDatabase.getInstance().getReference().child("tools");
+//        toolRef = FirebaseDatabase.getInstance().getReference().child("tool_main");
 //        //userRef2 = userRef.child("comments").child(Rest_ID);
 //        toolRef.addListenerForSingleValueEvent(new ValueEventListener() {
 //            @Override

@@ -44,6 +44,7 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
         //CustomOutlineView customOutline = new CustomOutlineView(2, 2);
 
         bar = findViewById(R.id.machine_bar);
+        //CustomOutlineView customOutline = new CustomOutlineView(2, 2);
 
         mDatabase = FirebaseDatabase.getInstance().getReference("machines");
 
@@ -122,6 +123,7 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
                     machine_infoList.add(machine);
                 }
                 //Toast.makeText(Machine.this, machine_infoList.get(0).machine_name+machine_infoList.get(1).machine_name, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(machine_main.this, machine_infoList.get(0).machine_name+machine_infoList.get(1).machine_name, Toast.LENGTH_SHORT).show();
                 MachineinfoAdapter machineinfoAdapter = new MachineinfoAdapter(machine_main.this,
                         machine_infoList);
                 lv.setAdapter(machineinfoAdapter);

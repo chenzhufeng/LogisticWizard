@@ -48,7 +48,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         mAuth = FirebaseAuth.getInstance();
 //        if (mAuth.getCurrentUser() != null) {
-//            // then go into to profile page
+//            // then go into to profile_main page
 //            finish();
 //
 //            startActivity(new Intent(getApplicationContext(), UserProfile.class));

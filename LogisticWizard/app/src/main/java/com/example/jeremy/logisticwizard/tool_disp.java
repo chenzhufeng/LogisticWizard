@@ -101,7 +101,7 @@ public class tool_disp extends Activity implements View.OnClickListener {
             startActivity(intent);
         }
         if (v == backButton) {
-            Intent intent = new Intent(v.getContext(), tools.class);
+            Intent intent = new Intent(v.getContext(), tool_main.class);
             startActivity(intent);
         }
     }
