@@ -25,15 +25,15 @@
     <ListView
         android:id="@+id/list_of_machines"
         android:layout_width="wrap_content"
-        android:layout_height="520dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/add_machine_button"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="122dp"
-        android:layout_marginEnd="14dp"
-        android:layout_marginBottom="17dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="67dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="1dp"
         android:elevation="5dp"/>
 
     <View
