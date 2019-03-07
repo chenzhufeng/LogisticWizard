@@ -191,6 +191,7 @@
     <string name="description">Description</string>
     <string name="image">Image</string>
     <string name="priority">Priority</string>
+    <string name="title_of_order">Title of Order</string>
 
     <string-array name="priorities">
         <item>None</item>
@@ -205,6 +206,7 @@
         <item>Hold</item>
         <item>Complete</item>
     </string-array>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
 
 
 </resources>

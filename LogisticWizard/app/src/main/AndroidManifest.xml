@@ -16,9 +16,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".add_a_order"></activity>
+        <activity android:name=".ViewOrder" />
+        <activity android:name=".add_a_order" />
         <activity android:name=".WorkOrderActivity" />
-        <activity android:name=".editTools"></activity>
+        <activity android:name=".editTools" />
         <activity android:name=".LayoutforToolinfolist" />
         <activity android:name=".Tooldisp" />
         <activity android:name=".Calendar" />

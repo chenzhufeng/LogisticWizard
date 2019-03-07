@@ -65,7 +65,6 @@ public class Machine extends AppCompatActivity implements View.OnClickListener{
         bar.setOutlineProvider(viewOutlineProvider);
         bar.setClipToOutline(true);
 
-
         final ArrayList<String> listData = new ArrayList<String>();
 
         sv = (SearchView) findViewById(R.id.machine_search);
