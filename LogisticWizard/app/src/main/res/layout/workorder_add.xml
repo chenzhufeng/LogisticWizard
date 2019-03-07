@@ -25,12 +25,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
                 android:text="@string/description"
                 android:textColor="@android:color/holo_green_dark"
                 android:textSize="30sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titleInput"
-                android:layout_marginLeft="8dp" />
+                app:layout_constraintTop_toBottomOf="@+id/titleInput" />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/textInputLayout"
@@ -72,13 +72,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/priority"
                 android:textColor="@android:color/holo_green_dark"
                 android:textSize="30sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton"
-                android:layout_marginLeft="8dp" />
+                app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
             <View
                 android:id="@+id/divider"
@@ -208,11 +208,10 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="262dp"
-                android:layout_height="42dp"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/dueDateText"
-                android:layout_marginRight="8dp">
+                app:layout_constraintTop_toTopOf="@+id/dueDateText">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/dueDateInput"
@@ -226,8 +225,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
                 android:layout_weight="1"
                 android:text="Cost"
                 android:textColor="@android:color/holo_green_dark"
@@ -268,13 +266,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:text="Title"
                 android:textColor="@android:color/holo_green_dark"
                 android:textSize="30sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginLeft="8dp" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/titleInput"
@@ -298,9 +296,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:onClick="onClick"
                 android:text="@string/submit"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.495"
                 app:layout_constraintStart_toStartOf="parent"

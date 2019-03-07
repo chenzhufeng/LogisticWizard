@@ -1,5 +1,6 @@
 package com.example.jeremy.logisticwizard;
 
+
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
@@ -56,6 +57,7 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.workorder_add);
+
         orderTitle = findViewById(R.id.orderTitle);
         orderDescription = findViewById(R.id.orderDescription);
         image = findViewById(R.id.imageButton);

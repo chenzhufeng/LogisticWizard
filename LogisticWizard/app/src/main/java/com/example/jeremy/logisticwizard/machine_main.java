@@ -12,7 +12,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
-
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -23,7 +22,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import android.widget.AdapterView;
-import android.annotation.TargetApi;
 
 
 public class machine_main extends AppCompatActivity implements View.OnClickListener{
@@ -31,34 +29,22 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
     private Button add_machine;
     private SearchView sv;
     private ListView lv;
-    //private View machineBar = (View) findViewById(R.id.machine_bar);
+    private View bar;
     ArrayList<machine_info> machine_infoList;
     //private View machineBar = (View) findViewById(R.id.machine_bar);
 
+
     //just for now
     private ArrayAdapter<String> adapter;
-
-    @TargetApi(21)
-    private class CustomOutlineView extends ViewOutlineProvider {
-        private int width;
-        private int height;
-
-        CustomOutlineView(int width, int height) {
-            this.width = width;
-            this.height = height;
-        }
-
-        @Override
-        public void getOutline(View view, Outline outline) {
-            outline.setRect(0, 0, width, height);
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.machine_main);
-        CustomOutlineView customOutline = new CustomOutlineView(2, 2);
+        //CustomOutlineView customOutline = new CustomOutlineView(2, 2);
+
+        bar = findViewById(R.id.machine_bar);
+        //CustomOutlineView customOutline = new CustomOutlineView(2, 2);
 
         mDatabase = FirebaseDatabase.getInstance().getReference("machines");
 
@@ -67,6 +53,16 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 //            machineBar.setOutlineProvider(customOutline);
 //        }
+
+        ViewOutlineProvider viewOutlineProvider = new ViewOutlineProvider() {
+            @Override
+            public void getOutline(View view, Outline outline) {
+                outline.setRect(0,0, view.getWidth(), view.getHeight());
+            }
+        };
+        bar.setOutlineProvider(viewOutlineProvider);
+        bar.setClipToOutline(true);
+
 
         final ArrayList<String> listData = new ArrayList<String>();
 
@@ -86,7 +82,9 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
             }
         });
         add_machine.setOnClickListener(this);
-        add_machine.setOnClickListener(this);
+        //add_machine.setOnClickListener(this);
+        add_machine.setOutlineProvider(viewOutlineProvider);
+        add_machine.setClipToOutline(true);
 
         // https://www.youtube.com/watch?v=H3JAy94UFw0
 //        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -124,6 +122,7 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
                     machine_info machine = machineSnapshot.getValue(machine_info.class);
                     machine_infoList.add(machine);
                 }
+                //Toast.makeText(Machine.this, machine_infoList.get(0).machine_name+machine_infoList.get(1).machine_name, Toast.LENGTH_SHORT).show();
                 //Toast.makeText(machine_main.this, machine_infoList.get(0).machine_name+machine_infoList.get(1).machine_name, Toast.LENGTH_SHORT).show();
                 MachineinfoAdapter machineinfoAdapter = new MachineinfoAdapter(machine_main.this,
                         machine_infoList);
