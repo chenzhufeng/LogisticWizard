@@ -1,4 +1,4 @@
-package com.example.jeremy.logisticwizard;
+package com.example.connormonson.zhufeng_navigation;
 
 import org.junit.Test;
 
