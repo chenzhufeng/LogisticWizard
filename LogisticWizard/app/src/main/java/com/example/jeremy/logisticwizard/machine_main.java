@@ -46,7 +46,7 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
         bar = findViewById(R.id.machine_bar);
         //CustomOutlineView customOutline = new CustomOutlineView(2, 2);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("machines");
+        //mDatabase = FirebaseDatabase.getInstance().getReference("machines");
 
         mDatabase = FirebaseDatabase.getInstance().getReference("machines");
  //       CustomOutlineView customOutline = new CustomOutlineView(2, 2);

@@ -40,7 +40,7 @@ public class tool_main extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tool_main);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("tool_main");
+        mDatabase = FirebaseDatabase.getInstance().getReference("tools");
 
         final ArrayList<String> listData = new ArrayList<String>();
 

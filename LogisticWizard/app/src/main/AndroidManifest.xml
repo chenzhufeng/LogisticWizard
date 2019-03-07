@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,11 +17,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".workorder_view" />
-        <activity android:name=".workorder_add" />
+
+        <activity android:name=".workorder_add"/>
         <activity android:name=".workorder_main" />
-        <activity android:name=".tool_edit" />
-        <activity android:name=".LayoutforToolinfolist" />
+        <activity android:name=".tool_edit"/>
+        <activity android:name=".workorder_view" />
         <activity android:name=".tool_disp" />
         <activity android:name=".calendar_main" />
         <activity android:name=".tool_add" />
