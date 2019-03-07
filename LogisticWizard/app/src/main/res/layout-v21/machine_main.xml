@@ -44,7 +44,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
-        android:background="@drawable/inventory_bar"
+        android:background="@drawable/menu_bar"
         android:elevation="8dp" />
 
     <Button
