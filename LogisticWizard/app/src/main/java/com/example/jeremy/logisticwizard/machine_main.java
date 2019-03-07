@@ -19,15 +19,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import android.os.Build;
-import android.view.ViewOutlineProvider;
-import android.graphics.Outline;
+
 import java.util.ArrayList;
 import android.widget.AdapterView;
-import android.annotation.TargetApi;
 
 
-public class Machine extends AppCompatActivity implements View.OnClickListener{
+public class machine_main extends AppCompatActivity implements View.OnClickListener{
     protected DatabaseReference mDatabase;
     private Button add_machine;
     private SearchView sv;
@@ -43,7 +40,7 @@ public class Machine extends AppCompatActivity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_machine);
+        setContentView(R.layout.machine_main);
         //CustomOutlineView customOutline = new CustomOutlineView(2, 2);
 
         bar = findViewById(R.id.machine_bar);
@@ -77,7 +74,7 @@ public class Machine extends AppCompatActivity implements View.OnClickListener{
         add_machine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent add_machine_intent = new Intent(view.getContext() , add_a_machine.class);
+                Intent add_machine_intent = new Intent(view.getContext() , machine_add.class);
                 startActivity(add_machine_intent);
                 //finish();
             }
@@ -124,7 +121,7 @@ public class Machine extends AppCompatActivity implements View.OnClickListener{
                     machine_infoList.add(machine);
                 }
                 //Toast.makeText(Machine.this, machine_infoList.get(0).machine_name+machine_infoList.get(1).machine_name, Toast.LENGTH_SHORT).show();
-                MachineinfoAdapter machineinfoAdapter = new MachineinfoAdapter(Machine.this,
+                MachineinfoAdapter machineinfoAdapter = new MachineinfoAdapter(machine_main.this,
                         machine_infoList);
                 lv.setAdapter(machineinfoAdapter);
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -153,7 +150,7 @@ public class Machine extends AppCompatActivity implements View.OnClickListener{
        String maintainPlan = machine_infoList.get(i).maintain_plan;
        String machineQuant = machine_infoList.get(i).machine_quant;
 
-        Intent machine_intent = new Intent(view.getContext(), machineDisp.class);
+        Intent machine_intent = new Intent(view.getContext(), machine_disp.class);
         machine_intent.putExtra("machineName", machineName);
         machine_intent.putExtra("machineDescription", machineDescp);
         machine_intent.putExtra("machinePrice", machinePrice);
@@ -168,7 +165,7 @@ public class Machine extends AppCompatActivity implements View.OnClickListener{
 
 
     public void add_machine (View view){
-        Intent add_machine_intent = new Intent(view.getContext() , add_a_machine.class);
+        Intent add_machine_intent = new Intent(view.getContext() , machine_add.class);
         startActivityForResult(add_machine_intent, 21);
     }
 

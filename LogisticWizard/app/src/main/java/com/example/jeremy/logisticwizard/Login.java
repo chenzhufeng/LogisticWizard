@@ -132,7 +132,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                         //progressDialog2.dismiss();
                         if (task.isSuccessful()) {
                             Toast.makeText(Login.this, "Login Successfully!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), mainPage.class));
+                            startActivity(new Intent(getApplicationContext(), home_page.class));
                         } else {
                             // If sign in fails, display a message to the user.
                             String grab_error = task.getException().getMessage();

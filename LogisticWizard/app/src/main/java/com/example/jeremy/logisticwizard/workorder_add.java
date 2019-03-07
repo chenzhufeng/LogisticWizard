@@ -3,11 +3,11 @@ package com.example.jeremy.logisticwizard;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class Calendar extends AppCompatActivity {
+public class workorder_add extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calendar);
+        setContentView(R.layout.workorder_add);
     }
 }

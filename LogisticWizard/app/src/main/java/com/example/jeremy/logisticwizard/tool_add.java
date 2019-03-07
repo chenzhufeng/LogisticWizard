@@ -8,11 +8,10 @@ import android.widget.Button;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.EditText;
 
-public class add_a_tool extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+public class tool_add extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     private Button add_tool;
     private EditText tool_name;
     private EditText tool_type;
@@ -26,7 +25,7 @@ public class add_a_tool extends AppCompatActivity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_a_tool);
+        setContentView(R.layout.tool_add);
         add_tool = (Button)findViewById(R.id.add_tool_button);
         tool_name = (EditText)findViewById(R.id.enterToolName);
         tool_type = (EditText)findViewById(R.id.toolType);

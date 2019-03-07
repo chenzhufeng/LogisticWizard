@@ -15,7 +15,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class machineDisp extends Activity implements View.OnClickListener{
+public class machine_disp extends Activity implements View.OnClickListener{
 
     private ListView lv;
     private Button editButton;
@@ -34,7 +34,7 @@ public class machineDisp extends Activity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.machinedisp_layout);
+        setContentView(R.layout.machine_disp);
 
         editButton = findViewById(R.id.editMachineButton);
         editButton.setOnClickListener(this);
@@ -72,7 +72,7 @@ public class machineDisp extends Activity implements View.OnClickListener{
 
 
         List<HashMap<String, String>> listItems = new ArrayList<>();
-        SimpleAdapter adapter = new SimpleAdapter(this, listItems, R.layout.layoutfor_machineinfolist,
+        SimpleAdapter adapter = new SimpleAdapter(this, listItems, R.layout.machine_disp_list,
                 new String[]{"First Line", "Second Line"},
                 new int[]{R.id.item, R.id.data});
 
@@ -93,7 +93,7 @@ public class machineDisp extends Activity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         if (v == editButton) {
-            Intent machine_intent = new Intent(v.getContext(), editInformation.class);
+            Intent machine_intent = new Intent(v.getContext(), machine_edit.class);
             machine_intent.putExtra("machineName", machineName);
             machine_intent.putExtra("machineDescription", machineDescription);
             machine_intent.putExtra("machinePrice", machinePrice);
@@ -105,7 +105,7 @@ public class machineDisp extends Activity implements View.OnClickListener{
             startActivity(machine_intent);
         }
         if(v == backButton){
-            Intent intent = new Intent (v.getContext(), Machine.class);
+            Intent intent = new Intent (v.getContext(), machine_main.class);
             startActivity(intent);
         }
     }

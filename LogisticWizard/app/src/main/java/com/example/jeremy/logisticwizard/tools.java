@@ -19,8 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
-import android.widget.ListView;
-import android.widget.ArrayAdapter;
+
 import android.widget.AdapterView;
 
 public class tools extends AppCompatActivity implements View.OnClickListener {
@@ -39,7 +38,7 @@ public class tools extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tools);
+        setContentView(R.layout.tool_main);
 
         mDatabase = FirebaseDatabase.getInstance().getReference("tools");
 
@@ -122,7 +121,7 @@ public class tools extends AppCompatActivity implements View.OnClickListener {
         //String maintainPlan = tool_infoList.get(i).maintain_plan;
         String toolQuant = tool_infoList.get(i).tool_quant;
 
-        Intent tool_intent = new Intent(view.getContext(), Tooldisp.class);
+        Intent tool_intent = new Intent(view.getContext(), tool_disp.class);
         tool_intent.putExtra("toolName", toolName);
         tool_intent.putExtra("toolDescription", toolDescp);
         tool_intent.putExtra("toolPrice", toolPrice);
@@ -137,7 +136,7 @@ public class tools extends AppCompatActivity implements View.OnClickListener {
 
 
     public void add_tool (View view){
-        Intent add_tool_intent = new Intent(view.getContext() , add_a_tool.class);
+        Intent add_tool_intent = new Intent(view.getContext() , tool_add.class);
         startActivityForResult(add_tool_intent, 22);
     }
 

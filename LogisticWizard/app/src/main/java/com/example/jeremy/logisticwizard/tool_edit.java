@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,11 +19,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class editTools extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+public class tool_edit extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     String toolName;
     String toolName2;
     String toolDescp;
@@ -50,7 +47,7 @@ public class editTools extends AppCompatActivity implements AdapterView.OnItemSe
         @Override
         public void onClick(View v){
             saveInfo();
-            Intent tool_intent = new Intent(v.getContext(), Tooldisp.class);
+            Intent tool_intent = new Intent(v.getContext(), tool_disp.class);
             tool_intent.putExtra("toolName", toolName2);
             tool_intent.putExtra("toolDescription", toolDescp);
             tool_intent.putExtra("toolPrice", toolPrice);
@@ -67,7 +64,7 @@ public class editTools extends AppCompatActivity implements AdapterView.OnItemSe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_tools);
+        setContentView(R.layout.tool_edit);
 
         toolQuantitySpinner = findViewById(R.id.quantityToolsSpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -161,7 +158,7 @@ public class editTools extends AppCompatActivity implements AdapterView.OnItemSe
                 }
             });
             if(temple.contains(toolName2)){
-                Toast.makeText(editTools.this,
+                Toast.makeText(tool_edit.this,
                         "tool already exists, please enter a new name.", Toast.LENGTH_LONG).show();
                 return;
 
