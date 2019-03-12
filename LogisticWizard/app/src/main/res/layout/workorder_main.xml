@@ -90,12 +90,6 @@
         android:layout_marginBottom="17dp"
         android:elevation="5dp"
         android:background="@drawable/list_view" >
-
-        <TextView
-            android:id="@+id/simple_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="This is some temp text" />
     </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

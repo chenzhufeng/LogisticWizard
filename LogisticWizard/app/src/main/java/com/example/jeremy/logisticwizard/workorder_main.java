@@ -5,28 +5,36 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-//import android.support.v7.widget.RecyclerView;
-//import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.LinearLayoutManager;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class workorder_main extends AppCompatActivity implements View.OnClickListener {
-    private Button newOrder;
-    //private RecyclerView.LayoutManager linearLayoutManager;
-    //ArrayList workOrders = new ArrayList<>(Arrays.asList("Person 1, Person 2, Person 3"));
+    Button newOrder;
+    RecyclerView recyclerView;
+    RecyclerViewAdapter mAdapter;
+    LinearLayoutManager linearLayoutManager;
+    String[] workOrders = new String[] { "Order 1", "Order 2", "Order 3" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.workorder_main);
 
-        newOrder = findViewById(R.id.new_order);
-        newOrder.setOnClickListener(this);
+        //newOrder = findViewById(R.id.new_order);
+        //newOrder.setOnClickListener(this);
 
-        //RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        //recyclerView.setHasFixedSize(true);
-        //linearLayoutManager = new LinearLayoutManager(this);
-        //recyclerView.setLayoutManager(linearLayoutManager);
-        //mAdapter = new MyAdapter(myDataset);
-        //recyclerView.setAdapter(mAdapter);
+        // Code for initializing RecyclerView
+        recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setHasFixedSize(true);
+        // Calls LinearLayoutManager for use on the recycler
+        linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        // Specify the adapter
+        mAdapter = new RecyclerViewAdapter(workOrders);
+        recyclerView.setAdapter(mAdapter);
     }
 
     @Override
