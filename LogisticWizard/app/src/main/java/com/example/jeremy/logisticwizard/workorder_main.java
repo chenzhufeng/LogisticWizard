@@ -17,6 +17,10 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
     RecyclerViewAdapter mAdapter;
     LinearLayoutManager linearLayoutManager;
     String[] workOrders = new String[] { "Order 1", "Order 2", "Order 3" };
+    String[] Priorities = new String[] { "High", "Medium", "Low" };
+    String[] Dates = new String[] { "3/11/2019", "2/19/2019", "12/21/2019" };
+    String[] Creators = new String[] { "Carl", "Bill", "Raymond" };
+    String[] Progress = new String[] { "Open", "In Progress", "Hold" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +37,7 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         // Specify the adapter
-        mAdapter = new RecyclerViewAdapter(workOrders);
+        mAdapter = new RecyclerViewAdapter(workOrders, Priorities, Dates, Creators, Progress, getApplicationContext());
         recyclerView.setAdapter(mAdapter);
     }
 
