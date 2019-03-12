@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.ImageButton;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class tool_edit extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+public class tool_edit extends AppCompatActivity implements  View.OnClickListener, AdapterView.OnItemSelectedListener{
     String toolName;
     String toolName2;
     String toolDescp;
@@ -43,6 +44,7 @@ public class tool_edit extends AppCompatActivity implements AdapterView.OnItemSe
     protected DatabaseReference mDatabase=FirebaseDatabase.getInstance().getReference("tool_main");;
 
     private Button save;
+    private ImageButton image;
     private View.OnClickListener saveOnClickListener = new View.OnClickListener(){
         @Override
         public void onClick(View v){
@@ -65,7 +67,7 @@ public class tool_edit extends AppCompatActivity implements AdapterView.OnItemSe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tool_edit);
-
+        image = findViewById(R.id.imageButton);
         toolQuantitySpinner = findViewById(R.id.quantityToolsSpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.machineQuantityStringArray, android.R.layout.simple_spinner_item);
@@ -172,4 +174,13 @@ public class tool_edit extends AppCompatActivity implements AdapterView.OnItemSe
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        if(v == image){
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_PICK);
+            startActivityForResult(Intent.createChooser(intent, "Select Picture"), 71);
+        }
+    }
 }

@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.ImageButton;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class machine_edit extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class machine_edit extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
     String machineName;
     String machineName2;
     String machineDescp;
@@ -40,6 +41,7 @@ public class machine_edit extends AppCompatActivity implements AdapterView.OnIte
     private Spinner machinePlanSpinner;
     private Spinner machineQuantitySpinner;
     private EditText description;
+    private ImageButton image;
     protected DatabaseReference mDatabase=FirebaseDatabase.getInstance().getReference("machines");;
 
     private Button save;
@@ -65,7 +67,7 @@ public class machine_edit extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.machine_edit);
-
+        image = findViewById(R.id.imageButton);
         machineQuantitySpinner = findViewById(R.id.quantityMachineSpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.machineQuantityStringArray, android.R.layout.simple_spinner_item);
@@ -127,6 +129,17 @@ public class machine_edit extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        if(view == image){
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_PICK);
+            startActivityForResult(Intent.createChooser(intent, "Select Picture"), 71);
+        }
     }
 
     private void saveInfo(){

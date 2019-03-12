@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 public class tool_add extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     private Button add_tool;
@@ -21,6 +22,7 @@ public class tool_add extends AppCompatActivity implements View.OnClickListener,
     private EditText tool_location;
     //private Spinner toolPlanSpinner;
     private Spinner toolQuantitySpinner;
+    private ImageButton image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +37,7 @@ public class tool_add extends AppCompatActivity implements View.OnClickListener,
         tool_location = (EditText)findViewById(R.id.toolLocation);
 
 
-
+        image = findViewById(R.id.imageButton);
         toolQuantitySpinner = findViewById(R.id.quantity_of_tool);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.machineQuantityStringArray, android.R.layout.simple_spinner_item);
@@ -52,6 +54,12 @@ public class tool_add extends AppCompatActivity implements View.OnClickListener,
             addMachine();
             //Intent intent = new Intent(view.getContext(),machine_main.class);
             //startActivity(intent);
+        }
+        if(view == image){
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_PICK);
+            startActivityForResult(Intent.createChooser(intent, "Select Picture"), 71);
         }
     }
 
