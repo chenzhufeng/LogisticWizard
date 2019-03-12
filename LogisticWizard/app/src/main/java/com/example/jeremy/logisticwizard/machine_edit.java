@@ -167,7 +167,7 @@ public class machine_edit extends AppCompatActivity implements AdapterView.OnIte
             });
             if(temple.contains(machineName2)){
                 Toast.makeText(machine_edit.this,
-                        "machine_main already exists, please enter a new name.", Toast.LENGTH_LONG).show();
+                        "machine_main_fragment already exists, please enter a new name.", Toast.LENGTH_LONG).show();
                 return;
 
             }

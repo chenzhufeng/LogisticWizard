@@ -50,7 +50,7 @@ public class tool_add extends AppCompatActivity implements View.OnClickListener,
     public void onClick(View view) {
         if(view == add_tool){
             addMachine();
-            //Intent intent = new Intent(view.getContext(),machine_main.class);
+            //Intent intent = new Intent(view.getContext(),machine_main_fragment.class);
             //startActivity(intent);
         }
     }

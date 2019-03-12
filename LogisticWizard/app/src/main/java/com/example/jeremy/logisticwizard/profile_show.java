@@ -23,7 +23,7 @@ public class profile_show extends Fragment {
             @Override
             public void onClick(View view) {
 
-                ((profile_main)getActivity()).setViewPager(1);
+                //((profile_main)getActivity()).setViewPager(1);
             }
         });
 

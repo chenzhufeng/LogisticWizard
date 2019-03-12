@@ -47,24 +47,14 @@ public class home_page extends AppCompatActivity implements View.OnClickListener
         //    case R.id.workOrdersButton:
         //        break;
         //}
-<<<<<<< HEAD
-=======
         if (v == workOrdersButton) {
             Intent intent = new Intent(v.getContext(), workorder_main.class);
             startActivity(intent);
         }
->>>>>>> Zhufeng
         if (v == assetsButton) {
             Intent intent = new Intent(v.getContext(), machine_main.class);
             startActivity(intent);
         }
-<<<<<<< HEAD
-
-        if (v == workOrdersButton) {
-            Intent intent = new Intent(v.getContext(), workorder_main.class);
-        }
-=======
->>>>>>> Zhufeng
         if(v == tools) {
             Intent intent = new Intent(v.getContext(), tool_main.class);
             startActivity(intent);
@@ -76,12 +66,5 @@ public class home_page extends AppCompatActivity implements View.OnClickListener
         if (v == calendar) {
             Intent intent = new Intent(v.getContext(), calendar_main.class);
         }
-<<<<<<< HEAD
-        if (v == workOrdersButton) {
-            Intent intent = new Intent(v.getContext(), workorder_main.class);
-            startActivity(intent);
-        }
-=======
->>>>>>> Zhufeng
     }
 }

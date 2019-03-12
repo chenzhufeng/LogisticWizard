@@ -40,7 +40,7 @@ public class tool_edit extends AppCompatActivity implements AdapterView.OnItemSe
     //private Spinner toolPlanSpinner;
     private Spinner toolQuantitySpinner;
     private EditText description;
-    protected DatabaseReference mDatabase=FirebaseDatabase.getInstance().getReference("tool_main");;
+    protected DatabaseReference mDatabase=FirebaseDatabase.getInstance().getReference("tool_main_fragment");;
 
     private Button save;
     private View.OnClickListener saveOnClickListener = new View.OnClickListener(){
