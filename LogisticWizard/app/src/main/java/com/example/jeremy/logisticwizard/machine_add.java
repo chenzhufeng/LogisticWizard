@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 
 
@@ -24,6 +25,7 @@ public class machine_add extends AppCompatActivity implements View.OnClickListen
     private EditText machine_location;
     private Spinner machinePlanSpinner;
     private Spinner machineQuantitySpinner;
+    private ImageButton image;
 
 
     @Override
@@ -38,7 +40,7 @@ public class machine_add extends AppCompatActivity implements View.OnClickListen
         machine_price = (EditText)findViewById(R.id.machinePrice);
         machine_location = (EditText)findViewById(R.id.machineLocation);
 
-
+        image = findViewById(R.id.imageButton);
 
         machineQuantitySpinner = findViewById(R.id.quantity_of_machine);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -63,6 +65,16 @@ public class machine_add extends AppCompatActivity implements View.OnClickListen
             //Intent intent = new Intent(view.getContext(),machine_main.class);
             //startActivity(intent);
         }
+        if(view == image){
+            chooseImage();
+        }
+    }
+
+    private void chooseImage(){
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_PICK);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), 71);
     }
 
     @Override

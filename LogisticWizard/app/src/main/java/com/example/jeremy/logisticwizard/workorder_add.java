@@ -186,8 +186,8 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
             if(filePath != null)
             {
                 final ProgressDialog progressDialog = new ProgressDialog(this);
-                progressDialog.setTitle("Uploading...");
-                progressDialog.show();
+                //progressDialog.setTitle("Uploading...");
+                //progressDialog.show();
 
                 StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
                 order_image = ref.getPath();
@@ -196,14 +196,14 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
                         .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                progressDialog.dismiss();
+                                //progressDialog.dismiss();
                                 Toast.makeText(workorder_add.this, "Uploaded", Toast.LENGTH_SHORT).show();
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                progressDialog.dismiss();
+                                //progressDialog.dismiss();
                                 Toast.makeText(workorder_add.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         })
@@ -212,7 +212,7 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
                             public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                                 double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
                                         .getTotalByteCount());
-                                progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                                //progressDialog.setMessage("Uploaded "+(int)progress+"%");
                             }
                         });
             }
