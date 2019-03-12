@@ -23,11 +23,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     // Used to create new views
     @Override
     public RecyclerViewAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        /*
-         *  Create new view
-         *  Currently causing error: Cannot convert LinearLayout to TextView
-         */
-        TextView v = (TextView) LayoutInflater.from(parent.getContext())
+        View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.my_text_view, parent, false);
         MyViewHolder vh = new MyViewHolder(v);
         return vh;
@@ -36,6 +32,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     // Replace contents of a view
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
+        // Giving error:
+        // Attempt to invoke virtual method
+        // 'void android.widget.TextView.setText(java.lang.CharSequence)' on a null object reference
         holder.textView.setText(workOrders[position]);
         /*
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -56,9 +55,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     // Provide a reference to the views for each data item
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView textView;
-        public MyViewHolder(TextView itemView) {
+        public MyViewHolder(View itemView) {
             super(itemView);
-            textView = itemView;
+            textView = itemView.findViewById(R.id.textView);
         }
     }
 }
