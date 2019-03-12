@@ -157,7 +157,7 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
         String order_note = orderNote.getText().toString().trim();
         String order_DueDate = orderDueDate.getText().toString().trim();
         String order_cost = orderCost.getText().toString().trim();
-        String user_image = "null";
+        String order_image = "null";
 
         String maintainPlan = orderPlanSpinner.getSelectedItem().toString().trim();
         String order_priority = orderPriority.getSelectedItem().toString().trim();
@@ -177,7 +177,6 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
             order_intent.putExtra("orderNote", order_note);
             order_intent.putExtra("orderDueDate", order_DueDate);
             order_intent.putExtra("orderCost", order_cost);
-            order_intent.putExtra("userImage", user_image);
             order_intent.putExtra("orderPriority", order_priority);
             order_intent.putExtra("maintainencePlan", maintainPlan);
             order_intent.putExtra("orderStatus", order_status);
@@ -191,6 +190,8 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
                 progressDialog.show();
 
                 StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
+                order_image = ref.getPath();
+                order_intent.putExtra("orderImage", order_image);
                 ref.putFile(filePath)
                         .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
