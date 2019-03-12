@@ -47,13 +47,13 @@ public class home_page extends AppCompatActivity implements View.OnClickListener
         //    case R.id.workOrdersButton:
         //        break;
         //}
-        if (v == workOrdersButton) {
-            Intent intent = new Intent(v.getContext(), workorder_main.class);
-            startActivity(intent);
-        }
         if (v == assetsButton) {
             Intent intent = new Intent(v.getContext(), machine_main.class);
             startActivity(intent);
+        }
+
+        if (v == workOrdersButton) {
+            Intent intent = new Intent(v.getContext(), workorder_main.class);
         }
         if(v == tools) {
             Intent intent = new Intent(v.getContext(), tool_main.class);
@@ -65,6 +65,10 @@ public class home_page extends AppCompatActivity implements View.OnClickListener
         }
         if (v == calendar) {
             Intent intent = new Intent(v.getContext(), calendar_main.class);
+        }
+        if (v == workOrdersButton) {
+            Intent intent = new Intent(v.getContext(), workorder_main.class);
+            startActivity(intent);
         }
     }
 }
