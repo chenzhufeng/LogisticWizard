@@ -15,8 +15,8 @@ public class workorder_info {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public workorder_info(String order_title, String order_descrip, String order_image, String order_priority,
-                          String maintain_plan, String order_note, String order_status, String order_dates, String order_cost){
+    public workorder_info(String order_title, String order_descrip, String order_note, String order_dates,
+                          String order_cost, String order_priority, String maintain_plan,  String order_status, String order_image){
         this.order_title=order_title;
         this.order_descrip=order_descrip;
         this.order_image=order_image;
