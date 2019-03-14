@@ -24,6 +24,9 @@ import android.net.Uri;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
@@ -47,6 +50,9 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
     private EditText orderCost;
     private Button submit;
     private ImageButton image;
+    protected DatabaseReference mDatabase;
+    private FirebaseAuth mAuth;
+    private String username;
 
     private FirebaseStorage storage;
     StorageReference storageReference;
@@ -90,6 +96,12 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
 
         storage=FirebaseStorage.getInstance("gs://logisticwizard-6d896.appspot.com/");
         storageReference = storage.getReference();
+
+        mAuth = FirebaseAuth.getInstance();
+        String Uid = mAuth.getCurrentUser().getUid();
+        mDatabase = FirebaseDatabase.getInstance().getReference("users");
+        username = mDatabase.child(Uid).child("Name").toString();
+
 
     }
 
@@ -158,6 +170,7 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
         String order_DueDate = orderDueDate.getText().toString().trim();
         String order_cost = orderCost.getText().toString().trim();
         String order_image = "null";
+        String order_creator=username;
 
         String maintainPlan = orderPlanSpinner.getSelectedItem().toString().trim();
         String order_priority = orderPriority.getSelectedItem().toString().trim();
@@ -180,6 +193,7 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
             order_intent.putExtra("orderPriority", order_priority);
             order_intent.putExtra("maintainencePlan", maintainPlan);
             order_intent.putExtra("orderStatus", order_status);
+            order_intent.putExtra("orderCreator", order_creator);
 
 
 
