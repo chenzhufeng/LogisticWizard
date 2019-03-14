@@ -9,6 +9,7 @@ public class machine_info {
     public String machine_parts;
     public String maintain_plan;
     public String machine_quant;
+    public String machine_image;
 //
 //
 //
@@ -18,7 +19,7 @@ public class machine_info {
 
     public machine_info(String machine_name, String machine_descrip, String machine_price,
                         String machine_location, String machine_type, String machine_parts,
-                        String maintain_plan, String machine_quant) {
+                        String maintain_plan, String machine_quant, String machine_image) {
         this.machine_name = machine_name;
         this.machine_descrip = machine_descrip;
         this.machine_price = machine_price;
@@ -27,6 +28,7 @@ public class machine_info {
         this.machine_parts = machine_parts;
         this.maintain_plan = maintain_plan;
         this.machine_quant = machine_quant;
+        this.machine_image = machine_image;
 
     }
 

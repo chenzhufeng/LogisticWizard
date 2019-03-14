@@ -34,6 +34,7 @@ public class machine_edit extends AppCompatActivity implements AdapterView.OnIte
     String machineParts;
     String maintainPlan;
     String machineQuant;
+    String machineImage;
     List<String> temple=new ArrayList<>();
     private EditText name;
     private EditText type;
@@ -60,6 +61,7 @@ public class machine_edit extends AppCompatActivity implements AdapterView.OnIte
             machine_intent.putExtra("machineParts", machineParts);
             machine_intent.putExtra("maintainencePlan", maintainPlan);
             machine_intent.putExtra("machineQuant", machineQuant);
+            machine_intent.putExtra("machineImage", machineImage);
             startActivity(machine_intent);
         }
 
@@ -97,6 +99,7 @@ public class machine_edit extends AppCompatActivity implements AdapterView.OnIte
         machineParts = (String)data.get("machineParts");
         maintainPlan = (String)data.get("maintainencePlan");
         machineQuant = (String)data.get("machineQuant");
+        machineImage = (String)data.get("machineImage");
 
         int machinePlan2 = Integer.parseInt(maintainPlan);
 
@@ -117,6 +120,7 @@ public class machine_edit extends AppCompatActivity implements AdapterView.OnIte
         location.setText(machineLocat);
         description.setText(machineDescp);
         machinePlanSpinner.setSelection(machinePlan2);
+
 
         save.setOnClickListener(saveOnClickListener);
 
@@ -153,6 +157,7 @@ public class machine_edit extends AppCompatActivity implements AdapterView.OnIte
         machineType = type.getText().toString().trim();
         machineParts = part.getText().toString().trim();
         maintainPlan = machinePlanSpinner.getSelectedItem().toString().trim();
+
         //machineQuant = machineQuantitySpinner.getSelectedItem().toString().trim();
 
         if (machineName2.equals("")||machineDescp.equals("")||machinePrice.equals("")||machineLocat.equals("")
@@ -189,7 +194,7 @@ public class machine_edit extends AppCompatActivity implements AdapterView.OnIte
             }
             else {
                 machine_info machine = new machine_info(machineName2, machineDescp, machinePrice, machineLocat,
-                        machineType, machineParts, maintainPlan, machineQuant);
+                        machineType, machineParts, maintainPlan, machineQuant, machineImage);
                 mDatabase.child(machineName2).setValue(machine);
             }
 
