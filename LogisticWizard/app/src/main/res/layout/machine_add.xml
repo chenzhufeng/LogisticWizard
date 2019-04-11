@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".machine_add">
+    <TextView
+        android:id="@+id/addMachine_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:text="Add Assets/Machine"
+        android:textSize="20sp"
+        android:textAlignment="center" />
+
+
+    <!-- spinner margin top = 20 for now, change back to 10 -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/enterMachineName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="10dp"
+                android:hint="Enter Name..."
+                android:inputType="text"
+                android:layout_gravity="start" />
+
+            <EditText
+                android:id="@+id/machineType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:hint="Enter type..."
+                android:inputType="text"
+                android:layout_gravity="start" />
+
+            <EditText
+
+                android:id="@+id/partsInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:hint="Enter information about parts..."
+                android:inputType="text"
+                android:layout_gravity="start" />
+
+
+            <EditText
+                android:id="@+id/enterMachineDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:hint="Enter description..."
+                android:inputType="text"
+                android:layout_gravity="start" />
+
+            <EditText
+                android:id="@+id/machinePrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:hint="Enter price..."
+                android:inputType="text"
+                android:layout_gravity="start" />
+
+            <EditText
+                android:id="@+id/machineLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:hint="Enter location..."
+                android:inputType="text"
+                android:layout_gravity="start" />
+
+            <TextView
+                android:id="@+id/quantity_of_machine_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:text="Select quantity"
+                android:textSize="18sp"
+                android:layout_gravity="start" />
+
+            <Spinner
+                android:id="@+id/quantity_of_machine"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:id="@+id/maintenancePlan_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:textSize="18sp"
+                android:text="Select days to maintenance"
+                android:layout_gravity="start" />
+
+            <Spinner
+                android:id="@+id/maintenancePlan_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:id="@+id/dummy_takephoto"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_gravity="start"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp" />
+
+
+            <Button
+                android:id="@+id/add_machine_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:onClick="onClick"
+                android:text="Add">
+            </Button>
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>
