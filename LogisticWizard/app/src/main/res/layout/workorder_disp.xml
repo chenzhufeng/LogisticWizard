@@ -132,7 +132,8 @@
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/descriptionInput"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="@string/description" />
         </android.support.design.widget.TextInputLayout>
 
         <TextView
@@ -150,10 +151,13 @@
             android:id="@+id/priceText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:text="Price"
             android:textSize="20sp"
-            tools:layout_editor_absoluteX="210dp"
-            tools:layout_editor_absoluteY="447dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/costText"
+            app:layout_constraintTop_toTopOf="@+id/costText" />
 
         <TextView
             android:id="@+id/dueDate_text"

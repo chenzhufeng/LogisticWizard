@@ -1,8 +1,10 @@
 package com.example.jeremy.logisticwizard;
 
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.transition.Fade;
 import android.view.View;
 import android.widget.Button;
 
@@ -18,11 +20,16 @@ public class home_page extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page);
 
+        // *** !!!IMPORTANT!!! ***  --> must cite the calendar interface symbol
+        // Place the attribution on the credits/description page of the application.
+        // <div>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
         workOrdersButton = (Button) findViewById(R.id.workOrdersButton);
         assetsButton = (Button) findViewById(R.id.assetsButton);
         tools = (Button) findViewById(R.id.toolsButton);
         profile = (Button) findViewById(R.id.profileButton);
         calendar = (Button) findViewById(R.id.calenderButton);
+
 
         assetsButton.setOnClickListener(this);
         workOrdersButton.setOnClickListener(this);
@@ -47,13 +54,16 @@ public class home_page extends AppCompatActivity implements View.OnClickListener
         //    case R.id.workOrdersButton:
         //        break;
         //}
+        if (v == workOrdersButton) {
+            Intent intent = new Intent(v.getContext(), workorder_main.class);
+            //intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
+            //overridePendingTransition(0, 0);
+        }
         if (v == assetsButton) {
             Intent intent = new Intent(v.getContext(), machine_main.class);
             startActivity(intent);
-        }
-
-        if (v == workOrdersButton) {
-            Intent intent = new Intent(v.getContext(), workorder_main.class);
+            //overridePendingTransition(0, 0);
         }
         if(v == tools) {
             Intent intent = new Intent(v.getContext(), tool_main.class);
@@ -65,9 +75,6 @@ public class home_page extends AppCompatActivity implements View.OnClickListener
         }
         if (v == calendar) {
             Intent intent = new Intent(v.getContext(), calendar_main.class);
-        }
-        if (v == workOrdersButton) {
-            Intent intent = new Intent(v.getContext(), workorder_main.class);
             startActivity(intent);
         }
     }

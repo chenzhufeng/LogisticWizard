@@ -2,17 +2,11 @@ package com.example.jeremy.logisticwizard;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,13 +17,9 @@ import java.util.Map;
 
 public class machine_disp extends Activity implements View.OnClickListener{
 
-    private ImageView image;
     private ListView lv;
     private Button editButton;
     private Button backButton;
-    private FirebaseStorage storage;
-    StorageReference storageReference;
-//    private Uri filePath;
 
     String machineName;
     String machineDescription;
@@ -39,7 +29,6 @@ public class machine_disp extends Activity implements View.OnClickListener{
     String machineParts;
     String machinePlan;
     String machineQuant;
-    String machineImage;
 
 
     @Override
@@ -53,11 +42,6 @@ public class machine_disp extends Activity implements View.OnClickListener{
 
         backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(this);
-
-        image = findViewById(R.id.machineImage);
-
-        storage=FirebaseStorage.getInstance("gs://logisticwizard-6d896.appspot.com");
-
     }
 
     @Override
@@ -74,14 +58,6 @@ public class machine_disp extends Activity implements View.OnClickListener{
         machineParts = (String)data.get("machineParts");
         machinePlan = (String)data.get("maintainencePlan");
         machineQuant = (String)data.get("machineQuant");
-        machineImage = (String)data.get("machieImage");
-
-
-        float scale = this.getResources().getDisplayMetrics().density;
-        int width = (int)(350*scale+0.5f);
-        int height = (int)(200*scale+0.5f);
-        Picasso.with(this).load(machineImage).into(image);
-
 
 
         LinkedHashMap<String, String> machineInfoHashMap = new LinkedHashMap<>();
@@ -126,7 +102,6 @@ public class machine_disp extends Activity implements View.OnClickListener{
             machine_intent.putExtra("machineParts", machineParts);
             machine_intent.putExtra("maintainencePlan", machinePlan);
             machine_intent.putExtra("machineQuant", machineQuant);
-            machine_intent.putExtra("machineImage", machineImage);
             startActivity(machine_intent);
         }
         if(v == backButton){

@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-import android.widget.ImageButton;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,9 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class machine_edit extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
-
+public class machine_edit extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     String machineName;
     String machineName2;
     String machineDescp;
@@ -34,7 +31,6 @@ public class machine_edit extends AppCompatActivity implements AdapterView.OnIte
     String machineParts;
     String maintainPlan;
     String machineQuant;
-    String machineImage;
     List<String> temple=new ArrayList<>();
     private EditText name;
     private EditText type;
@@ -44,7 +40,6 @@ public class machine_edit extends AppCompatActivity implements AdapterView.OnIte
     private Spinner machinePlanSpinner;
     private Spinner machineQuantitySpinner;
     private EditText description;
-    private ImageButton image;
     protected DatabaseReference mDatabase=FirebaseDatabase.getInstance().getReference("machines");;
 
     private Button save;
@@ -61,7 +56,6 @@ public class machine_edit extends AppCompatActivity implements AdapterView.OnIte
             machine_intent.putExtra("machineParts", machineParts);
             machine_intent.putExtra("maintainencePlan", maintainPlan);
             machine_intent.putExtra("machineQuant", machineQuant);
-            machine_intent.putExtra("machineImage", machineImage);
             startActivity(machine_intent);
         }
 
@@ -71,7 +65,6 @@ public class machine_edit extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.machine_edit);
-        image = findViewById(R.id.imageButton);
 
         machineQuantitySpinner = findViewById(R.id.quantityMachineSpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -99,7 +92,6 @@ public class machine_edit extends AppCompatActivity implements AdapterView.OnIte
         machineParts = (String)data.get("machineParts");
         maintainPlan = (String)data.get("maintainencePlan");
         machineQuant = (String)data.get("machineQuant");
-        machineImage = (String)data.get("machineImage");
 
         int machinePlan2 = Integer.parseInt(maintainPlan);
 
@@ -121,7 +113,6 @@ public class machine_edit extends AppCompatActivity implements AdapterView.OnIte
         description.setText(machineDescp);
         machinePlanSpinner.setSelection(machinePlan2);
 
-
         save.setOnClickListener(saveOnClickListener);
 
 
@@ -138,17 +129,6 @@ public class machine_edit extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
-    @Override
-    public void onClick(View view) {
-
-        if(view == image){
-            Intent intent = new Intent();
-            intent.setType("image/*");
-            intent.setAction(Intent.ACTION_PICK);
-            startActivityForResult(Intent.createChooser(intent, "Select Picture"), 71);
-        }
-    }
-
     private void saveInfo(){
         machineName2 = name.getText().toString().trim();
         machineDescp = description.getText().toString().trim();
@@ -157,7 +137,6 @@ public class machine_edit extends AppCompatActivity implements AdapterView.OnIte
         machineType = type.getText().toString().trim();
         machineParts = part.getText().toString().trim();
         maintainPlan = machinePlanSpinner.getSelectedItem().toString().trim();
-
         //machineQuant = machineQuantitySpinner.getSelectedItem().toString().trim();
 
         if (machineName2.equals("")||machineDescp.equals("")||machinePrice.equals("")||machineLocat.equals("")
@@ -194,7 +173,7 @@ public class machine_edit extends AppCompatActivity implements AdapterView.OnIte
             }
             else {
                 machine_info machine = new machine_info(machineName2, machineDescp, machinePrice, machineLocat,
-                        machineType, machineParts, maintainPlan, machineQuant, machineImage);
+                        machineType, machineParts, maintainPlan, machineQuant);
                 mDatabase.child(machineName2).setValue(machine);
             }
 

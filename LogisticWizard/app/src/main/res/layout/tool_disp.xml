@@ -8,8 +8,8 @@
     tools:context=".tool_disp"
     >
 
-    <ImageView
-        android:id="@+id/toolPhoto"
+    <TextView
+        android:id="@+id/ToolName"
         android:layout_width="243dp"
         android:layout_height="31dp"
         android:layout_alignParentStart="true"
