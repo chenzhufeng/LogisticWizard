@@ -24,6 +24,12 @@ import android.net.Uri;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
@@ -47,6 +53,9 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
     private EditText orderCost;
     private Button submit;
     private ImageButton image;
+    protected DatabaseReference mDatabase;
+    private FirebaseAuth mAuth;
+    private String username;
 
     private FirebaseStorage storage;
     StorageReference storageReference;
@@ -90,6 +99,25 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
 
         storage=FirebaseStorage.getInstance("gs://logisticwizard-6d896.appspot.com/");
         storageReference = storage.getReference();
+
+        mAuth = FirebaseAuth.getInstance();
+        String Uid = mAuth.getCurrentUser().getUid();
+        mDatabase = FirebaseDatabase.getInstance().getReference("users");
+        //mDatabase.child(Uid).child("Name").toString();
+        mDatabase.child(Uid).child("Name").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                username = (String) dataSnapshot.getValue();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }});
+
 
     }
 
@@ -157,7 +185,8 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
         String order_note = orderNote.getText().toString().trim();
         String order_DueDate = orderDueDate.getText().toString().trim();
         String order_cost = orderCost.getText().toString().trim();
-        String user_image = "null";
+        String order_image = "null";
+        String order_creator=username;
 
         String maintainPlan = orderPlanSpinner.getSelectedItem().toString().trim();
         String order_priority = orderPriority.getSelectedItem().toString().trim();
@@ -177,32 +206,34 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
             order_intent.putExtra("orderNote", order_note);
             order_intent.putExtra("orderDueDate", order_DueDate);
             order_intent.putExtra("orderCost", order_cost);
-            order_intent.putExtra("userImage", user_image);
             order_intent.putExtra("orderPriority", order_priority);
             order_intent.putExtra("maintainencePlan", maintainPlan);
             order_intent.putExtra("orderStatus", order_status);
+            order_intent.putExtra("orderCreator", order_creator);
 
 
 
             if(filePath != null)
             {
                 final ProgressDialog progressDialog = new ProgressDialog(this);
-                progressDialog.setTitle("Uploading...");
-                progressDialog.show();
+                //progressDialog.setTitle("Uploading...");
+                //progressDialog.show();
 
                 StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
+                order_image = ref.getPath();
+                order_intent.putExtra("orderImage", order_image);
                 ref.putFile(filePath)
                         .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                progressDialog.dismiss();
+                                //progressDialog.dismiss();
                                 Toast.makeText(workorder_add.this, "Uploaded", Toast.LENGTH_SHORT).show();
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                progressDialog.dismiss();
+                                //progressDialog.dismiss();
                                 Toast.makeText(workorder_add.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         })
@@ -211,7 +242,7 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
                             public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                                 double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
                                         .getTotalByteCount());
-                                progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                                //progressDialog.setMessage("Uploaded "+(int)progress+"%");
                             }
                         });
             }
