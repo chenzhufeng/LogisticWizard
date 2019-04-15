@@ -6,6 +6,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -13,6 +14,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
 
 public class workorder_view extends AppCompatActivity {
 
@@ -23,13 +25,14 @@ public class workorder_view extends AppCompatActivity {
     private TextInputEditText order_description;
     private TextView order_cost;
     private EditText order_Duedate;
-
+    private ImageView order_image;
 
 
     String orderTitle;
 
 
     protected DatabaseReference mDatabase;
+    protected StorageReference mStorage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +46,7 @@ public class workorder_view extends AppCompatActivity {
         order_description=findViewById(R.id.descriptionInput);
         order_cost=findViewById(R.id.priceText);
         order_Duedate=findViewById(R.id.editText2);
-
+        order_image=findViewById(R.id.orderImage);
 
 
         Intent machine_info = getIntent();
