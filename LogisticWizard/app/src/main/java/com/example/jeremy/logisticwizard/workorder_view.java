@@ -1,20 +1,29 @@
 package com.example.jeremy.logisticwizard;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import java.io.File;
+import java.io.IOException;
 
 public class workorder_view extends AppCompatActivity {
 
@@ -33,12 +42,15 @@ public class workorder_view extends AppCompatActivity {
 
     protected DatabaseReference mDatabase;
     protected StorageReference mStorage;
+    StorageReference imageRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.workorder_disp);
         mDatabase  = FirebaseDatabase.getInstance().getReference("orders");
+        mStorage = FirebaseStorage.getInstance().getReference();
+        //imageRef = mStorage.child("/images/cfd4b4b0-6cff-424d-af23-62d4e792f340");
         order_title = findViewById(R.id.titleText);
         order_Creator = findViewById(R.id.creatorHolder);
         order_status =findViewById(R.id.currentStatusText);
@@ -152,7 +164,58 @@ public class workorder_view extends AppCompatActivity {
 
             }});
 
+        mDatabase.child(orderTitle).child("order_image").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                String orderImagePath;
+                orderImagePath = (String) dataSnapshot.getValue();
+                imageRef = mStorage.child(orderImagePath);
+                try {
+                    final File localimage = File.createTempFile(orderTitle,"jpg");
+                    imageRef.getFile(localimage).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            // Local temp file has been created
+                            Bitmap bitmap = BitmapFactory.decodeFile(localimage.getPath());
+                            order_image.setImageBitmap(bitmap);
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            // Handle any errors
+                        }
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }});
+
+//        try {
+//            final File localimage = File.createTempFile(orderTitle,"jpg");
+//            imageRef.getFile(localimage).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+//                @Override
+//                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+//                    // Local temp file has been created
+//                    Bitmap bitmap = BitmapFactory.decodeFile(localimage.getPath());
+//                    order_image.setImageBitmap(bitmap);
+//
+//                }
+//            }).addOnFailureListener(new OnFailureListener() {
+//                @Override
+//                public void onFailure(@NonNull Exception exception) {
+//                    // Handle any errors
+//                }
+//            });
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
 
 
