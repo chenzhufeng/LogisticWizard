@@ -2,10 +2,12 @@ package com.example.jeremy.logisticwizard;
 
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
@@ -130,7 +132,8 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
             //startActivity(intent);
         }
         if(view == image){
-            chooseImage();
+            //chooseImage();
+            showNormalDialog();
         }
     }
 
@@ -251,6 +254,35 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
             setResult(RESULT_OK, order_intent);
             finish();
         }
+    }
+
+    private void showNormalDialog(){
+        /* @setIcon 设置对话框图标
+         * @setTitle 设置对话框标题
+         * @setMessage 设置对话框消息提示
+         * setXXX方法返回Dialog对象，因此可以链式设置属性
+         */
+        final AlertDialog.Builder normalDialog =
+                new AlertDialog.Builder(this);
+
+        normalDialog.setTitle("我是一个普通Dialog");
+        normalDialog.setMessage("你要点击哪一个按钮呢?");
+        normalDialog.setPositiveButton("确定",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        chooseImage();
+                    }
+                });
+        normalDialog.setNegativeButton("关闭",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //...To-do
+                    }
+                });
+        // 显示
+        normalDialog.show();
     }
 
 

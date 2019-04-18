@@ -1,12 +1,16 @@
 package com.example.jeremy.logisticwizard;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,7 +39,7 @@ public class workorder_view extends AppCompatActivity {
     private TextView order_cost;
     private EditText order_Duedate;
     private ImageView order_image;
-
+    private Button delete;
 
     String orderTitle;
 
@@ -59,7 +63,7 @@ public class workorder_view extends AppCompatActivity {
         order_cost=findViewById(R.id.priceText);
         order_Duedate=findViewById(R.id.editText2);
         order_image=findViewById(R.id.orderImage);
-
+        delete = findViewById(R.id.deleteButton);
 
         Intent machine_info = getIntent();
         Bundle data = machine_info.getExtras();
@@ -197,6 +201,12 @@ public class workorder_view extends AppCompatActivity {
 
             }});
 
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showNormalDialog();
+            }
+        });
 //        try {
 //            final File localimage = File.createTempFile(orderTitle,"jpg");
 //            imageRef.getFile(localimage).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
@@ -219,5 +229,33 @@ public class workorder_view extends AppCompatActivity {
 
 
 
+    }
+    private void showNormalDialog(){
+        /* @setIcon 设置对话框图标
+         * @setTitle 设置对话框标题
+         * @setMessage 设置对话框消息提示
+         * setXXX方法返回Dialog对象，因此可以链式设置属性
+         */
+        final AlertDialog.Builder normalDialog =
+                new AlertDialog.Builder(this);
+
+        normalDialog.setTitle("我是一个普通Dialog");
+        normalDialog.setMessage("你要点击哪一个按钮呢?");
+        normalDialog.setPositiveButton("确定",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+        normalDialog.setNegativeButton("关闭",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //...To-do
+                    }
+                });
+        // 显示
+        normalDialog.show();
     }
 }
