@@ -48,19 +48,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleText" />
 
-        <Spinner
-            android:id="@+id/currentStatusText"
-            android:layout_width="186dp"
-            android:layout_height="32dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:entries="@array/statuses"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/statusText"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/statusText"
-            app:layout_constraintTop_toTopOf="@+id/statusText" />
-
         <TextView
             android:id="@+id/priorityText"
             android:layout_width="wrap_content"
@@ -71,19 +58,6 @@
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/statusText" />
-
-        <Spinner
-            android:id="@+id/currentPriorityText"
-            android:layout_width="186dp"
-            android:layout_height="32dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:entries="@array/priorities"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/priorityText"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/priorityText"
-            app:layout_constraintTop_toTopOf="@+id/priorityText" />
 
         <TextView
             android:id="@+id/creatorText"
@@ -147,19 +121,6 @@
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/descriptionHolder" />
-
-        <EditText
-            android:id="@+id/priceText"
-            android:layout_width="242dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:inputType="numberDecimal"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/costText"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/costText"
-            app:layout_constraintTop_toTopOf="@+id/costText" />
 
         <TextView
             android:id="@+id/dueDate_text"
@@ -271,5 +232,42 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
 
+        <Spinner
+            android:id="@+id/statusSpinner"
+            android:entries="@array/statuses"
+            android:layout_width="272dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/statusText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/statusText"
+            app:layout_constraintTop_toTopOf="@+id/statusText" />
+
+        <Spinner
+            android:id="@+id/prioritySpinner"
+            android:entries="@array/priorities"
+            android:layout_width="222dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/priorityText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/priorityText"
+            app:layout_constraintTop_toTopOf="@+id/priorityText" />
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            app:layout_constraintBottom_toBottomOf="@+id/costText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/costText"
+            app:layout_constraintTop_toTopOf="@+id/costText" />
+        
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

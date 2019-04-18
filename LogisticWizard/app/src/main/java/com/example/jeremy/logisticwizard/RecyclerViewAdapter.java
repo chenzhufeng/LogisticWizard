@@ -56,6 +56,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return workOrders.size();
     }
 
+
     // Provide a reference to the views for each data item
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView textView;
