@@ -15,89 +15,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fac8f61d-61f9-45fa-ab00-23921baf4134" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/google-services.json" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/google-services.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/proguard-rules.pro" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/proguard-rules.pro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/androidTest/java/com/example/jeremy/logisticwizard/ExampleInstrumentedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/androidTest/java/com/example/jeremy/logisticwizard/ExampleInstrumentedTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/MachineinfoAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/MachineinfoAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/RecyclerViewAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/RecyclerViewAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/Register.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/ToolinfoAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/ToolinfoAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/calendar_main.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/calendar_main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/calendar_main_fragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/calendar_main_fragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/home_page.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/home_page.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/machine_add.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/machine_add.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/machine_disp.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/machine_disp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/machine_edit.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/machine_edit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/machine_info.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/machine_info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/machine_main.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/machine_main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/profile_main.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/profile_main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/profile_main_fragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/profile_main_fragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/tool_add.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/tool_add.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/tool_disp.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/tool_disp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/tool_edit.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/tool_edit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/tool_info.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/tool_info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/tool_main.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/tool_main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/user_info.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/user_info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/workorder_add.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/workorder_add.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/workorder_info.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/workorder_info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/workorder_main.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/workorder_main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/workorder_view.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/workorder_view.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/drawable/ic_calendar_interface_symbol_tool.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/drawable/ic_calendar_interface_symbol_tool.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/drawable/ic_home_black_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/drawable/ic_home_black_24dp.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/drawable/ic_person_outline_black_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/drawable/ic_person_outline_black_24dp.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/drawable/ic_work_black_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/drawable/ic_work_black_24dp.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/drawable/inventory_bar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/drawable/inventory_bar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/drawable/list_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/drawable/list_view.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/drawable/menu_bar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/drawable/menu_bar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout-v21/machine_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout-v21/machine_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout-v26/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout-v26/activity_login.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout-v26/activity_register.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout-v26/activity_register.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/activity_login.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/activity_register.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/activity_register.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/calendar_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/calendar_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/calendar_main_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/calendar_main_fragment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/home_page.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/home_page.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/machine_add.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/machine_add.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/machine_disp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/machine_disp.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/machine_disp_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/machine_disp_list.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/machine_edit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/machine_edit.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/my_text_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/my_text_view.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/profile_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/profile_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/profile_main_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/profile_main_fragment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/tool_add.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/tool_add.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/tool_disp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/tool_disp.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/tool_disp_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/tool_disp_list.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/tool_edit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/tool_edit.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/tool_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/tool_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/workorder_add.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/workorder_add.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/workorder_disp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/workorder_disp.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/workorder_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/workorder_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/menu/bottom_navigation.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/menu/bottom_navigation.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/menu/menu_add_order.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/menu/menu_add_order.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/menu/menu_work_order.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/menu/menu_work_order.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/navigation/nav_graph.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/navigation/nav_graph.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/values/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/values/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/values/dimens.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/main/res/values/styles.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/app/src/test/java/com/example/jeremy/logisticwizard/ExampleUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/app/src/test/java/com/example/jeremy/logisticwizard/ExampleUnitTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/gradlew" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogisticWizard/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticWizard/settings.gradle" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -159,18 +77,33 @@
     <session id="940919606">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.opened" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="1" />
+          <entry key="gradle" value="1" />
+          <entry key="java" value="2" />
+          <entry key="xml" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="1" />
+          <entry key="Groovy" value="1" />
+          <entry key="JAVA" value="2" />
+          <entry key="XML" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="gradle" value="14" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Groovy" value="14" />
         </counts>
       </usages-collector>
     </session>
@@ -180,9 +113,57 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/calendar_main.java">
           <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/workorder_disp.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-4171">
+              <caret line="7" column="36" lean-forward="true" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LogisticWizard/.idea/misc.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="127" selection-start-line="2" selection-start-column="127" selection-end-line="2" selection-end-column="127" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LogisticWizard/app/src/main/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="283">
+              <caret line="34" column="37" selection-start-line="34" selection-start-column="37" selection-end-line="34" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/workorder_view.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="433">
+              <caret line="163" column="16" selection-start-line="163" selection-start-column="16" selection-end-line="163" selection-end-column="16" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/LogisticWizard/settings.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="14" lean-forward="true" selection-start-column="14" selection-end-column="14" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -196,6 +177,17 @@
     </option>
     <option name="myGradleVersions">
       <map />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/workorder_disp.xml" />
+        <option value="$PROJECT_DIR$/LogisticWizard/.idea/misc.xml" />
+        <option value="$PROJECT_DIR$/LogisticWizard/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/workorder_view.java" />
+        <option value="$PROJECT_DIR$/LogisticWizard/settings.gradle" />
+      </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
@@ -317,6 +309,7 @@
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="device.picker.selection" value="Nexus_5X_API_28" />
+    <property name="last_opened_file_path" value="E:/LogisticWizard" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -432,6 +425,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4965035" visible="true" weight="0.24917382" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -454,6 +448,7 @@
       <window_info anchor="bottom" id="Logcat" order="10" weight="0.32916668" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32916668" />
       <window_info anchor="bottom" id="Terminal" order="12" weight="0.32916668" />
+      <window_info anchor="right" id="Preview" weight="0.3295302" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -485,6 +480,44 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeremy/logisticwizard/LoginActivity.java" />
     <entry file="file://$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/calendar_main.java">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LogisticWizard/app/src/main/res/layout/workorder_disp.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4171">
+          <caret line="7" column="36" lean-forward="true" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LogisticWizard/.idea/misc.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="127" selection-start-line="2" selection-start-column="127" selection-end-line="2" selection-end-column="127" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LogisticWizard/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="34" column="37" selection-start-line="34" selection-start-column="37" selection-end-line="34" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LogisticWizard/app/src/main/java/com/example/jeremy/logisticwizard/workorder_view.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="433">
+          <caret line="163" column="16" selection-start-line="163" selection-start-column="16" selection-end-line="163" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LogisticWizard/settings.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="14" lean-forward="true" selection-start-column="14" selection-end-column="14" />
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">
