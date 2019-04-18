@@ -1,10 +1,15 @@
 package com.example.jeremy.logisticwizard;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
+import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -16,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
-public class workorder_view extends AppCompatActivity {
+public class workorder_view extends AppCompatActivity implements View.OnClickListener {
 
     private TextView order_title;
     private TextView order_status;
@@ -26,6 +31,10 @@ public class workorder_view extends AppCompatActivity {
     private TextView order_cost;
     private TextView order_Duedate;
     private TextView order_note;
+
+    private Button edit_button;
+    private Button back_button;
+    private Button delete_button;
 
 
 
@@ -47,6 +56,15 @@ public class workorder_view extends AppCompatActivity {
         order_cost=findViewById(R.id.priceText);
         order_Duedate=findViewById(R.id.editText2);
         order_note=findViewById(R.id.note);
+
+        edit_button = findViewById(R.id.editButton);
+        edit_button.setOnClickListener(this);
+
+        back_button=findViewById(R.id.backButton);
+        back_button.setOnClickListener(this);
+
+        delete_button=findViewById(R.id.deleteButton);
+        delete_button.setOnClickListener(this);
 
 
         Intent machine_info = getIntent();
@@ -167,9 +185,50 @@ public class workorder_view extends AppCompatActivity {
 
             }});
 
+    }
+
+    private void delete_order(){
+        mDatabase.child(orderTitle).removeValue();
+    }
+
+    private void show_dialogue(){
+        final AlertDialog.Builder normalDialog =
+                new AlertDialog.Builder(workorder_view.this);
+        normalDialog.setTitle("Delete the work order?");
+        //normalDialog.setMessage("你要点击哪一个按钮呢?");
+        normalDialog.setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        delete_order();
+                    }
+                });
+        normalDialog.setNegativeButton("Cancel",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //...To-do
+                        return;
+                    }
+                });
+        // 显示
+        normalDialog.show();
+    }
 
 
 
-
+    @Override
+    public void onClick(View v) {
+        if(v == edit_button){
+            //Intent intent = new Intent (v.getContext(), workorder_main.class);
+            //startActivity(intent);
+        }else if( v== back_button){
+            Intent intent = new Intent (v.getContext(), workorder_main.class);
+            startActivity(intent);
+        }else if ( v==delete_button) {
+            show_dialogue();
+            Intent intent = new Intent (v.getContext(), workorder_main.class);
+            startActivity(intent);
+        }
     }
 }
