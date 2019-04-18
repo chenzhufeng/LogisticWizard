@@ -7,23 +7,6 @@
     android:background="@drawable/background"
     tools:context=".Login">
 
-    <ImageView
-        android:id="@+id/Logo"
-        android:layout_width="120dp"
-        android:layout_height="150dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="146dp"
-        android:layout_marginTop="77dp"
-        android:layout_marginEnd="145dp"
-        android:layout_marginRight="145dp"
-        android:layout_marginBottom="376dp"
-        android:contentDescription="@string/logo"
-        app:srcCompat="@drawable/logo" />
-
     <EditText
         android:id="@+id/UserName"
         style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
@@ -87,15 +70,29 @@
 
     <TextView
         android:id="@+id/ForgetPwdText"
-        android:layout_width="130dp"
-        android:layout_height="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LoginBut"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="55dp"
-        android:layout_marginRight="55dp"
-        android:layout_marginBottom="106dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="87dp"
+        android:layout_marginBottom="100dp"
         android:text="@string/forget_password"
+        android:textAlignment="center"
         android:textColor="#6495ED" />
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="119dp"
+        android:layout_height="120dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginEnd="140dp"
+        app:srcCompat="@drawable/icon" />
 
 </RelativeLayout>
