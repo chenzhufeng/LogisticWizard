@@ -1,21 +1,29 @@
 package com.example.jeremy.logisticwizard;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
-import org.w3c.dom.Text;
+import java.io.File;
+import java.io.IOException;
 
 public class workorder_view extends AppCompatActivity {
 
@@ -23,28 +31,35 @@ public class workorder_view extends AppCompatActivity {
     private TextView order_status;
     private TextView order_priority;
     private TextView order_Creator;
-    private TextView order_description;
+    private TextInputEditText order_description;
     private TextView order_cost;
-    private TextView order_Duedate;
-    private TextView order_note;
+    private EditText order_Duedate;
+    private ImageView order_image;
+
 
     String orderTitle;
 
+
     protected DatabaseReference mDatabase;
+    protected StorageReference mStorage;
+    StorageReference imageRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.workorder_disp);
-        mDatabase = FirebaseDatabase.getInstance().getReference("orders");
+        mDatabase  = FirebaseDatabase.getInstance().getReference("orders");
+        mStorage = FirebaseStorage.getInstance().getReference();
+        //imageRef = mStorage.child("/images/cfd4b4b0-6cff-424d-af23-62d4e792f340");
         order_title = findViewById(R.id.titleText);
         order_Creator = findViewById(R.id.creatorHolder);
-        order_status = findViewById(R.id.currentStatusText);
-        order_priority = findViewById(R.id.currentPriorityText);
-        order_description = findViewById(R.id.descriptionInput);
-        order_cost = findViewById(R.id.priceText);
-        order_Duedate = findViewById(R.id.editText2);
-        order_note = findViewById(R.id.note);
+        order_status =findViewById(R.id.currentStatusText);
+        order_priority=findViewById(R.id.currentPriorityText);
+        order_description=findViewById(R.id.descriptionInput);
+        order_cost=findViewById(R.id.priceText);
+        order_Duedate=findViewById(R.id.editText2);
+        order_image=findViewById(R.id.orderImage);
+
 
         Intent machine_info = getIntent();
         Bundle data = machine_info.getExtras();
@@ -52,9 +67,10 @@ public class workorder_view extends AppCompatActivity {
         orderTitle = data.get("orderTitle").toString();
 
 
+
     }
 
-    protected void onStart() {
+    protected void onStart(){
         super.onStart();
 
         order_title.setText(orderTitle);
@@ -71,8 +87,7 @@ public class workorder_view extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
+            }});
 
         mDatabase.child(orderTitle).child("order_priority").addValueEventListener(new ValueEventListener() {
             @Override
@@ -87,8 +102,7 @@ public class workorder_view extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
+            }});
 
         mDatabase.child(orderTitle).child("order_creator").addValueEventListener(new ValueEventListener() {
             @Override
@@ -103,8 +117,7 @@ public class workorder_view extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
+            }});
 
         mDatabase.child(orderTitle).child("order_descrip").addValueEventListener(new ValueEventListener() {
             @Override
@@ -119,8 +132,7 @@ public class workorder_view extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
+            }});
 
         mDatabase.child(orderTitle).child("order_cost").addValueEventListener(new ValueEventListener() {
             @Override
@@ -128,6 +140,7 @@ public class workorder_view extends AppCompatActivity {
 
                 String orderCost;
                 orderCost = (String) dataSnapshot.getValue();
+                //System.out.println(orderCost);
                 order_cost.setText(orderCost);
 
             }
@@ -135,8 +148,7 @@ public class workorder_view extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
+            }});
 
         mDatabase.child(orderTitle).child("order_dates").addValueEventListener(new ValueEventListener() {
             @Override
@@ -151,25 +163,39 @@ public class workorder_view extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
+            }});
 
-
-        mDatabase.child(orderTitle).child("order_note").addValueEventListener(new ValueEventListener() {
+        mDatabase.child(orderTitle).child("order_image").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                String orderNote;
-                orderNote = (String) dataSnapshot.getValue();
-                order_note.setText(orderNote);
+                String orderImagePath;
+                orderImagePath = (String) dataSnapshot.getValue();
+                imageRef = mStorage.child(orderImagePath);
+                try {
+                    final File localimage = File.createTempFile(orderTitle,"jpg");
+                    imageRef.getFile(localimage).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            // Local temp file has been created
+                            Bitmap bitmap = BitmapFactory.decodeFile(localimage.getPath());
+                            order_image.setImageBitmap(bitmap);
 
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            // Handle any errors
+                        }
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
-
+            }});
     }
 }
