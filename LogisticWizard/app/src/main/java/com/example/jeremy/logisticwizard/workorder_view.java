@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -35,15 +36,15 @@ public class workorder_view extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.workorder_disp);
-        mDatabase  = FirebaseDatabase.getInstance().getReference("orders");
+        mDatabase = FirebaseDatabase.getInstance().getReference("orders");
         order_title = findViewById(R.id.titleText);
         order_Creator = findViewById(R.id.creatorHolder);
-        order_status =findViewById(R.id.currentStatusText);
-        order_priority=findViewById(R.id.currentPriorityText);
-        order_description=findViewById(R.id.descriptionInput);
-        order_cost=findViewById(R.id.priceText);
-        order_Duedate=findViewById(R.id.editText2);
-        order_note=findViewById(R.id.note);
+        order_status = findViewById(R.id.currentStatusText);
+        order_priority = findViewById(R.id.currentPriorityText);
+        order_description = findViewById(R.id.descriptionInput);
+        order_cost = findViewById(R.id.priceText);
+        order_Duedate = findViewById(R.id.editText2);
+        order_note = findViewById(R.id.note);
 
         Intent machine_info = getIntent();
         Bundle data = machine_info.getExtras();
@@ -51,10 +52,9 @@ public class workorder_view extends AppCompatActivity {
         orderTitle = data.get("orderTitle").toString();
 
 
-
     }
 
-    protected void onStart(){
+    protected void onStart() {
         super.onStart();
 
         order_title.setText(orderTitle);
@@ -71,7 +71,8 @@ public class workorder_view extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }});
+            }
+        });
 
         mDatabase.child(orderTitle).child("order_priority").addValueEventListener(new ValueEventListener() {
             @Override
@@ -86,7 +87,8 @@ public class workorder_view extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }});
+            }
+        });
 
         mDatabase.child(orderTitle).child("order_creator").addValueEventListener(new ValueEventListener() {
             @Override
@@ -101,7 +103,8 @@ public class workorder_view extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }});
+            }
+        });
 
         mDatabase.child(orderTitle).child("order_descrip").addValueEventListener(new ValueEventListener() {
             @Override
@@ -116,7 +119,8 @@ public class workorder_view extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }});
+            }
+        });
 
         mDatabase.child(orderTitle).child("order_cost").addValueEventListener(new ValueEventListener() {
             @Override
@@ -131,7 +135,8 @@ public class workorder_view extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }});
+            }
+        });
 
         mDatabase.child(orderTitle).child("order_dates").addValueEventListener(new ValueEventListener() {
             @Override
@@ -146,7 +151,9 @@ public class workorder_view extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }});
+            }
+        });
+
 
         mDatabase.child(orderTitle).child("order_note").addValueEventListener(new ValueEventListener() {
             @Override
@@ -161,10 +168,8 @@ public class workorder_view extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }});
-
-
-
+            }
+        });
 
     }
 }
