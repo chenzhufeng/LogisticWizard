@@ -114,7 +114,7 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
             String order_description = data.getStringExtra("orderDescription");
             String order_note = data.getStringExtra("orderNote");
             String order_DueDate = data.getStringExtra("orderDueDate");
-            String order_cost = data.getStringExtra("orderCate");
+            String order_cost = data.getStringExtra("orderCost");
             String order_priority = data.getStringExtra("orderPriority");
             String order_plan = data.getStringExtra("maintainencePlan");
             String order_status = data.getStringExtra("orderStatus");
