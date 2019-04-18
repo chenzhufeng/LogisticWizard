@@ -14,20 +14,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 public class workorder_view extends AppCompatActivity {
 
     private TextView order_title;
     private TextView order_status;
     private TextView order_priority;
     private TextView order_Creator;
-    private TextInputEditText order_description;
+    private TextView order_description;
     private TextView order_cost;
-    private EditText order_Duedate;
-
-
+    private TextView order_Duedate;
+    private TextView order_note;
 
     String orderTitle;
-
 
     protected DatabaseReference mDatabase;
 
@@ -43,8 +43,7 @@ public class workorder_view extends AppCompatActivity {
         order_description=findViewById(R.id.descriptionInput);
         order_cost=findViewById(R.id.priceText);
         order_Duedate=findViewById(R.id.editText2);
-
-
+        order_note=findViewById(R.id.note);
 
         Intent machine_info = getIntent();
         Bundle data = machine_info.getExtras();
@@ -149,6 +148,20 @@ public class workorder_view extends AppCompatActivity {
 
             }});
 
+        mDatabase.child(orderTitle).child("order_note").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                String orderNote;
+                orderNote = (String) dataSnapshot.getValue();
+                order_note.setText(orderNote);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }});
 
 
 
