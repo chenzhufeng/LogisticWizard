@@ -117,8 +117,6 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }});
-
-
     }
 
 

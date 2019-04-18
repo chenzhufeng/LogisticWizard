@@ -78,7 +78,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     Intent order_intent = new Intent(c, workorder_view.class);
                     order_intent.putExtra("orderTitle", textView.getText());
 
-
                     c.startActivity(order_intent);
                 }
             });

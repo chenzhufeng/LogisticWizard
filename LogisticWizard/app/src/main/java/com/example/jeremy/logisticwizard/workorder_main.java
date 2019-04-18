@@ -66,12 +66,10 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-
         mDatabase = FirebaseDatabase.getInstance().getReference("orders");
 
         newOrder = (Button) findViewById(R.id.new_order);
         newOrder.setOnClickListener(this);
-
 
         BottomNavigationView bottomNav  = findViewById(id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
