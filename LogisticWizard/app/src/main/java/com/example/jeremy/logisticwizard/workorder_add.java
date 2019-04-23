@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -34,6 +35,7 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -151,17 +153,19 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
     }
     private void takeImage(){
         Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_PICK);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), 71);
+        intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+        startActivityForResult(intent, 71);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 71 && resultCode == RESULT_OK
-                && data != null && data.getData() != null )
+                && data != null )
         {
+            Toast.makeText(this,
+                    "Error occur:"+resultCode,  Toast.LENGTH_SHORT).show();
             filePath = data.getData();
             try {
                 float scale = this.getResources().getDisplayMetrics().density;
@@ -176,7 +180,22 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
             {
                 e.printStackTrace();
             }
+            if(data.hasExtra("data")){
+
+                Bitmap bitMap = data.getParcelableExtra("data");
+
+            }
+
         }
+        else{
+            boolean t = true;
+            if(data.getData()==null){
+                t = false;
+            }
+            Toast.makeText(this,
+                    "Error occur:"+t,  Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     /**
