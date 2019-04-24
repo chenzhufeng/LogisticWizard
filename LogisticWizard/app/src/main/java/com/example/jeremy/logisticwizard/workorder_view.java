@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -192,6 +193,10 @@ public class workorder_view extends AppCompatActivity {
         mDatabase.child(orderTitle).child("order_image").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.exists()) {
+                    return;
+                }
+
 
                 String orderImagePath;
                 orderImagePath = (String) dataSnapshot.getValue();
@@ -250,16 +255,19 @@ public class workorder_view extends AppCompatActivity {
             final AlertDialog.Builder normalDialog =
                     new AlertDialog.Builder(this);
 
-            normalDialog.setTitle("我是一个普通Dialog");
-            normalDialog.setMessage("你要点击哪一个按钮呢?");
-            normalDialog.setPositiveButton("确定",
+            normalDialog.setTitle("Delete Confirmation");
+            normalDialog.setMessage("Do you want to delete this work order?");
+            normalDialog.setPositiveButton("Yes",
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-
+                            mDatabase.child(orderTitle).removeValue();
+                            Toast.makeText(workorder_view.this, "Deleted", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent (workorder_view.this, workorder_main.class);
+                            startActivity(intent);
                         }
                     });
-            normalDialog.setNegativeButton("关闭",
+            normalDialog.setNegativeButton("No",
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
