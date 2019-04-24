@@ -11,24 +11,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
+        <ImageView
             android:id="@+id/photoHolder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="354dp"
+            android:layout_height="200dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:text="Photo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:color/background_light" />
 
-        <TextView
+        <EditText
             android:id="@+id/titleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="132dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="Title of Order"
             android:textSize="20sp"
@@ -170,8 +170,7 @@
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Maintenance Person" />
+                android:layout_height="wrap_content" />
         </android.support.design.widget.TextInputLayout>
 
         <TextView
@@ -197,8 +196,7 @@
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Notes" />
+                android:layout_height="wrap_content" />
         </android.support.design.widget.TextInputLayout>
 
         <Button

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -31,18 +32,18 @@ import java.io.IOException;
 
 public class workorder_edit extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private TextView order_title;
+    private EditText order_title;
     private Spinner order_status;
     private Spinner order_priority;
     private TextView order_Creator;
     private TextInputEditText order_description;
-    private TextView order_cost;
-    private TextView order_Duedate;
-    private TextView order_note;
+    private EditText order_cost;
+    private EditText order_Duedate;
+    private TextInputEditText order_note;
     private ImageView order_image;
 
 
-    private Button edit_button;
+    private Button save_button;
     private Button back_button;
 
     String orderTitle;
@@ -63,9 +64,9 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
         order_title = findViewById(R.id.titleText);
         order_Creator = findViewById(R.id.creatorHolder);
         order_description=findViewById(R.id.descriptionInput);
-        order_cost=findViewById(R.id.priceText);
+        order_cost=findViewById(R.id.editText);
         order_Duedate=findViewById(R.id.editText2);
-        order_image=findViewById(R.id.orderImage);
+        order_image=findViewById(R.id.photoHolder);
 
         order_status = findViewById(R.id.statusSpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -77,11 +78,11 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
         order_priority = findViewById(R.id.prioritySpinner);
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
                 R.array.priorities, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         order_priority.setAdapter(adapter1);
         order_priority.setOnItemSelectedListener(this);
 
-        edit_button = findViewById(R.id.editButton);
+        save_button = findViewById(R.id.saveButton);
 
         back_button=findViewById(R.id.backButton);
 
@@ -111,8 +112,16 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
 
                 String orderStatus;
                 orderStatus = (String) dataSnapshot.getValue();
-                int orderStatus2 = Integer.parseInt(orderStatus);
-                order_status.setSelection(orderStatus2);
+                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(workorder_edit.this,
+                        R.array.statuses, android.R.layout.simple_spinner_item);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                order_status.setAdapter(adapter);
+                if (orderStatus != null) {
+                    int spinnerPosition = adapter.getPosition(orderStatus);
+                    order_status.setSelection(spinnerPosition);
+                }
+                //int orderStatus2 = Integer.parseInt(orderStatus);
+                //order_status.setSelection(2);
 
             }
 
@@ -127,8 +136,14 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
 
                 String orderPriority;
                 orderPriority = (String) dataSnapshot.getValue();
-                int orderPriority2 = Integer.parseInt(orderPriority);
-                order_priority.setSelection(orderPriority2);
+                ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(workorder_edit.this,
+                        R.array.priorities, android.R.layout.simple_spinner_item);
+                adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                order_priority.setAdapter(adapter1);
+                if (orderPriority != null) {
+                    int spinnerPosition = adapter1.getPosition(orderPriority);
+                    order_priority.setSelection(spinnerPosition);
+                }
 
             }
 

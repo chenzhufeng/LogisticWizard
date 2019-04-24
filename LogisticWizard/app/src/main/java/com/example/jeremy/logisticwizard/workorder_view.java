@@ -231,6 +231,15 @@ public class workorder_view extends AppCompatActivity {
             }
         });
 
+        edit_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (v.getContext(), workorder_edit.class);
+                intent.putExtra("orderTitle", order_title.getText());
+                startActivity(intent);
+            }
+        });
+
     }
         private void showNormalDialog() {
             /* @setIcon 设置对话框图标
