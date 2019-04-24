@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -29,6 +32,9 @@ public class tool_main extends AppCompatActivity implements View.OnClickListener
     private SearchView sv;
     private ListView lv;
     ArrayList<tool_info> tool_infoList;
+    //added
+    View top;
+    View v2;
 
     //just for now
     private ArrayAdapter<String> adapter;
@@ -40,12 +46,21 @@ public class tool_main extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tool_main);
 
+        BottomNavigationView bottomNav  = findViewById(R.id.bottom_navigation);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
+        bottomNav.getMenu().getItem(0).setCheckable(false);
+
         mDatabase = FirebaseDatabase.getInstance().getReference("tools");
 
         final ArrayList<String> listData = new ArrayList<String>();
 
         sv = (SearchView) findViewById(R.id.tool_search);
         lv = (ListView) findViewById(R.id.list_of_tools); //will need this later
+
+        //added
+        top = (View) findViewById(R.id.top_view);
+        v2 = (View) findViewById(R.id.list_view);
+
         tool_infoList = new ArrayList<>();
         //adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listData);
         //lv.setAdapter(adapter);
@@ -77,6 +92,56 @@ public class tool_main extends AppCompatActivity implements View.OnClickListener
 //        });
 
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                    Fragment selectedFragment = null;
+                    switch (menuItem.getItemId()){
+                        case R.id.nav_home:
+                            //menuItem.setCheckable(true);
+                            Intent intent = new Intent(tool_main.this, home_page.class);
+                            startActivity(intent);
+                            //selectedFragment = new HomeFragment();
+                            break;
+                        case R.id.nav_orders:
+                            //Intent intent2 = new Intent(machine_main.this, workorder_main.class);
+                            //intent2.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                            //startActivity(intent2);
+                            sv.setVisibility(View.INVISIBLE);
+                            lv.setVisibility(View.INVISIBLE);
+                            add_tool.setVisibility(View.INVISIBLE);
+                            top.setVisibility(View.INVISIBLE);
+                            v2.setVisibility(View.INVISIBLE);
+
+                            //need other layouts
+
+                            menuItem.setCheckable(true);
+                            selectedFragment = new calendar_main_fragment();
+                            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                    selectedFragment).commit();
+                            break;
+                        case R.id.nav_profile:
+                            //Intent intent3 = new Intent(machine_main.this, profile_main.class);
+                            //startActivity(intent3);
+                            //menuItem.setCheckable(true);
+                            sv.setVisibility(View.INVISIBLE);
+                            lv.setVisibility(View.INVISIBLE);
+                            add_tool.setVisibility(View.INVISIBLE);
+                            top.setVisibility(View.INVISIBLE);
+                            v2.setVisibility(View.INVISIBLE);
+                            //need other layouts
+
+                            selectedFragment = new profile_main_fragment();
+                            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                    selectedFragment).commit();
+                            break;
+                    }
+                    return true; //return clicked item
+                }
+
+            };
 
     @Override
     protected void onStart() {

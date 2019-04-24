@@ -21,6 +21,7 @@ public class machine_disp extends Activity implements View.OnClickListener{
     private Button editButton;
     private Button backButton;
 
+
     String machineName;
     String machineDescription;
     String machinePrice;
