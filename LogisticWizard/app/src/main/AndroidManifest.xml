@@ -22,6 +22,7 @@
         <activity android:name=".workorder_main" />
         <activity android:name=".tool_edit"/>
         <activity android:name=".workorder_view" />
+        <activity android:name=".workorder_edit" />
         <activity android:name=".tool_disp" />
         <activity android:name=".calendar_main" />
         <activity android:name=".tool_add" />

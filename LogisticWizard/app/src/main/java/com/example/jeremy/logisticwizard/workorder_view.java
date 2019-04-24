@@ -254,8 +254,9 @@ public class workorder_view extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         if(v == edit_button){
-            //Intent intent = new Intent (v.getContext(), workorder_main.class);
-            //startActivity(intent);
+            Intent intent = new Intent (v.getContext(), workorder_edit.class);
+            intent.putExtra("orderTitle", orderTitle);
+            startActivity(intent);
         }else if( v== back_button){
             Intent intent = new Intent (v.getContext(), workorder_main.class);
             startActivity(intent);
