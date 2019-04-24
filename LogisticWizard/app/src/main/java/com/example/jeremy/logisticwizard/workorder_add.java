@@ -2,25 +2,25 @@ package com.example.jeremy.logisticwizard;
 
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.EditText;
-import android.net.Uri;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,12 +30,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
-
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Target;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -128,7 +128,8 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
             //startActivity(intent);
         }
         if(view == image){
-            chooseImage();
+            //chooseImage();
+            showNormalDialog();
         }
     }
 
@@ -148,13 +149,21 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
         intent.setAction(Intent.ACTION_PICK);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), 71);
     }
+    private void takeImage(){
+        Intent intent = new Intent();
+        intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+        startActivityForResult(intent, 71);
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 71 && resultCode == RESULT_OK
-                && data != null && data.getData() != null )
+                && data != null )
         {
+            Toast.makeText(this,
+                    "Error occur:"+resultCode,  Toast.LENGTH_SHORT).show();
             filePath = data.getData();
             try {
                 float scale = this.getResources().getDisplayMetrics().density;
@@ -169,7 +178,22 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
             {
                 e.printStackTrace();
             }
+            if(data.hasExtra("data")){
+
+                Bitmap bitMap = data.getParcelableExtra("data");
+
+            }
+
         }
+        else{
+            boolean t = true;
+            if(data.getData()==null){
+                t = false;
+            }
+            Toast.makeText(this,
+                    "Error occur:"+t,  Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     /**
@@ -249,6 +273,35 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
             setResult(RESULT_OK, order_intent);
             finish();
         }
+    }
+
+    private void showNormalDialog(){
+        /* @setIcon 设置对话框图标
+         * @setTitle 设置对话框标题
+         * @setMessage 设置对话框消息提示
+         * setXXX方法返回Dialog对象，因此可以链式设置属性
+         */
+        final AlertDialog.Builder normalDialog =
+                new AlertDialog.Builder(this);
+
+        normalDialog.setTitle(" I am a Dialog");
+        normalDialog.setMessage("Which one do you want to choose?");
+        normalDialog.setPositiveButton("gallery",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        chooseImage();
+                    }
+                });
+        normalDialog.setNegativeButton("camera",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        takeImage();
+                    }
+                });
+        // 显示
+        normalDialog.show();
     }
 
 

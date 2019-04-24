@@ -89,13 +89,9 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
                     workorder_info workorder = machineSnapshot.getValue(workorder_info.class);
                     workorder_infoList.add(workorder);
                 }
-                //Toast.makeText(Machine.this, machine_infoList.get(0).machine_name+machine_infoList.get(1).machine_name, Toast.LENGTH_SHORT).show();
-                //Toast.makeText(workorder_main.this, workorder_infoList.get(0).order_creator, Toast.LENGTH_SHORT).show();
                 // Specify the adapter
                 mAdapter = new RecyclerViewAdapter(getApplicationContext(), workorder_infoList);
                 recyclerView.setAdapter(mAdapter);
-                //lv.setAdapter(machineinfoAdapter);
-                //});
             }
 
             @Override
@@ -121,7 +117,7 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
             String order_image = data.getStringExtra("orderImage");
             String order_creator = data.getStringExtra("orderCreator");
 
-            //Toast.makeText(this, "order name"+order_title+"lalal", Toast.LENGTH_SHORT).show();
+
             saveorderToDB(order_title, order_description, order_note, order_DueDate,
                     order_cost, order_priority, order_plan, order_status, order_image, order_creator);
         }
