@@ -66,6 +66,8 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
+        recyclerView.setAdapter(new RecyclerViewAdapter(getApplicationContext(), workorder_infoList));
+
         mDatabase = FirebaseDatabase.getInstance().getReference("orders");
 
         newOrder = (Button) findViewById(R.id.new_order);
