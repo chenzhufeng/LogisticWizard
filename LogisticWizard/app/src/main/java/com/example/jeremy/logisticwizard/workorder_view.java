@@ -48,7 +48,7 @@ public class workorder_view extends AppCompatActivity {
     private Button back_button;
 
 
-    private Button delete;
+    private Button delete_button;
 
 
     String orderTitle;
@@ -78,8 +78,8 @@ public class workorder_view extends AppCompatActivity {
 
         back_button = findViewById(R.id.backButton);
 
-        delete = findViewById(R.id.deleteButton);
-
+        delete_button = findViewById(R.id.deleteButton);
+        back_button = findViewById(R.id.backButton);
 
         Intent machine_info = getIntent();
         Bundle data = machine_info.getExtras();
@@ -229,10 +229,17 @@ public class workorder_view extends AppCompatActivity {
         });
 
 
-        delete.setOnClickListener(new View.OnClickListener() {
+        delete_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showNormalDialog();
+            }
+        });
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent (workorder_view.this, workorder_main.class);
+                startActivity(intent);
             }
         });
 
