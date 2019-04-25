@@ -249,7 +249,9 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
         mDatabase.child(orderTitle).child("order_image").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
+                if (!dataSnapshot.exists()) {
+                    return;
+                }
                 String orderImagePath;
                 orderImagePath = (String) dataSnapshot.getValue();
                 orderImage = orderImagePath;
@@ -286,7 +288,7 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
             public void onClick(View view) {
                 save_edition();
                 Intent intent = new Intent (view.getContext(), workorder_view.class);
-                intent.putExtra("orderTitle", order_title.getText());
+                intent.putExtra("orderTitle", order_title.getText().toString().trim());
                 startActivity(intent);
             }
         });

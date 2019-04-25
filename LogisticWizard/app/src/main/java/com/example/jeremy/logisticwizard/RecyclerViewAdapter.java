@@ -13,20 +13,11 @@ import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
     private List<workorder_info> workOrders;
-    //private List<workorder_info> Priorities;
-    //private List<workorder_info> Dates;
-    //private List<workorder_info> Creators;
-    //private List<workorder_info> Progress;
     private Context context;
 
     // Constructor for the adapter
     public RecyclerViewAdapter(Context context, List<workorder_info> workOrders) {
-        //this.context = context;
         this.workOrders = workOrders;
-        //this.Priorities = Priorities;
-        //this.Dates = Dates;
-        //this.Creators = Creators;
-        //this.Progress = Progress;
         this.context = context;
     }
 
