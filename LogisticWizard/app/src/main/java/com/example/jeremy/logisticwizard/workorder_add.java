@@ -43,13 +43,13 @@ import java.util.UUID;
 public class workorder_add extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     final static int galleryPic = 1;
 
-    private TextInputEditText orderTitle;
-    private TextInputEditText orderDescription;
+    private EditText orderTitle;
+    private EditText orderDescription;
     private Spinner orderPriority;
     private Spinner orderPlanSpinner;
-    private TextInputEditText orderNote;
+    private EditText orderNote;
     private Spinner orderStatus;
-    private TextInputEditText orderDueDate;
+    private EditText orderDueDate;
     private EditText orderCost;
     private Button submit;
     private ImageButton image;
