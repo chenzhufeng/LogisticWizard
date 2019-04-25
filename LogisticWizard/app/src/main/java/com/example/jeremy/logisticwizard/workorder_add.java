@@ -284,7 +284,7 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
         final AlertDialog.Builder normalDialog =
                 new AlertDialog.Builder(this);
 
-        normalDialog.setTitle(" I am a Dialog");
+        normalDialog.setTitle(" Uploading picture");
         normalDialog.setMessage("Which one do you want to choose?");
         normalDialog.setPositiveButton("gallery",
                 new DialogInterface.OnClickListener() {

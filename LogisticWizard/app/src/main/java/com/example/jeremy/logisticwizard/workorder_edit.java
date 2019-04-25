@@ -1,17 +1,21 @@
 package com.example.jeremy.logisticwizard;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -43,7 +47,7 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
     private EditText order_cost;
     private EditText order_Duedate;
     private TextInputEditText order_note;
-    private ImageView order_image;
+    private ImageButton order_image;
 
 
     private Button save_button;
@@ -287,6 +291,22 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
             }
         });
 
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent (workorder_edit.this, workorder_view.class);
+                intent.putExtra("orderTitle", order_title.getText());
+                startActivity(intent);
+            }
+        });
+
+        order_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showNormalDialog();
+            }
+        });
+
     }
 
     private void save_edition(){
@@ -339,6 +359,48 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
             }
 
         }
+    }
+
+    private void showNormalDialog(){
+        /* @setIcon 设置对话框图标
+         * @setTitle 设置对话框标题
+         * @setMessage 设置对话框消息提示
+         * setXXX方法返回Dialog对象，因此可以链式设置属性
+         */
+        final AlertDialog.Builder normalDialog =
+                new AlertDialog.Builder(this);
+
+        normalDialog.setTitle(" Uploading picture");
+        normalDialog.setMessage("Which one do you want to choose?");
+        normalDialog.setPositiveButton("gallery",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        chooseImage();
+                    }
+                });
+        normalDialog.setNegativeButton("camera",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        takeImage();
+                    }
+                });
+        // 显示
+        normalDialog.show();
+    }
+
+    private void chooseImage(){
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_PICK);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), 71);
+    }
+    private void takeImage(){
+        Intent intent = new Intent();
+        intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+        startActivityForResult(intent, 71);
     }
 
 }
