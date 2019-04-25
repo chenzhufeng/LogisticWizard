@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -29,6 +30,8 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class workorder_edit extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -47,6 +50,10 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
     private Button back_button;
 
     String orderTitle;
+    String orderImage;
+    String orderNote;
+    String orderPlan;
+    List<String> temple=new ArrayList<>();
 
 
     protected DatabaseReference mDatabase;
@@ -213,12 +220,35 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
 
             }});
 
+        mDatabase.child(orderTitle).child("order_note").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                orderNote = (String) dataSnapshot.getValue();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }});
+
+        mDatabase.child(orderTitle).child("maintain_plan").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                orderPlan = (String) dataSnapshot.getValue();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }});
+
         mDatabase.child(orderTitle).child("order_image").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 String orderImagePath;
                 orderImagePath = (String) dataSnapshot.getValue();
+                orderImage = orderImagePath;
                 imageRef = mStorage.child(orderImagePath);
                 try {
                     final File localimage = File.createTempFile(orderTitle,"jpg");
@@ -246,6 +276,69 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
 
             }});
 
+
+        save_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                save_edition();
+                Intent intent = new Intent (view.getContext(), workorder_view.class);
+                intent.putExtra("orderTitle", order_title.getText());
+                startActivity(intent);
+            }
+        });
+
+    }
+
+    private void save_edition(){
+        String orderTitle2 = order_title.getText().toString().trim();
+        String orderCreator = order_Creator.getText().toString().trim();
+        String orderDescrip = order_description.getText().toString().trim();
+        String orderCost = order_cost.getText().toString().trim();
+        String orderDuedate = order_Duedate.getText().toString().trim();
+
+        //String orderImage = order_image.getText().toString().trim();
+        String orderStatus = order_status.getSelectedItem().toString().trim();
+        String orderPriority = order_priority.getSelectedItem().toString().trim();
+
+        if (orderTitle2.equals("")||orderCreator.equals("")||orderDescrip.equals("")||orderCost.equals("")
+                ||orderDuedate.equals("")||orderStatus.equals("")||orderPriority.equals("")) {
+            Toast.makeText(this,
+                    "Please enter all information or leave NONE.", Toast.LENGTH_LONG).show();
+            return;
+        }else {
+            if(!orderTitle2.equals(orderTitle)) {
+                mDatabase.child(orderTitle).removeValue();
+            }
+
+            mDatabase.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    for(DataSnapshot orderSnapshot : dataSnapshot.getChildren()){
+                        if(!orderSnapshot.getKey().equals(orderTitle)){
+                            temple.add(orderSnapshot.getKey());
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+            if(temple.contains(orderTitle2)){
+                Toast.makeText(workorder_edit.this,
+                        "workorder already exists, please enter a new name.", Toast.LENGTH_LONG).show();
+                return;
+
+            }
+            else {
+                workorder_info order = new workorder_info(orderTitle2, orderDescrip, orderNote, orderDuedate,
+                        orderCost, orderPriority, orderPlan, orderStatus, orderImage, orderCreator);
+                mDatabase.child(orderTitle2).setValue(order);
+            }
+
+        }
     }
 
 }
