@@ -92,6 +92,11 @@
         android:layout_marginBottom="20dp"
         android:text="Delete" />
 
+    <Button
+        android:id="@+id/histroyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="History" />
 
 
 </RelativeLayout>

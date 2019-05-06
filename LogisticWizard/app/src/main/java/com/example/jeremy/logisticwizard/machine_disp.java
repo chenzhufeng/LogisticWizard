@@ -20,6 +20,7 @@ public class machine_disp extends Activity implements View.OnClickListener{
     private ListView lv;
     private Button editButton;
     private Button backButton;
+    private Button historyButton;
 
 
     String machineName;
@@ -43,6 +44,9 @@ public class machine_disp extends Activity implements View.OnClickListener{
 
         backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(this);
+
+        historyButton = findViewById(R.id.histroyButton);
+        historyButton.setOnClickListener(this);
     }
 
     @Override
@@ -108,6 +112,9 @@ public class machine_disp extends Activity implements View.OnClickListener{
         if(v == backButton){
             Intent intent = new Intent (v.getContext(), machine_main.class);
             startActivity(intent);
+        }
+        if(v == historyButton){
+            Intent intent = new Intent (v.getContext(), machine_history.class);
         }
     }
 }

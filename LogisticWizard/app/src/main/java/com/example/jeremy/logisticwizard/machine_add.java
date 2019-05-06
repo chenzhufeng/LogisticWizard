@@ -1,6 +1,7 @@
 package com.example.jeremy.logisticwizard;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +12,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.EditText;
 
-
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class machine_add extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
@@ -24,6 +27,7 @@ public class machine_add extends AppCompatActivity implements View.OnClickListen
     private EditText machine_location;
     private Spinner machinePlanSpinner;
     private Spinner machineQuantitySpinner;
+    //private ArrayList machineList;
 
 
     @Override
@@ -53,6 +57,9 @@ public class machine_add extends AppCompatActivity implements View.OnClickListen
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         machinePlanSpinner.setAdapter(adapter1);
         machinePlanSpinner.setOnItemSelectedListener(this);
+
+//        Resources res = getResources();
+//        machineList = new ArrayList<>(R.array.machines);
 
     }
 
@@ -97,6 +104,7 @@ public class machine_add extends AppCompatActivity implements View.OnClickListen
                     "Please enter all information or leave NONE.", Toast.LENGTH_LONG).show();
             return;
         }else {
+            //machineList.add(machineName);
 
             Intent machine_intent = new Intent();
             machine_intent.putExtra("machineName", machineName);

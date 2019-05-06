@@ -41,11 +41,6 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
     ArrayList<workorder_info> workorder_infoList;
 
     protected DatabaseReference mDatabase;
-    //String[] workOrders = new String[] { "Order 1", "Order 2", "Order 3" };
-    //String[] Priorities = new String[] { "High", "Medium", "Low" };
-    //String[] Dates = new String[] { "3/11/2019", "2/19/2019", "12/21/2019" };
-    //String[] Creators = new String[] { "Carl", "Bill", "Raymond" };
-    //String[] Progress = new String[] { "Open", "In Progress", "Hold" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
