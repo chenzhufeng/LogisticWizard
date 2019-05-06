@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -31,6 +32,7 @@ public class machine_edit extends AppCompatActivity implements AdapterView.OnIte
     String machineParts;
     String maintainPlan;
     String machineQuant;
+    String machineImage;
     List<String> temple=new ArrayList<>();
     private EditText name;
     private EditText type;
@@ -40,6 +42,7 @@ public class machine_edit extends AppCompatActivity implements AdapterView.OnIte
     private Spinner machinePlanSpinner;
     private Spinner machineQuantitySpinner;
     private EditText description;
+    private ImageButton edit_machine_image;
     protected DatabaseReference mDatabase=FirebaseDatabase.getInstance().getReference("machines");;
 
     private Button save;
