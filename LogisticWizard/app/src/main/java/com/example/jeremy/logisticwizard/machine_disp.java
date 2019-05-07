@@ -2,12 +2,24 @@ package com.example.jeremy.logisticwizard;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -21,7 +33,7 @@ public class machine_disp extends Activity implements View.OnClickListener{
     private Button editButton;
     private Button backButton;
     private Button historyButton;
-
+    private ImageView machine_image;
 
     String machineName;
     String machineDescription;
@@ -31,12 +43,16 @@ public class machine_disp extends Activity implements View.OnClickListener{
     String machineParts;
     String machinePlan;
     String machineQuant;
-
+    String machineImage;
+    protected StorageReference mStorage;
+    StorageReference imageRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.machine_disp);
+
+        mStorage = FirebaseStorage.getInstance().getReference();
 
         editButton = findViewById(R.id.editMachineButton);
         editButton.setOnClickListener(this);
@@ -47,6 +63,8 @@ public class machine_disp extends Activity implements View.OnClickListener{
 
         historyButton = findViewById(R.id.histroyButton);
         historyButton.setOnClickListener(this);
+
+        machine_image = findViewById(R.id.machine_image);
     }
 
     @Override
@@ -63,7 +81,7 @@ public class machine_disp extends Activity implements View.OnClickListener{
         machineParts = (String)data.get("machineParts");
         machinePlan = (String)data.get("maintainencePlan");
         machineQuant = (String)data.get("machineQuant");
-
+        machineImage = (String)data.get("machineImage");
 
         LinkedHashMap<String, String> machineInfoHashMap = new LinkedHashMap<>();
         machineInfoHashMap.put("Name", machineName);
@@ -93,6 +111,27 @@ public class machine_disp extends Activity implements View.OnClickListener{
 
         lv.setAdapter(adapter);
 
+        imageRef = mStorage.child(machineImage);
+        try {
+            final File localimage = File.createTempFile(machineName, "jpg");
+            imageRef.getFile(localimage).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                    // Local temp file has been created
+                    Bitmap bitmap = BitmapFactory.decodeFile(localimage.getPath());
+                    machine_image.setImageBitmap(bitmap);
+
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    // Handle any errors
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
@@ -107,6 +146,7 @@ public class machine_disp extends Activity implements View.OnClickListener{
             machine_intent.putExtra("machineParts", machineParts);
             machine_intent.putExtra("maintainencePlan", machinePlan);
             machine_intent.putExtra("machineQuant", machineQuant);
+            machine_intent.putExtra("machineImage", machineImage);
             startActivity(machine_intent);
         }
         if(v == backButton){

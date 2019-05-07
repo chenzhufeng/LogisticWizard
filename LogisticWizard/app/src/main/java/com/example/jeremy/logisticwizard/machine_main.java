@@ -170,7 +170,7 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
        String machineParts = machine_infoList.get(i).machine_parts;
        String maintainPlan = machine_infoList.get(i).maintain_plan;
        String machineQuant = machine_infoList.get(i).machine_quant;
-
+       String machineImage = machine_infoList.get(i).machine_image;
         Intent machine_intent = new Intent(view.getContext(), machine_disp.class);
         machine_intent.putExtra("machineName", machineName);
         machine_intent.putExtra("machineDescription", machineDescp);
@@ -180,6 +180,7 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
         machine_intent.putExtra("machineParts", machineParts);
         machine_intent.putExtra("maintainencePlan", maintainPlan);
         machine_intent.putExtra("machineQuant", machineQuant);
+        machine_intent.putExtra("machineImage", machineImage);
         startActivity(machine_intent);
     }
 
@@ -202,17 +203,18 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
             String machineParts = data.getStringExtra("machineParts");
             String machinePlan = data.getStringExtra("maintainencePlan");
             String machineQuant = data.getStringExtra("machineQuant");
+            String machineImage = data.getStringExtra("machineImage");
             Toast.makeText(this, "machine name"+machineName+"lalal", Toast.LENGTH_SHORT).show();
             saveMachineToDB(machineName, machineDescription, machinePrice, machineLocation,
-                    machineType, machineParts, machinePlan, machineQuant);
+                    machineType, machineParts, machinePlan, machineQuant, machineImage);
         }
     }
 
 
     private void saveMachineToDB(String machineName, String machineDescription, String machinePrice, String machineLocation,
-                                 String machineType, String machineParts, String machinePlan, String machineQuant) {
+                                 String machineType, String machineParts, String machinePlan, String machineQuant, String machineImage) {
             machine_info machine = new machine_info(machineName, machineDescription, machinePrice, machineLocation,
-                    machineType, machineParts, machinePlan, machineQuant);
+                    machineType, machineParts, machinePlan, machineQuant, machineImage);
             mDatabase.child(machineName).setValue(machine);
 
     }

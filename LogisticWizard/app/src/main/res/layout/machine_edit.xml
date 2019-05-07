@@ -138,10 +138,12 @@
             android:layout_height="wrap_content"
             android:text="Save"/>
 
-        <TextView
-            android:id="@+id/placeHolder"
+        <ImageButton
+            android:id="@+id/edit_machine_image"
             android:layout_width="match_parent"
             android:layout_height="100dp" />
+
+
 
 
     </LinearLayout>
