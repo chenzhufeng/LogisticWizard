@@ -48,6 +48,7 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
     private EditText order_Duedate;
     private TextInputEditText order_note;
     private ImageButton order_image;
+    private TextView order_machine;
 
 
     private Button save_button;
@@ -78,6 +79,7 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
         order_cost=findViewById(R.id.editText);
         order_Duedate=findViewById(R.id.editText2);
         order_image=findViewById(R.id.photoHolder);
+        order_machine = findViewById(R.id.machineHolder);
 
         order_status = findViewById(R.id.statusSpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -246,6 +248,22 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
 
             }});
 
+        mDatabase.child(orderTitle).child("order_machine").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                String orderMachine;
+                orderMachine = (String) dataSnapshot.getValue();
+                order_machine.setText(orderMachine);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         mDatabase.child(orderTitle).child("order_image").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -321,6 +339,7 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
         //String orderImage = order_image.getText().toString().trim();
         String orderStatus = order_status.getSelectedItem().toString().trim();
         String orderPriority = order_priority.getSelectedItem().toString().trim();
+        String orderMachine = order_machine.getText().toString().trim();
 
         if (orderTitle2.equals("")||orderCreator.equals("")||orderDescrip.equals("")||orderCost.equals("")
                 ||orderDuedate.equals("")||orderStatus.equals("")||orderPriority.equals("")) {
@@ -356,7 +375,7 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
             }
             else {
                 workorder_info order = new workorder_info(orderTitle2, orderDescrip, orderNote, orderDuedate,
-                        orderCost, orderPriority, orderPlan, orderStatus, orderImage, orderCreator);
+                        orderCost, orderPriority, orderPlan, orderStatus, orderImage, orderCreator, orderMachine);
                 mDatabase.child(orderTitle2).setValue(order);
             }
 

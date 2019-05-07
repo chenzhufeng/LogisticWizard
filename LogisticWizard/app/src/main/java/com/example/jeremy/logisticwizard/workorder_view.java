@@ -41,6 +41,7 @@ public class workorder_view extends AppCompatActivity {
     private TextView order_cost;
     private TextView order_Duedate;
     private TextView order_note;
+    private TextView order_machine;
     private ImageView order_image;
 
 
@@ -73,6 +74,8 @@ public class workorder_view extends AppCompatActivity {
         order_cost = findViewById(R.id.priceText);
         order_Duedate = findViewById(R.id.editText2);
         order_image = findViewById(R.id.orderImage);
+        order_machine = findViewById(R.id.order_machine);
+        order_note = findViewById(R.id.note);
 
         edit_button = findViewById(R.id.editButton);
 
@@ -181,6 +184,22 @@ public class workorder_view extends AppCompatActivity {
                 String orderDuedate;
                 orderDuedate = (String) dataSnapshot.getValue();
                 order_Duedate.setText(orderDuedate);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        mDatabase.child(orderTitle).child("order_machine").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                String orderMachine;
+                orderMachine = (String) dataSnapshot.getValue();
+                order_machine.setText(orderMachine);
 
             }
 
