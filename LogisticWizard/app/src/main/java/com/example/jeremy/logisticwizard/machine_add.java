@@ -50,6 +50,9 @@ public class machine_add extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.machine_add);
+        storage=FirebaseStorage.getInstance("gs://logisticwizard-6d896.appspot.com/");
+        storageReference = storage.getReference();
+
         add_machine = (Button)findViewById(R.id.add_machine_button);
         machine_name = (EditText)findViewById(R.id.enterMachineName);
         machine_type = (EditText)findViewById(R.id.machineType);

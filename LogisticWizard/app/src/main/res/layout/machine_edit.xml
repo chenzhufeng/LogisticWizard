@@ -138,24 +138,12 @@
             android:layout_height="wrap_content"
             android:text="Save"/>
 
-        <TextView
-            android:id="@+id/placeHolder"
+        <ImageButton
+            android:id="@+id/edit_machine_image"
             android:layout_width="match_parent"
             android:layout_height="100dp" />
 
-        <ImageButton
-            android:id="@+id/edit_machine_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/machineName"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="195dp"
-            android:layout_marginTop="19dp"
-            android:layout_marginEnd="192dp"
-            android:layout_marginBottom="121dp"
-            app:srcCompat="@drawable/ic_group_expand_08" />
+
 
 
     </LinearLayout>

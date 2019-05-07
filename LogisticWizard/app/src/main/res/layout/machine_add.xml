@@ -159,6 +159,7 @@
                 android:id="@+id/add_machine_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="onClick"
                 app:srcCompat="@android:drawable/ic_menu_add" />
         </LinearLayout>
     </ScrollView>

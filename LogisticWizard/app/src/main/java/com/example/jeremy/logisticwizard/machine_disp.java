@@ -50,6 +50,7 @@ public class machine_disp extends Activity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.machine_disp);
+
         mStorage = FirebaseStorage.getInstance().getReference();
 
         editButton = findViewById(R.id.editMachineButton);

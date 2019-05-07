@@ -1,7 +1,13 @@
 package com.example.jeremy.logisticwizard;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,16 +19,25 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
-public class machine_edit extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class machine_edit extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     String machineName;
     String machineName2;
     String machineDescp;
@@ -43,14 +58,15 @@ public class machine_edit extends AppCompatActivity implements AdapterView.OnIte
     private Spinner machineQuantitySpinner;
     private EditText description;
     private ImageButton edit_machine_image;
+    private Uri filePath;
     protected DatabaseReference mDatabase=FirebaseDatabase.getInstance().getReference("machines");;
-
+    StorageReference storageReference;
     private Button save;
-    private View.OnClickListener saveOnClickListener = new View.OnClickListener(){
-        @Override
-        public void onClick(View v){
+    @Override
+    public void onClick(View view){
+        if(view == save){
             saveInfo();
-            Intent machine_intent = new Intent(v.getContext(), machine_disp.class);
+            Intent machine_intent = new Intent(view.getContext(), machine_disp.class);
             machine_intent.putExtra("machineName", machineName2);
             machine_intent.putExtra("machineDescription", machineDescp);
             machine_intent.putExtra("machinePrice", machinePrice);
@@ -59,16 +75,21 @@ public class machine_edit extends AppCompatActivity implements AdapterView.OnIte
             machine_intent.putExtra("machineParts", machineParts);
             machine_intent.putExtra("maintainencePlan", maintainPlan);
             machine_intent.putExtra("machineQuant", machineQuant);
+            machine_intent.putExtra("machineImage", machineImage);
             startActivity(machine_intent);
         }
+        if(view == edit_machine_image){
+            showNormalDialog();
+        }
+    }
 
-    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.machine_edit);
-
+        storageReference = FirebaseStorage.getInstance().getReference();
         machineQuantitySpinner = findViewById(R.id.quantityMachineSpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.machineQuantityStringArray, android.R.layout.simple_spinner_item);
@@ -95,6 +116,7 @@ public class machine_edit extends AppCompatActivity implements AdapterView.OnIte
         machineParts = (String)data.get("machineParts");
         maintainPlan = (String)data.get("maintainencePlan");
         machineQuant = (String)data.get("machineQuant");
+        machineImage = (String)data.get("machineImage");
 
         int machinePlan2 = Integer.parseInt(maintainPlan);
 
@@ -104,7 +126,7 @@ public class machine_edit extends AppCompatActivity implements AdapterView.OnIte
         price = findViewById(R.id.priceText);
         location = findViewById(R.id.locationText);
         description = findViewById(R.id.descriptionText);
-
+        edit_machine_image = findViewById(R.id.edit_machine_image);
         //make save button onclickable
         save = findViewById(R.id.saveButton);
 
@@ -116,7 +138,7 @@ public class machine_edit extends AppCompatActivity implements AdapterView.OnIte
         description.setText(machineDescp);
         machinePlanSpinner.setSelection(machinePlan2);
 
-        save.setOnClickListener(saveOnClickListener);
+
 
 
 
@@ -175,12 +197,126 @@ public class machine_edit extends AppCompatActivity implements AdapterView.OnIte
 
             }
             else {
+                if(filePath != null)
+                {
+                    final ProgressDialog progressDialog = new ProgressDialog(this);
+                    //progressDialog.setTitle("Uploading...");
+                    //progressDialog.show();
+
+                    StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
+                    machineImage = ref.getPath();
+
+                    ref.putFile(filePath)
+                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                    //progressDialog.dismiss();
+                                    Toast.makeText(machine_edit.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    //progressDialog.dismiss();
+                                    Toast.makeText(machine_edit.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                                    double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
+                                            .getTotalByteCount());
+                                    //progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                                }
+                            });
+                }
+
                 machine_info machine = new machine_info(machineName2, machineDescp, machinePrice, machineLocat,
-                        machineType, machineParts, maintainPlan, machineQuant);
+                        machineType, machineParts, maintainPlan, machineQuant, machineImage);
                 mDatabase.child(machineName2).setValue(machine);
             }
 
         }
+    }
+    private void showNormalDialog(){
+        /* @setIcon 设置对话框图标
+         * @setTitle 设置对话框标题
+         * @setMessage 设置对话框消息提示
+         * setXXX方法返回Dialog对象，因此可以链式设置属性
+         */
+        final AlertDialog.Builder normalDialog =
+                new AlertDialog.Builder(this);
+
+        normalDialog.setTitle(" I am a Dialog");
+        normalDialog.setMessage("Which one do you want to choose?");
+        normalDialog.setPositiveButton("gallery",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        chooseImage();
+                    }
+                });
+        normalDialog.setNegativeButton("camera",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        takeImage();
+                    }
+                });
+        // 显示
+        normalDialog.show();
+    }
+    private void chooseImage(){
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_PICK);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), 88);
+    }
+    private void takeImage(){
+        Intent intent = new Intent();
+        intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+        startActivityForResult(intent, 88);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 88 && resultCode == RESULT_OK
+                && data != null )
+        {
+            Toast.makeText(this,
+                    "Error occur:"+resultCode,  Toast.LENGTH_SHORT).show();
+            filePath = data.getData();
+            try {
+                float scale = this.getResources().getDisplayMetrics().density;
+                int width = (int)(350*scale+0.5f);
+                int height = (int)(200*scale+0.5f);
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                Picasso.with(this).load(filePath).resize(width, height).into(edit_machine_image);
+                //image.setImageBitmap(bitmap);
+
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+            if(data.hasExtra("data")){
+
+                Bitmap bitMap = data.getParcelableExtra("data");
+
+            }
+
+        }
+        else{
+            boolean t = true;
+            if(data.getData()==null){
+                t = false;
+            }
+            Toast.makeText(this,
+                    "Error occur:"+t,  Toast.LENGTH_SHORT).show();
+        }
+
     }
 
 }
