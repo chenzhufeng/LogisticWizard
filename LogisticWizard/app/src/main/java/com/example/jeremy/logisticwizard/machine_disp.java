@@ -155,6 +155,8 @@ public class machine_disp extends Activity implements View.OnClickListener{
         }
         if(v == historyButton){
             Intent intent = new Intent (v.getContext(), machine_history.class);
+            intent.putExtra("machineName", machineName);
+            startActivity(intent);
         }
     }
 }

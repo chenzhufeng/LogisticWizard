@@ -1,11 +1,13 @@
 package com.example.jeremy.logisticwizard;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 
@@ -19,6 +21,7 @@ import java.util.ArrayList;
 
 public class machine_history extends Activity implements View.OnClickListener {
 
+    Button new_order_button;
     ListView order_view;
     View top;
     SearchView sv;
@@ -26,6 +29,7 @@ public class machine_history extends Activity implements View.OnClickListener {
     RecyclerViewAdapter mAdapter;
     LinearLayoutManager linearLayoutManager;
     ArrayList<workorder_info> machine_info_list;
+    private String machine_name;
 
     protected DatabaseReference mDatabase;
 
@@ -50,11 +54,20 @@ public class machine_history extends Activity implements View.OnClickListener {
         //get database reference
         mDatabase = FirebaseDatabase.getInstance().getReference("orders");
 
+        Intent machine_info = getIntent();
+        Bundle data = machine_info.getExtras();
+        machine_name = (String)data.get("machineName");
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+
+        new_order_button = (Button) findViewById(R.id.new_order);
+        new_order_button.setVisibility(View.INVISIBLE);
+
+
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -63,8 +76,9 @@ public class machine_history extends Activity implements View.OnClickListener {
                 //}
                 for(DataSnapshot machineSnapshot : dataSnapshot.getChildren()){
                     workorder_info workorder = machineSnapshot.getValue(workorder_info.class);
-                    //if()
+                    if(machine_name.equals(workorder.order_machine)) {
                         machine_info_list.add(workorder);
+                    }
                 }
                 // Specify the adapter
                 mAdapter = new RecyclerViewAdapter(getApplicationContext(), machine_info_list);
