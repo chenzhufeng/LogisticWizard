@@ -76,7 +76,7 @@ public class machine_history extends Activity implements View.OnClickListener {
                 //}
                 for(DataSnapshot machineSnapshot : dataSnapshot.getChildren()){
                     workorder_info workorder = machineSnapshot.getValue(workorder_info.class);
-                    if(machine_name.equals(workorder.order_machine)) {
+                    if(machine_name.equals(workorder.order_machine)&&(!workorder.order_status.equals("Open"))) {
                         machine_info_list.add(workorder);
                     }
                 }
