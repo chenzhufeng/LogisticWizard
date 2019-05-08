@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -23,6 +26,7 @@ public class machine_history extends Activity implements View.OnClickListener {
 
     Button new_order_button;
     ListView order_view;
+    View v1;
     View top;
     SearchView sv;
     RecyclerView recyclerView;
@@ -97,4 +101,5 @@ public class machine_history extends Activity implements View.OnClickListener {
     public void onClick(View v) {
 
     }
+
 }

@@ -43,7 +43,7 @@ public class machine_disp extends Activity implements View.OnClickListener{
     String machineParts;
     String machinePlan;
     String machineQuant;
-    String machineImage;
+    String machineImage = "null";
     protected StorageReference mStorage;
     StorageReference imageRef;
 
