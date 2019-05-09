@@ -132,16 +132,21 @@
             android:layout_height="99dp"
             android:hint="Description of this machine"
             android:inputType="textPersonName" />
-        <Button
-            android:id="@+id/saveButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Save"/>
 
         <ImageButton
             android:id="@+id/edit_machine_image"
             android:layout_width="match_parent"
-            android:layout_height="100dp" />
+            android:layout_height="100dp"
+            android:onClick="onClick" />
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="Save" />
+
+
 
 
 

@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -26,12 +27,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +65,7 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
     protected DatabaseReference mDatabase=FirebaseDatabase.getInstance().getReference("machines");;
     StorageReference storageReference;
     private Button save;
+
     @Override
     public void onClick(View view){
         if(view == save){
@@ -142,6 +146,31 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
 
 
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        StorageReference imageRef = storageReference.child(machineImage);
+        try {
+            final File localimage = File.createTempFile(machineName,"jpg");
+            imageRef.getFile(localimage).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                    // Local temp file has been created
+                    Bitmap bitmap = BitmapFactory.decodeFile(localimage.getPath());
+                    edit_machine_image.setImageBitmap(bitmap);
+
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    // Handle any errors
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

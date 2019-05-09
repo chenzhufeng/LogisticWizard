@@ -145,6 +145,13 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp" />
 
+            <ImageButton
+                android:id="@+id/add_machine_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                app:srcCompat="@android:drawable/ic_menu_add" />
+
 
             <Button
                 android:id="@+id/add_machine_button"
@@ -155,12 +162,7 @@
                 android:text="Add">
             </Button>
 
-            <ImageButton
-                android:id="@+id/add_machine_image"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="onClick"
-                app:srcCompat="@android:drawable/ic_menu_add" />
+
         </LinearLayout>
     </ScrollView>
 
