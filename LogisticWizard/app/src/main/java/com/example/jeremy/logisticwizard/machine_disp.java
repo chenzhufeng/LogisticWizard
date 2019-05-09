@@ -58,8 +58,8 @@ public class machine_disp extends Activity implements View.OnClickListener{
         editButton.setOnClickListener(this);
         lv = findViewById(R.id.machineInfoList);
 
-        backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(this);
+//        backButton = findViewById(R.id.backButton);
+//        backButton.setOnClickListener(this);
 
         historyButton = findViewById(R.id.histroyButton);
         historyButton.setOnClickListener(this);
@@ -149,10 +149,10 @@ public class machine_disp extends Activity implements View.OnClickListener{
             machine_intent.putExtra("machineImage", machineImage);
             startActivity(machine_intent);
         }
-        if(v == backButton){
-            Intent intent = new Intent (v.getContext(), machine_main.class);
-            startActivity(intent);
-        }
+//        if(v == backButton){
+//            Intent intent = new Intent (v.getContext(), machine_main.class);
+//            startActivity(intent);
+//        }
         if(v == historyButton){
             Intent intent = new Intent (v.getContext(), machine_history.class);
             intent.putExtra("machineName", machineName);

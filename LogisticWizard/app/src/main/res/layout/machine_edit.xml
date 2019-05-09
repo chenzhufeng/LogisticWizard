@@ -11,12 +11,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/PhotoHolder"
-            android:layout_width="match_parent"
-            android:layout_height="98dp"
-            android:textAlignment="center"
-            android:text="Photo" />
+        <ImageButton
+            android:id="@+id/edit_machine_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClick" />
 
         <TextView
             android:id="@+id/name"
@@ -133,6 +132,7 @@
             android:hint="Description of this machine"
             android:inputType="textPersonName" />
 
+
         <Button
             android:id="@+id/saveButton"
             android:layout_width="match_parent"
@@ -140,11 +140,8 @@
             android:onClick="onClick"
             android:text="Save" />
 
-        <ImageButton
-            android:id="@+id/edit_machine_image"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:onClick="onClick" />
+
+
 
 
 
