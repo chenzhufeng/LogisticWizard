@@ -132,10 +132,11 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
                 String order_status = data.getStringExtra("orderStatus");
                 String order_image = data.getStringExtra("orderImage");
                 String order_creator = data.getStringExtra("orderCreator");
+                String order_machine = data.getStringExtra("orderMachine");
 
                 saveorderToDB(order_title, order_description, order_note, order_DueDate,
                         order_cost, order_priority, order_plan, order_status, order_image,
-                        order_creator);
+                        order_creator, order_machine);
             }
         }
     }

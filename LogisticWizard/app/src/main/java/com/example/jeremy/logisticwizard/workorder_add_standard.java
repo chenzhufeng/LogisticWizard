@@ -37,6 +37,8 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class workorder_add_standard extends AppCompatActivity implements View.OnClickListener,
@@ -47,10 +49,13 @@ public class workorder_add_standard extends AppCompatActivity implements View.On
     private EditText orderDescription;
     private Spinner orderPriority;
     private Spinner orderStatus;
+    private Spinner machineSpinner;
     private Button submit;
     private ImageButton image;
     protected DatabaseReference mDatabase;
+    protected DatabaseReference mDatabase1;
     private String username;
+    private List<String> machineList;
 
     StorageReference storageReference;
     private Uri filePath;
@@ -86,6 +91,31 @@ public class workorder_add_standard extends AppCompatActivity implements View.On
         String instance = "gs://logisticwizard-6d896.appspot.com/";
         FirebaseStorage storage = FirebaseStorage.getInstance(instance);
         storageReference = storage.getReference();
+
+        machineSpinner = findViewById(R.id.machineSpinner);
+        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(
+                this,android.R.layout.simple_spinner_item, machineList);
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        mDatabase1= FirebaseDatabase.getInstance().getReference("machines");
+        machineList = new ArrayList<>();
+        machineList.add("none");
+        mDatabase1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot machineSnapshot : dataSnapshot.getChildren()) {
+                    machine_info machine = machineSnapshot.getValue(machine_info.class);
+                    machineList.add(machine.machine_name);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        machineSpinner.setAdapter(adapter3);
+        machineSpinner.setOnItemSelectedListener(this);
 
         // Get the name of the current user
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -193,10 +223,11 @@ public class workorder_add_standard extends AppCompatActivity implements View.On
         String maintainPlan = "";
         String order_priority = orderPriority.getSelectedItem().toString().trim();
         String order_status = orderStatus.getSelectedItem().toString().trim();
+        String order_machine = machineSpinner.getSelectedItem().toString().trim();
 
 
         if (order_title.equals("") || order_descp.equals("") || order_priority.equals("")
-                || order_status.equals("")) {
+                || order_status.equals("") || order_machine.equals("")) {
             Toast.makeText(this,
                     "Please enter all information or leave NONE.", Toast.LENGTH_LONG).show();
         }else {
@@ -210,6 +241,7 @@ public class workorder_add_standard extends AppCompatActivity implements View.On
             order_intent.putExtra("maintainencePlan", maintainPlan);
             order_intent.putExtra("orderStatus", order_status);
             order_intent.putExtra("orderCreator", order_creator);
+            order_intent.putExtra("orderMachine", order_machine);
 
             if(filePath != null)
             {
