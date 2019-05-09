@@ -17,6 +17,8 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,6 +42,8 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
     LinearLayoutManager linearLayoutManager;
     ArrayList<workorder_info> workorder_infoList;
 
+    private String role;
+
     protected DatabaseReference mDatabase;
     //String[] workOrders = new String[] { "Order 1", "Order 2", "Order 3" };
     //String[] Priorities = new String[] { "High", "Medium", "Low" };
@@ -49,27 +53,42 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Initialization of the activity
         super.onCreate(savedInstanceState);
         setContentView(layout.workorder_main);
-
         v1 = (View) findViewById(id.list_view);
         order_view = (ListView) findViewById(id.order_list);
         top = (View) findViewById(id.top_view);
         sv = (SearchView) findViewById(id.search_workorders);
+        newOrder = (Button) findViewById(R.id.new_order);
+        newOrder.setOnClickListener(this);
 
         workorder_infoList = new ArrayList<>();
 
         // Code for initializing RecyclerView
         recyclerView = findViewById(id.recycler_view);
         recyclerView.setHasFixedSize(true);
-        // Calls LinearLayoutManager for use on the recycler
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("orders");
+        // Get role of current user from Firebase
+        mDatabase = FirebaseDatabase.getInstance().getReference("users");
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            String Uid = mAuth.getCurrentUser().getUid();
+            mDatabase.child(Uid).child("Role").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    role = (String) dataSnapshot.getValue();
+                }
 
-        newOrder = (Button) findViewById(R.id.new_order);
-        newOrder.setOnClickListener(this);
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                }
+            });
+        }
+        mDatabase = FirebaseDatabase.getInstance().getReference("orders");
 
         BottomNavigationView bottomNav  = findViewById(id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
@@ -106,20 +125,22 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 29 && resultCode == RESULT_OK) {
 
-            String order_title = data.getStringExtra("orderTitle");
-            String order_description = data.getStringExtra("orderDescription");
-            String order_note = data.getStringExtra("orderNote");
-            String order_DueDate = data.getStringExtra("orderDueDate");
-            String order_cost = data.getStringExtra("orderCost");
-            String order_priority = data.getStringExtra("orderPriority");
-            String order_plan = data.getStringExtra("maintainencePlan");
-            String order_status = data.getStringExtra("orderStatus");
-            String order_image = data.getStringExtra("orderImage");
-            String order_creator = data.getStringExtra("orderCreator");
+            if (data != null) {
+                String order_title = data.getStringExtra("orderTitle");
+                String order_description = data.getStringExtra("orderDescription");
+                String order_note = data.getStringExtra("orderNote");
+                String order_DueDate = data.getStringExtra("orderDueDate");
+                String order_cost = data.getStringExtra("orderCost");
+                String order_priority = data.getStringExtra("orderPriority");
+                String order_plan = data.getStringExtra("maintainencePlan");
+                String order_status = data.getStringExtra("orderStatus");
+                String order_image = data.getStringExtra("orderImage");
+                String order_creator = data.getStringExtra("orderCreator");
 
-
-            saveorderToDB(order_title, order_description, order_note, order_DueDate,
-                    order_cost, order_priority, order_plan, order_status, order_image, order_creator);
+                saveorderToDB(order_title, order_description, order_note, order_DueDate,
+                        order_cost, order_priority, order_plan, order_status, order_image,
+                        order_creator);
+            }
         }
     }
 
@@ -136,8 +157,17 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
         if (view == newOrder) {
-            Intent intent = new Intent(view.getContext(), workorder_add.class);
-            startActivityForResult(intent, 29);
+            //*
+            if (!role.equals("Employee")) {
+            //*/
+                Intent intent = new Intent(view.getContext(), workorder_add.class);
+                startActivityForResult(intent, 29);
+            //*
+            } else {
+                Intent intent = new Intent(view.getContext(), workorder_add_standard.class);
+                startActivityForResult(intent, 29);
+            }
+            //*/
         }
     }
 
