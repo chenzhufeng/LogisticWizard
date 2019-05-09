@@ -19,6 +19,7 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".workorder_add"/>
+        <activity android:name=".workorder_add_standard"/>
         <activity android:name=".workorder_main" />
         <activity android:name=".tool_edit"/>
         <activity android:name=".workorder_view" />
