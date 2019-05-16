@@ -39,17 +39,14 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
     private View bar;
     private View list;
     ArrayList<machine_info> machine_infoList;
-    //private View machineBar = (View) findViewById(R.id.machine_bar);
 
-
-    //just for now
     private ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.machine_main);
-        //CustomOutlineView customOutline = new CustomOutlineView(2, 2);
+
 
         bar = findViewById(R.id.machine_bar);
         list = (View) findViewById(R.id.list_view);
@@ -57,15 +54,10 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
         BottomNavigationView bottomNav  = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         bottomNav.getMenu().getItem(0).setCheckable(false);
-        //CustomOutlineView customOutline = new CustomOutlineView(2, 2);
 
-        //mDatabase = FirebaseDatabase.getInstance().getReference("machines");
 
         mDatabase = FirebaseDatabase.getInstance().getReference("machines");
- //       CustomOutlineView customOutline = new CustomOutlineView(2, 2);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            machineBar.setOutlineProvider(customOutline);
-//        }
+
 
         ViewOutlineProvider viewOutlineProvider = new ViewOutlineProvider() {
             @Override
@@ -99,29 +91,6 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
         add_machine.setOutlineProvider(viewOutlineProvider);
         add_machine.setClipToOutline(true);
 
-        // https://www.youtube.com/watch?v=H3JAy94UFw0
-//        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String s) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String s) {
-//
-//                adapter.getFilter().filter(s);
-//                return false;
-//            }
-//        });
-//
-//        // https://stackoverflow.com/questions/30455723/android-make-whole-search-bar-clickable
-//        sv.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                sv.setIconified(false);
-//            }
-//        });
-
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -131,15 +100,11 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
                     Fragment selectedFragment = null;
                     switch (menuItem.getItemId()){
                         case R.id.nav_home:
-                            //menuItem.setCheckable(true);
+
                             Intent intent = new Intent(machine_main.this, home_page.class);
                             startActivity(intent);
-                            //selectedFragment = new HomeFragment();
                             break;
                         case R.id.nav_orders:
-                            //Intent intent2 = new Intent(machine_main.this, workorder_main.class);
-                            //intent2.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                            //startActivity(intent2);
                             sv.setVisibility(View.INVISIBLE);
                             lv.setVisibility(View.INVISIBLE);
                             bar.setVisibility(View.INVISIBLE);
@@ -151,9 +116,6 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
                                     selectedFragment).commit();
                             break;
                         case R.id.nav_profile:
-                            //Intent intent3 = new Intent(machine_main.this, profile_main.class);
-                            //startActivity(intent3);
-                            //menuItem.setCheckable(true);
                             sv.setVisibility(View.INVISIBLE);
                             lv.setVisibility(View.INVISIBLE);
                             bar.setVisibility(View.INVISIBLE);
@@ -164,7 +126,7 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
                                     selectedFragment).commit();
                             break;
                     }
-                    return true; //return clicked item
+                    return true;
                 }
 
             };
@@ -180,8 +142,6 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
                     machine_info machine = machineSnapshot.getValue(machine_info.class);
                     machine_infoList.add(machine);
                 }
-                //Toast.makeText(Machine.this, machine_infoList.get(0).machine_name+machine_infoList.get(1).machine_name, Toast.LENGTH_SHORT).show();
-                //Toast.makeText(machine_main.this, machine_infoList.get(0).machine_name+machine_infoList.get(1).machine_name, Toast.LENGTH_SHORT).show();
                 MachineinfoAdapter machineinfoAdapter = new MachineinfoAdapter(machine_main.this,
                         machine_infoList);
                 lv.setAdapter(machineinfoAdapter);
@@ -210,7 +170,7 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
        String machineParts = machine_infoList.get(i).machine_parts;
        String maintainPlan = machine_infoList.get(i).maintain_plan;
        String machineQuant = machine_infoList.get(i).machine_quant;
-
+       String machineImage = machine_infoList.get(i).machine_image;
         Intent machine_intent = new Intent(view.getContext(), machine_disp.class);
         machine_intent.putExtra("machineName", machineName);
         machine_intent.putExtra("machineDescription", machineDescp);
@@ -220,6 +180,7 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
         machine_intent.putExtra("machineParts", machineParts);
         machine_intent.putExtra("maintainencePlan", maintainPlan);
         machine_intent.putExtra("machineQuant", machineQuant);
+        machine_intent.putExtra("machineImage", machineImage);
         startActivity(machine_intent);
     }
 
@@ -242,34 +203,19 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
             String machineParts = data.getStringExtra("machineParts");
             String machinePlan = data.getStringExtra("maintainencePlan");
             String machineQuant = data.getStringExtra("machineQuant");
+            String machineImage = data.getStringExtra("machineImage");
             Toast.makeText(this, "machine name"+machineName+"lalal", Toast.LENGTH_SHORT).show();
             saveMachineToDB(machineName, machineDescription, machinePrice, machineLocation,
-                    machineType, machineParts, machinePlan, machineQuant);
+                    machineType, machineParts, machinePlan, machineQuant, machineImage);
         }
     }
 
 
     private void saveMachineToDB(String machineName, String machineDescription, String machinePrice, String machineLocation,
-                                 String machineType, String machineParts, String machinePlan, String machineQuant) {
-        //final String machine_Name = machineName;
-        //currentUserID = mAuthSetting.getCurrentUser().getUid();
-//        machineRef = FirebaseDatabase.getInstance().getReference().child("machines");
-//        //userRef2 = userRef.child("comments").child(Rest_ID);
-//        machineRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                // Log.i("snapshot", "Inside onDataChange!!!");
+                                 String machineType, String machineParts, String machinePlan, String machineQuant, String machineImage) {
             machine_info machine = new machine_info(machineName, machineDescription, machinePrice, machineLocation,
-                    machineType, machineParts, machinePlan, machineQuant);
+                    machineType, machineParts, machinePlan, machineQuant, machineImage);
             mDatabase.child(machineName).setValue(machine);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-
 
     }
 

@@ -13,6 +13,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -38,24 +39,32 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.UUID;
 
 public class workorder_add extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     final static int galleryPic = 1;
 
-    private TextInputEditText orderTitle;
-    private TextInputEditText orderDescription;
+    private EditText orderTitle;
+    private EditText orderDescription;
     private Spinner orderPriority;
     private Spinner orderPlanSpinner;
-    private TextInputEditText orderNote;
+    private Spinner machineSpinner;
+    private EditText orderNote;
     private Spinner orderStatus;
-    private TextInputEditText orderDueDate;
+    private EditText orderDueDate;
     private EditText orderCost;
     private Button submit;
     private ImageButton image;
     protected DatabaseReference mDatabase;
+    protected DatabaseReference mDatabase1;
     private FirebaseAuth mAuth;
     private String username;
+    private List<String> machineList;
 
     private FirebaseStorage storage;
     StorageReference storageReference;
@@ -118,6 +127,30 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
 
             }});
 
+        mDatabase1= FirebaseDatabase.getInstance().getReference("machines");
+        machineList = new ArrayList<>();
+        machineList.add("none");
+        mDatabase1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot machineSnapshot : dataSnapshot.getChildren()) {
+                    machine_info machine = machineSnapshot.getValue(machine_info.class);
+                    machineList.add(machine.machine_name);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        machineSpinner = findViewById(R.id.machineSpinner);
+        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(
+                this,android.R.layout.simple_spinner_item, machineList);
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        machineSpinner.setAdapter(adapter3);
+        machineSpinner.setOnItemSelectedListener(this);
 
     }
 
@@ -215,10 +248,12 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
         String maintainPlan = orderPlanSpinner.getSelectedItem().toString().trim();
         String order_priority = orderPriority.getSelectedItem().toString().trim();
         String order_status = orderStatus.getSelectedItem().toString().trim();
+        String order_machine = machineSpinner.getSelectedItem().toString().trim();
 
 
         if (order_title.equals("")||order_descp.equals("")||order_note.equals("")||order_DueDate.equals("")
-                ||order_cost.equals("")||order_priority.equals("")||maintainPlan.equals("")||order_status.equals("")) {
+                ||order_cost.equals("")||order_priority.equals("")||maintainPlan.equals("")||order_status.equals("")
+                ||order_machine.equals("")) {
             Toast.makeText(this,
                     "Please enter all information or leave NONE.", Toast.LENGTH_LONG).show();
             return;
@@ -234,6 +269,7 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
             order_intent.putExtra("maintainencePlan", maintainPlan);
             order_intent.putExtra("orderStatus", order_status);
             order_intent.putExtra("orderCreator", order_creator);
+            order_intent.putExtra("orderMachine", order_machine);
 
 
 
@@ -286,7 +322,7 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
         final AlertDialog.Builder normalDialog =
                 new AlertDialog.Builder(this);
 
-        normalDialog.setTitle(" I am a Dialog");
+        normalDialog.setTitle(" Uploading picture");
         normalDialog.setMessage("Which one do you want to choose?");
         normalDialog.setPositiveButton("gallery",
                 new DialogInterface.OnClickListener() {

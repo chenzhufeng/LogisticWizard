@@ -41,11 +41,6 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
     ArrayList<workorder_info> workorder_infoList;
 
     protected DatabaseReference mDatabase;
-    //String[] workOrders = new String[] { "Order 1", "Order 2", "Order 3" };
-    //String[] Priorities = new String[] { "High", "Medium", "Low" };
-    //String[] Dates = new String[] { "3/11/2019", "2/19/2019", "12/21/2019" };
-    //String[] Creators = new String[] { "Carl", "Bill", "Raymond" };
-    //String[] Progress = new String[] { "Open", "In Progress", "Hold" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,12 +61,12 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
+        recyclerView.setAdapter(new RecyclerViewAdapter(getApplicationContext(), workorder_infoList));
 
         mDatabase = FirebaseDatabase.getInstance().getReference("orders");
 
         newOrder = (Button) findViewById(R.id.new_order);
         newOrder.setOnClickListener(this);
-
 
         BottomNavigationView bottomNav  = findViewById(id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
@@ -91,13 +86,9 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
                     workorder_info workorder = machineSnapshot.getValue(workorder_info.class);
                     workorder_infoList.add(workorder);
                 }
-                //Toast.makeText(Machine.this, machine_infoList.get(0).machine_name+machine_infoList.get(1).machine_name, Toast.LENGTH_SHORT).show();
-                //Toast.makeText(workorder_main.this, workorder_infoList.get(0).order_creator, Toast.LENGTH_SHORT).show();
                 // Specify the adapter
                 mAdapter = new RecyclerViewAdapter(getApplicationContext(), workorder_infoList);
                 recyclerView.setAdapter(mAdapter);
-                //lv.setAdapter(machineinfoAdapter);
-                //});
             }
 
             @Override
@@ -116,25 +107,28 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
             String order_description = data.getStringExtra("orderDescription");
             String order_note = data.getStringExtra("orderNote");
             String order_DueDate = data.getStringExtra("orderDueDate");
-            String order_cost = data.getStringExtra("orderCate");
+            String order_cost = data.getStringExtra("orderCost");
             String order_priority = data.getStringExtra("orderPriority");
             String order_plan = data.getStringExtra("maintainencePlan");
             String order_status = data.getStringExtra("orderStatus");
             String order_image = data.getStringExtra("orderImage");
             String order_creator = data.getStringExtra("orderCreator");
+            String order_machine = data.getStringExtra("orderMachine");
 
-            //Toast.makeText(this, "order name"+order_title+"lalal", Toast.LENGTH_SHORT).show();
+
             saveorderToDB(order_title, order_description, order_note, order_DueDate,
-                    order_cost, order_priority, order_plan, order_status, order_image, order_creator);
+                    order_cost, order_priority, order_plan, order_status, order_image, order_creator,
+                    order_machine);
         }
     }
 
 
     private void saveorderToDB(String order_title, String order_description, String order_note,
                                String order_DueDate, String order_cost, String order_priority,
-                               String order_plan, String order_status, String order_image, String order_creator ) {
+                               String order_plan, String order_status, String order_image, String order_creator,
+                               String order_machine) {
         workorder_info order = new workorder_info(order_title, order_description, order_note, order_DueDate,
-                order_cost, order_priority, order_plan, order_status, order_image, order_creator);
+                order_cost, order_priority, order_plan, order_status, order_image, order_creator, order_machine);
         mDatabase.child(order_title).setValue(order);
 
     }
