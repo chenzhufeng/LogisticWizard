@@ -128,5 +128,19 @@
                 android:textAlignment="center" />
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/profile_edit"
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:layout_alignTop="@+id/header_cover_image"
+            android:layout_alignBottom="@+id/user_profile_photo"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="-20dp"
+            android:layout_marginEnd="26dp"
+            android:layout_marginBottom="128dp"
+            android:layout_toEndOf="@+id/header_cover_image"
+            android:text="Button" />
     </RelativeLayout>
 </ScrollView>

@@ -1,5 +1,6 @@
 package com.example.jeremy.logisticwizard;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -7,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,6 +26,7 @@ public class profile_main_fragment extends Fragment {
     TextView email;
     TextView phone_number;
     TextView role;
+    Button edit;
     protected DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
 
@@ -36,6 +39,14 @@ public class profile_main_fragment extends Fragment {
         email = rootView.findViewById(R.id.user_profile_email);
         phone_number = rootView.findViewById(R.id.user_profile_phone);
         role = rootView.findViewById(R.id.user_profile_type);
+        edit = rootView.findViewById(R.id.profile_edit);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), profile_edit.class);
+                startActivity(intent);
+            }
+        });
         return  rootView;
     }
 
