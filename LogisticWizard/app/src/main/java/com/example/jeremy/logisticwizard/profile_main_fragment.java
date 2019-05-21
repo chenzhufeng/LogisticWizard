@@ -127,7 +127,7 @@ public class profile_main_fragment extends Fragment {
         final AlertDialog.Builder normalDialog =
                 new AlertDialog.Builder(view.getContext());
 
-        normalDialog.setTitle(" Uploading picture");
+
         normalDialog.setMessage("Do you want to change it?");
         normalDialog.setPositiveButton("Yes",
                 new DialogInterface.OnClickListener() {
