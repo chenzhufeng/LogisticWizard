@@ -1,10 +1,12 @@
 package com.example.jeremy.logisticwizard;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +47,12 @@ public class profile_main_fragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), profile_edit.class);
                 startActivity(intent);
+            }
+        });
+        phone_number.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                confirm_dialog(view);
             }
         });
         return  rootView;
@@ -113,5 +121,29 @@ public class profile_main_fragment extends Fragment {
             }});
 
 
+    }
+
+    void confirm_dialog(View view){
+        final AlertDialog.Builder normalDialog =
+                new AlertDialog.Builder(view.getContext());
+
+        normalDialog.setTitle(" Uploading picture");
+        normalDialog.setMessage("Do you want to change it?");
+        normalDialog.setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //yes();//check the textview to changeable
+                    }
+                });
+        normalDialog.setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //no(); //just cancel
+                    }
+                });
+        // 显示
+        normalDialog.show();
     }
 }
