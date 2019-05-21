@@ -133,7 +133,7 @@ public class profile_main_fragment extends Fragment {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //yes();//check the textview to changeable
+                        change_phone();//check the textview to changeable
                     }
                 });
         normalDialog.setNegativeButton("No",
@@ -145,5 +145,9 @@ public class profile_main_fragment extends Fragment {
                 });
         // 显示
         normalDialog.show();
+    }
+
+    void change_phone(){
+        //show new dialog which allow user to input new phone number
     }
 }
