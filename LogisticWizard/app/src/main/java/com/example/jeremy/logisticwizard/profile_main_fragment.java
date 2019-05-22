@@ -149,5 +149,24 @@ public class profile_main_fragment extends Fragment {
 
     void change_phone(){
         //show new dialog which allow user to input new phone number
+        final AlertDialog.Builder change_phone_Dialog =
+                new AlertDialog.Builder(getView().getContext());
+        change_phone_Dialog.setMessage("lalalla?");
+        change_phone_Dialog.setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+        change_phone_Dialog.setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //no(); //just cancel
+                    }
+                });
+        // 显示
+        change_phone_Dialog.show();
     }
 }
