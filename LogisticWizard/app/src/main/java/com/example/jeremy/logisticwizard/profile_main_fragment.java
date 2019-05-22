@@ -149,9 +149,12 @@ public class profile_main_fragment extends Fragment {
 
     void change_phone(){
         //show new dialog which allow user to input new phone number
+        LayoutInflater factory = LayoutInflater.from(getView().getContext());
+        final View textEntryView = factory.inflate(R.layout.change_phone_dialog, null);
         final AlertDialog.Builder change_phone_Dialog =
                 new AlertDialog.Builder(getView().getContext());
-        change_phone_Dialog.setMessage("lalalla?");
+        change_phone_Dialog.setView(textEntryView);
+        change_phone_Dialog.setMessage("Enter your new phone number");
         change_phone_Dialog.setPositiveButton("Yes",
                 new DialogInterface.OnClickListener() {
                     @Override
