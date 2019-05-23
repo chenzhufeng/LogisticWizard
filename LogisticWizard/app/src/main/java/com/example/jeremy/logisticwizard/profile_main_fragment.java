@@ -11,7 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -31,7 +33,7 @@ public class profile_main_fragment extends Fragment {
     Button edit;
     protected DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
-
+    String Uid;
 
     @Nullable
     @Override
@@ -61,7 +63,7 @@ public class profile_main_fragment extends Fragment {
     public void onStart() {
         super.onStart();
         mAuth = FirebaseAuth.getInstance();
-        String Uid = mAuth.getCurrentUser().getUid();
+        Uid = mAuth.getCurrentUser().getUid();
         mDatabase = FirebaseDatabase.getInstance().getReference("users");
         //mDatabase.child(Uid).child("Name").toString();
         mDatabase.child(Uid).child("Name").addValueEventListener(new ValueEventListener() {
@@ -151,6 +153,8 @@ public class profile_main_fragment extends Fragment {
         //show new dialog which allow user to input new phone number
         LayoutInflater factory = LayoutInflater.from(getView().getContext());
         final View textEntryView = factory.inflate(R.layout.change_phone_dialog, null);
+        final EditText input_phone = textEntryView.findViewById(R.id.editPhoneNumber);
+        //input_phone.setAutofillHints(phone_number.getText().toString().trim());
         final AlertDialog.Builder change_phone_Dialog =
                 new AlertDialog.Builder(getView().getContext());
         change_phone_Dialog.setView(textEntryView);
@@ -159,7 +163,17 @@ public class profile_main_fragment extends Fragment {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        if(input_phone.getText().toString().trim().equals("")){
+                            Toast.makeText(getView().getContext(),
+                                    "Please enter your new phone number.", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        else {
+                            mDatabase.child(Uid).child("Phone").setValue(input_phone.getText().toString().trim());
+                            Toast.makeText(getView().getContext(),
+                                    "Phone number updated.", Toast.LENGTH_LONG).show();
+                            onStart();
+                        }
                     }
                 });
         change_phone_Dialog.setNegativeButton("No",
@@ -171,5 +185,9 @@ public class profile_main_fragment extends Fragment {
                 });
         // 显示
         change_phone_Dialog.show();
+    }
+
+    void save_phone(){
+
     }
 }
