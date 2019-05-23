@@ -23,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class profile_main_fragment extends Fragment {
-
+    
     TextView user_name;
     String temp;
     TextView user_shortbio;

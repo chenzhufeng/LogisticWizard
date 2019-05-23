@@ -78,21 +78,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
             Toast.makeText(this, "Please enter all information!", Toast.LENGTH_SHORT).show();
             return;
         }
-//        // if the user does not enter password
-//        if (TextUtils.isEmpty(infoPassword)) {
-//            Toast.makeText(this, "Please enter password !", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//        // if the user does not enter email
-//        if (TextUtils.isEmpty(infoName)) {
-//            Toast.makeText(this, "Please enter name !", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//        // if the user does not enter phone number
-//        if (TextUtils.isEmpty(infoPhone)) {
-//            Toast.makeText(this, "Please enter phone number !", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
 
         // Check email format
         if(emailPattern.matcher(infoUsername).matches() == false){
@@ -118,9 +103,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
                             user_info.put("Email", infoUsername);
                             user_info.put("Name", infoName);
                             user_info.put("Phone", infoPhone);
-
-                            //user_info.put("profileImageUrl",
-                                    //"http://img.icons8.com/color/1600/circled-user-male-skin-type-1-2.png");
+                            user_info.put("Role", "none");
                             mDatabase.setValue(user_info);
                             finish();
                             startActivity(new Intent(getApplicationContext(), Login.class));
@@ -137,21 +120,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
                 });
 
     }
-
-    //push user input information into firebase
-//    private void push_data_into_firebase() {
-//        final String infoUsername = getusername.getText().toString().trim();
-//        final String infoPassword = getpassword.getText().toString().trim();
-//        final String infoName = getName.getText().toString().trim();
-//        final String infoPhone = getPhone.getText().toString().trim();
-
-//        user_info user = new user_info(infoUsername, infoPassword, infoName, infoPhone);
-//
-//
-//        mDatabase.child("user").child(infoUsername).setValue(user);
-
-    //}
-
 
     @Override
     public void onClick(View view) {
