@@ -41,16 +41,16 @@ import java.util.List;
 import java.util.UUID;
 
 public class machine_edit extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
-    String machineName;
-    String machineName2;
-    String machineDescp;
-    String machinePrice;
-    String machineLocat;
-    String machineType;
-    String machineParts;
-    String maintainPlan;
-    String machineQuant;
-    String machineImage;
+    private String machineName;
+    private String machineName2;
+    private String machineDescp;
+    private String machinePrice;
+    private String machineLocat;
+    private String machineType;
+    private String machineParts;
+    private String maintainPlan;
+    private String machineQuant;
+    private String machineImage;
     List<String> temple=new ArrayList<>();
     private EditText name;
     private EditText type;
@@ -151,6 +151,7 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onStart() {
         super.onStart();
+
         StorageReference imageRef = storageReference.child(machineImage);
         try {
             final File localimage = File.createTempFile(machineName,"jpg");

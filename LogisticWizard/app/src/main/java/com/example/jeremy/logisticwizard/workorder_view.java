@@ -32,7 +32,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class workorder_view extends AppCompatActivity {
-
+    private String role = home_page.role;
     private TextView order_title;
     private TextView order_status;
     private TextView order_priority;
@@ -43,18 +43,10 @@ public class workorder_view extends AppCompatActivity {
     private TextView order_note;
     private TextView order_machine;
     private ImageView order_image;
-
-
     private Button edit_button;
     private Button back_button;
-
-
     private Button delete_button;
-
-
-    String orderTitle;
-
-
+    private String orderTitle;
     protected DatabaseReference mDatabase;
     protected StorageReference mStorage;
     StorageReference imageRef;
@@ -95,6 +87,10 @@ public class workorder_view extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        if (role.equals("Employee")) {
+            edit_button.setVisibility(View.INVISIBLE);
+        }
+
         order_title.setText(orderTitle);
         mDatabase.child(orderTitle).child("order_status").addValueEventListener(new ValueEventListener() {
             @Override
@@ -107,9 +103,7 @@ public class workorder_view extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
         });
 
         mDatabase.child(orderTitle).child("order_priority").addValueEventListener(new ValueEventListener() {
