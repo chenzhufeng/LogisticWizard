@@ -2,11 +2,20 @@ package com.example.jeremy.logisticwizard;
 
 import android.content.Intent;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.transition.Fade;
 import android.view.View;
 import android.widget.Button;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class home_page extends AppCompatActivity implements View.OnClickListener{
     private Button assetsButton;
@@ -14,6 +23,9 @@ public class home_page extends AppCompatActivity implements View.OnClickListener
     private Button tools;
     private Button profile;
     private Button calendar;
+    public static String role;
+
+    protected DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +53,7 @@ public class home_page extends AppCompatActivity implements View.OnClickListener
         calendar.setOnClickListener(this);
         workOrdersButton = findViewById(R.id.workOrdersButton);
         workOrdersButton.setOnClickListener(this);
+        getUserRole();
     }
 
 
@@ -76,6 +89,28 @@ public class home_page extends AppCompatActivity implements View.OnClickListener
         if (v == calendar) {
             Intent intent = new Intent(v.getContext(), calendar_main.class);
             startActivity(intent);
+        }
+    }
+
+    /* Retrieves the user ID from Firebase as a string. Is used to determine the
+     * permissions of the current user and bring up the appropriate dialogs and
+     * activities. */
+    private void getUserRole() {
+        mDatabase = FirebaseDatabase.getInstance().getReference("users");
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            String Uid = mAuth.getCurrentUser().getUid();
+            mDatabase.child(Uid).child("Role").addValueEventListener(
+                    new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            role = (String) dataSnapshot.getValue();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {}
+                    });
         }
     }
 }

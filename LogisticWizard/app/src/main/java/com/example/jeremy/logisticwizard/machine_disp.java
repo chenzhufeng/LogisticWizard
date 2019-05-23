@@ -35,6 +35,7 @@ public class machine_disp extends Activity implements View.OnClickListener{
     private Button historyButton;
     private ImageView machine_image;
 
+    public String role = home_page.role;
     String machineName;
     String machineDescription;
     String machinePrice;
@@ -70,6 +71,10 @@ public class machine_disp extends Activity implements View.OnClickListener{
     @Override
     protected void onStart() {
         super.onStart();
+
+        if (!role.equals("Admin")) {
+            editButton.setVisibility(View.INVISIBLE);
+        }
         Intent machine_info = getIntent();
         Bundle data = machine_info.getExtras();
 

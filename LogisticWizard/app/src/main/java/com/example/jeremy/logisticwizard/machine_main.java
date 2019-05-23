@@ -21,6 +21,8 @@ import android.support.v4.app.Fragment;
 import android.support.design.widget.BottomNavigationView; //for bottom nav
 import android.view.MenuItem;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,6 +40,7 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
     private ListView lv;
     private View bar;
     private View list;
+    private String role = home_page.role;
     ArrayList<machine_info> machine_infoList;
 
     private ArrayAdapter<String> adapter;
@@ -47,7 +50,6 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.machine_main);
 
-
         bar = findViewById(R.id.machine_bar);
         list = (View) findViewById(R.id.list_view);
 
@@ -55,9 +57,7 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         bottomNav.getMenu().getItem(0).setCheckable(false);
 
-
         mDatabase = FirebaseDatabase.getInstance().getReference("machines");
-
 
         ViewOutlineProvider viewOutlineProvider = new ViewOutlineProvider() {
             @Override
@@ -68,14 +68,11 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
         bar.setOutlineProvider(viewOutlineProvider);
         bar.setClipToOutline(true);
 
-
         final ArrayList<String> listData = new ArrayList<String>();
 
         sv = (SearchView) findViewById(R.id.machine_search);
         lv = (ListView) findViewById(R.id.list_of_machines); //will need this later
         machine_infoList = new ArrayList<>();
-        //adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listData);
-        //lv.setAdapter(adapter);
 
         add_machine = (Button) findViewById(R.id.add_machine_button);
         add_machine.setOnClickListener(new View.OnClickListener() {
@@ -83,11 +80,9 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
             public void onClick(View view) {
                 Intent add_machine_intent = new Intent(view.getContext() , machine_add.class);
                 startActivity(add_machine_intent);
-                //finish();
             }
         });
         add_machine.setOnClickListener(this);
-        //add_machine.setOnClickListener(this);
         add_machine.setOutlineProvider(viewOutlineProvider);
         add_machine.setClipToOutline(true);
 
@@ -134,6 +129,11 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onStart() {
         super.onStart();
+
+        if (!role.equals("Admin")) {
+            add_machine.setVisibility(View.GONE);
+        }
+
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -148,7 +148,6 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                         // "machine" was clicked
                             machine_selected(i, machine_infoList, view);
                     }
                 });
@@ -162,15 +161,15 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
     }
 
     public void machine_selected(int i, ArrayList<machine_info> machine_infoList, View view){
-       String machineName = machine_infoList.get(i).machine_name;
-       String machineDescp = machine_infoList.get(i).machine_descrip;
-       String machinePrice = machine_infoList.get(i).machine_price;
-       String machineLocat = machine_infoList.get(i).machine_location;
-       String machineType = machine_infoList.get(i).machine_type;
-       String machineParts = machine_infoList.get(i).machine_parts;
-       String maintainPlan = machine_infoList.get(i).maintain_plan;
-       String machineQuant = machine_infoList.get(i).machine_quant;
-       String machineImage = machine_infoList.get(i).machine_image;
+        String machineName = machine_infoList.get(i).machine_name;
+        String machineDescp = machine_infoList.get(i).machine_descrip;
+        String machinePrice = machine_infoList.get(i).machine_price;
+        String machineLocat = machine_infoList.get(i).machine_location;
+        String machineType = machine_infoList.get(i).machine_type;
+        String machineParts = machine_infoList.get(i).machine_parts;
+        String maintainPlan = machine_infoList.get(i).maintain_plan;
+        String machineQuant = machine_infoList.get(i).machine_quant;
+        String machineImage = machine_infoList.get(i).machine_image;
         Intent machine_intent = new Intent(view.getContext(), machine_disp.class);
         machine_intent.putExtra("machineName", machineName);
         machine_intent.putExtra("machineDescription", machineDescp);
@@ -190,7 +189,6 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
         Intent add_machine_intent = new Intent(view.getContext() , machine_add.class);
         startActivityForResult(add_machine_intent, 21);
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -211,10 +209,14 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    private void saveMachineToDB(String machineName, String machineDescription, String machinePrice, String machineLocation,
-                                 String machineType, String machineParts, String machinePlan, String machineQuant, String machineImage) {
-            machine_info machine = new machine_info(machineName, machineDescription, machinePrice, machineLocation,
-                    machineType, machineParts, machinePlan, machineQuant, machineImage);
+    private void saveMachineToDB(String machineName, String machineDescription,
+                                 String machinePrice, String machineLocation,
+                                 String machineType, String machineParts,
+                                 String machinePlan, String machineQuant,
+                                 String machineImage) {
+        machine_info machine = new machine_info(machineName, machineDescription,
+                machinePrice, machineLocation, machineType, machineParts,
+                machinePlan, machineQuant, machineImage);
             mDatabase.child(machineName).setValue(machine);
 
     }

@@ -5,15 +5,13 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-import android.support.design.widget.TextInputEditText;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,6 +24,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,53 +35,39 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.UUID;
 
-public class workorder_add extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+public class workorder_add_standard extends AppCompatActivity implements View.OnClickListener,
+        AdapterView.OnItemSelectedListener {
     final static int galleryPic = 1;
 
     private EditText orderTitle;
     private EditText orderDescription;
     private Spinner orderPriority;
-    private Spinner orderPlanSpinner;
-    private Spinner machineSpinner;
-    private EditText orderNote;
     private Spinner orderStatus;
-    private EditText orderDueDate;
-    private EditText orderCost;
+    private Spinner machineSpinner;
     private Button submit;
     private ImageButton image;
     protected DatabaseReference mDatabase;
     protected DatabaseReference mDatabase1;
-    private FirebaseAuth mAuth;
     private String username;
     private List<String> machineList;
-    private String role;
 
-    private FirebaseStorage storage;
     StorageReference storageReference;
     private Uri filePath;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.workorder_add);
+        setContentView(R.layout.workorder_add_standard);
 
         orderTitle = findViewById(R.id.orderTitle);
         orderDescription = findViewById(R.id.orderDescription);
         image = findViewById(R.id.imageButton);
-        orderNote = findViewById(R.id.orderNote);
-        orderDueDate = findViewById(R.id.dueDateInput);
-        orderCost = findViewById(R.id.orderCost);
         submit = findViewById(R.id.submitButton);
 
         orderPriority = findViewById(R.id.orderPriority);
@@ -99,30 +84,18 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
         orderStatus.setAdapter(adapter1);
         orderStatus.setOnItemSelectedListener(this);
 
-        orderPlanSpinner = findViewById(R.id.maintenanceSpinner);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
                 R.array.machineQuantityStringArray, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        orderPlanSpinner.setAdapter(adapter2);
-        orderPlanSpinner.setOnItemSelectedListener(this);
 
-
-        storage=FirebaseStorage.getInstance("gs://logisticwizard-6d896.appspot.com/");
+        String instance = "gs://logisticwizard-6d896.appspot.com/";
+        FirebaseStorage storage = FirebaseStorage.getInstance(instance);
         storageReference = storage.getReference();
 
-        mAuth = FirebaseAuth.getInstance();
-        String Uid = mAuth.getCurrentUser().getUid();
-        mDatabase = FirebaseDatabase.getInstance().getReference("users");
-        // Get the name of the current user
-        mDatabase.child(Uid).child("Name").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                username = (String) dataSnapshot.getValue();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {}
-        });
+        machineSpinner = findViewById(R.id.machineSpinner);
+        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(
+                this,android.R.layout.simple_spinner_item, machineList);
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         mDatabase1= FirebaseDatabase.getInstance().getReference("machines");
         machineList = new ArrayList<>();
@@ -141,25 +114,35 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
 
             }
         });
-        machineSpinner = findViewById(R.id.machineSpinner);
-        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(
-                this,android.R.layout.simple_spinner_item, machineList);
-        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         machineSpinner.setAdapter(adapter3);
         machineSpinner.setOnItemSelectedListener(this);
 
+        // Get the name of the current user
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        String Uid;
+        if (user != null) {
+            Uid = mAuth.getCurrentUser().getUid();
+            mDatabase = FirebaseDatabase.getInstance().getReference("users");
+            mDatabase.child(Uid).child("Name").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    username = (String) dataSnapshot.getValue();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                }
+            });
+        }
     }
 
     @Override
     public void onClick(View view) {
         if(view == submit){
             addOrder();
-            //Intent intent = new Intent(view.getContext(),order.class);
-            //startActivity(intent);
         }
         if(view == image){
-            //chooseImage();
             showNormalDialog();
         }
     }
@@ -202,24 +185,20 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
                 int height = (int)(200*scale+0.5f);
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 Picasso.with(this).load(filePath).resize(width, height).into(image);
-                //image.setImageBitmap(bitmap);
 
-            }
-            catch (IOException e)
-            {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
             if(data.hasExtra("data")){
-
                 Bitmap bitMap = data.getParcelableExtra("data");
-
             }
-
         }
         else{
             boolean t = true;
-            if(data.getData()==null){
-                t = false;
+            if (data != null) {
+                if(data.getData()==null) {
+                    t = false;
+                }
             }
             Toast.makeText(this,
                     "Error occur:"+t,  Toast.LENGTH_SHORT).show();
@@ -235,26 +214,23 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
     public void addOrder(){
         String order_title = orderTitle.getText().toString().trim();
         String order_descp = orderDescription.getText().toString().trim();
-        String order_note = orderNote.getText().toString().trim();
-        String order_DueDate = orderDueDate.getText().toString().trim();
-        String order_cost = orderCost.getText().toString().trim();
+        String order_note = "";
+        String order_DueDate = "";
+        String order_cost = "";
         String order_image = "null";
         String order_creator=username;
 
-        String maintainPlan = orderPlanSpinner.getSelectedItem().toString().trim();
+        String maintainPlan = "";
         String order_priority = orderPriority.getSelectedItem().toString().trim();
         String order_status = orderStatus.getSelectedItem().toString().trim();
         String order_machine = machineSpinner.getSelectedItem().toString().trim();
 
 
-        if (order_title.equals("")||order_descp.equals("")||order_note.equals("")||order_DueDate.equals("")
-                ||order_cost.equals("")||order_priority.equals("")||maintainPlan.equals("")||order_status.equals("")
-                ||order_machine.equals("")) {
+        if (order_title.equals("") || order_descp.equals("") || order_priority.equals("")
+                || order_status.equals("") || order_machine.equals("")) {
             Toast.makeText(this,
                     "Please enter all information or leave NONE.", Toast.LENGTH_LONG).show();
-            return;
         }else {
-
             Intent order_intent = new Intent();
             order_intent.putExtra("orderTitle", order_title);
             order_intent.putExtra("orderDescription", order_descp);
@@ -267,13 +243,9 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
             order_intent.putExtra("orderCreator", order_creator);
             order_intent.putExtra("orderMachine", order_machine);
 
-
-
             if(filePath != null)
             {
                 final ProgressDialog progressDialog = new ProgressDialog(this);
-                //progressDialog.setTitle("Uploading...");
-                //progressDialog.show();
 
                 StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
                 order_image = ref.getPath();
@@ -282,15 +254,13 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
                         .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                //progressDialog.dismiss();
-                                Toast.makeText(workorder_add.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(workorder_add_standard.this, "Uploaded", Toast.LENGTH_SHORT).show();
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                //progressDialog.dismiss();
-                                Toast.makeText(workorder_add.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(workorder_add_standard.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         })
                         .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -298,7 +268,6 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
                             public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                                 double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
                                         .getTotalByteCount());
-                                //progressDialog.setMessage("Uploaded "+(int)progress+"%");
                             }
                         });
             }
@@ -318,7 +287,7 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
         final AlertDialog.Builder normalDialog =
                 new AlertDialog.Builder(this);
 
-        normalDialog.setTitle(" Uploading picture");
+        normalDialog.setTitle(" I am a Dialog");
         normalDialog.setMessage("Which one do you want to choose?");
         normalDialog.setPositiveButton("gallery",
                 new DialogInterface.OnClickListener() {
