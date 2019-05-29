@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,9 +31,11 @@ public class profile_main_fragment extends Fragment {
     TextView email;
     TextView phone_number;
     TextView role;
+    TextView password;
     Button edit;
     protected DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
+    FirebaseUser user;
     String Uid;
 
     @Nullable
@@ -42,6 +45,7 @@ public class profile_main_fragment extends Fragment {
         user_name = rootView.findViewById(R.id.user_profile_name);
         email = rootView.findViewById(R.id.user_profile_email);
         phone_number = rootView.findViewById(R.id.user_profile_phone);
+        password =rootView.findViewById(R.id.user_profile_password);
         role = rootView.findViewById(R.id.user_profile_type);
         edit = rootView.findViewById(R.id.profile_edit);
         edit.setOnClickListener(new View.OnClickListener() {
@@ -57,13 +61,20 @@ public class profile_main_fragment extends Fragment {
                 confirm_dialog(view);
             }
         });
+        password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                confirm_dialog_password(view);
+            }
+        });
         return  rootView;
     }
 
     public void onStart() {
         super.onStart();
         mAuth = FirebaseAuth.getInstance();
-        Uid = mAuth.getCurrentUser().getUid();
+        user = mAuth.getCurrentUser();
+        Uid = user.getUid();
         mDatabase = FirebaseDatabase.getInstance().getReference("users");
         //mDatabase.child(Uid).child("Name").toString();
         mDatabase.child(Uid).child("Name").addValueEventListener(new ValueEventListener() {
@@ -187,7 +198,54 @@ public class profile_main_fragment extends Fragment {
         change_phone_Dialog.show();
     }
 
-    void save_phone(){
+    void confirm_dialog_password(View view){
+        final AlertDialog.Builder normalDialog =
+                new AlertDialog.Builder(view.getContext());
 
+
+        normalDialog.setMessage("Do you want to change your password?");
+        normalDialog.setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        change_password();//check the textview to changeable
+                    }
+                });
+        normalDialog.setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //no(); //just cancel
+                    }
+                });
+        // 显示
+        normalDialog.show();
+    }
+
+    void change_password(){
+        LayoutInflater factory = LayoutInflater.from(getView().getContext());
+        final View textEntryView = factory.inflate(R.layout.change_password_dialog, null);
+        final EditText input_phone = textEntryView.findViewById(R.id.editPassword);
+        //input_phone.setAutofillHints(phone_number.getText().toString().trim());
+        final AlertDialog.Builder change_password_Dialog =
+                new AlertDialog.Builder(getView().getContext());
+        change_password_Dialog.setView(textEntryView);
+        change_password_Dialog.setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+
+                    }
+                });
+        change_password_Dialog.setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //no(); //just cancel
+                    }
+                });
+        // 显示
+        change_password_Dialog.show();
     }
 }
