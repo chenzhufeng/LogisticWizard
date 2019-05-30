@@ -225,7 +225,7 @@ public class profile_main_fragment extends Fragment {
     void change_password(){
         LayoutInflater factory = LayoutInflater.from(getView().getContext());
         final View textEntryView = factory.inflate(R.layout.change_password_dialog, null);
-        final EditText input_phone = textEntryView.findViewById(R.id.editPassword);
+        final EditText old_password = textEntryView.findViewById(R.id.oldPassword);
         //input_phone.setAutofillHints(phone_number.getText().toString().trim());
         final AlertDialog.Builder change_password_Dialog =
                 new AlertDialog.Builder(getView().getContext());
