@@ -86,6 +86,7 @@ public class workorder_add_standard extends AppCompatActivity implements View.On
 
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
                 R.array.machineQuantityStringArray, android.R.layout.simple_spinner_item);
+
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         String instance = "gs://logisticwizard-6d896.appspot.com/";
