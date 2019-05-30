@@ -33,6 +33,8 @@ import java.io.IOException;
 
 public class workorder_view extends AppCompatActivity {
     private String role = home_page.role;
+    private String name = home_page.name;
+    //private String orderCreator;
     private TextView order_title;
     private TextView order_status;
     private TextView order_priority;
@@ -57,7 +59,6 @@ public class workorder_view extends AppCompatActivity {
         setContentView(R.layout.workorder_disp);
         mDatabase = FirebaseDatabase.getInstance().getReference("orders");
         mStorage = FirebaseStorage.getInstance().getReference();
-        //imageRef = mStorage.child("/images/cfd4b4b0-6cff-424d-af23-62d4e792f340");
         order_title = findViewById(R.id.titleText);
         order_Creator = findViewById(R.id.creatorHolder);
         order_status = findViewById(R.id.currentStatusText);
@@ -70,9 +71,7 @@ public class workorder_view extends AppCompatActivity {
         order_note = findViewById(R.id.note);
 
         edit_button = findViewById(R.id.editButton);
-
         back_button = findViewById(R.id.backButton);
-
         delete_button = findViewById(R.id.deleteButton);
         back_button = findViewById(R.id.backButton);
 
@@ -80,26 +79,41 @@ public class workorder_view extends AppCompatActivity {
         Bundle data = machine_info.getExtras();
 
         orderTitle = data.get("orderTitle").toString();
-
-
     }
 
     protected void onStart() {
         super.onStart();
 
-        if (role.equals("Employee")) {
-            edit_button.setVisibility(View.INVISIBLE);
-        }
+        delete_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showNormalDialog();
+            }
+        });
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent (workorder_view.this, workorder_main.class);
+                startActivity(intent);
+            }
+        });
+
+        edit_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (v.getContext(), workorder_edit.class);
+                intent.putExtra("orderTitle", order_title.getText());
+                startActivity(intent);
+            }
+        });
 
         order_title.setText(orderTitle);
         mDatabase.child(orderTitle).child("order_status").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 String orderStatus;
                 orderStatus = (String) dataSnapshot.getValue();
                 order_status.setText(orderStatus);
-
             }
 
             @Override
@@ -113,7 +127,6 @@ public class workorder_view extends AppCompatActivity {
                 String orderPriority;
                 orderPriority = (String) dataSnapshot.getValue();
                 order_priority.setText(orderPriority);
-
             }
 
             @Override
@@ -125,11 +138,19 @@ public class workorder_view extends AppCompatActivity {
         mDatabase.child(orderTitle).child("order_creator").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 String orderCreator;
                 orderCreator = (String) dataSnapshot.getValue();
                 order_Creator.setText(orderCreator);
 
+                if (role.equals("Employee") && !orderCreator.equals(name)) {
+                    edit_button.setEnabled(false);
+                    delete_button.setEnabled(false);
+                    //delete_button.setVisibility(View.INVISIBLE);
+                } else {
+                    edit_button.setEnabled(true);
+                    delete_button.setEnabled(true);
+                    //delete_button.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
@@ -160,7 +181,6 @@ public class workorder_view extends AppCompatActivity {
 
                 String orderCost;
                 orderCost = (String) dataSnapshot.getValue();
-                //System.out.println(orderCost);
                 order_cost.setText(orderCost);
 
             }
@@ -241,7 +261,7 @@ public class workorder_view extends AppCompatActivity {
             }
         });
 
-
+        /*
         delete_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -264,8 +284,37 @@ public class workorder_view extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        //*/
+        
+        /*
+        if (role.equals("Employee")) {
+            edit_button.setEnabled(false);
+            delete_button.setEnabled(false);
+            //delete_button.setVisibility(View.INVISIBLE);
+        } else {
+            edit_button.setEnabled(true);
+            delete_button.setEnabled(true);
+            //delete_button.setVisibility(View.VISIBLE);
+        }
+        //*/
     }
+
+    /*
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (role.equals("Employee") && !orderCreator.equals(name)) {
+            edit_button.setEnabled(false);
+            delete_button.setEnabled(false);
+            //delete_button.setVisibility(View.INVISIBLE);
+        } else {
+            edit_button.setEnabled(true);
+            delete_button.setEnabled(true);
+            //delete_button.setVisibility(View.VISIBLE);
+        }
+    }
+    //*/
+
         private void showNormalDialog() {
             /* @setIcon 设置对话框图标
              * @setTitle 设置对话框标题

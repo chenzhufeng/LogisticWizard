@@ -24,6 +24,7 @@ public class home_page extends AppCompatActivity implements View.OnClickListener
     private Button profile;
     private Button calendar;
     public static String role;
+    public static String name;
 
     protected DatabaseReference mDatabase;
 
@@ -54,6 +55,7 @@ public class home_page extends AppCompatActivity implements View.OnClickListener
         workOrdersButton = findViewById(R.id.workOrdersButton);
         workOrdersButton.setOnClickListener(this);
         getUserRole();
+        getUserName();
     }
 
 
@@ -106,6 +108,25 @@ public class home_page extends AppCompatActivity implements View.OnClickListener
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             role = (String) dataSnapshot.getValue();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {}
+                    });
+        }
+    }
+
+    private void getUserName() {
+        mDatabase = FirebaseDatabase.getInstance().getReference("users");
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            String Uid = mAuth.getCurrentUser().getUid();
+            mDatabase.child(Uid).child("Name").addValueEventListener(
+                    new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            name = (String) dataSnapshot.getValue();
                         }
 
                         @Override

@@ -1,6 +1,7 @@
 package com.example.jeremy.logisticwizard;
 
 import android.support.v7.widget.RecyclerView;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.view.LayoutInflater;
