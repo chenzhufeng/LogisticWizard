@@ -15,6 +15,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,7 +32,7 @@ public class profile_main_fragment extends Fragment {
     TextView user_name;
     String temp;
     TextView user_shortbio;
-    TextView email;
+    TextView email_show;
     TextView phone_number;
     TextView role;
     TextView password;
@@ -37,13 +41,14 @@ public class profile_main_fragment extends Fragment {
     private FirebaseAuth mAuth;
     FirebaseUser user;
     String Uid;
-
+    String email;
+    AuthCredential credential;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView =  inflater.inflate(R.layout.profile_main_fragment, container, false);
         user_name = rootView.findViewById(R.id.user_profile_name);
-        email = rootView.findViewById(R.id.user_profile_email);
+        email_show = rootView.findViewById(R.id.user_profile_email);
         phone_number = rootView.findViewById(R.id.user_profile_phone);
         password =rootView.findViewById(R.id.user_profile_password);
         role = rootView.findViewById(R.id.user_profile_type);
@@ -97,7 +102,8 @@ public class profile_main_fragment extends Fragment {
 
 
                 temp = (String) dataSnapshot.getValue();
-                email.setText("Username/Email: "+temp);
+                email = temp;
+                email_show.setText("Username/Email: "+temp);
             }
 
             @Override
@@ -236,10 +242,35 @@ public class profile_main_fragment extends Fragment {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String oldpass = old_password.getText().toString().trim();
-                        String newpass = new_password.getText().toString().trim();
-                        String conpass = confirm_password.getText().toString().trim();
-                        
+                        final String oldpass = old_password.getText().toString().trim();
+                        final String newpass = new_password.getText().toString().trim();
+                        final String conpass = confirm_password.getText().toString().trim();
+                        if(!newpass.equals(conpass)){
+                            Toast.makeText(getView().getContext(),
+                                    "Please confirm your new password.", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        credential = EmailAuthProvider.getCredential(email, oldpass);
+                        user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()){
+                                    user.updatePassword(newpass).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task2) {
+                                            if(task2.isSuccessful()){
+                                                Toast.makeText(getView().getContext(),
+                                                        "Password updated.", Toast.LENGTH_LONG).show();
+                                            }
+                                        }
+                                    });
+                                    onStart();
+                                }else {
+                                    Toast.makeText(getView().getContext(),
+                                            "Your old password is not correct", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
 
                     }
                 });
