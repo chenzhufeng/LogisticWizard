@@ -226,19 +226,24 @@ public class profile_main_fragment extends Fragment {
         LayoutInflater factory = LayoutInflater.from(getView().getContext());
         final View textEntryView = factory.inflate(R.layout.change_password_dialog, null);
         final EditText old_password = textEntryView.findViewById(R.id.oldPassword);
+        final EditText new_password = textEntryView.findViewById(R.id.newPassword);
+        final EditText confirm_password = textEntryView.findViewById(R.id.confirmPassword);
         //input_phone.setAutofillHints(phone_number.getText().toString().trim());
         final AlertDialog.Builder change_password_Dialog =
                 new AlertDialog.Builder(getView().getContext());
         change_password_Dialog.setView(textEntryView);
-        change_password_Dialog.setPositiveButton("Yes",
+        change_password_Dialog.setPositiveButton("Save",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        String oldpass = old_password.getText().toString().trim();
+                        String newpass = new_password.getText().toString().trim();
+                        String conpass = confirm_password.getText().toString().trim();
+                        
 
                     }
                 });
-        change_password_Dialog.setNegativeButton("No",
+        change_password_Dialog.setNegativeButton("Cancel",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
