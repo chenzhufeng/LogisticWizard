@@ -16,15 +16,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<<<<<<< HEAD
+
         <activity android:name=".forget_password"></activity>
         <activity android:name=".profile_edit" />
         <activity android:name=".workorder_add" />
-=======
-
-        <activity android:name=".workorder_add"/>
         <activity android:name=".workorder_add_standard"/>
->>>>>>> origin/TJ
         <activity android:name=".workorder_main" />
         <activity android:name=".tool_edit" />
         <activity android:name=".workorder_view" />

@@ -34,6 +34,7 @@ public class profile_main_fragment extends Fragment {
     protected DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
     String Uid;
+    String user_role = home_page.role;
 
     @Nullable
     @Override
@@ -62,6 +63,11 @@ public class profile_main_fragment extends Fragment {
 
     public void onStart() {
         super.onStart();
+
+        if(!user_role.equals("Admin")){
+            edit.setVisibility(View.INVISIBLE);
+        }
+
         mAuth = FirebaseAuth.getInstance();
         Uid = mAuth.getCurrentUser().getUid();
         mDatabase = FirebaseDatabase.getInstance().getReference("users");

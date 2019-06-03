@@ -95,7 +95,7 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
         orderStatus = findViewById(R.id.orderStatus);
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
                 R.array.statuses, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         orderStatus.setAdapter(adapter1);
         orderStatus.setOnItemSelectedListener(this);
 
