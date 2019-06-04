@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.regex.Pattern;
+
 public class profile_main_fragment extends Fragment {
 
     TextView user_name;
@@ -43,6 +46,9 @@ public class profile_main_fragment extends Fragment {
     String Uid;
     String email;
     AuthCredential credential;
+
+    Pattern pswPattern = Pattern.compile("^[a-zA-Z]\\w{5,15}$");
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -245,6 +251,20 @@ public class profile_main_fragment extends Fragment {
                         final String oldpass = old_password.getText().toString().trim();
                         final String newpass = new_password.getText().toString().trim();
                         final String conpass = confirm_password.getText().toString().trim();
+
+                        //Check if inputs are empty
+                        if (TextUtils.isEmpty(oldpass)||TextUtils.isEmpty(newpass)||TextUtils.isEmpty(conpass)) {
+                            Toast.makeText(getView().getContext(),
+                                    "Please do not leave blank!", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        if(pswPattern.matcher(newpass).matches() == false){
+                            Toast.makeText(getView().getContext(),
+                                    "Password should start with alpha and be 5-15 length!", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        //Check if type new password correctly
                         if(!newpass.equals(conpass)){
                             Toast.makeText(getView().getContext(),
                                     "Please confirm your new password.", Toast.LENGTH_LONG).show();
