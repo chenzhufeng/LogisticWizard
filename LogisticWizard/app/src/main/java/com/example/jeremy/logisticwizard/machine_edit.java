@@ -307,7 +307,7 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), 88);
     }
 
-    private Uri photoURI;
+
     private void takeImage(){
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         File photoFile = null;
@@ -319,10 +319,10 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
         }
         // Continue only if the File was successfully created
         if (photoFile != null) {
-            photoURI = FileProvider.getUriForFile(this,
+            filePath = FileProvider.getUriForFile(this,
                     "com.example.android.fileprovider",
                     photoFile);
-            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, filePath);
             startActivityForResult(takePictureIntent, 89);
         }
     }
@@ -380,8 +380,12 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
                 && data != null ){
             try
             {
-                Bitmap bitmap= BitmapFactory.decodeStream(getContentResolver().openInputStream(photoURI));
-                edit_machine_image.setImageBitmap(bitmap);
+                float scale = this.getResources().getDisplayMetrics().density;
+                int width = (int)(350*scale+0.5f);
+                int height = (int)(200*scale+0.5f);
+                Bitmap bitmap= BitmapFactory.decodeStream(getContentResolver().openInputStream(filePath));
+                Picasso.with(this).load(filePath).resize(width, height).into(edit_machine_image);
+                //edit_machine_image.setImageBitmap(bitmap);
             }
             catch (FileNotFoundException e)
             {
