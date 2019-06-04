@@ -7,8 +7,6 @@ public class user_info{
     public String name;
     public String phone;
 
-
-
     public user_info() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
