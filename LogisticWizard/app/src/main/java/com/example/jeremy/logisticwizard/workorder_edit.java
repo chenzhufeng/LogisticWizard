@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -53,7 +54,6 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
     private Button back_button;
     String orderTitle;
     String orderImage;
-    String orderNote;
     String orderPlan;
     List<String> temple=new ArrayList<>();
 
@@ -224,7 +224,6 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
         mDatabase.child(orderTitle).child("order_dates").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 String orderDuedate;
                 orderDuedate = (String) dataSnapshot.getValue();
                 order_Duedate.setText(orderDuedate);
