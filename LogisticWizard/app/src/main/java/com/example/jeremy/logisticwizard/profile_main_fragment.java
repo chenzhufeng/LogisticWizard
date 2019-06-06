@@ -46,6 +46,7 @@ public class profile_main_fragment extends Fragment {
     String email;
     AuthCredential credential;
     Pattern pswPattern = Pattern.compile("^[a-zA-Z]\\w{5,15}$");
+    String user_role = home_page.role;
 
     @Nullable
     @Override
@@ -81,6 +82,11 @@ public class profile_main_fragment extends Fragment {
 
     public void onStart() {
         super.onStart();
+
+        if(!user_role.equals("Admin")){
+            edit.setVisibility(View.INVISIBLE);
+        }
+
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         Uid = user.getUid();

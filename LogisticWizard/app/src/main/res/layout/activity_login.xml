@@ -99,6 +99,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="-37dp"
         android:layout_marginBottom="73dp"
+        android:onClick="onClick"
         android:text="@string/forget_password"
         android:textColor="#6495ED" />
 
