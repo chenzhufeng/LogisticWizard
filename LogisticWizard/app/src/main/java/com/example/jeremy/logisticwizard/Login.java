@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 //import com.example.jeremy.logisticwizard.R;
 
@@ -25,6 +26,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private Button LoginButton;
     private EditText user_name;
     private EditText password;
+    private TextView forgetPwd;
     private DatabaseReference mDatabase;
     private ProgressDialog progressDialog2;
     private FirebaseAuth mAuth;
@@ -46,53 +48,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         user_name = (EditText)findViewById(R.id.UserName);
         password = (EditText) findViewById(R.id.Password);
 
+        forgetPwd = findViewById(R.id.ForgetPwdText);
+        forgetPwd.setOnClickListener(this);
+
         mAuth = FirebaseAuth.getInstance();
-//        if (mAuth.getCurrentUser() != null) {
-//            // then go into to profile_main page
-//            finish();
-//
-//            startActivity(new Intent(getApplicationContext(), UserProfile.class));
-//        }
 
-
-//        password.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-//            @Override
-//            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-//                if (i == EditorInfo.IME_ACTION_DONE) {
-//                    //Toast.makeText(LoginActivity.this, "Press Enter", Toast.LENGTH_SHORT).show();
-//                    String user_name_s = user_name.getText().toString();
-//                    final String password_s = password.getText().toString();
-//                    mDatabase.child(user_name_s).child("password").addValueEventListener(new ValueEventListener(){
-//                        @Override
-//                        public void onDataChange(DataSnapshot dataSnapshot) {
-//
-//                                if(password_s.equals(dataSnapshot.getValue())){
-//                                    Toast.makeText(Login.this, "Login succeed", Toast.LENGTH_SHORT).show();
-//                                }else{
-//                                    Toast.makeText(Login.this, password_s, Toast.LENGTH_SHORT).show();
-//                                }
-//
-//                        }
-//                        @Override
-//                        public void onCancelled(DatabaseError databaseError) {
-//                            Toast.makeText(Login.this, "No permission", Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
-//                }
-//                return false;
-//            }
-//        });
-
-
-
-        //View decorView = getWindow().getDecorView();
-        // Hide the status bar.
-        //int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN;
-        //decorView.setSystemUiVisibility(uiOptions);
-        // Remember that you should never show the action bar if the
-        // status bar is hidden, so hide that too if necessary.
-        //ActionBar actionBar = getSupportActionBar();
-        //actionBar.hide();
 
     }
 
@@ -100,15 +60,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onStart() {
         super.onStart();
-        //View decorView = getWindow().getDecorView();
-        // Hide the status bar.
-        //int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
-
-        //decorView.setSystemUiVisibility(uiOptions);
-        // Remember that you should never show the action bar if the
-        // status bar is hidden, so hide that too if necessary.
-        //ActionBar actionBar = getSupportActionBar();
-        //actionBar.hide();
 
     }
     private void UserLogin(){
@@ -155,6 +106,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         }
         if (view == LoginButton) {
             UserLogin();
+        }
+        if (view == forgetPwd){
+            finish();
+            startActivity(new Intent(this, forget_password.class));
         }
     }
 }

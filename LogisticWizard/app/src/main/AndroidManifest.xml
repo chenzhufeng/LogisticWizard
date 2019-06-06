@@ -9,7 +9,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,11 +16,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".workorder_add"/>
         <activity android:name=".workorder_add_standard"/>
+        <activity android:name=".profile_edit"/>
+        <activity android:name=".forget_password"/>
         <activity android:name=".workorder_main" />
-        <activity android:name=".tool_edit"/>
+        <activity android:name=".tool_edit" />
         <activity android:name=".workorder_view" />
         <activity android:name=".workorder_edit" />
         <activity android:name=".tool_disp" />
@@ -30,28 +30,34 @@
         <activity android:name=".profile_main" />
         <activity android:name=".tool_main" />
         <activity android:name=".machine_edit" />
-        <activity android:name=".machine_history"/>
-        <activity android:name=".Login"
+        <activity android:name=".machine_history" />
+        <activity
+            android:name=".Login"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".machine_add" />
         <activity android:name=".machine_main" />
-
-
-        <activity android:name=".home_page"
-            android:label="@string/app_name">
-        </activity>
-
+        <activity
+            android:name=".home_page"
+            android:label="@string/app_name" />
         <activity android:name=".Register" />
         <activity
             android:name=".machine_disp"
             android:theme="@style/AppTheme.CustomTheme" />
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.example.android.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"></meta-data>
+        </provider>
     </application>
 
 </manifest>
