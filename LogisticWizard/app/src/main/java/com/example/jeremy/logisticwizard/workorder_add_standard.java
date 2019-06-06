@@ -164,7 +164,7 @@ public class workorder_add_standard extends AppCompatActivity implements View.On
         intent.setAction(Intent.ACTION_PICK);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), 71);
     }
-    private void takeImage(){
+    private void takeImage() {
         Intent intent = new Intent();
         intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.addCategory(Intent.CATEGORY_DEFAULT);
@@ -307,7 +307,4 @@ public class workorder_add_standard extends AppCompatActivity implements View.On
         // 显示
         normalDialog.show();
     }
-
-
-
 }

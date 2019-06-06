@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -38,7 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class workorder_edit extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-
+    private String role = home_page.role;
     private EditText order_title;
     private Spinner order_status;
     private Spinner order_priority;
@@ -46,24 +47,21 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
     private TextInputEditText order_description;
     private EditText order_cost;
     private EditText order_Duedate;
-    private TextInputEditText order_note;
+    private EditText order_note;
     private ImageButton order_image;
     private TextView order_machine;
-
-
     private Button save_button;
     private Button back_button;
-
     String orderTitle;
     String orderImage;
-    String orderNote;
     String orderPlan;
     List<String> temple=new ArrayList<>();
-
 
     protected DatabaseReference mDatabase;
     protected StorageReference mStorage;
     StorageReference imageRef;
+
+    private boolean isEmployee;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,14 +70,14 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
 
         mDatabase  = FirebaseDatabase.getInstance().getReference("orders");
         mStorage = FirebaseStorage.getInstance().getReference();
-        //imageRef = mStorage.child("/images/cfd4b4b0-6cff-424d-af23-62d4e792f340");
         order_title = findViewById(R.id.titleText);
         order_Creator = findViewById(R.id.creatorHolder);
         order_description=findViewById(R.id.descriptionInput);
-        order_cost=findViewById(R.id.editText);
-        order_Duedate=findViewById(R.id.editText2);
-        order_image=findViewById(R.id.photoHolder);
+        order_cost = findViewById(R.id.editText);
+        order_Duedate = findViewById(R.id.editText2);
+        order_image = findViewById(R.id.photoHolder);
         order_machine = findViewById(R.id.machineHolder);
+        order_note = findViewById(R.id.order_note);
 
         order_status = findViewById(R.id.statusSpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -103,6 +101,10 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
         Bundle data = machine_info.getExtras();
 
         orderTitle = data.get("orderTitle").toString();
+
+        if (role.equals("Employee")) {
+            isEmployee = true;
+        }
     }
 
     @Override
@@ -115,6 +117,8 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
 
     }
 
+    /* NOTICE - Accessing mDatabase MUST be put into a loop and put into its own
+     * function to make code more readable and clean */
     protected void onStart(){
         super.onStart();
 
@@ -133,9 +137,12 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
                     int spinnerPosition = adapter.getPosition(orderStatus);
                     order_status.setSelection(spinnerPosition);
                 }
-                //int orderStatus2 = Integer.parseInt(orderStatus);
-                //order_status.setSelection(2);
 
+                if (isEmployee) {
+                    order_status.setEnabled(false);
+                } else {
+                    order_status.setEnabled(true);
+                }
             }
 
             @Override
@@ -157,7 +164,6 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
                     int spinnerPosition = adapter1.getPosition(orderPriority);
                     order_priority.setSelection(spinnerPosition);
                 }
-
             }
 
             @Override
@@ -177,7 +183,6 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }});
 
         mDatabase.child(orderTitle).child("order_descrip").addValueEventListener(new ValueEventListener() {
@@ -201,9 +206,14 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
 
                 String orderCost;
                 orderCost = (String) dataSnapshot.getValue();
-                //System.out.println(orderCost);
                 order_cost.setText(orderCost);
-
+                //*
+                if (isEmployee) {
+                    order_cost.setEnabled(false);
+                } else {
+                    order_cost.setEnabled(true);
+                }
+                //*/
             }
 
             @Override
@@ -214,22 +224,22 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
         mDatabase.child(orderTitle).child("order_dates").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 String orderDuedate;
                 orderDuedate = (String) dataSnapshot.getValue();
                 order_Duedate.setText(orderDuedate);
-
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }});
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
+        });
 
         mDatabase.child(orderTitle).child("order_note").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String orderNote;
+
                 orderNote = (String) dataSnapshot.getValue();
+                order_note.setText(orderNote);
             }
 
             @Override
@@ -251,11 +261,9 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
         mDatabase.child(orderTitle).child("order_machine").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 String orderMachine;
                 orderMachine = (String) dataSnapshot.getValue();
                 order_machine.setText(orderMachine);
-
             }
 
             @Override
@@ -300,7 +308,6 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
 
             }});
 
-
         save_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -326,7 +333,6 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
                 showNormalDialog();
             }
         });
-
     }
 
     private void save_edition(){
@@ -336,17 +342,17 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
         String orderCost = order_cost.getText().toString().trim();
         String orderDuedate = order_Duedate.getText().toString().trim();
 
-        //String orderImage = order_image.getText().toString().trim();
         String orderStatus = order_status.getSelectedItem().toString().trim();
         String orderPriority = order_priority.getSelectedItem().toString().trim();
         String orderMachine = order_machine.getText().toString().trim();
+        String orderNote = order_note.getText().toString().trim();
 
         if (orderTitle2.equals("")||orderCreator.equals("")||orderDescrip.equals("")||orderCost.equals("")
                 ||orderDuedate.equals("")||orderStatus.equals("")||orderPriority.equals("")) {
             Toast.makeText(this,
                     "Please enter all information or leave NONE.", Toast.LENGTH_LONG).show();
             return;
-        }else {
+        } else {
             if(!orderTitle2.equals(orderTitle)) {
                 mDatabase.child(orderTitle).removeValue();
             }
@@ -364,7 +370,6 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-
                 }
             });
             if(temple.contains(orderTitle2)){
@@ -374,8 +379,10 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
 
             }
             else {
-                workorder_info order = new workorder_info(orderTitle2, orderDescrip, orderNote, orderDuedate,
-                        orderCost, orderPriority, orderPlan, orderStatus, orderImage, orderCreator, orderMachine);
+                workorder_info order = new workorder_info(
+                        orderTitle2, orderDescrip, orderNote, orderDuedate,
+                        orderCost, orderPriority, orderPlan, orderStatus,
+                        orderImage, orderCreator, orderMachine);
                 mDatabase.child(orderTitle2).setValue(order);
             }
 
@@ -417,11 +424,11 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
         intent.setAction(Intent.ACTION_PICK);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), 71);
     }
-    private void takeImage(){
+
+    private void takeImage() {
         Intent intent = new Intent();
         intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.addCategory(Intent.CATEGORY_DEFAULT);
         startActivityForResult(intent, 71);
     }
-
 }

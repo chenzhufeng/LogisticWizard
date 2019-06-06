@@ -34,7 +34,7 @@ import java.io.IOException;
 public class workorder_view extends AppCompatActivity {
     private String role = home_page.role;
     private String name = home_page.name;
-    //private String orderCreator;
+    private TextView maintain_plan;
     private TextView order_title;
     private TextView order_status;
     private TextView order_priority;
@@ -69,6 +69,7 @@ public class workorder_view extends AppCompatActivity {
         order_image = findViewById(R.id.orderImage);
         order_machine = findViewById(R.id.order_machine);
         order_note = findViewById(R.id.note);
+        maintain_plan = findViewById(R.id.maintain_plan);
 
         edit_button = findViewById(R.id.editButton);
         back_button = findViewById(R.id.backButton);
@@ -93,7 +94,7 @@ public class workorder_view extends AppCompatActivity {
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent (workorder_view.this, workorder_main.class);
+                Intent intent = new Intent(workorder_view.this, workorder_main.class);
                 startActivity(intent);
             }
         });
@@ -101,7 +102,7 @@ public class workorder_view extends AppCompatActivity {
         edit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (v.getContext(), workorder_edit.class);
+                Intent intent = new Intent(v.getContext(), workorder_edit.class);
                 intent.putExtra("orderTitle", order_title.getText());
                 startActivity(intent);
             }
@@ -117,7 +118,8 @@ public class workorder_view extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {}
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
         });
 
         mDatabase.child(orderTitle).child("order_priority").addValueEventListener(new ValueEventListener() {
@@ -159,36 +161,29 @@ public class workorder_view extends AppCompatActivity {
             }
         });
 
-        mDatabase.child(orderTitle).child("order_descrip").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        mDatabase.child(orderTitle).child("order_descrip").addValueEventListener(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String orderDescrip;
+                        orderDescrip = (String) dataSnapshot.getValue();
+                        order_description.setText(orderDescrip);
+                    }
 
-                String orderDescrip;
-                orderDescrip = (String) dataSnapshot.getValue();
-                order_description.setText(orderDescrip);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {}
         });
 
         mDatabase.child(orderTitle).child("order_cost").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 String orderCost;
                 orderCost = (String) dataSnapshot.getValue();
                 order_cost.setText(orderCost);
-
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
         });
 
         mDatabase.child(orderTitle).child("order_dates").addValueEventListener(new ValueEventListener() {
@@ -210,16 +205,13 @@ public class workorder_view extends AppCompatActivity {
         mDatabase.child(orderTitle).child("order_machine").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 String orderMachine;
                 orderMachine = (String) dataSnapshot.getValue();
                 order_machine.setText(orderMachine);
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
 
@@ -229,7 +221,6 @@ public class workorder_view extends AppCompatActivity {
                 if (!dataSnapshot.exists()) {
                     return;
                 }
-
 
                 String orderImagePath;
                 orderImagePath = (String) dataSnapshot.getValue();
@@ -256,71 +247,39 @@ public class workorder_view extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
         });
 
-        /*
-        delete_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showNormalDialog();
-            }
-        });
-        back_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent (workorder_view.this, workorder_main.class);
-                startActivity(intent);
-            }
-        });
+        mDatabase.child(orderTitle).child("order_note")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        order_note.setText((String) dataSnapshot.getValue());
+                    }
 
-        edit_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent (v.getContext(), workorder_edit.class);
-                intent.putExtra("orderTitle", order_title.getText());
-                startActivity(intent);
-            }
-        });
-        //*/
-        
-        /*
-        if (role.equals("Employee")) {
-            edit_button.setEnabled(false);
-            delete_button.setEnabled(false);
-            //delete_button.setVisibility(View.INVISIBLE);
-        } else {
-            edit_button.setEnabled(true);
-            delete_button.setEnabled(true);
-            //delete_button.setVisibility(View.VISIBLE);
-        }
+                    @Override
+                    public void onCancelled(
+                            @NonNull DatabaseError databaseError) {}
+                });
+
+        //*
+        mDatabase.child(orderTitle).child("maintain_plan").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    maintain_plan.setText((String) dataSnapshot.getValue());
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {}
+            });
         //*/
     }
-
-    /*
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (role.equals("Employee") && !orderCreator.equals(name)) {
-            edit_button.setEnabled(false);
-            delete_button.setEnabled(false);
-            //delete_button.setVisibility(View.INVISIBLE);
-        } else {
-            edit_button.setEnabled(true);
-            delete_button.setEnabled(true);
-            //delete_button.setVisibility(View.VISIBLE);
-        }
-    }
-    //*/
 
         private void showNormalDialog() {
             /* @setIcon 设置对话框图标
              * @setTitle 设置对话框标题
              * @setMessage 设置对话框消息提示
-             * setXXX方法返回Dialog对象，因此可以链式设置属性
-             */
+             * setXXX方法返回Dialog对象，因此可以链式设置属性 */
             final AlertDialog.Builder normalDialog =
                     new AlertDialog.Builder(this);
 
@@ -347,6 +306,3 @@ public class workorder_view extends AppCompatActivity {
             normalDialog.show();
         }
     }
-
-
-
