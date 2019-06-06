@@ -281,7 +281,7 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
         final AlertDialog.Builder normalDialog =
                 new AlertDialog.Builder(this);
 
-        normalDialog.setTitle(" I am a Dialog");
+        normalDialog.setTitle("Add a picture for machine");
         normalDialog.setMessage("Which one do you want to choose?");
         normalDialog.setPositiveButton("gallery",
                 new DialogInterface.OnClickListener() {
