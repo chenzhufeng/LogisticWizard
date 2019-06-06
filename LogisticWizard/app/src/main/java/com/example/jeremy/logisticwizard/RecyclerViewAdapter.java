@@ -9,26 +9,15 @@ import android.view.View;
 import android.content.Context;
 import android.content.Intent;
 
+import java.util.List;
+
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
-    private String[] workOrders;
-    private String[] Priorities;
-    private String[] Dates;
-    private String[] Creators;
-    private String[] Progress;
+    private List<workorder_info> workOrders;
     private Context context;
 
     // Constructor for the adapter
-    public RecyclerViewAdapter(
-            String[] workOrders, String[] Priorities, String[] Dates,
-            String[] Creators, String[] Progress,
-            Context context
-    ) {
-        //this.context = context;
+    public RecyclerViewAdapter(Context context, List<workorder_info> workOrders) {
         this.workOrders = workOrders;
-        this.Priorities = Priorities;
-        this.Dates = Dates;
-        this.Creators = Creators;
-        this.Progress = Progress;
         this.context = context;
     }
 
@@ -44,18 +33,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     // Replace contents of a view
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
-        holder.textView.setText(workOrders[position]);
-        holder.priority.setText(Priorities[position]);
-        holder.date.setText(Dates[position]);
-        holder.creator.setText(Creators[position]);
-        holder.progress.setText(Progress[position]);
+        workorder_info workorder = workOrders.get(position);
+        holder.textView.setText(workorder.order_title);
+        holder.priority.setText(workorder.order_priority);
+        holder.date.setText(workorder.order_dates);
+        holder.creator.setText(workorder.order_creator);
+        holder.progress.setText(workorder.order_status);
     }
 
     // Return size of dataset
     @Override
     public int getItemCount() {
-        return workOrders.length;
+        return workOrders.size();
     }
+
 
     // Provide a reference to the views for each data item
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -75,8 +66,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 @Override
                 public void onClick(View view) {
                     Context c = view.getContext();
-                    Intent intent = new Intent(c, workorder_view.class);
-                    c.startActivity(intent);
+                    Intent order_intent = new Intent(c, workorder_view.class);
+                    order_intent.putExtra("orderTitle", textView.getText());
+
+
+                    c.startActivity(order_intent);
                 }
             });
         }

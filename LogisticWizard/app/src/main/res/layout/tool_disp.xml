@@ -60,7 +60,9 @@
         android:layout_marginEnd="289dp"
         android:layout_marginRight="289dp"
         android:layout_marginBottom="21dp"
-        android:text="Edit" />
+        android:text="Edit"
+        android:textColor="@color/white"
+        android:background="@drawable/button_background_login"/>
 
     <Button
         android:id="@+id/backButton"
@@ -78,7 +80,10 @@
         android:layout_marginEnd="34dp"
         android:layout_marginRight="34dp"
         android:layout_marginBottom="21dp"
-        android:text="Back" />
+        android:text="Back"
+        android:textColor="@color/white"
+        android:background="@drawable/button_background_login"
+        />
 
     <Button
         android:id="@+id/deleteTools"
@@ -96,6 +101,8 @@
         android:layout_marginEnd="160dp"
         android:layout_marginRight="160dp"
         android:layout_marginBottom="21dp"
-        android:text="Delete" />
+        android:text="Delete"
+        android:textColor="@color/white"
+        android:background="@drawable/button_background_login"/>
 
 </RelativeLayout>

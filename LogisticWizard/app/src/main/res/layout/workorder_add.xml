@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     tools:context=".workorder_add">
 
     <ScrollView
@@ -25,34 +26,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/description"
-                android:textColor="@android:color/holo_green_dark"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titleInput" />
+                app:layout_constraintTop_toBottomOf="@+id/machineSpinner" />
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/textInputLayout"
-                android:layout_width="395dp"
+            <EditText
+                android:id="@+id/orderDescription"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                app:hintAnimationEnabled="false"
-                app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/descriptionText">
+                app:layout_constraintTop_toBottomOf="@id/descriptionText" />
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/orderDescription"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </android.support.design.widget.TextInputLayout>
 
             <TextView
                 android:id="@+id/imageText"
@@ -62,34 +52,28 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/image"
-                android:textColor="@android:color/holo_green_dark"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+                app:layout_constraintTop_toBottomOf="@id/orderDescription" />
 
             <TextView
                 android:id="@+id/priorityText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/priority"
-                android:textColor="@android:color/holo_green_dark"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
             <View
                 android:id="@+id/divider"
-                android:layout_width="395dp"
+                android:layout_width="0dp"
                 android:layout_height="5dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
                 android:layout_marginTop="11dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:background="@drawable/inventory_bar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/priorityText" />
@@ -99,11 +83,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
                 android:entries="@array/priorities"
+                app:layout_constraintBottom_toBottomOf="@+id/priorityText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/priorityText"
                 app:layout_constraintTop_toTopOf="@+id/priorityText" />
@@ -116,8 +98,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:text="Maintenance"
-                android:textColor="@android:color/holo_green_dark"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider" />
 
@@ -126,8 +107,8 @@
                 android:layout_width="202dp"
                 android:layout_height="25dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/maintenanceText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/maintenanceText"
                 app:layout_constraintTop_toTopOf="@+id/maintenanceText" />
@@ -140,112 +121,99 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:text="Notes"
-                android:textColor="@android:color/holo_green_dark"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/maintenanceText" />
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/textInputLayout2"
-                android:layout_width="392dp"
+            <EditText
+                android:id="@+id/orderNote"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/notesText">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/orderNote"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-            </android.support.design.widget.TextInputLayout>
+                app:layout_constraintTop_toBottomOf="@+id/notesText" />
 
             <TextView
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_weight="1"
                 android:text="Status"
-                android:textColor="@android:color/holo_green_dark"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+                app:layout_constraintTop_toBottomOf="@+id/orderNote" />
 
             <Spinner
                 android:id="@+id/orderStatus"
                 android:layout_width="218dp"
                 android:layout_height="36dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
                 android:entries="@array/statuses"
+                app:layout_constraintBottom_toBottomOf="@+id/textView9"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView9"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+                app:layout_constraintTop_toTopOf="@+id/textView9" />
 
             <TextView
                 android:id="@+id/dueDateText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:text="Due Date"
-                android:textColor="@android:color/holo_green_dark"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView9" />
+                app:layout_constraintTop_toBottomOf="@id/orderStatus" />
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="262dp"
+            <TextView
+                android:id="@+id/dueDateInput"
+                android:hint="Click Here to Add Date"
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/dueDateText"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/dueDateText">
+                app:layout_constraintStart_toEndOf="@+id/dueDateText"
+                app:layout_constraintTop_toTopOf="@id/dueDateText" />
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/dueDateInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </android.support.design.widget.TextInputLayout>
 
             <TextView
                 android:id="@+id/costText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="16dp"
                 android:layout_weight="1"
                 android:text="Cost"
-                android:textColor="@android:color/holo_green_dark"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dueDateText" />
+                app:layout_constraintTop_toBottomOf="@id/dueDateInput" />
 
             <EditText
                 android:id="@+id/orderCost"
-                android:layout_width="312dp"
-                android:layout_height="62dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:ems="10"
                 android:inputType="numberDecimal"
-                android:textSize="30sp"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/costText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.676"
-                app:layout_constraintStart_toEndOf="@+id/costText"
-                app:layout_constraintTop_toTopOf="@+id/costText" />
+                app:layout_constraintStart_toEndOf="@id/costText"
+                app:layout_constraintTop_toTopOf="@id/costText" />
 
             <ImageButton
                 android:id="@+id/imageButton"
@@ -266,30 +234,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:text="Title"
-                android:textColor="@android:color/holo_green_dark"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/titleInput"
-                android:layout_width="391dp"
+            <EditText
+                android:id="@+id/orderTitle"
+                android:layout_width="295dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/titleTextView"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titleTextView">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/orderTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </android.support.design.widget.TextInputLayout>
+                app:layout_constraintStart_toEndOf="@id/titleTextView"
+                app:layout_constraintTop_toTopOf="@id/titleTextView" />
 
             <Button
                 android:id="@+id/submitButton"
@@ -300,11 +260,36 @@
                 android:layout_marginEnd="8dp"
                 android:onClick="onClick"
                 android:text="@string/submit"
+                android:textColor="@color/white"
+                android:background="@drawable/button_background_login"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.495"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/orderCost" />
+
+            <TextView
+                android:id="@+id/machineText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:text="Machine"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/orderTitle" />
+
+            <Spinner
+                android:id="@+id/machineSpinner"
+                android:layout_width="268dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:clickable="true"
+                app:layout_constraintBottom_toBottomOf="@+id/machineText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/machineText"
+                app:layout_constraintTop_toTopOf="@+id/machineText" />
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
