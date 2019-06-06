@@ -53,11 +53,11 @@ public class calendar_main_fragment extends Fragment {
         mDatabase = FirebaseDatabase.getInstance().getReference("orders");
 
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("M/dd/yyyy"); //may need mm/dd/yyyy
+        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy"); //may need mm/dd/yyyy
         final String formatDate = sdf.format(c.getTime());
-        //problem ... sometimes there will be 0's
 
         t.setText(formatDate);
+
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -98,29 +98,6 @@ public class calendar_main_fragment extends Fragment {
                 t.setText(date);
 
 
-            //
-
-                //***new stuff ***
-
-            //connor's logic
-                //loop through every entry in firebase workorder database
-                    //does "date" ==  date of this workorder?
-                        // yes --> add to list
-                        //no --> don't add
-                //display list
-
-                /*
-                machine_info_list.clear();
-                if (date.equals("5/10/2019")){
-                    machine_info_list.add("1. This shows it worked");
-                    machine_info_list.add(date);
-                    machine_info_list.add("2. This shows it worked");
-                    machine_info_list.add("3. This shows it worked");
-                    machine_info_list.add("4. This shows it worked");
-                    machine_info_list.add("5. This shows it worked");
-                }
-                */
-
                 mDatabase.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -150,41 +127,11 @@ public class calendar_main_fragment extends Fragment {
 
                     }
                 });
-
-                //adapter = new ArrayAdapter<String> (getActivity(), android.R.layout.simple_list_item_1, machine_info_list);
-                //lv.setAdapter(adapter);
-
-
-                /*
-                 mDatabase.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        //if (workorder_infoList != null){
-                        machine_info_list.clear();
-                        //}
-                        for(DataSnapshot machineSnapshot : dataSnapshot.getChildren()){
-                            workorder_info workorder = machineSnapshot.getValue(workorder_info.class);
-                            if(machine_name.equals(workorder.order_dates)) {
-                                machine_info_list.add(workorder);
-                            }
-                        }
-                        // Specify the adapter
-                        //mAdapter = new RecyclerViewAdapter(getApplicationContext(), machine_info_list);
-                        //recyclerView.setAdapter(mAdapter);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-                 */
-
-
             }
         });
         return v;
     }
+
 
     public void machine_selected(int i, final ArrayList<String> machine_info_list, View view){
         Intent order_intent = new Intent(view.getContext(), workorder_view.class);
