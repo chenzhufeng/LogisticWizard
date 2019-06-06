@@ -22,9 +22,9 @@ public class RecyclerViewAdapter_userInfo extends RecyclerView.Adapter<RecyclerV
     public RecyclerViewAdapter_userInfo(Context context, List<user_info> userinfo) {
         this.userinfo = userinfo;
         this.context = context;
-        adapter1 = ArrayAdapter.createFromResource(context,
+        this.adapter1 = ArrayAdapter.createFromResource(context,
                 R.array.user_role, android.R.layout.simple_spinner_item);
-        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        this.adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     }
 
     // Used to create new views
