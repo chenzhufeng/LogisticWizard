@@ -31,7 +31,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.regex.Pattern;
 
 public class profile_main_fragment extends Fragment {
-
     TextView user_name;
     String temp;
     TextView user_shortbio;
@@ -46,7 +45,6 @@ public class profile_main_fragment extends Fragment {
     String Uid;
     String email;
     AuthCredential credential;
-
     Pattern pswPattern = Pattern.compile("^[a-zA-Z]\\w{5,15}$");
 
     @Nullable
