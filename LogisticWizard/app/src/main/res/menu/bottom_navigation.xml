@@ -9,8 +9,8 @@
 
     <item
     android:id="@+id/nav_orders"
-    android:icon="@drawable/ic_work_black_24dp"
-    android:title="Work Orders"
+    android:icon="@drawable/ic_calendar_interface_symbol_tool"
+    android:title="Calendar"
     />
 
     <item

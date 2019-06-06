@@ -1,14 +1,15 @@
 package com.example.jeremy.logisticwizard;
 
+
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
+import android.support.v7.app.AppCompatActivity;
+
+
 
 public class profile_main extends AppCompatActivity {
 
@@ -20,6 +21,7 @@ public class profile_main extends AppCompatActivity {
         BottomNavigationView bottomNav  = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         bottomNav.getMenu().getItem(0).setCheckable(false);
+        bottomNav.getMenu().getItem(2).setCheckable(true);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new profile_main_fragment()).commit();
     }
@@ -40,7 +42,7 @@ public class profile_main extends AppCompatActivity {
                             //Intent intent2 = new Intent(workOrders.this, workOrders.class);
                             //startActivity(intent2);
                             menuItem.setCheckable(true);
-                            selectedFragment = new workorder_main_fragment();
+                            selectedFragment = new calendar_main_fragment();
                             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                                     selectedFragment).commit();
                             break;

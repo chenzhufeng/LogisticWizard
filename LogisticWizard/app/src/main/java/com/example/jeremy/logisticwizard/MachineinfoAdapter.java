@@ -28,7 +28,7 @@ public class MachineinfoAdapter extends ArrayAdapter<machine_info> {
         View ListView = inflater.inflate(android.R.layout.simple_list_item_1, null, true);
 
         TextView machineName = (TextView)ListView.findViewById(android.R.id.text1);
-        //Toast.makeText(machine_main_fragment.this, "Please enter an email !", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(machine_main.this, "Please enter an email !", Toast.LENGTH_SHORT).show();
         machine_info machine = machine_infoList.get(position);
         machineName.setText(machine.machine_name);
 
