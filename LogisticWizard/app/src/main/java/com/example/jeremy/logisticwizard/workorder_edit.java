@@ -53,6 +53,7 @@ import java.util.UUID;
 
 public class workorder_edit extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private String role = home_page.role;
+    private EditText maintain_plan;
     private EditText order_title;
     private Spinner order_status;
     private Spinner order_priority;
@@ -68,7 +69,6 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
     private Button back_button;
     String orderTitle;
     String orderImage;
-    String orderPlan;
     List<String> temple=new ArrayList<>();
     protected DatabaseReference mDatabase;
     protected StorageReference mStorage;
@@ -90,6 +90,7 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
         order_image = findViewById(R.id.photoHolder);
         order_machine = findViewById(R.id.machineHolder);
         order_note = findViewById(R.id.order_note);
+        maintain_plan = findViewById(R.id.maintain_plan);
 
         order_status = findViewById(R.id.statusSpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -262,13 +263,12 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
         mDatabase.child(orderTitle).child("maintain_plan").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                orderPlan = (String) dataSnapshot.getValue();
+                maintain_plan.setText((String) dataSnapshot.getValue());
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }});
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
+        });
 
         mDatabase.child(orderTitle).child("order_machine").addValueEventListener(new ValueEventListener() {
             @Override
@@ -358,6 +358,7 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
         String orderPriority = order_priority.getSelectedItem().toString().trim();
         String orderMachine = order_machine.getText().toString().trim();
         String orderNote = order_note.getText().toString().trim();
+        String orderPlan = maintain_plan.getText().toString().trim();
 
         if (orderTitle2.equals("")||orderCreator.equals("")||orderDescrip.equals("")||orderCost.equals("")
                 ||orderDuedate.equals("")||orderStatus.equals("")||orderPriority.equals("")) {
@@ -374,25 +375,22 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                     for(DataSnapshot orderSnapshot : dataSnapshot.getChildren()){
-                        if(!orderSnapshot.getKey().equals(orderTitle)){
+                        if(!orderSnapshot.getKey().equals(orderTitle)) {
                             temple.add(orderSnapshot.getKey());
                         }
                     }
                 }
 
                 @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                }
+                public void onCancelled(@NonNull DatabaseError databaseError) {}
             });
             if(temple.contains(orderTitle2)){
                 Toast.makeText(workorder_edit.this,
                         "workorder already exists, please enter a new name.", Toast.LENGTH_LONG).show();
                 return;
 
-            }
-            else {
-                if(filePath != null)
-                {
+            } else {
+                if(filePath != null) {
                     final ProgressDialog progressDialog = new ProgressDialog(this);
                     //progressDialog.setTitle("Uploading...");
                     //progressDialog.show();
@@ -509,9 +507,7 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 41 && resultCode == RESULT_OK
-                && data != null )
-        {
+        if(requestCode == 41 && resultCode == RESULT_OK && data != null ) {
             Toast.makeText(this,
                     "Error occur:"+resultCode,  Toast.LENGTH_SHORT).show();
             filePath = data.getData();
@@ -523,45 +519,30 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
                 Picasso.with(this).load(filePath).resize(width, height).into(order_image);
                 //image.setImageBitmap(bitmap);
 
-            }
-            catch (IOException e)
-            {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
             if(data.hasExtra("data")){
-
                 Bitmap bitMap = data.getParcelableExtra("data");
-
             }
 
-        }else if(requestCode == 42 && resultCode == RESULT_OK
-                && data != null ){
-            try
-            {
+        } else if(requestCode == 42 && resultCode == RESULT_OK && data != null ) {
+            try {
                 float scale = this.getResources().getDisplayMetrics().density;
                 int width = (int)(350*scale+0.5f);
                 int height = (int)(200*scale+0.5f);
                 Bitmap bitmap= BitmapFactory.decodeStream(getContentResolver().openInputStream(filePath));
                 Picasso.with(this).load(filePath).resize(width, height).into(order_image);
                 //edit_machine_image.setImageBitmap(bitmap);
-            }
-            catch (FileNotFoundException e)
-            {
+            } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-
-
-        }
-
-
-        else{
+        } else {
             boolean t = true;
-            if(data.getData()==null){
+            if(data.getData() == null) {
                 t = false;
             }
-            Toast.makeText(this,
-                    "Error occur:"+t,  Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error occur:"+t, Toast.LENGTH_SHORT).show();
         }
-
     }
 }

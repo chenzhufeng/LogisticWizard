@@ -219,7 +219,7 @@
                 android:id="@+id/maintain_plan"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:hint="Maintenance Person"
+                android:hint="Maintenance Plan"
                 android:paddingTop="5dp"
                 android:textColor="@android:color/holo_blue_dark"
                 android:textSize="20sp" />
@@ -249,7 +249,7 @@
             <TextView
                 android:id="@+id/note"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:hint="Notes"
                 android:textColor="@android:color/holo_blue_dark"
                 android:textSize="20sp" />

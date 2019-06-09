@@ -133,6 +133,7 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
 
         if (!role.equals("Admin")) {
             add_machine.setVisibility(View.GONE);
+            bt.setVisibility(View.GONE);
         }
 
         mDatabase.addValueEventListener(new ValueEventListener() {

@@ -33,7 +33,6 @@ import java.io.IOException;
 
 public class workorder_view extends AppCompatActivity {
     private String role = home_page.role;
-    private String name = home_page.name;
     private TextView maintain_plan;
     private TextView order_title;
     private TextView order_status;
@@ -59,6 +58,7 @@ public class workorder_view extends AppCompatActivity {
         setContentView(R.layout.workorder_disp);
         mDatabase = FirebaseDatabase.getInstance().getReference("orders");
         mStorage = FirebaseStorage.getInstance().getReference();
+        //imageRef = mStorage.child("/images/cfd4b4b0-6cff-424d-af23-62d4e792f340");
         order_title = findViewById(R.id.titleText);
         order_Creator = findViewById(R.id.creatorHolder);
         order_status = findViewById(R.id.currentStatusText);
@@ -72,7 +72,9 @@ public class workorder_view extends AppCompatActivity {
         maintain_plan = findViewById(R.id.maintain_plan);
 
         edit_button = findViewById(R.id.editButton);
+
         back_button = findViewById(R.id.backButton);
+
         delete_button = findViewById(R.id.deleteButton);
         back_button = findViewById(R.id.backButton);
 
@@ -80,44 +82,30 @@ public class workorder_view extends AppCompatActivity {
         Bundle data = machine_info.getExtras();
 
         orderTitle = data.get("orderTitle").toString();
+
+
     }
 
     protected void onStart() {
         super.onStart();
-        delete_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showNormalDialog();
-            }
-        });
-        back_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(workorder_view.this, workorder_main.class);
-                startActivity(intent);
-            }
-        });
 
-        edit_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), workorder_edit.class);
-                intent.putExtra("orderTitle", order_title.getText());
-                startActivity(intent);
-            }
-        });
+        if (role.equals("Employee")) {
+            edit_button.setVisibility(View.INVISIBLE);
+        }
+
         order_title.setText(orderTitle);
         mDatabase.child(orderTitle).child("order_status").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 String orderStatus;
                 orderStatus = (String) dataSnapshot.getValue();
                 order_status.setText(orderStatus);
+
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
         });
 
         mDatabase.child(orderTitle).child("order_priority").addValueEventListener(new ValueEventListener() {
@@ -127,6 +115,7 @@ public class workorder_view extends AppCompatActivity {
                 String orderPriority;
                 orderPriority = (String) dataSnapshot.getValue();
                 order_priority.setText(orderPriority);
+
             }
 
             @Override
@@ -138,19 +127,11 @@ public class workorder_view extends AppCompatActivity {
         mDatabase.child(orderTitle).child("order_creator").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 String orderCreator;
                 orderCreator = (String) dataSnapshot.getValue();
                 order_Creator.setText(orderCreator);
 
-                if (role.equals("Employee") && !orderCreator.equals(name)) {
-                    edit_button.setEnabled(false);
-                    delete_button.setEnabled(false);
-                    //delete_button.setVisibility(View.INVISIBLE);
-                } else {
-                    edit_button.setEnabled(true);
-                    delete_button.setEnabled(true);
-                    //delete_button.setVisibility(View.VISIBLE);
-                }
             }
 
             @Override
@@ -159,29 +140,37 @@ public class workorder_view extends AppCompatActivity {
             }
         });
 
-        mDatabase.child(orderTitle).child("order_descrip").addValueEventListener(
-                new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        String orderDescrip;
-                        orderDescrip = (String) dataSnapshot.getValue();
-                        order_description.setText(orderDescrip);
-                    }
+        mDatabase.child(orderTitle).child("order_descrip").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {}
+                String orderDescrip;
+                orderDescrip = (String) dataSnapshot.getValue();
+                order_description.setText(orderDescrip);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
         });
 
         mDatabase.child(orderTitle).child("order_cost").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 String orderCost;
                 orderCost = (String) dataSnapshot.getValue();
+                //System.out.println(orderCost);
                 order_cost.setText(orderCost);
+
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {}
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
         });
 
         mDatabase.child(orderTitle).child("order_dates").addValueEventListener(new ValueEventListener() {
@@ -203,13 +192,16 @@ public class workorder_view extends AppCompatActivity {
         mDatabase.child(orderTitle).child("order_machine").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 String orderMachine;
                 orderMachine = (String) dataSnapshot.getValue();
                 order_machine.setText(orderMachine);
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
 
@@ -219,6 +211,7 @@ public class workorder_view extends AppCompatActivity {
                 if (!dataSnapshot.exists()) {
                     return;
                 }
+
 
                 String orderImagePath;
                 orderImagePath = (String) dataSnapshot.getValue();
@@ -262,45 +255,69 @@ public class workorder_view extends AppCompatActivity {
 
         //*
         mDatabase.child(orderTitle).child("maintain_plan").addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    maintain_plan.setText((String) dataSnapshot.getValue());
-                }
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                maintain_plan.setText((String) dataSnapshot.getValue());
+            }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {}
-            });
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
+        });
         //*/
-    }
-        private void showNormalDialog() {
-            /* @setIcon 设置对话框图标
-             * @setTitle 设置对话框标题
-             * @setMessage 设置对话框消息提示
-             * setXXX方法返回Dialog对象，因此可以链式设置属性 */
-            final AlertDialog.Builder normalDialog =
-                    new AlertDialog.Builder(this);
 
-            normalDialog.setTitle("Delete Confirmation");
-            normalDialog.setMessage("Do you want to delete this work order?");
-            normalDialog.setPositiveButton("Yes",
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            mDatabase.child(orderTitle).removeValue();
-                            Toast.makeText(workorder_view.this, "Deleted", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent (workorder_view.this, workorder_main.class);
-                            startActivity(intent);
-                        }
-                    });
-            normalDialog.setNegativeButton("No",
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            //...To-do
-                        }
-                    });
-            // 显示
-            normalDialog.show();
-        }
-    }
+        delete_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showNormalDialog();
+            }
+        });
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent (workorder_view.this, workorder_main.class);
+                startActivity(intent);
+            }
+        });
 
+        edit_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (v.getContext(), workorder_edit.class);
+                intent.putExtra("orderTitle", order_title.getText());
+                startActivity(intent);
+            }
+        });
+
+    }
+    private void showNormalDialog() {
+        /* @setIcon 设置对话框图标
+         * @setTitle 设置对话框标题
+         * @setMessage 设置对话框消息提示
+         * setXXX方法返回Dialog对象，因此可以链式设置属性
+         */
+        final AlertDialog.Builder normalDialog =
+                new AlertDialog.Builder(this);
+
+        normalDialog.setTitle("Delete Confirmation");
+        normalDialog.setMessage("Do you want to delete this work order?");
+        normalDialog.setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mDatabase.child(orderTitle).removeValue();
+                        Toast.makeText(workorder_view.this, "Deleted", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent (workorder_view.this, workorder_main.class);
+                        startActivity(intent);
+                    }
+                });
+        normalDialog.setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //...To-do
+                    }
+                });
+        // 显示
+        normalDialog.show();
+    }
+}

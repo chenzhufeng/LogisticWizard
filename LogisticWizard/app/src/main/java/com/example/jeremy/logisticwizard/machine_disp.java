@@ -74,7 +74,6 @@ public class machine_disp extends Activity implements View.OnClickListener{
 
         if (!role.equals("Admin")) {
             editButton.setVisibility(View.INVISIBLE);
-
         }
         Intent machine_info = getIntent();
         Bundle data = machine_info.getExtras();

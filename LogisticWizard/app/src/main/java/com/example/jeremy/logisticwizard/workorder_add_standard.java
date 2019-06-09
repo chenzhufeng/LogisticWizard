@@ -48,7 +48,7 @@ public class workorder_add_standard extends AppCompatActivity implements View.On
     private EditText orderTitle;
     private EditText orderDescription;
     private Spinner orderPriority;
-    private Spinner orderStatus;
+    //private Spinner orderStatus;
     private Spinner machineSpinner;
     private Button submit;
     private ImageButton image;
@@ -77,12 +77,14 @@ public class workorder_add_standard extends AppCompatActivity implements View.On
         orderPriority.setAdapter(adapter);
         orderPriority.setOnItemSelectedListener(this);
 
+        /*
         orderStatus = findViewById(R.id.orderStatus);
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
                 R.array.statuses, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         orderStatus.setAdapter(adapter1);
         orderStatus.setOnItemSelectedListener(this);
+        //*/
 
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
                 R.array.machineQuantityStringArray, android.R.layout.simple_spinner_item);
@@ -92,11 +94,6 @@ public class workorder_add_standard extends AppCompatActivity implements View.On
         String instance = "gs://logisticwizard-6d896.appspot.com/";
         FirebaseStorage storage = FirebaseStorage.getInstance(instance);
         storageReference = storage.getReference();
-
-        machineSpinner = findViewById(R.id.machineSpinner);
-        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(
-                this,android.R.layout.simple_spinner_item, machineList);
-        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         mDatabase1= FirebaseDatabase.getInstance().getReference("machines");
         machineList = new ArrayList<>();
@@ -111,10 +108,12 @@ public class workorder_add_standard extends AppCompatActivity implements View.On
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
         });
+        machineSpinner = findViewById(R.id.machineSpinner);
+        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(
+                this,android.R.layout.simple_spinner_item, machineList);
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         machineSpinner.setAdapter(adapter3);
         machineSpinner.setOnItemSelectedListener(this);
 
@@ -220,18 +219,16 @@ public class workorder_add_standard extends AppCompatActivity implements View.On
         String order_cost = "";
         String order_image = "null";
         String order_creator=username;
-
         String maintainPlan = "";
         String order_priority = orderPriority.getSelectedItem().toString().trim();
-        String order_status = orderStatus.getSelectedItem().toString().trim();
+        String order_status = "Open";
         String order_machine = machineSpinner.getSelectedItem().toString().trim();
 
-
         if (order_title.equals("") || order_descp.equals("") || order_priority.equals("")
-                || order_status.equals("") || order_machine.equals("")) {
+                || order_machine.equals("")) {
             Toast.makeText(this,
                     "Please enter all information or leave NONE.", Toast.LENGTH_LONG).show();
-        }else {
+        } else {
             Intent order_intent = new Intent();
             order_intent.putExtra("orderTitle", order_title);
             order_intent.putExtra("orderDescription", order_descp);
@@ -272,8 +269,6 @@ public class workorder_add_standard extends AppCompatActivity implements View.On
                             }
                         });
             }
-
-
             setResult(RESULT_OK, order_intent);
             finish();
         }
