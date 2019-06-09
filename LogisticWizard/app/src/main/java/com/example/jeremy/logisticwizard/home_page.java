@@ -117,4 +117,7 @@ public class home_page extends AppCompatActivity implements View.OnClickListener
             });
         }
     }
+
+    @Override
+    public void onClick(View v) {}
 }

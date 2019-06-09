@@ -76,6 +76,7 @@
             >
 
             <TextView
+                android:id="@+id/user_profile_type"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -87,6 +88,7 @@
                 android:text="User Type: employee" />
 
             <TextView
+                android:id="@+id/user_profile_email"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -100,6 +102,7 @@
                 android:text="Username/Email: cmonson@ucsc.edu" />
 
             <TextView
+                android:id="@+id/user_profile_phone"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -111,6 +114,7 @@
                 android:text="Phone Number: (925) 989-6318" />
 
             <TextView
+                android:id="@+id/user_profile_password"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"

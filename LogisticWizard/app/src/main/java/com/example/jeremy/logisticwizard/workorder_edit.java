@@ -59,7 +59,7 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
     private TextView order_Creator;
     private TextInputEditText order_description;
     private EditText order_cost;
-    private EditText order_Duedate;
+    private TextView order_Duedate;
     private EditText order_note;
     private ImageButton order_image;
     private TextView order_machine;
