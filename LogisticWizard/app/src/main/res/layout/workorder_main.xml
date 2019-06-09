@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
+    android:background="@drawable/bg"
     tools:context=".workorder_main">
 
     <View
@@ -15,8 +15,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:background="@drawable/menu_bar"
-        android:elevation="5dp" />
+        android:elevation="5dp"
+        android:background="#1C82CD"/>
 
     <View
         android:id="@+id/list_view"
@@ -30,8 +30,7 @@
         android:layout_marginTop="122dp"
         android:layout_marginEnd="14dp"
         android:layout_marginBottom="17dp"
-        android:elevation="5dp"
-        android:background="@drawable/list_view" />
+        android:elevation="5dp"/>
 
     <ListView
         android:id="@+id/order_list"
@@ -52,8 +51,8 @@
 
     <Button
         android:id="@+id/new_order"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="60dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="29dp"
@@ -64,7 +63,22 @@
         android:elevation="5dp"
         android:stateListAnimator="@null"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/add_order" />
+
+    <TextView
+        android:id="@+id/button_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add New Order"
+        android:textColor="@color/black"
+        android:textSize="10dp"
+        android:textStyle="bold|italic"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:elevation="5dp"
+        android:layout_below="@+id/new_order"
+        />
 
     <SearchView
         android:id="@+id/search_workorders"

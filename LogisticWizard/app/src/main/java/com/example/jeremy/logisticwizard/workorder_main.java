@@ -41,7 +41,6 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
     RecyclerViewAdapter mAdapter;
     LinearLayoutManager linearLayoutManager;
     ArrayList<workorder_info> workorder_infoList;
-
     private String role;
 
     protected DatabaseReference mDatabase;
@@ -85,7 +84,6 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
             });
         }
         mDatabase = FirebaseDatabase.getInstance().getReference("orders");
-
         BottomNavigationView bottomNav  = findViewById(id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         bottomNav.getMenu().getItem(0).setCheckable(false);
@@ -120,7 +118,6 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 29 && resultCode == RESULT_OK) {
-
             if (data != null) {
                 String order_title = data.getStringExtra("orderTitle");
                 String order_description = data.getStringExtra("orderDescription");

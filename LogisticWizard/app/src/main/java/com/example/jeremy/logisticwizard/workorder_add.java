@@ -1,6 +1,5 @@
 package com.example.jeremy.logisticwizard;
 
-
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,6 +20,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -48,6 +48,7 @@ import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -73,11 +74,11 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
     private String username;
     private List<String> machineList;
     private String role;
-
     private FirebaseStorage storage;
     StorageReference storageReference;
     private Uri filePath;
-
+    //added
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +90,34 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
         image = findViewById(R.id.imageButton);
         orderNote = findViewById(R.id.orderNote);
         orderDueDate = findViewById(R.id.dueDateInput);
+        orderDueDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                //this style works well on my emulator: android.R.style.Theme_DeviceDefault_Light_Dialo
+                DatePickerDialog dialog = new DatePickerDialog(workorder_add.this,
+                        android.R.style.Theme_DeviceDefault_Light_Dialog,
+                        mDateSetListener,
+                        year, month, day);
+                //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                String date = month + "/" + day + "/" + year;
+                orderDueDate.setText(date);
+            }
+        };
+        //--------------------------
+
         orderCost = findViewById(R.id.orderCost);
         submit = findViewById(R.id.submitButton);
 
@@ -112,7 +141,6 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         orderPlanSpinner.setAdapter(adapter2);
         orderPlanSpinner.setOnItemSelectedListener(this);
-
 
         storage=FirebaseStorage.getInstance("gs://logisticwizard-6d896.appspot.com/");
         storageReference = storage.getReference();
@@ -252,9 +280,7 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
                 Bitmap bitMap = data.getParcelableExtra("data");
 
             }
-
-        }else if(requestCode == 70 && resultCode == RESULT_OK
-                && data != null ){
+        } else if(requestCode == 70 && resultCode == RESULT_OK && data != null ) {
             try
             {
                 float scale = this.getResources().getDisplayMetrics().density;
@@ -271,7 +297,6 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
 
 
         }
-
 
         else{
             boolean t = true;

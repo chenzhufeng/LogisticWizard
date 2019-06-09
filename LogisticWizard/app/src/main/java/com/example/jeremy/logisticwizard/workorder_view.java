@@ -84,7 +84,6 @@ public class workorder_view extends AppCompatActivity {
 
     protected void onStart() {
         super.onStart();
-
         delete_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,7 +106,6 @@ public class workorder_view extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         order_title.setText(orderTitle);
         mDatabase.child(orderTitle).child("order_status").addValueEventListener(new ValueEventListener() {
             @Override
@@ -274,7 +272,6 @@ public class workorder_view extends AppCompatActivity {
             });
         //*/
     }
-
         private void showNormalDialog() {
             /* @setIcon 设置对话框图标
              * @setTitle 设置对话框标题
@@ -306,3 +303,4 @@ public class workorder_view extends AppCompatActivity {
             normalDialog.show();
         }
     }
+

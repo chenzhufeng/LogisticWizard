@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">1054521143127-c6dkveon8mbk1nk1ttu2garlip5463lj.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://logisticwizard-6d896.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">1054521143127</string>
+    <string name="google_api_key" translatable="false">AIzaSyDVcOFxHwQFNSCl8LirB1aXFNr47NpglJ0</string>
+    <string name="google_app_id" translatable="false">1:1054521143127:android:ed5148d3e5335a49</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDVcOFxHwQFNSCl8LirB1aXFNr47NpglJ0</string>
+    <string name="google_storage_bucket" translatable="false">logisticwizard-6d896.appspot.com</string>
+    <string name="project_id" translatable="false">logisticwizard-6d896</string>
+</resources>

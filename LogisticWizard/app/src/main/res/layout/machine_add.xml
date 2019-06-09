@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     tools:context=".machine_add">
     <TextView
         android:id="@+id/addMachine_label"
@@ -26,7 +27,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
 
             <EditText
                 android:id="@+id/enterMachineName"
@@ -136,14 +138,15 @@
                 android:layout_marginRight="10dp"
                 android:textAlignment="center"/>
 
-            <TextView
-                android:id="@+id/dummy_takephoto"
+
+
+            <ImageButton
+                android:id="@+id/add_machine_image"
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_gravity="start"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="10dp" />
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                app:srcCompat="@android:drawable/ic_menu_add" />
 
             <ImageButton
                 android:id="@+id/add_machine_image"
@@ -155,11 +158,14 @@
 
             <Button
                 android:id="@+id/add_machine_button"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 android:onClick="onClick"
-                android:text="Add">
+                android:text="Add"
+                android:textColor="@color/white"
+                android:background="@drawable/button_background_login">
             </Button>
 
 

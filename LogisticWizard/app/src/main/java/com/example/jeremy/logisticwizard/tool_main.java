@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -31,6 +32,7 @@ public class tool_main extends AppCompatActivity implements View.OnClickListener
     private Button add_tool;
     private SearchView sv;
     private ListView lv;
+    private TextView bt;
     ArrayList<tool_info> tool_infoList;
     //added
     View top;
@@ -56,6 +58,7 @@ public class tool_main extends AppCompatActivity implements View.OnClickListener
 
         sv = (SearchView) findViewById(R.id.tool_search);
         lv = (ListView) findViewById(R.id.list_of_tools); //will need this later
+        bt = (TextView) findViewById(R.id.button_text);
 
         //added
         top = (View) findViewById(R.id.top_view);
@@ -114,6 +117,7 @@ public class tool_main extends AppCompatActivity implements View.OnClickListener
                             add_tool.setVisibility(View.INVISIBLE);
                             top.setVisibility(View.INVISIBLE);
                             v2.setVisibility(View.INVISIBLE);
+                            bt.setVisibility(View.INVISIBLE);
 
                             //need other layouts
 
@@ -131,6 +135,7 @@ public class tool_main extends AppCompatActivity implements View.OnClickListener
                             add_tool.setVisibility(View.INVISIBLE);
                             top.setVisibility(View.INVISIBLE);
                             v2.setVisibility(View.INVISIBLE);
+                            bt.setVisibility(View.INVISIBLE);
                             //need other layouts
 
                             selectedFragment = new profile_main_fragment();

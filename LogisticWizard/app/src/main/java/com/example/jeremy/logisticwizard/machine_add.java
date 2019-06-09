@@ -272,7 +272,6 @@ public class machine_add extends AppCompatActivity implements View.OnClickListen
                 e.printStackTrace();
             }
 
-
         }
         else{
             boolean t = true;

@@ -14,15 +14,13 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
-
 import android.support.v4.app.Fragment;
 //added these
 import android.support.design.widget.BottomNavigationView; //for bottom nav
 import android.view.MenuItem;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,6 +40,7 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
     private View list;
     private String role = home_page.role;
     ArrayList<machine_info> machine_infoList;
+    private TextView bt;
 
     private ArrayAdapter<String> adapter;
 
@@ -49,9 +48,9 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.machine_main);
-
         bar = findViewById(R.id.machine_bar);
         list = (View) findViewById(R.id.list_view);
+        bt = (TextView) findViewById(R.id.button_text);
 
         BottomNavigationView bottomNav  = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
@@ -105,6 +104,7 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
                             bar.setVisibility(View.INVISIBLE);
                             list.setVisibility(View.INVISIBLE);
                             add_machine.setVisibility(View.INVISIBLE);
+                            bt.setVisibility(View.INVISIBLE);
                             menuItem.setCheckable(true);
                             selectedFragment = new calendar_main_fragment();
                             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -116,6 +116,7 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
                             bar.setVisibility(View.INVISIBLE);
                             list.setVisibility(View.INVISIBLE);
                             add_machine.setVisibility(View.INVISIBLE);
+                            bt.setVisibility(View.INVISIBLE);
                             selectedFragment = new profile_main_fragment();
                             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                                     selectedFragment).commit();
@@ -161,15 +162,15 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
     }
 
     public void machine_selected(int i, ArrayList<machine_info> machine_infoList, View view){
-        String machineName = machine_infoList.get(i).machine_name;
-        String machineDescp = machine_infoList.get(i).machine_descrip;
-        String machinePrice = machine_infoList.get(i).machine_price;
-        String machineLocat = machine_infoList.get(i).machine_location;
-        String machineType = machine_infoList.get(i).machine_type;
-        String machineParts = machine_infoList.get(i).machine_parts;
-        String maintainPlan = machine_infoList.get(i).maintain_plan;
-        String machineQuant = machine_infoList.get(i).machine_quant;
-        String machineImage = machine_infoList.get(i).machine_image;
+       String machineName = machine_infoList.get(i).machine_name;
+       String machineDescp = machine_infoList.get(i).machine_descrip;
+       String machinePrice = machine_infoList.get(i).machine_price;
+       String machineLocat = machine_infoList.get(i).machine_location;
+       String machineType = machine_infoList.get(i).machine_type;
+       String machineParts = machine_infoList.get(i).machine_parts;
+       String maintainPlan = machine_infoList.get(i).maintain_plan;
+       String machineQuant = machine_infoList.get(i).machine_quant;
+       String machineImage = machine_infoList.get(i).machine_image;
         Intent machine_intent = new Intent(view.getContext(), machine_disp.class);
         machine_intent.putExtra("machineName", machineName);
         machine_intent.putExtra("machineDescription", machineDescp);
@@ -207,7 +208,6 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
                     machineType, machineParts, machinePlan, machineQuant, machineImage);
         }
     }
-
 
     private void saveMachineToDB(String machineName, String machineDescription,
                                  String machinePrice, String machineLocation,

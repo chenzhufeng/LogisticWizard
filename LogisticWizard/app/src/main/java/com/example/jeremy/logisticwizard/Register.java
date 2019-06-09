@@ -50,8 +50,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         subButton = (Button)findViewById(R.id.subBtn);
         subButton.setOnClickListener(this);
 
-        backButton = (Button)findViewById(R.id.back);
-        backButton.setOnClickListener(this);
 
         getusername = (EditText)findViewById(R.id.enterUser);
         getpassword = (EditText)findViewById(R.id.enterPassword);
@@ -128,10 +126,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         if (view == subButton) {
             UserRegister();
 
-        }
-        if (view == backButton){
-            Intent intent = new Intent(view.getContext(), Login.class);
-            startActivity(intent);
         }
     }
 

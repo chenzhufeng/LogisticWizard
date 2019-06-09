@@ -146,17 +146,11 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
         location.setText(machineLocat);
         description.setText(machineDescp);
         machinePlanSpinner.setSelection(machinePlan2);
-
-
-
-
-
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-
         StorageReference imageRef = storageReference.child(machineImage);
         try {
             final File localimage = File.createTempFile(machineName,"jpg");
@@ -308,7 +302,6 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), 88);
     }
 
-
     private void takeImage(){
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         File photoFile = null;
@@ -346,7 +339,6 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
         currentPhotoPath = image.getAbsolutePath();
         return image;
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -394,8 +386,7 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
             }
 
 
-        }
-        else{
+        } else {
             boolean t = true;
             if(data.getData()==null){
                 t = false;
