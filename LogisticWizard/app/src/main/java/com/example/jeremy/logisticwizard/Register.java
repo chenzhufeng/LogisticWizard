@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -60,6 +61,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
     @Override
     protected void onStart() {
         super.onStart();
+        getpassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
         //ActionBar actionBar = getSupportActionBar();
         //actionBar.hide();
 
@@ -72,7 +74,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         final String infoPhone =  getPhone.getText().toString().trim();
         final String infoRole = "None";
 
-        //if the user doesnot enter username
+        //if the user does not enter username
         if (TextUtils.isEmpty(infoUsername)||TextUtils.isEmpty(infoPassword)||TextUtils.isEmpty(infoName)||TextUtils.isEmpty(infoPhone)) {
             Toast.makeText(this, "Please enter all information!", Toast.LENGTH_SHORT).show();
             return;
@@ -83,11 +85,13 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
             Toast.makeText(this, "Please enter correct email address!", Toast.LENGTH_SHORT).show();
             return;
         }
+
         // Check password format
         if(pswPattern.matcher(infoPassword).matches() == false){
             Toast.makeText(this, "Password format is incorrect!", Toast.LENGTH_SHORT).show();
             return;
         }
+
         mAuth.createUserWithEmailAndPassword(infoUsername, infoPassword)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -114,8 +118,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
                             Toast.makeText(Register.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
-
-                        // ...
                     }
                 });
 
@@ -125,8 +127,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View view) {
         if (view == subButton) {
             UserRegister();
-
         }
     }
-
 }

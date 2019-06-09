@@ -47,6 +47,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -74,6 +75,7 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
     protected StorageReference mStorage;
     StorageReference imageRef;
     private boolean isEmployee;
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -237,9 +239,37 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
         mDatabase.child(orderTitle).child("order_dates").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                /*
                 String orderDuedate;
                 orderDuedate = (String) dataSnapshot.getValue();
                 order_Duedate.setText(orderDuedate);
+                //*/
+                order_Duedate.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Calendar cal = Calendar.getInstance();
+                        int year = cal.get(Calendar.YEAR);
+                        int month = cal.get(Calendar.MONTH);
+                        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                        //this style works well on my emulator: android.R.style.Theme_DeviceDefault_Light_Dialo
+                        DatePickerDialog dialog = new DatePickerDialog(workorder_edit.this,
+                                android.R.style.Theme_DeviceDefault_Light_Dialog, mDateSetListener,
+                                year, month, day);
+                        //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                        dialog.show();
+                    }
+                });
+
+                mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        month = month + 1;
+                        String date = month + "/" + day + "/" + year;
+                        order_Duedate.setText(date);
+                    }
+                };
+                //--------------------------
             }
 
             @Override

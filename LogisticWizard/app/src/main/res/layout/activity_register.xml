@@ -15,27 +15,29 @@
         android:text="Sign Up"
         android:textColor="@color/black"
         android:textSize="50dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
 
 
     <EditText
+        android:id="@+id/enterUser"
         android:layout_below="@+id/signuptext"
         android:layout_marginTop="50dp"
-        android:id="@+id/enterUser"
         android:hint="@string/email"
         android:layout_centerHorizontal="true"
         android:layout_width="300dp"
         android:layout_height="50dp"/>
 
     <EditText
-        android:layout_below="@+id/enterUser"
         android:id="@+id/enterPassword"
+        android:layout_below="@+id/enterUser"
         android:layout_marginTop="20dp"
         android:hint="@string/password"
+        android:ellipsize="start"
         android:layout_centerHorizontal="true"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:inputType="textPassword"/>
+        android:inputType="textPassword"
+        android:importantForAutofill="no"/>
 
     <TextView
         android:layout_below="@+id/enterPassword"
