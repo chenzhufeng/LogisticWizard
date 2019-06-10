@@ -10,6 +10,7 @@ import android.support.design.widget.TextInputEditText;
 
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -130,6 +131,7 @@ public class workorder_view extends AppCompatActivity {
 
                 String orderCreator;
                 orderCreator = (String) dataSnapshot.getValue();
+                //Log.d("ORDER", "orderCreator = " + orderCreator, null);
                 order_Creator.setText(orderCreator);
 
             }
