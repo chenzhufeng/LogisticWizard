@@ -130,10 +130,11 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
                 String order_image = data.getStringExtra("orderImage");
                 String order_creator = data.getStringExtra("orderCreator");
                 String order_machine = data.getStringExtra("orderMachine");
+                String maintenance_worker = data.getStringExtra("maintenanceWorker");
 
                 saveorderToDB(order_title, order_description, order_note, order_DueDate,
                         order_cost, order_priority, order_plan, order_status, order_image,
-                        order_creator, order_machine);
+                        order_creator, order_machine, maintenance_worker);
             }
         }
     }
@@ -142,9 +143,9 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
     private void saveorderToDB(String order_title, String order_description, String order_note,
                                String order_DueDate, String order_cost, String order_priority,
                                String order_plan, String order_status, String order_image, String order_creator,
-                               String order_machine) {
+                               String order_machine, String maintenance_worker) {
         workorder_info order = new workorder_info(order_title, order_description, order_note, order_DueDate,
-                order_cost, order_priority, order_plan, order_status, order_image, order_creator, order_machine);
+                order_cost, order_priority, order_plan, order_status, order_image, order_creator, order_machine, maintenance_worker);
         mDatabase.child(order_title).setValue(order);
 
     }
@@ -153,7 +154,7 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         if (view == newOrder) {
             //*
-            if (!role.equals("Employee")) {
+            if (!role.equals("Facility Worker")) {
             //*/
                 Intent intent = new Intent(view.getContext(), workorder_add.class);
                 startActivityForResult(intent, 29);
