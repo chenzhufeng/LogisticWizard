@@ -13,16 +13,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 //import com.example.jeremy.logisticwizard.R;
 
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ValueEventListener;
 
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
@@ -86,34 +82,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         //progressDialog2.dismiss();
                         if (task.isSuccessful()) {
-                            FirebaseAuth mAuth = FirebaseAuth.getInstance();
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            if (user != null) {
-                                String Uid = mAuth.getCurrentUser().getUid();
-                                mDatabase.child(Uid).child("Role").addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        String role = (String) dataSnapshot.getValue();
-                                        if ((role != null) && (!role.equals("None"))) {
-                                            Toast.makeText(Login.this, "Login Successfully!", Toast.LENGTH_SHORT).show();
-                                            startActivity(new Intent(getApplicationContext(), home_page.class));
-                                        } else {
-                                            Toast.makeText(Login.this, "You do not "
-                                                           + "have a role assigned. Contact an "
-                                                           + "admin to have a role assigned for "
-                                                           + "this application.", Toast.LENGTH_LONG)
-                                            .show();
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError databaseError) {}
-                                });
-                            }
-                            /*/
                             Toast.makeText(Login.this, "Login Successfully!", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), home_page.class));
-                            //*/
                         } else {
                             // If sign in fails, display a message to the user.
                             String grab_error = task.getException().getMessage();
@@ -121,6 +91,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                     "Error occur:" + grab_error, Toast.LENGTH_SHORT).show();
                         }
                         //progressDialog2.dismiss();
+
                     }
                 });
     }
