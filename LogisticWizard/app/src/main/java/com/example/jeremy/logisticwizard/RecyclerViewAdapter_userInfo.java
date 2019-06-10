@@ -1,6 +1,8 @@
 package com.example.jeremy.logisticwizard;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -11,6 +13,13 @@ import android.view.ViewGroup;
 import android.view.View;
 import android.content.Context;
 import android.content.Intent;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -37,8 +46,10 @@ public class RecyclerViewAdapter_userInfo extends RecyclerView.Adapter<RecyclerV
 
     // Replace contents of a view
     @Override
-    public void onBindViewHolder(RecyclerViewAdapter_userInfo.MyViewHolder holder, final int position) {
+    public void onBindViewHolder(RecyclerViewAdapter_userInfo.MyViewHolder holder,
+                                 final int position) {
         user_info user = userinfo.get(position);
+        holder.userid = user.u_id;
         holder.user_name.setText(user.Name);
         holder.role.setText("("+user.Role+")");
         holder.role_spinner.setAdapter(adapter1);
@@ -55,19 +66,25 @@ public class RecyclerViewAdapter_userInfo extends RecyclerView.Adapter<RecyclerV
         public TextView user_name;
         public TextView role;
         public Spinner role_spinner;
-        public MyViewHolder(View itemView) {
+        String item;
+        String userid;
+        private FirebaseAuth mAuth;
+        public MyViewHolder(final View itemView) {
             super(itemView);
             user_name = itemView.findViewById(R.id.name);
             role = itemView.findViewById(R.id.role);
             role_spinner = itemView.findViewById(R.id.role_spinner);
+            final DatabaseReference mDatabase
+                    = FirebaseDatabase.getInstance().getReference("users");
+
             role_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                public void onItemSelected(AdapterView<?> parent, View view, final int position, long id) {
                     // On selecting a spinner item
-                    String item = parent.getItemAtPosition(position).toString();
-                    // Showing selected spinner item
-                    //Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
-
+                    item = parent.getItemAtPosition(position).toString();
+                    if(!item.equals("Role")) {
+                        mDatabase.child(userid).child("Role").setValue(item);
+                    }
                 }
 
                 @Override
@@ -75,6 +92,8 @@ public class RecyclerViewAdapter_userInfo extends RecyclerView.Adapter<RecyclerV
 
                 }
             });
+
+
 
         }
     }

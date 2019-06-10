@@ -7,26 +7,26 @@
     tools:context=".profile_edit">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
-            android:layout_width="432dp"
-            android:layout_height="746dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@drawable/list_view"
             android:elevation="5dp">
 
         </android.support.v7.widget.RecyclerView>
 
-
-
-
-
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
