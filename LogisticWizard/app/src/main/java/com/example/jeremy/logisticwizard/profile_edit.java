@@ -44,12 +44,14 @@ public class profile_edit extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance().getReference("users");
 
+        /*
         save = findViewById(R.id.save_button);
         save.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
             }
         });
+        //*/
     }
 
     public void onStart() {
