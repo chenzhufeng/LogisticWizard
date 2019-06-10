@@ -100,12 +100,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
                             String user_id = mAuth.getCurrentUser().getUid();
                             mDatabase = FirebaseDatabase.getInstance().
                                     getReference().child("users").child(user_id);
-//                            HashMap user_info = new HashMap();
-//                            user_info.put("Email", infoUsername);
-//                            user_info.put("Name", infoName);
-//                            user_info.put("Phone", infoPhone);
-//                            user_info.put("Role", "none");
-                            user_info user = new user_info(infoUsername, infoName, infoPhone, infoRole);
+                            user_info user = new user_info(infoUsername, infoName, infoPhone, infoRole, user_id);
                             mDatabase.setValue(user);
                             finish();
                             startActivity(new Intent(getApplicationContext(), Login.class));
