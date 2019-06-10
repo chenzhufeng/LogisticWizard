@@ -260,35 +260,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
+            android:background="@drawable/button_background_login"
             android:text="Delete"
             android:textColor="@color/white"
-            android:background="@drawable/button_background_login"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout4"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/editButton"
             android:layout_width="wrap_content"
             android:layout_height="47dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
+            android:background="@drawable/button_background_login"
             android:text="Edit"
             android:textColor="@color/white"
-            android:background="@drawable/button_background_login"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.140"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout4"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toBottomOf="@+id/maintenanceWorker_text" />
 
         <Button
             android:id="@+id/backButton"
@@ -298,14 +294,15 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
+            android:background="@drawable/button_background_login"
             android:text="Back"
             android:textColor="@color/white"
-            android:background="@drawable/button_background_login"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.860"
+            app:layout_constraintHorizontal_bias="0.846"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
+            app:layout_constraintTop_toBottomOf="@+id/maintenanceWorker_text"
+            app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
             android:id="@+id/orderImage"
@@ -343,6 +340,33 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/machineText"
             app:layout_constraintTop_toTopOf="@+id/machineText" />
+
+        <TextView
+            android:id="@+id/maintenanceWorker_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Maintenance Worker"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/maintenance_worker"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/maintenance_worker" />
+
+        <TextView
+            android:id="@+id/maintenance_worker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="8dp"
+            android:text="Mainteance Worker"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/textInputLayout4"
+            app:layout_constraintHorizontal_bias="0.426"
+            app:layout_constraintStart_toEndOf="@+id/maintenanceWorker_text"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

@@ -349,6 +349,7 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
             order_intent.putExtra("orderStatus", order_status);
             order_intent.putExtra("orderCreator", order_creator);
             order_intent.putExtra("orderMachine", order_machine);
+            order_intent.putExtra("maintenanceWorker", "None");
 
 
 

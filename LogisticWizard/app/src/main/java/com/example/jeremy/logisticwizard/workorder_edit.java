@@ -68,10 +68,14 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
     private Uri filePath;
     private Button save_button;
     private Button back_button;
+    private Spinner maintenanceSpinner;
     String orderTitle;
     String orderImage;
+    String Date;
     List<String> temple=new ArrayList<>();
+    List<String> maintenanceList = new ArrayList<>();
     protected DatabaseReference mDatabase;
+    protected DatabaseReference userDatabase;
     protected StorageReference mStorage;
     StorageReference imageRef;
     private boolean isEmployee;
@@ -239,11 +243,6 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
         mDatabase.child(orderTitle).child("order_dates").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                /*
-                String orderDuedate;
-                orderDuedate = (String) dataSnapshot.getValue();
-                order_Duedate.setText(orderDuedate);
-                //*/
                 order_Duedate.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -267,6 +266,7 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
                         month = month + 1;
                         String date = month + "/" + day + "/" + year;
                         order_Duedate.setText(date);
+                        Date = date;
                     }
                 };
                 //--------------------------
@@ -350,6 +350,35 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
 
             }});
 
+        //Making spinner to display all maintenance works name for admin to assign task
+        userDatabase = FirebaseDatabase.getInstance().getReference("users");
+        maintenanceList.add("select worker");
+        userDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
+                    String username = userSnapshot.child("Name").getValue(String.class);
+                    String role = userSnapshot.child("Role").getValue(String.class);
+                    if(role.equals("Maintenance Worker")){
+                        maintenanceList.add(username);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        maintenanceSpinner = findViewById(R.id.maintenanceSpinner);
+        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(
+                this,android.R.layout.simple_spinner_item, maintenanceList);
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        maintenanceSpinner.setAdapter(adapter3);
+        maintenanceSpinner.setOnItemSelectedListener(this);
+
+
         save_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -389,9 +418,10 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
         String orderMachine = order_machine.getText().toString().trim();
         String orderNote = order_note.getText().toString().trim();
         String orderPlan = maintain_plan.getText().toString().trim();
+        String maintenance_worker = maintenanceSpinner.getSelectedItem().toString().trim();
 
         if (orderTitle2.equals("")||orderCreator.equals("")||orderDescrip.equals("")||orderCost.equals("")
-                ||orderDuedate.equals("")||orderStatus.equals("")||orderPriority.equals("")) {
+                ||Date.equals("")||orderStatus.equals("")||orderPriority.equals("")||maintenance_worker.equals("")) {
             Toast.makeText(this,
                     "Please enter all information or leave NONE.", Toast.LENGTH_LONG).show();
             return;
@@ -453,7 +483,7 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
                             });
                 }
                 workorder_info order = new workorder_info(orderTitle2, orderDescrip, orderNote, orderDuedate,
-                        orderCost, orderPriority, orderPlan, orderStatus, orderImage, orderCreator, orderMachine);
+                        orderCost, orderPriority, orderPlan, orderStatus, orderImage, orderCreator, orderMachine, maintenance_worker);
                 mDatabase.child(orderTitle2).setValue(order);
             }
 
