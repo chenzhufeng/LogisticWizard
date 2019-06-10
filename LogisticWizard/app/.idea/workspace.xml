@@ -12,10 +12,8 @@
   <component name="ChangeListManager">
     <list default="true" id="777a926e-b289-4a35-9844-19c16b4d3546" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/Register.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/workorder_edit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/workorder_edit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_register.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_register.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/home_page.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/home_page.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,7 +34,7 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
+    <splitter split-orientation="horizontal" split-proportion="0.53959733">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -49,7 +47,7 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/Register.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="336">
@@ -58,16 +56,35 @@
               </provider>
             </entry>
           </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/home_page.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="85">
+                  <caret line="22" column="6" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
+                </state>
+              </provider>
+            </entry>
+          </file>
         </leaf>
       </split-first>
       <split-second>
         <leaf>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_register.xml">
               <provider editor-type-id="android-designer2" />
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="227">
-                  <caret line="30" column="39" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
+                <state relative-caret-position="363">
+                  <caret line="38" column="40" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/res/layout/home_page.xml">
+              <provider selected="true" editor-type-id="android-designer2" />
+              <provider editor-type-id="text-editor">
+                <state relative-caret-position="17">
+                  <caret line="1" selection-start-line="1" selection-end-line="1" />
                 </state>
               </provider>
             </entry>
@@ -81,7 +98,6 @@
       <find>adapter3</find>
       <find>image</find>
       <find>add_machine_button</find>
-      <find>getpassword</find>
       <find>back</find>
       <find>orderPlan</find>
       <find>orderplan</find>
@@ -90,6 +106,7 @@
       <find>order_duedate</find>
       <find>order_date</find>
       <find>view.</find>
+      <find>getpassword</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -100,7 +117,6 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/workorder_add.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/home_page.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/profile_main_fragment.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/workorder_add_standard.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/workorder_add_standard.xml" />
@@ -114,6 +130,7 @@
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_login.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_register.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/Register.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/home_page.java" />
       </list>
     </option>
   </component>
@@ -379,13 +396,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/home_page.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1717">
-          <caret line="121" column="34" selection-start-line="121" selection-start-column="34" selection-end-line="121" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/profile_main_fragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="199">
@@ -557,18 +567,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_register.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="30" column="39" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/Register.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
           <caret line="65" column="27" selection-start-line="65" selection-start-column="27" selection-end-line="65" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_register.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="38" column="40" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/home_page.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/home_page.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="22" column="6" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
         </state>
       </provider>
     </entry>

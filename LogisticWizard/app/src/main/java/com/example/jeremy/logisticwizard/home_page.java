@@ -20,11 +20,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class home_page extends AppCompatActivity implements View.OnClickListener {
+    //*
     private Button assetsButton;
     private Button workOrdersButton;
     private Button tools;
     private Button profile;
     private Button calendar;
+    //*/
     public static String role;
     public static String name;
     protected DatabaseReference mDatabase;
