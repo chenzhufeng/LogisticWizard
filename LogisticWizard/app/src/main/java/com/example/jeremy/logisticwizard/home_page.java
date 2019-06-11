@@ -2,6 +2,7 @@ package com.example.jeremy.logisticwizard;
 
 import android.content.Intent;
 import android.os.Build;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class home_page extends AppCompatActivity implements View.OnClickListener {
     //*
@@ -38,18 +40,36 @@ public class home_page extends AppCompatActivity implements View.OnClickListener
     protected DatabaseReference mDatabase;
     private GridLayout gl;
 
+    Handler handler =new Handler();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page);
-        getUserRole();
-        getUserName();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                getUserRole();
+                getUserName();
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(role.equals("Admin")){
+                            getToken();
+                        }
+                    }
+                });
+            }
+        }).start();
+
+
+
         gl = (GridLayout) findViewById(R.id.gridlayout);
         setSingleEvent(gl);
     }
 
-    protected void onStart() {
-        super.onStart();
+    private void getToken() {
+
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
                     @Override
@@ -61,12 +81,20 @@ public class home_page extends AppCompatActivity implements View.OnClickListener
 
                         // Get new Instance ID token
                         String token = task.getResult().getToken();
-
-
-                        Toast.makeText(home_page.this, token, Toast.LENGTH_SHORT).show();
+                        mDatabase = FirebaseDatabase.getInstance().getReference();
+                        mDatabase.child("token").child(name).setValue(token);
+                        //Toast.makeText(home_page.this, token, Toast.LENGTH_SHORT).show();
                     }
                 });
-
+        FirebaseMessaging.getInstance().subscribeToTopic("new_user")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(home_page.this, "msg_subscribe_failed", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
     /* Retrieves the user ID from Firebase as a string. Is used to determine the
