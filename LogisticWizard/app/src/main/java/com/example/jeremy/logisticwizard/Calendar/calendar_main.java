@@ -1,4 +1,4 @@
-package com.example.jeremy.logisticwizard;
+package com.example.jeremy.logisticwizard.Calendar;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -8,6 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.jeremy.logisticwizard.R;
+import com.example.jeremy.logisticwizard.home_page;
+import com.example.jeremy.logisticwizard.Profile.profile_main_fragment;
+
 public class calendar_main extends AppCompatActivity {
 
     @Override
@@ -15,6 +19,7 @@ public class calendar_main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calendar_main);
 
+        //Set up navigation bar for calendar page
         BottomNavigationView bottomNav  = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         bottomNav.getMenu().getItem(0).setCheckable(false);

@@ -1,14 +1,15 @@
-package com.example.jeremy.logisticwizard;
+package com.example.jeremy.logisticwizard.Work_order;
 
 import android.support.v7.widget.RecyclerView;
-import android.widget.ListAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.View;
 import android.content.Context;
 import android.content.Intent;
+
+import com.example.jeremy.logisticwizard.Custom_object.workorder_info;
+import com.example.jeremy.logisticwizard.R;
 
 import java.util.List;
 

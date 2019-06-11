@@ -1,16 +1,20 @@
 package com.example.jeremy.logisticwizard;
 
 import android.content.Intent;
-import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
-import android.transition.Fade;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 
+import com.example.jeremy.logisticwizard.Calendar.calendar_main;
+import com.example.jeremy.logisticwizard.Machine.machine_main;
+import com.example.jeremy.logisticwizard.Profile.profile_main;
+import com.example.jeremy.logisticwizard.Tool.tool_main;
+import com.example.jeremy.logisticwizard.Work_order.workorder_add;
+import com.example.jeremy.logisticwizard.Work_order.workorder_main;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;

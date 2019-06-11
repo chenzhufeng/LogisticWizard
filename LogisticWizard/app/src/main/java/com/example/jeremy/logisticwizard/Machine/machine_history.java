@@ -1,6 +1,5 @@
-package com.example.jeremy.logisticwizard;
+package com.example.jeremy.logisticwizard.Machine;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,7 +12,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.SearchView;
+import android.widget.TextView;
+
+import com.example.jeremy.logisticwizard.Calendar.calendar_main_fragment;
+import com.example.jeremy.logisticwizard.R;
+import com.example.jeremy.logisticwizard.Work_order.RecyclerViewAdapter;
+import com.example.jeremy.logisticwizard.home_page;
+import com.example.jeremy.logisticwizard.Profile.profile_main_fragment;
+import com.example.jeremy.logisticwizard.Custom_object.workorder_info;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,8 +33,8 @@ public class machine_history extends AppCompatActivity implements View.OnClickLi
     ListView order_view;
     View v1;
     View top;
-    SearchView sv;
     RecyclerView recyclerView;
+    TextView new_order_button_text;
     RecyclerViewAdapter mAdapter;
     LinearLayoutManager linearLayoutManager;
     ArrayList<workorder_info> machine_info_list;
@@ -41,7 +47,7 @@ public class machine_history extends AppCompatActivity implements View.OnClickLi
         v1 = (View) findViewById(R.id.list_view);
         order_view = findViewById(R.id.order_list);
         top = findViewById(R.id.top_view);
-        sv = findViewById(R.id.search_workorders);
+
         //connor add: so nav bar works
         BottomNavigationView bottomNav  = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
@@ -77,12 +83,10 @@ public class machine_history extends AppCompatActivity implements View.OnClickLi
                             startActivity(intent);
                             break;
                         case R.id.nav_orders:
-                            sv.setVisibility(View.INVISIBLE);
                             v1.setVisibility(View.INVISIBLE);
                             order_view.setVisibility(View.INVISIBLE);
                             recyclerView.setVisibility(View.INVISIBLE);
                             top.setVisibility(View.INVISIBLE);
-                            sv.setVisibility(View.INVISIBLE);
 
                             menuItem.setCheckable(true);
                             selectedFragment = new calendar_main_fragment();
@@ -91,12 +95,10 @@ public class machine_history extends AppCompatActivity implements View.OnClickLi
                                     selectedFragment).commit();
                             break;
                         case R.id.nav_profile:
-                            sv.setVisibility(View.INVISIBLE);
                             v1.setVisibility(View.INVISIBLE);
                             order_view.setVisibility(View.INVISIBLE);
                             recyclerView.setVisibility(View.INVISIBLE);
                             top.setVisibility(View.INVISIBLE);
-                            sv.setVisibility(View.INVISIBLE);
 
                             selectedFragment = new profile_main_fragment();
                             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -114,6 +116,10 @@ public class machine_history extends AppCompatActivity implements View.OnClickLi
 
         new_order_button = (Button) findViewById(R.id.new_order);
         new_order_button.setVisibility(View.INVISIBLE);
+
+        new_order_button_text = findViewById(R.id.button_text);
+        new_order_button_text.setVisibility(View.INVISIBLE);
+
 
 
         mDatabase.addValueEventListener(new ValueEventListener() {

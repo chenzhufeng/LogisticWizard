@@ -1,4 +1,4 @@
-package com.example.jeremy.logisticwizard;
+package com.example.jeremy.logisticwizard.Tool;
 
 public class tool_info {
     public String tool_name;

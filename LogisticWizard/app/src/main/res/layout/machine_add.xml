@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
-    tools:context=".machine_add">
+    tools:context=".Machine.machine_add">
     <TextView
         android:id="@+id/addMachine_label"
         android:layout_width="match_parent"
