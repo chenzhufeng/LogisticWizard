@@ -315,6 +315,7 @@ public class workorder_view extends AppCompatActivity {
                         mDatabase.child(orderTitle).removeValue();
                         Toast.makeText(workorder_view.this, "Deleted", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent (workorder_view.this, workorder_main.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     }
                 });

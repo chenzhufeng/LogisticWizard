@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.jeremy.logisticwizard.Custom_object.tool_info;
 import com.example.jeremy.logisticwizard.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

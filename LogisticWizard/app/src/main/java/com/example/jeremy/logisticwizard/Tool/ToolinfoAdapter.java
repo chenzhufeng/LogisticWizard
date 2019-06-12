@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.example.jeremy.logisticwizard.Tool.tool_info;
+import com.example.jeremy.logisticwizard.Custom_object.tool_info;
 
 import java.util.List;
 
