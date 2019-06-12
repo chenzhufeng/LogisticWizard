@@ -119,7 +119,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                             if (user != null) {
                                 String Uid = user.getUid();
                                 getData(Uid);
-                                confirmRole();
+                                //confirmRole();
                             }
                             /*
                             Toast.makeText(Login.this, "Login Successfully!", Toast.LENGTH_SHORT).show();
@@ -141,9 +141,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         mDatabase.child(Uid).child("Role").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                dbSource.setResult(dataSnapshot);
-                //String data = dbTask.getResult().toString();
-                //Log.d("ROLE", data, null);
+                //dbSource.setResult(dataSnapshot);
+                String role = dataSnapshot.getValue(String.class);
+                if (role.equals("None")) {
+                    Toast.makeText(Login.this, "Your role has not yet been set", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(Login.this, "Login Successfully!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), home_page.class));
+                }
             }
 
             @Override
