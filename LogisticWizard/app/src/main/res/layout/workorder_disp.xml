@@ -59,7 +59,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:text="Current Status"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/statusText"
@@ -83,7 +83,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:text="Current Priority"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/priorityText"
@@ -105,7 +105,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Creator"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/creatorText"
@@ -139,7 +139,7 @@
                 android:layout_height="40dp"
                 android:clickable="false"
                 android:hint="@string/description"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
 
         </android.support.design.widget.TextInputLayout>
@@ -162,7 +162,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:text="Price"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/costText"
@@ -188,6 +188,7 @@
             android:layout_marginEnd="8dp"
             android:ems="10"
             android:inputType="date"
+            android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/dueDate_text"
@@ -221,7 +222,7 @@
                 android:layout_height="40dp"
                 android:hint="Maintenance Plan"
                 android:paddingTop="5dp"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
         </android.support.design.widget.TextInputLayout>
 
@@ -251,7 +252,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Notes"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
         </android.support.design.widget.TextInputLayout>
 
@@ -267,6 +268,7 @@
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.77"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
@@ -282,27 +284,11 @@
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.140"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/maintenanceWorker_text" />
-
-        <Button
-            android:id="@+id/backButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/button_background_login"
-            android:text="Back"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.846"
+            app:layout_constraintHorizontal_bias="0.231"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/maintenanceWorker_text"
             app:layout_constraintVertical_bias="0.0" />
+
 
         <ImageView
             android:id="@+id/orderImage"
@@ -334,7 +320,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:text="Machine"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/machineText"
             app:layout_constraintEnd_toEndOf="parent"
@@ -358,13 +344,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="8dp"
             android:text="Mainteance Worker"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="@+id/textInputLayout4"
-            app:layout_constraintHorizontal_bias="0.426"
+            app:layout_constraintHorizontal_bias="0.437"
             app:layout_constraintStart_toEndOf="@+id/maintenanceWorker_text"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
 

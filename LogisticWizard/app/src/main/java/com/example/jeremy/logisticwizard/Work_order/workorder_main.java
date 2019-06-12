@@ -15,6 +15,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import com.example.jeremy.logisticwizard.Calendar.calendar_main_fragment;
 import com.example.jeremy.logisticwizard.Custom_object.workorder_info;
@@ -43,6 +44,7 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
     RecyclerViewAdapter mAdapter;
     LinearLayoutManager linearLayoutManager;
     ArrayList<workorder_info> workorder_infoList;
+    TextView new_order_button_text;
     private String role;
 
     protected DatabaseReference mDatabase;
@@ -57,6 +59,8 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
         top = (View) findViewById(id.top_view);
         newOrder = (Button) findViewById(R.id.new_order);
         newOrder.setOnClickListener(this);
+        new_order_button_text = findViewById(id.button_text);
+        new_order_button_text.setOnClickListener(this);
 
         workorder_infoList = new ArrayList<>();
 
@@ -186,6 +190,7 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
                             recyclerView.setVisibility(View.INVISIBLE);
                             top.setVisibility(View.INVISIBLE);
                             newOrder.setVisibility(View.INVISIBLE);
+                            new_order_button_text.setVisibility(View.INVISIBLE);
 
                             //setContentView(R.layout.calendar_main_fragment);
                             //recyclerView.setVisibility(View.GONE);
@@ -204,6 +209,7 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
                             recyclerView.setVisibility(View.INVISIBLE);
                             top.setVisibility(View.INVISIBLE);
                             newOrder.setVisibility(View.INVISIBLE);
+                            new_order_button_text.setVisibility(View.INVISIBLE);
                             //need other layouts
 
                             menuItem.setCheckable(true);

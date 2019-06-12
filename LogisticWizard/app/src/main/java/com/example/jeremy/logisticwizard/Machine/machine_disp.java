@@ -35,6 +35,7 @@ public class machine_disp extends Activity implements View.OnClickListener{
     private Button editButton;
     private Button backButton;
     private Button historyButton;
+    private Button deleteButton;
     private ImageView machine_image;
     String machineName;
     String machineDescription;
@@ -61,6 +62,8 @@ public class machine_disp extends Activity implements View.OnClickListener{
         lv = findViewById(R.id.machineInfoList);
         historyButton = findViewById(R.id.histroyButton);
         historyButton.setOnClickListener(this);
+        deleteButton = findViewById(R.id.deleteMachine);
+        deleteButton.setOnClickListener(this);
 
         machine_image = findViewById(R.id.machine_image);
     }
@@ -73,6 +76,8 @@ public class machine_disp extends Activity implements View.OnClickListener{
         String role = home_page.role;
         if (!role.equals("Admin")) {
             editButton.setVisibility(View.INVISIBLE);
+            historyButton.setVisibility(View.INVISIBLE);
+            deleteButton.setVisibility(View.INVISIBLE);
         }
 
         //get passed information from another page
@@ -135,6 +140,7 @@ public class machine_disp extends Activity implements View.OnClickListener{
                 @Override
                 public void onFailure(@NonNull Exception exception) {
                     // Handle any errors
+                    onStart();
                 }
             });
         } catch (IOException e) {

@@ -19,6 +19,7 @@ import android.support.design.widget.BottomNavigationView; //for bottom nav
 import android.view.MenuItem;
 
 import com.example.jeremy.logisticwizard.Calendar.calendar_main_fragment;
+import com.example.jeremy.logisticwizard.Custom_object.machine_info;
 import com.example.jeremy.logisticwizard.R;
 import com.example.jeremy.logisticwizard.home_page;
 import com.example.jeremy.logisticwizard.Profile.profile_main_fragment;

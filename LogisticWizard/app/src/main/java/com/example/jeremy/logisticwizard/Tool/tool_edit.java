@@ -41,7 +41,7 @@ public class tool_edit extends AppCompatActivity implements AdapterView.OnItemSe
     //private Spinner toolPlanSpinner;
     private Spinner toolQuantitySpinner;
     private EditText description;
-    protected DatabaseReference mDatabase=FirebaseDatabase.getInstance().getReference("tool_main");;
+    protected DatabaseReference mDatabase=FirebaseDatabase.getInstance().getReference("tools");;
 
     private Button save;
     private View.OnClickListener saveOnClickListener = new View.OnClickListener(){
@@ -57,7 +57,9 @@ public class tool_edit extends AppCompatActivity implements AdapterView.OnItemSe
             //tool_intent.putExtra("toolParts", toolParts);
             //tool_intent.putExtra("maintainencePlan", maintainPlan);
             tool_intent.putExtra("toolQuant", toolQuant);
+            tool_intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(tool_intent);
+
         }
 
     };

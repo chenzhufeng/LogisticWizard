@@ -21,7 +21,6 @@ public class tool_disp extends Activity implements View.OnClickListener {
 
     private ListView lv;
     private Button editButton;
-    private Button backButton;
 
     String toolName;
     String toolDescription;
@@ -40,10 +39,6 @@ public class tool_disp extends Activity implements View.OnClickListener {
         editButton = findViewById(R.id.editToolButton);
         editButton.setOnClickListener(this);
         lv = findViewById(R.id.ToolInfoList);
-
-        backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(this);
-
 
     }
 
@@ -100,10 +95,6 @@ public class tool_disp extends Activity implements View.OnClickListener {
             intent.putExtra("toolType", toolType);
             //intent.putExtra("toolParts", toolParts);
             intent.putExtra("toolQuant", toolQuant);
-            startActivity(intent);
-        }
-        if (v == backButton) {
-            Intent intent = new Intent(v.getContext(), tool_main.class);
             startActivity(intent);
         }
     }

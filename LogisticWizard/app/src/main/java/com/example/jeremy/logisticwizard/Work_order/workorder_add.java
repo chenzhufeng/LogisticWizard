@@ -24,7 +24,7 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.jeremy.logisticwizard.Machine.machine_info;
+import com.example.jeremy.logisticwizard.Custom_object.machine_info;
 import com.example.jeremy.logisticwizard.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -186,8 +186,6 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         if(view == submit){
             addOrder();
-            //Intent intent = new Intent(view.getContext(),order.class);
-            //startActivity(intent);
         }
         if(view == image){
             //chooseImage();
@@ -255,8 +253,8 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
         if(requestCode == 71 && resultCode == RESULT_OK
                 && data != null )
         {
-            Toast.makeText(this,
-                    "Error occur:"+resultCode,  Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this,
+//                    "Error occur:"+resultCode,  Toast.LENGTH_SHORT).show();
             filePath = data.getData();
             try {
                 float scale = this.getResources().getDisplayMetrics().density;
@@ -299,8 +297,8 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
             if(data.getData()==null){
                 t = false;
             }
-            Toast.makeText(this,
-                    "Error occur:"+t,  Toast.LENGTH_SHORT).show();
+//
+
         }
 
     }

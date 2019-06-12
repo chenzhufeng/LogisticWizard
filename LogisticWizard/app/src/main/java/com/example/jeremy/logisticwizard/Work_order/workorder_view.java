@@ -46,7 +46,6 @@ public class workorder_view extends AppCompatActivity {
     private TextView maintenance_worker;
     private ImageView order_image;
     private Button edit_button;
-    private Button back_button;
     private Button delete_button;
     private String orderTitle;
     protected DatabaseReference mDatabase;
@@ -74,11 +73,7 @@ public class workorder_view extends AppCompatActivity {
         maintain_plan = findViewById(R.id.maintain_plan);
 
         edit_button = findViewById(R.id.editButton);
-
-        back_button = findViewById(R.id.backButton);
-
         delete_button = findViewById(R.id.deleteButton);
-        back_button = findViewById(R.id.backButton);
 
         Intent machine_info = getIntent();
         Bundle data = machine_info.getExtras();
@@ -94,6 +89,7 @@ public class workorder_view extends AppCompatActivity {
 
         if (role.equals("Facility Worker")) {
             edit_button.setVisibility(View.INVISIBLE);
+            delete_button.setVisibility(View.INVISIBLE);
         }
 
         order_title.setText(orderTitle);
@@ -249,6 +245,7 @@ public class workorder_view extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception exception) {
                             // Handle any errors
+                            onStart();
                         }
                     });
                 } catch (IOException e) {
@@ -290,14 +287,6 @@ public class workorder_view extends AppCompatActivity {
                 showNormalDialog();
             }
         });
-        back_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent (workorder_view.this, workorder_main.class);
-                startActivity(intent);
-            }
-        });
-
         edit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

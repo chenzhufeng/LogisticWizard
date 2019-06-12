@@ -20,7 +20,7 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.jeremy.logisticwizard.Machine.machine_info;
+import com.example.jeremy.logisticwizard.Custom_object.machine_info;
 import com.example.jeremy.logisticwizard.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

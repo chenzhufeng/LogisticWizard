@@ -68,11 +68,9 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
     private TextView order_machine;
     private Uri filePath;
     private Button save_button;
-    private Button back_button;
     private Spinner maintenanceSpinner;
     String orderTitle;
     String orderImage;
-    String Date;
     List<String> temple=new ArrayList<>();
     List<String> maintenanceList = new ArrayList<>();
     protected DatabaseReference mDatabase;
@@ -114,8 +112,6 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
         order_priority.setOnItemSelectedListener(this);
 
         save_button = findViewById(R.id.saveButton);
-
-        back_button=findViewById(R.id.backButton);
 
         Intent machine_info = getIntent();
         Bundle data = machine_info.getExtras();
@@ -244,6 +240,10 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
         mDatabase.child(orderTitle).child("order_dates").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String orderDate;
+
+                orderDate = (String) dataSnapshot.getValue();
+                order_Duedate.setText(orderDate);
                 order_Duedate.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -267,7 +267,6 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
                         month = month + 1;
                         String date = month + "/" + day + "/" + year;
                         order_Duedate.setText(date);
-                        Date = date;
                     }
                 };
                 //--------------------------
@@ -386,18 +385,12 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
                 save_edition();
                 Intent intent = new Intent (view.getContext(), workorder_view.class);
                 intent.putExtra("orderTitle", order_title.getText().toString().trim());
-                startActivity(intent);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                //startActivity(intent);
+                finish();
             }
         });
 
-        back_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent (workorder_edit.this, workorder_view.class);
-                intent.putExtra("orderTitle", order_title.getText());
-                startActivity(intent);
-            }
-        });
 
         order_image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -422,7 +415,7 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
         String maintenance_worker = maintenanceSpinner.getSelectedItem().toString().trim();
 
         if (orderTitle2.equals("")||orderCreator.equals("")||orderDescrip.equals("")||orderCost.equals("")
-                ||Date.equals("")||orderStatus.equals("")||orderPriority.equals("")||maintenance_worker.equals("")) {
+                || orderDuedate.equals("")||orderStatus.equals("")||orderPriority.equals("")||maintenance_worker.equals("")) {
             Toast.makeText(this,
                     "Please enter all information or leave NONE.", Toast.LENGTH_LONG).show();
             return;

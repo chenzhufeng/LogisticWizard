@@ -21,6 +21,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.example.jeremy.logisticwizard.Custom_object.machine_info;
 import com.example.jeremy.logisticwizard.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -85,6 +87,7 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
             machine_intent.putExtra("maintainencePlan", maintainPlan);
             machine_intent.putExtra("machineQuant", machineQuant);
             machine_intent.putExtra("machineImage", machineImage);
+            machine_intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(machine_intent);
         }
         if(view == edit_machine_image){
