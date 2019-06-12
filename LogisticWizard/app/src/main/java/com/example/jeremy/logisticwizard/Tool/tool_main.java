@@ -70,6 +70,8 @@ public class tool_main extends AppCompatActivity implements View.OnClickListener
 
         add_tool = (Button) findViewById(R.id.add_tool_button);
         add_tool.setOnClickListener(this);
+
+        // Check which views to show for the current user
         if (role.equals("Facility Worker")) {
             add_tool.setVisibility(View.INVISIBLE);
             bt.setVisibility(View.INVISIBLE);
