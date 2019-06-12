@@ -136,6 +136,9 @@ public class workorder_view extends AppCompatActivity {
                 if ((role.equals("Facility Worker")) && (!name.equals(orderCreator))) {
                     edit_button.setVisibility(View.INVISIBLE);
                     delete_button.setVisibility(View.INVISIBLE);
+                } else {
+                    edit_button.setVisibility(View.VISIBLE);
+                    delete_button.setVisibility(View.VISIBLE);
                 }
             }
 
