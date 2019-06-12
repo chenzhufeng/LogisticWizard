@@ -1,21 +1,28 @@
 package com.example.jeremy.logisticwizard.Machine;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.example.jeremy.logisticwizard.R;
+import com.example.jeremy.logisticwizard.Work_order.workorder_main;
+import com.example.jeremy.logisticwizard.Work_order.workorder_view;
 import com.example.jeremy.logisticwizard.home_page;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -48,6 +55,7 @@ public class machine_disp extends Activity implements View.OnClickListener{
     String machineImage = "null";
     protected StorageReference mStorage;
     StorageReference imageRef;
+    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("machines");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,5 +181,43 @@ public class machine_disp extends Activity implements View.OnClickListener{
             intent.putExtra("machineName", machineName);
             startActivity(intent);
         }
+
+        //delete button call a dialog ask users if they want delete this machine
+        if(v== deleteButton){
+            showNormalDialog();
+        }
+    }
+
+    private void showNormalDialog() {
+        /* @setIcon 设置对话框图标
+         * @setTitle 设置对话框标题
+         * @setMessage 设置对话框消息提示
+         * setXXX方法返回Dialog对象，因此可以链式设置属性
+         */
+        final AlertDialog.Builder normalDialog =
+                new AlertDialog.Builder(this);
+
+        normalDialog.setTitle("Delete Confirmation");
+        normalDialog.setMessage("Do you want to delete this machine?");
+        normalDialog.setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mDatabase.child(machineName).removeValue();
+                        Toast.makeText(machine_disp.this, "Deleted", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent (machine_disp.this, machine_main.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                    }
+                });
+        normalDialog.setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //...To-do
+                    }
+                });
+        // 显示
+        normalDialog.show();
     }
 }
