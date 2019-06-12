@@ -198,14 +198,14 @@ public class machine_edit extends AppCompatActivity implements
         machineType = type.getText().toString().trim();
         machineParts = part.getText().toString().trim();
         maintainPlan = machinePlanSpinner.getSelectedItem().toString().trim();
-        //machineQuant = machineQuantitySpinner.getSelectedItem().toString().trim();
 
+        //show message if some parts are left blank
         if (machineName2.equals("")||machineDescp.equals("")||machinePrice.equals("")||machineLocat.equals("")
                 ||machineType.equals("")||machineParts.equals("")||maintainPlan.equals("")||machineQuant.equals("")) {
             Toast.makeText(this,
                     "Please enter all information or leave NONE.", Toast.LENGTH_LONG).show();
-            return;
         }else {
+            //if name is changed, remove old machine_info in firebase and write news in
             if(!machineName2.equals(machineName)) {
                 mDatabase.child(machineName).removeValue();
             }
@@ -213,14 +213,12 @@ public class machine_edit extends AppCompatActivity implements
             mDatabase.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                     for(DataSnapshot machineSnapshot : dataSnapshot.getChildren()){
                         if(!machineSnapshot.getKey().equals(machineName)){
                             temple.add(machineSnapshot.getKey());
                         }
                     }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -235,10 +233,6 @@ public class machine_edit extends AppCompatActivity implements
             else {
                 if(filePath != null)
                 {
-                    final ProgressDialog progressDialog = new ProgressDialog(this);
-                    //progressDialog.setTitle("Uploading...");
-                    //progressDialog.show();
-
                     StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
                     machineImage = ref.getPath();
 
@@ -246,14 +240,12 @@ public class machine_edit extends AppCompatActivity implements
                             .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                 @Override
                                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                    //progressDialog.dismiss();
                                     Toast.makeText(machine_edit.this, "Uploaded", Toast.LENGTH_SHORT).show();
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    //progressDialog.dismiss();
                                     Toast.makeText(machine_edit.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             })
