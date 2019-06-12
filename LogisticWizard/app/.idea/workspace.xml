@@ -112,7 +112,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="777a926e-b289-4a35-9844-19c16b4d3546" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/Login.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -147,15 +148,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/Login.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="128" selection-start-line="128" selection-end-line="136" selection-end-column="19" />
+            <state relative-caret-position="340">
+              <caret line="131" column="75" selection-start-line="131" selection-start-column="75" selection-end-line="131" selection-end-column="75" />
               <folding>
-                <element signature="e#2371#2510#0" expanded="true" />
-                <element signature="e#2509#2510#0" expanded="true" />
                 <element signature="e#4076#5435#0" expanded="true" />
                 <element signature="e#5434#5435#0" expanded="true" />
-                <element signature="e#6162#6772#0" expanded="true" />
-                <element signature="e#6771#6772#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -439,9 +436,9 @@
       <window_info anchor="bottom" id="TODO" order="1" weight="0.3286119" />
       <window_info anchor="bottom" id="Terminal" order="2" weight="0.32808024" />
       <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Build" order="4" weight="0.3252149" />
+      <window_info active="true" anchor="bottom" id="Build" order="4" visible="true" weight="0.3243626" />
       <window_info anchor="bottom" id="Run" order="5" />
-      <window_info active="true" anchor="bottom" id="Logcat" order="6" visible="true" weight="0.3243626" />
+      <window_info anchor="bottom" id="Logcat" order="6" weight="0.3243626" />
       <window_info anchor="bottom" id="Debug" order="7" />
       <window_info anchor="bottom" id="Find" order="8" />
       <window_info anchor="bottom" id="Android Profiler" order="9" weight="0.3323782" />
@@ -746,15 +743,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/Login.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="128" selection-start-line="128" selection-end-line="136" selection-end-column="19" />
+        <state relative-caret-position="340">
+          <caret line="131" column="75" selection-start-line="131" selection-start-column="75" selection-end-line="131" selection-end-column="75" />
           <folding>
-            <element signature="e#2371#2510#0" expanded="true" />
-            <element signature="e#2509#2510#0" expanded="true" />
             <element signature="e#4076#5435#0" expanded="true" />
             <element signature="e#5434#5435#0" expanded="true" />
-            <element signature="e#6162#6772#0" expanded="true" />
-            <element signature="e#6771#6772#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -40,32 +40,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private DatabaseReference mDatabase;
     private ProgressDialog progressDialog2;
     private FirebaseAuth mAuth;
-    private Task<Void> fetchTask;
-    private TaskCompletionSource<DataSnapshot> dbSource = new TaskCompletionSource<>();
-    private TaskCompletionSource<Void> delaySource = new TaskCompletionSource<>();
-    private Task dbTask = dbSource.getTask();
-    private Task<Void> delayTask = delaySource.getTask();
-    private Task<Void> allTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //fetchTask = FirebaseRemoteConfig.getInstance().fetch();
-        /*
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                fetchTask = FirebaseRemoteConfig.getInstance().fetch();
-            }
-        }, 0);
-        //*/
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                delaySource.setResult(null);
-            }
-        }, 5000);
 
         getWindow().getDecorView().setSystemUiVisibility(8);
         setContentView(R.layout.activity_login);
@@ -118,8 +96,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                             FirebaseUser user = mAuth.getCurrentUser();
                             if (user != null) {
                                 String Uid = user.getUid();
-                                getData(Uid);
-                                //confirmRole();
+                                getRole(Uid);
                             }
                             /*
                             Toast.makeText(Login.this, "Login Successfully!", Toast.LENGTH_SHORT).show();
@@ -137,7 +114,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 });
     }
 
-    private void getData(String Uid) {
+    private void getRole(String Uid) {
         mDatabase.child(Uid).child("Role").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -152,26 +129,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                dbSource.setException(databaseError.toException());
-            }
-        });
-    }
-
-    private void confirmRole() {
-        allTask = Tasks.whenAll(dbTask, delayTask);
-        allTask.addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                String data = ((DataSnapshot) dbTask.getResult()).getValue(String.class);
-                Log.d("ROLE", data, null);
-                if (data.equals("None")) {
-                    Toast.makeText(Login.this, "Your role has not yet been set", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(Login.this, "Login Successfully!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(), home_page.class));
-                }
-            }
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
         });
     }
 
