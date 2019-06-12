@@ -1,6 +1,8 @@
 package com.example.jeremy.logisticwizard.Tool;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,10 +13,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
+import com.example.jeremy.logisticwizard.Machine.machine_disp;
+import com.example.jeremy.logisticwizard.Machine.machine_main;
 import com.example.jeremy.logisticwizard.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -33,6 +40,8 @@ public class tool_disp extends Activity implements View.OnClickListener {
     private ListView lv;
     private Button editButton;
     private ImageView tool_image;
+    private Button deleteButton;
+    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("tools");
 
     String toolName;
     String toolDescription;
@@ -54,6 +63,8 @@ public class tool_disp extends Activity implements View.OnClickListener {
 
         editButton = findViewById(R.id.editToolButton);
         editButton.setOnClickListener(this);
+        deleteButton = findViewById(R.id.deleteTools);
+        deleteButton.setOnClickListener(this);
         lv = findViewById(R.id.ToolInfoList);
 
         tool_image = findViewById(R.id.tool_image);
@@ -140,5 +151,40 @@ public class tool_disp extends Activity implements View.OnClickListener {
             intent.putExtra("toolImage", toolImage);
             startActivity(intent);
         }
+        if(v == deleteButton){
+            showNormalDialog();
+        }
+    }
+    private void showNormalDialog() {
+        /* @setIcon 设置对话框图标
+         * @setTitle 设置对话框标题
+         * @setMessage 设置对话框消息提示
+         * setXXX方法返回Dialog对象，因此可以链式设置属性
+         */
+        final AlertDialog.Builder normalDialog =
+                new AlertDialog.Builder(this);
+
+        normalDialog.setTitle("Delete Confirmation");
+        normalDialog.setMessage("Do you want to delete this tool?");
+        normalDialog.setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mDatabase.child(toolName).removeValue();
+                        Toast.makeText(tool_disp.this, "Deleted", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent (tool_disp.this, tool_main.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                    }
+                });
+        normalDialog.setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //...To-do
+                    }
+                });
+        // 显示
+        normalDialog.show();
     }
 }
