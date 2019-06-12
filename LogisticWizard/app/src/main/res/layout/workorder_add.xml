@@ -7,6 +7,29 @@
     android:background="@drawable/gradient"
     tools:context=".workorder_add">
 
+    <View
+        android:id="@+id/top_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#1C82CD"
+        android:elevation="5dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/page_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:elevation="5dp"
+        android:text="Add Work Order"
+        android:textSize="21sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -14,70 +37,59 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/page_title"
         app:layout_constraintVertical_bias="0.0">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/descriptionText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/description"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/machineSpinner" />
-
             <EditText
                 android:id="@+id/orderDescription"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="5dp"
+                android:hint="Enter Description..."
+                app:layout_constraintTop_toBottomOf="@id/orderTitle"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/descriptionText" />
+                app:layout_constraintStart_toStartOf="parent" />
 
 
             <TextView
                 android:id="@+id/imageText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="13dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/image"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/orderDescription" />
+                app:layout_constraintTop_toBottomOf="@id/priorityText" />
 
             <TextView
                 android:id="@+id/priorityText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="13dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/priority"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+                app:layout_constraintTop_toBottomOf="@id/machineText" />
 
             <View
                 android:id="@+id/divider"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="5dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="13dp"
                 android:layout_marginTop="11dp"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/inventory_bar"
+                android:layout_marginEnd="13dp"
+                android:background="#1C82CD"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/priorityText" />
+                app:layout_constraintTop_toBottomOf="@id/imageButton" />
 
             <Spinner
                 android:id="@+id/orderPriority"
@@ -95,8 +107,7 @@
                 android:id="@+id/maintenanceText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
+                android:layout_marginStart="13dp"
                 android:layout_marginTop="8dp"
                 android:text="Maintenance"
                 android:textSize="20sp"
@@ -108,46 +119,34 @@
                 android:layout_width="202dp"
                 android:layout_height="25dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="10dp"
                 app:layout_constraintBottom_toBottomOf="@+id/maintenanceText"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/maintenanceText"
                 app:layout_constraintTop_toTopOf="@+id/maintenanceText" />
-
-            <TextView
-                android:id="@+id/notesText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:text="Notes"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/maintenanceText" />
 
             <EditText
                 android:id="@+id/orderNote"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="5dp"
+                android:hint="Enter Maintenance Notes..."
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/notesText" />
+                app:layout_constraintTop_toBottomOf="@id/textView9" />
 
             <TextView
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="13dp"
                 android:layout_marginTop="16dp"
                 android:layout_weight="1"
                 android:text="Status"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/orderNote" />
+                app:layout_constraintTop_toBottomOf="@id/maintenanceText" />
 
             <Spinner
                 android:id="@+id/orderStatus"
@@ -155,63 +154,39 @@
                 android:layout_height="36dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="8dp"
                 android:entries="@array/statuses"
                 app:layout_constraintBottom_toBottomOf="@+id/textView9"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView9"
                 app:layout_constraintTop_toTopOf="@+id/textView9" />
-
-            <TextView
-                android:id="@+id/dueDateText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:text="Due Date"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/orderStatus" />
 
             <EditText
                 android:id="@+id/dueDateInput"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/dueDateText"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="5dp"
+                android:hint="Enter Due Date..."
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/dueDateText"
-                app:layout_constraintTop_toTopOf="@id/dueDateText" />
+                app:layout_constraintTop_toBottomOf="@id/orderNote" />
 
-
-            <TextView
-                android:id="@+id/costText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_weight="1"
-                android:text="Cost"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/dueDateInput" />
 
             <EditText
                 android:id="@+id/orderCost"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="5dp"
                 android:ems="10"
+                android:hint="Enter Cost..."
                 android:inputType="numberDecimal"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/costText"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.676"
-                app:layout_constraintStart_toEndOf="@id/costText"
-                app:layout_constraintTop_toTopOf="@id/costText" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dueDateInput" />
 
             <ImageButton
                 android:id="@+id/imageButton"
@@ -224,30 +199,19 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.488"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageText"
+                app:layout_constraintTop_toBottomOf="@id/imageText"
                 app:srcCompat="@android:drawable/ic_menu_add" />
-
-            <TextView
-                android:id="@+id/titleTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:text="Title"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/orderTitle"
-                android:layout_width="295dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintBottom_toBottomOf="@id/titleTextView"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:hint="Enter Title..."
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/titleTextView"
-                app:layout_constraintTop_toTopOf="@id/titleTextView" />
+                app:layout_constraintStart_toStartOf="parent"/>
 
             <Button
                 android:id="@+id/submitButton"
@@ -255,7 +219,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="10dp"
                 android:onClick="onClick"
                 android:text="@string/submit"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -268,23 +232,22 @@
                 android:id="@+id/machineText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="13dp"
+                android:layout_marginTop="5dp"
                 android:text="Machine"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/orderTitle" />
+                app:layout_constraintTop_toBottomOf="@id/orderDescription" />
 
             <Spinner
                 android:id="@+id/machineSpinner"
                 android:layout_width="268dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="10dp"
                 android:clickable="true"
                 app:layout_constraintBottom_toBottomOf="@+id/machineText"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/machineText"
                 app:layout_constraintTop_toTopOf="@+id/machineText" />
 
         </android.support.constraint.ConstraintLayout>
