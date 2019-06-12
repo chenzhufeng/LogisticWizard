@@ -95,8 +95,6 @@ public class profile_main_fragment extends Fragment {
         mDatabase.child(Uid).child("Name").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-
                 temp = (String) dataSnapshot.getValue();
                 user_name.setText(temp);
             }
@@ -113,7 +111,7 @@ public class profile_main_fragment extends Fragment {
 
                 temp = (String) dataSnapshot.getValue();
                 email = temp;
-                email_show.setText("Username/Email: "+temp);
+                email_show.setText("Username/Email: "+ temp);
             }
 
             @Override
