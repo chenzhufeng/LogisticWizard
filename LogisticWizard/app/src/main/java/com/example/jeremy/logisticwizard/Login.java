@@ -46,7 +46,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
 
         getWindow().getDecorView().setSystemUiVisibility(8);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.login);
 
         //invoking Button
         SignupButton=(Button)findViewById(R.id.SignUpBut);

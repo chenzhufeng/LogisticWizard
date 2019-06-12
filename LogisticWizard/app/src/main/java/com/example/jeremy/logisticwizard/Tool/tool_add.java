@@ -1,4 +1,4 @@
-package com.example.jeremy.logisticwizard;
+package com.example.jeremy.logisticwizard.Tool;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.EditText;
+
+import com.example.jeremy.logisticwizard.R;
 
 public class tool_add extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     private Button add_tool;

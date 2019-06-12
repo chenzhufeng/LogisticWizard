@@ -1,4 +1,4 @@
-package com.example.jeremy.logisticwizard;
+package com.example.jeremy.logisticwizard.Machine;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -22,6 +22,8 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.jeremy.logisticwizard.Custom_object.machine_info;
+import com.example.jeremy.logisticwizard.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -35,7 +37,6 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -46,6 +47,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class machine_edit extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+    //set up variables
     private String machineName;
     private String machineName2;
     private String machineDescp;
@@ -85,6 +87,7 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
             machine_intent.putExtra("maintainencePlan", maintainPlan);
             machine_intent.putExtra("machineQuant", machineQuant);
             machine_intent.putExtra("machineImage", machineImage);
+            machine_intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(machine_intent);
         }
         if(view == edit_machine_image){

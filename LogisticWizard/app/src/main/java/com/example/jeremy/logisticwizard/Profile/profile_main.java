@@ -1,4 +1,4 @@
-package com.example.jeremy.logisticwizard;
+package com.example.jeremy.logisticwizard.Profile;
 
 
 import android.content.Intent;
@@ -9,6 +9,9 @@ import android.support.v4.app.Fragment;
 import android.view.MenuItem;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.jeremy.logisticwizard.Calendar.calendar_main_fragment;
+import com.example.jeremy.logisticwizard.R;
+import com.example.jeremy.logisticwizard.home_page;
 
 
 public class profile_main extends AppCompatActivity {

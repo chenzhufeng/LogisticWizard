@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".tool_main">
+    tools:context=".Tool.tool_main">
 
     <View
         android:id="@+id/top_view"
@@ -29,7 +29,8 @@
         android:clickable="true"
         android:elevation="5dp"
         android:focusable="true"
-        android:queryHint="Search..."/>
+        android:queryHint="Search..."
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/add_tool_button"

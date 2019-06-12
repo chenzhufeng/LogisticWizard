@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
-    tools:context=".machine_main">
+    tools:context=".Machine.machine_main">
 
     <View
         android:id="@+id/list_view"
@@ -75,7 +75,6 @@
         />
 
 
-
     <SearchView
         android:id="@+id/machine_search"
         android:layout_width="243dp"
@@ -86,9 +85,11 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="5dp"
         android:clickable="true"
+        android:elevation="8dp"
         android:focusable="true"
         android:queryHint="Search..."
-        android:elevation="8dp"/>
+        android:visibility="invisible"
+        tools:visibility="invisible" />
 
     <FrameLayout
         android:id="@+id/fragment_container"

@@ -1,4 +1,4 @@
-package com.example.jeremy.logisticwizard;
+package com.example.jeremy.logisticwizard.Work_order;
 
 import android.app.ProgressDialog;
 import android.app.DatePickerDialog;
@@ -15,7 +15,6 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,11 +22,13 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jeremy.logisticwizard.Custom_object.workorder_info;
+import com.example.jeremy.logisticwizard.R;
+import com.example.jeremy.logisticwizard.home_page;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -67,11 +68,9 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
     private TextView order_machine;
     private Uri filePath;
     private Button save_button;
-    private Button back_button;
     private Spinner maintenanceSpinner;
     String orderTitle;
     String orderImage;
-    String Date;
     List<String> temple=new ArrayList<>();
     List<String> maintenanceList = new ArrayList<>();
     protected DatabaseReference mDatabase;
@@ -114,14 +113,12 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
 
         save_button = findViewById(R.id.saveButton);
 
-        back_button=findViewById(R.id.backButton);
-
         Intent machine_info = getIntent();
         Bundle data = machine_info.getExtras();
 
         orderTitle = data.get("orderTitle").toString();
 
-        if (role.equals("Employee")) {
+        if (role.equals("Facility Worker")) {
             isEmployee = true;
         }
     }
@@ -243,6 +240,10 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
         mDatabase.child(orderTitle).child("order_dates").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String orderDate;
+
+                orderDate = (String) dataSnapshot.getValue();
+                order_Duedate.setText(orderDate);
                 order_Duedate.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -266,7 +267,6 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
                         month = month + 1;
                         String date = month + "/" + day + "/" + year;
                         order_Duedate.setText(date);
-                        Date = date;
                     }
                 };
                 //--------------------------
@@ -385,18 +385,12 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
                 save_edition();
                 Intent intent = new Intent (view.getContext(), workorder_view.class);
                 intent.putExtra("orderTitle", order_title.getText().toString().trim());
-                startActivity(intent);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                //startActivity(intent);
+                finish();
             }
         });
 
-        back_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent (workorder_edit.this, workorder_view.class);
-                intent.putExtra("orderTitle", order_title.getText());
-                startActivity(intent);
-            }
-        });
 
         order_image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -421,7 +415,7 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
         String maintenance_worker = maintenanceSpinner.getSelectedItem().toString().trim();
 
         if (orderTitle2.equals("")||orderCreator.equals("")||orderDescrip.equals("")||orderCost.equals("")
-                ||Date.equals("")||orderStatus.equals("")||orderPriority.equals("")||maintenance_worker.equals("")) {
+                || orderDuedate.equals("")||orderStatus.equals("")||orderPriority.equals("")||maintenance_worker.equals("")) {
             Toast.makeText(this,
                     "Please enter all information or leave NONE.", Toast.LENGTH_LONG).show();
             return;

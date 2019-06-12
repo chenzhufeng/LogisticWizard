@@ -9,10 +9,10 @@
         android:id="@+id/login"
         android:name="com.example.jeremy.logisticwizard.Login"
         android:label="activity_login"
-        tools:layout="@layout/activity_login" />
+        tools:layout="@layout/login" />
     <activity
         android:id="@+id/register"
         android:name="com.example.jeremy.logisticwizard.Register"
         android:label="activity_register"
-        tools:layout="@layout/activity_register" />
+        tools:layout="@layout/register" />
 </navigation>

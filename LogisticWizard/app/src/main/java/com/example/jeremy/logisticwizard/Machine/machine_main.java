@@ -1,19 +1,16 @@
-package com.example.jeremy.logisticwizard;
+package com.example.jeremy.logisticwizard.Machine;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.transition.Fade;
 import android.view.View;
 import android.view.ViewOutlineProvider;
 import android.widget.Button;
-import android.widget.ListView;
-import android.widget.SearchView;
 import android.graphics.Outline;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v4.app.Fragment;
@@ -21,6 +18,11 @@ import android.support.v4.app.Fragment;
 import android.support.design.widget.BottomNavigationView; //for bottom nav
 import android.view.MenuItem;
 
+import com.example.jeremy.logisticwizard.Calendar.calendar_main_fragment;
+import com.example.jeremy.logisticwizard.Custom_object.machine_info;
+import com.example.jeremy.logisticwizard.R;
+import com.example.jeremy.logisticwizard.home_page;
+import com.example.jeremy.logisticwizard.Profile.profile_main_fragment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,11 +36,9 @@ import android.widget.AdapterView;
 public class machine_main extends AppCompatActivity implements View.OnClickListener{
     protected DatabaseReference mDatabase;
     private Button add_machine;
-    private SearchView sv;
     private ListView lv;
     private View bar;
     private View list;
-    private String role = home_page.role;
     ArrayList<machine_info> machine_infoList;
     private TextView bt;
 
@@ -69,7 +69,6 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
 
         final ArrayList<String> listData = new ArrayList<String>();
 
-        sv = (SearchView) findViewById(R.id.machine_search);
         lv = (ListView) findViewById(R.id.list_of_machines); //will need this later
         machine_infoList = new ArrayList<>();
 
@@ -99,7 +98,6 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
                             startActivity(intent);
                             break;
                         case R.id.nav_orders:
-                            sv.setVisibility(View.INVISIBLE);
                             lv.setVisibility(View.INVISIBLE);
                             bar.setVisibility(View.INVISIBLE);
                             list.setVisibility(View.INVISIBLE);
@@ -111,7 +109,6 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
                                     selectedFragment).commit();
                             break;
                         case R.id.nav_profile:
-                            sv.setVisibility(View.INVISIBLE);
                             lv.setVisibility(View.INVISIBLE);
                             bar.setVisibility(View.INVISIBLE);
                             list.setVisibility(View.INVISIBLE);
@@ -130,6 +127,7 @@ public class machine_main extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onStart() {
         super.onStart();
+        String role = home_page.role;
 
         if (!role.equals("Admin")) {
             add_machine.setVisibility(View.GONE);
