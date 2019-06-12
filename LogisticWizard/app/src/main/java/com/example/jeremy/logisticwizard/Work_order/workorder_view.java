@@ -1,4 +1,4 @@
-package com.example.jeremy.logisticwizard;
+package com.example.jeremy.logisticwizard.Work_order;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -6,18 +6,18 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.TextInputEditText;
 
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jeremy.logisticwizard.R;
+import com.example.jeremy.logisticwizard.home_page;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -48,7 +48,6 @@ public class workorder_view extends AppCompatActivity {
     private TextView maintenance_worker;
     private ImageView order_image;
     private Button edit_button;
-    private Button back_button;
     private Button delete_button;
     private String orderTitle;
     protected DatabaseReference mDatabase;
@@ -76,11 +75,7 @@ public class workorder_view extends AppCompatActivity {
         maintain_plan = findViewById(R.id.maintain_plan);
 
         edit_button = findViewById(R.id.editButton);
-
-        back_button = findViewById(R.id.backButton);
-
         delete_button = findViewById(R.id.deleteButton);
-        back_button = findViewById(R.id.backButton);
 
         Intent machine_info = getIntent();
         Bundle data = machine_info.getExtras();
@@ -92,7 +87,7 @@ public class workorder_view extends AppCompatActivity {
 
     protected void onStart() {
         super.onStart();
-
+        //String role = home_page.role;
         order_title.setText(orderTitle);
         mDatabase.child(orderTitle).child("order_status").addValueEventListener(new ValueEventListener() {
             @Override
@@ -250,6 +245,7 @@ public class workorder_view extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception exception) {
                             // Handle any errors
+                            onStart();
                         }
                     });
                 } catch (IOException e) {
@@ -291,14 +287,6 @@ public class workorder_view extends AppCompatActivity {
                 showNormalDialog();
             }
         });
-        back_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent (workorder_view.this, workorder_main.class);
-                startActivity(intent);
-            }
-        });
-
         edit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -327,6 +315,7 @@ public class workorder_view extends AppCompatActivity {
                         mDatabase.child(orderTitle).removeValue();
                         Toast.makeText(workorder_view.this, "Deleted", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent (workorder_view.this, workorder_main.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     }
                 });

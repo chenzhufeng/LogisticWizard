@@ -1,6 +1,6 @@
-package com.example.jeremy.logisticwizard;
+package com.example.jeremy.logisticwizard.Custom_object;
 
-
+//customed object store user information
 public class user_info{
     public String Email;
     public String Name;

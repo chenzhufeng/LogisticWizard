@@ -1,17 +1,15 @@
-package com.example.jeremy.logisticwizard;
+package com.example.jeremy.logisticwizard.Custom_object;
 
+//customed object store tools information
 public class tool_info {
     public String tool_name;
     public String tool_descrip;
     public String tool_price;
     public String tool_location;
     public String tool_type;
-    //public String tool_parts;
-    //public String maintain_plan;
     public String tool_quant;
-    //
-//
-//
+
+
     public tool_info() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }

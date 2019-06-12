@@ -1,4 +1,4 @@
-package com.example.jeremy.logisticwizard;
+package com.example.jeremy.logisticwizard.Custom_object;
 
 public class machine_info {
     public String machine_name;

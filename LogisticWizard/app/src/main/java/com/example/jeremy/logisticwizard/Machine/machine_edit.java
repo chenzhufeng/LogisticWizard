@@ -1,4 +1,4 @@
-package com.example.jeremy.logisticwizard;
+package com.example.jeremy.logisticwizard.Machine;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -21,7 +21,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
-
+import com.example.jeremy.logisticwizard.Custom_object.machine_info;
+import com.example.jeremy.logisticwizard.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -35,7 +36,6 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -45,7 +45,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-public class machine_edit extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+public class machine_edit extends AppCompatActivity implements
+        View.OnClickListener, AdapterView.OnItemSelectedListener {
+    //set up variables
     private String machineName;
     private String machineName2;
     private String machineDescp;
@@ -75,6 +77,7 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view){
         if(view == save){
             saveInfo();
+            //pass edited information back to display page and so latest info can be displayed
             Intent machine_intent = new Intent(view.getContext(), machine_disp.class);
             machine_intent.putExtra("machineName", machineName2);
             machine_intent.putExtra("machineDescription", machineDescp);
@@ -85,6 +88,7 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
             machine_intent.putExtra("maintainencePlan", maintainPlan);
             machine_intent.putExtra("machineQuant", machineQuant);
             machine_intent.putExtra("machineImage", machineImage);
+            machine_intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(machine_intent);
         }
         if(view == edit_machine_image){
@@ -93,12 +97,13 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
     }
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.machine_edit);
         storageReference = FirebaseStorage.getInstance().getReference();
+
+        //set up machine quantity spinners
         machineQuantitySpinner = findViewById(R.id.quantityMachineSpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.machineQuantityStringArray, android.R.layout.simple_spinner_item);
@@ -106,7 +111,7 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
         machineQuantitySpinner.setAdapter(adapter);
         machineQuantitySpinner.setOnItemSelectedListener(this);
 
-
+        //set up machine maintenance plan spinner
         machinePlanSpinner = findViewById(R.id.maintenancePlanSpinner);
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
                 R.array.machinePlanStringArray, android.R.layout.simple_spinner_item);
@@ -114,9 +119,9 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
         machinePlanSpinner.setAdapter(adapter1);
         machinePlanSpinner.setOnItemSelectedListener(this);
 
+        //get passed in data from previous activities
         Intent machine_info = getIntent();
         Bundle data = machine_info.getExtras();
-
         machineName = (String)data.get("machineName");
         machineDescp = (String)data.get("machineDescription");
         machinePrice = (String)data.get("machinePrice");
@@ -127,8 +132,7 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
         machineQuant = (String)data.get("machineQuant");
         machineImage = (String)data.get("machineImage");
 
-        int machinePlan2 = Integer.parseInt(maintainPlan);
-
+        //link variables with views in xml
         name = findViewById(R.id.nameText);
         type = findViewById(R.id.typeText);
         part = findViewById(R.id.partsText);
@@ -136,9 +140,11 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
         location = findViewById(R.id.locationText);
         description = findViewById(R.id.descriptionText);
         edit_machine_image = findViewById(R.id.edit_machine_image);
-        //make save button onclickable
         save = findViewById(R.id.saveButton);
 
+        //get position of chose element in spinner
+        int machinePlan2 = Integer.parseInt(maintainPlan);
+        //display information on screen
         name.setText(machineName);
         type.setText(machineType);
         part.setText(machineParts);
@@ -183,6 +189,7 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    //save edited information to firebase
     private void saveInfo(){
         machineName2 = name.getText().toString().trim();
         machineDescp = description.getText().toString().trim();
@@ -191,14 +198,14 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
         machineType = type.getText().toString().trim();
         machineParts = part.getText().toString().trim();
         maintainPlan = machinePlanSpinner.getSelectedItem().toString().trim();
-        //machineQuant = machineQuantitySpinner.getSelectedItem().toString().trim();
 
+        //show message if some parts are left blank
         if (machineName2.equals("")||machineDescp.equals("")||machinePrice.equals("")||machineLocat.equals("")
                 ||machineType.equals("")||machineParts.equals("")||maintainPlan.equals("")||machineQuant.equals("")) {
             Toast.makeText(this,
                     "Please enter all information or leave NONE.", Toast.LENGTH_LONG).show();
-            return;
         }else {
+            //if name is changed, remove old machine_info in firebase and write news in
             if(!machineName2.equals(machineName)) {
                 mDatabase.child(machineName).removeValue();
             }
@@ -206,14 +213,12 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
             mDatabase.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                     for(DataSnapshot machineSnapshot : dataSnapshot.getChildren()){
                         if(!machineSnapshot.getKey().equals(machineName)){
                             temple.add(machineSnapshot.getKey());
                         }
                     }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -228,10 +233,6 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
             else {
                 if(filePath != null)
                 {
-                    final ProgressDialog progressDialog = new ProgressDialog(this);
-                    //progressDialog.setTitle("Uploading...");
-                    //progressDialog.show();
-
                     StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
                     machineImage = ref.getPath();
 
@@ -239,14 +240,12 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
                             .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                 @Override
                                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                    //progressDialog.dismiss();
                                     Toast.makeText(machine_edit.this, "Uploaded", Toast.LENGTH_SHORT).show();
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    //progressDialog.dismiss();
                                     Toast.makeText(machine_edit.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             })

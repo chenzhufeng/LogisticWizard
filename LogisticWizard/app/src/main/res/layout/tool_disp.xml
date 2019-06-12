@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    tools:context=".tool_disp">
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".tool_disp"
-    >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Tool.tool_disp">
 
     <TextView
         android:id="@+id/ToolName"
@@ -49,60 +47,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="34dp"
-        android:layout_marginLeft="34dp"
-        android:layout_marginTop="589dp"
-        android:layout_marginEnd="289dp"
-        android:layout_marginRight="289dp"
-        android:layout_marginBottom="21dp"
-        android:text="Edit"
-        android:textColor="@color/white"
-        android:background="@drawable/button_background_login"/>
-
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="289dp"
-        android:layout_marginLeft="289dp"
-        android:layout_marginTop="591dp"
-        android:layout_marginEnd="34dp"
-        android:layout_marginRight="34dp"
-        android:layout_marginBottom="21dp"
-        android:text="Back"
-        android:textColor="@color/white"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="239dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/button_background_login"
-        />
+        android:text="Edit"
+        android:textColor="@color/white"/>
 
     <Button
         android:id="@+id/deleteTools"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="163dp"
-        android:layout_marginLeft="163dp"
-        android:layout_marginTop="590dp"
-        android:layout_marginEnd="160dp"
-        android:layout_marginRight="160dp"
-        android:layout_marginBottom="21dp"
+        android:layout_marginStart="262dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="61dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/button_background_login"
         android:text="Delete"
-        android:textColor="@color/white"
-        android:background="@drawable/button_background_login"/>
+        android:textColor="@color/white" />
 
 </RelativeLayout>

@@ -3,21 +3,14 @@ package com.example.jeremy.logisticwizard;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-//import com.example.jeremy.logisticwizard.R;
-
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,7 +21,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
@@ -47,7 +39,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
 
         getWindow().getDecorView().setSystemUiVisibility(8);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.login);
 
         //invoking Button
         SignupButton=(Button)findViewById(R.id.SignUpBut);

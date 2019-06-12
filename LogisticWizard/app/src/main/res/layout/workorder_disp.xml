@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
-    tools:context=".workorder_view">
+    tools:context=".Work_order.workorder_view">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -406,6 +406,7 @@
             android:background="@drawable/button_background_login"
             android:text="Delete"
             android:textColor="@color/white"
+            app:layout_constraintHorizontal_bias="0.75"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -423,27 +424,10 @@
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.140"
+            app:layout_constraintHorizontal_bias="0.25"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/details" />
 
-        <Button
-            android:id="@+id/backButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/button_background_login"
-            android:text="Back"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.846"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/details"
-            app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
             android:id="@+id/orderImage"
@@ -456,6 +440,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleText"
             app:srcCompat="@android:color/background_light" />
-
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

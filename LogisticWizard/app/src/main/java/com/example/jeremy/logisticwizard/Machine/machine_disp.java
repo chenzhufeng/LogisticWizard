@@ -1,4 +1,4 @@
-package com.example.jeremy.logisticwizard;
+package com.example.jeremy.logisticwizard.Machine;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import com.example.jeremy.logisticwizard.R;
+import com.example.jeremy.logisticwizard.home_page;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FileDownloadTask;
@@ -28,14 +30,13 @@ import java.util.List;
 import java.util.Map;
 
 public class machine_disp extends Activity implements View.OnClickListener{
-
+    //set up variables
     private ListView lv;
     private Button editButton;
     private Button backButton;
     private Button historyButton;
+    private Button deleteButton;
     private ImageView machine_image;
-
-    public String role = home_page.role;
     String machineName;
     String machineDescription;
     String machinePrice;
@@ -55,15 +56,14 @@ public class machine_disp extends Activity implements View.OnClickListener{
 
         mStorage = FirebaseStorage.getInstance().getReference();
 
+        //link up variables to correspond views in xml
         editButton = findViewById(R.id.editMachineButton);
         editButton.setOnClickListener(this);
         lv = findViewById(R.id.machineInfoList);
-
-//        backButton = findViewById(R.id.backButton);
-//        backButton.setOnClickListener(this);
-
         historyButton = findViewById(R.id.histroyButton);
         historyButton.setOnClickListener(this);
+        deleteButton = findViewById(R.id.deleteMachine);
+        deleteButton.setOnClickListener(this);
 
         machine_image = findViewById(R.id.machine_image);
     }
@@ -72,12 +72,17 @@ public class machine_disp extends Activity implements View.OnClickListener{
     protected void onStart() {
         super.onStart();
 
+        //only administrator should be able to edit machiens
+        String role = home_page.role;
         if (!role.equals("Admin")) {
             editButton.setVisibility(View.INVISIBLE);
+            historyButton.setVisibility(View.INVISIBLE);
+            deleteButton.setVisibility(View.INVISIBLE);
         }
+
+        //get passed information from another page
         Intent machine_info = getIntent();
         Bundle data = machine_info.getExtras();
-
         machineName = (String)data.get("machineName");
         machineDescription = (String)data.get("machineDescription");
         machinePrice = (String)data.get("machinePrice");
@@ -88,6 +93,7 @@ public class machine_disp extends Activity implements View.OnClickListener{
         machineQuant = (String)data.get("machineQuant");
         machineImage = (String)data.get("machineImage");
 
+        //store them into a hash map
         LinkedHashMap<String, String> machineInfoHashMap = new LinkedHashMap<>();
         machineInfoHashMap.put("Name", machineName);
         machineInfoHashMap.put("Description", machineDescription);
@@ -98,7 +104,7 @@ public class machine_disp extends Activity implements View.OnClickListener{
         machineInfoHashMap.put("Maintenance Plan", machinePlan);
         machineInfoHashMap.put("machineQuant", machineQuant);
 
-
+        //link up hash map and adapter
         List<HashMap<String, String>> listItems = new ArrayList<>();
         SimpleAdapter adapter = new SimpleAdapter(this, listItems, R.layout.machine_disp_list,
                 new String[]{"First Line", "Second Line"},
@@ -114,12 +120,15 @@ public class machine_disp extends Activity implements View.OnClickListener{
             listItems.add(resultsMap);
         }
 
+        //display information by adapter
         lv.setAdapter(adapter);
 
+        //load images
         imageRef = mStorage.child(machineImage);
         try {
             final File localimage = File.createTempFile(machineName, "jpg");
-            imageRef.getFile(localimage).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+            imageRef.getFile(localimage).addOnSuccessListener(new OnSuccessListener
+                    <FileDownloadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                     // Local temp file has been created
@@ -131,6 +140,7 @@ public class machine_disp extends Activity implements View.OnClickListener{
                 @Override
                 public void onFailure(@NonNull Exception exception) {
                     // Handle any errors
+                    onStart();
                 }
             });
         } catch (IOException e) {
@@ -141,7 +151,9 @@ public class machine_disp extends Activity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
+        //edit button brings user to edit page
         if (v == editButton) {
+            //put data in variables and pass them to another page
             Intent machine_intent = new Intent(v.getContext(), machine_edit.class);
             machine_intent.putExtra("machineName", machineName);
             machine_intent.putExtra("machineDescription", machineDescription);
@@ -154,10 +166,8 @@ public class machine_disp extends Activity implements View.OnClickListener{
             machine_intent.putExtra("machineImage", machineImage);
             startActivity(machine_intent);
         }
-//        if(v == backButton){
-//            Intent intent = new Intent (v.getContext(), machine_main.class);
-//            startActivity(intent);
-//        }
+
+        //history button brings user to check all machine history
         if(v == historyButton){
             Intent intent = new Intent (v.getContext(), machine_history.class);
             intent.putExtra("machineName", machineName);

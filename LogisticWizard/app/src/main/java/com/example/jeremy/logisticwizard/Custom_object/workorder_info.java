@@ -1,5 +1,6 @@
-package com.example.jeremy.logisticwizard;
+package com.example.jeremy.logisticwizard.Custom_object;
 
+//customed object store work order information
 public class workorder_info {
     public String order_title;
     public String order_descrip;

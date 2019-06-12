@@ -1,4 +1,4 @@
-package com.example.jeremy.logisticwizard;
+package com.example.jeremy.logisticwizard.Tool;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,11 +12,15 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.SearchView;
 
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jeremy.logisticwizard.Calendar.calendar_main_fragment;
+import com.example.jeremy.logisticwizard.Custom_object.tool_info;
+import com.example.jeremy.logisticwizard.R;
+import com.example.jeremy.logisticwizard.home_page;
+import com.example.jeremy.logisticwizard.Profile.profile_main_fragment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,7 +34,6 @@ public class tool_main extends AppCompatActivity implements View.OnClickListener
 
     protected DatabaseReference mDatabase;
     private Button add_tool;
-    private SearchView sv;
     private ListView lv;
     private TextView bt;
     ArrayList<tool_info> tool_infoList;
@@ -56,7 +59,6 @@ public class tool_main extends AppCompatActivity implements View.OnClickListener
 
         final ArrayList<String> listData = new ArrayList<String>();
 
-        sv = (SearchView) findViewById(R.id.tool_search);
         lv = (ListView) findViewById(R.id.list_of_tools); //will need this later
         bt = (TextView) findViewById(R.id.button_text);
 
@@ -112,7 +114,6 @@ public class tool_main extends AppCompatActivity implements View.OnClickListener
                             //Intent intent2 = new Intent(machine_main.this, workorder_main.class);
                             //intent2.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                             //startActivity(intent2);
-                            sv.setVisibility(View.INVISIBLE);
                             lv.setVisibility(View.INVISIBLE);
                             add_tool.setVisibility(View.INVISIBLE);
                             top.setVisibility(View.INVISIBLE);
@@ -130,7 +131,6 @@ public class tool_main extends AppCompatActivity implements View.OnClickListener
                             //Intent intent3 = new Intent(machine_main.this, profile_main.class);
                             //startActivity(intent3);
                             //menuItem.setCheckable(true);
-                            sv.setVisibility(View.INVISIBLE);
                             lv.setVisibility(View.INVISIBLE);
                             add_tool.setVisibility(View.INVISIBLE);
                             top.setVisibility(View.INVISIBLE);

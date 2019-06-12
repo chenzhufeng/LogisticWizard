@@ -1,4 +1,4 @@
-package com.example.jeremy.logisticwizard;
+package com.example.jeremy.logisticwizard.Work_order;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -15,8 +15,13 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.Toast;
+import android.widget.TextView;
 
+import com.example.jeremy.logisticwizard.Calendar.calendar_main_fragment;
+import com.example.jeremy.logisticwizard.Custom_object.workorder_info;
+import com.example.jeremy.logisticwizard.R;
+import com.example.jeremy.logisticwizard.home_page;
+import com.example.jeremy.logisticwizard.Profile.profile_main_fragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -26,14 +31,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static com.example.jeremy.logisticwizard.R.*;
 
 public class workorder_main extends AppCompatActivity implements View.OnClickListener {
 
     Button newOrder;
-    SearchView sv;
     View v1;
     View top;
     ListView order_view;
@@ -41,6 +44,7 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
     RecyclerViewAdapter mAdapter;
     LinearLayoutManager linearLayoutManager;
     ArrayList<workorder_info> workorder_infoList;
+    TextView new_order_button_text;
     private String role;
 
     protected DatabaseReference mDatabase;
@@ -53,9 +57,10 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
         v1 = (View) findViewById(id.list_view);
         order_view = (ListView) findViewById(id.order_list);
         top = (View) findViewById(id.top_view);
-        sv = (SearchView) findViewById(id.search_workorders);
         newOrder = (Button) findViewById(R.id.new_order);
         newOrder.setOnClickListener(this);
+        new_order_button_text = findViewById(id.button_text);
+        new_order_button_text.setOnClickListener(this);
 
         workorder_infoList = new ArrayList<>();
 
@@ -185,7 +190,7 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
                             recyclerView.setVisibility(View.INVISIBLE);
                             top.setVisibility(View.INVISIBLE);
                             newOrder.setVisibility(View.INVISIBLE);
-                            sv.setVisibility(View.INVISIBLE);
+                            new_order_button_text.setVisibility(View.INVISIBLE);
 
                             //setContentView(R.layout.calendar_main_fragment);
                             //recyclerView.setVisibility(View.GONE);
@@ -204,7 +209,7 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
                             recyclerView.setVisibility(View.INVISIBLE);
                             top.setVisibility(View.INVISIBLE);
                             newOrder.setVisibility(View.INVISIBLE);
-                            sv.setVisibility(View.INVISIBLE);
+                            new_order_button_text.setVisibility(View.INVISIBLE);
                             //need other layouts
 
                             menuItem.setCheckable(true);
