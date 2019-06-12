@@ -115,6 +115,8 @@
     <list default="true" id="777a926e-b289-4a35-9844-19c16b4d3546" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/Tool/tool_disp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/Tool/tool_disp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/Tool/tool_main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/Tool/tool_main.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -137,29 +139,20 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/res/layout/workorder_add_standard.xml">
+        <entry file="file://$PROJECT_DIR$/src/main/res/layout/tool_disp.xml">
           <provider editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="79" column="68" selection-start-line="79" selection-start-column="68" selection-end-line="79" selection-end-column="68" />
+            <state relative-caret-position="1173">
+              <caret line="69" column="37" selection-start-line="69" selection-start-column="37" selection-end-line="69" selection-end-column="37" />
             </state>
           </provider>
           <provider selected="true" editor-type-id="android-designer2" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/Tool/tool_disp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="372">
-              <caret line="143" column="1" selection-start-line="143" selection-start-column="1" selection-end-line="143" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/Work_order/workorder_edit.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="599" column="9" lean-forward="true" selection-start-line="599" selection-start-column="9" selection-end-line="599" selection-end-column="9" />
+            <state relative-caret-position="257">
+              <caret line="64" column="53" lean-forward="true" selection-start-line="64" selection-start-column="53" selection-end-line="64" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -184,6 +177,9 @@
       <find>image</find>
       <find>TJ</find>
       <find>role</find>
+      <find>edit</find>
+      <find>add</find>
+      <find>editButton</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -219,6 +215,9 @@
         <option value="$PROJECT_DIR$/src/main/res/layout/workorder_disp.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/tool_disp.xml" />
         <option value="$PROJECT_DIR$/../local.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/Work_order/workorder_edit.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/Machine/machine_edit.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/Tool/tool_main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/Tool/tool_disp.java" />
       </list>
     </option>
@@ -275,6 +274,16 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="logisticwizard" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LogisticWizard" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LogisticWizard" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="logisticwizard" type="462c0819:PsiDirectoryNode" />
+              <item name="Tool" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="LogisticWizard" type="b2602c69:ProjectViewProjectNode" />
@@ -414,7 +423,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.21073826" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.21073826" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />
@@ -427,7 +436,7 @@
       <window_info anchor="bottom" id="Terminal" order="2" weight="0.32719547" />
       <window_info anchor="bottom" id="Event Log" order="3" sideWeight="0.50067115" side_tool="true" weight="0.31586403" />
       <window_info anchor="bottom" id="Build" order="4" sideWeight="0.49932885" weight="0.3186969" />
-      <window_info active="true" anchor="bottom" id="Run" order="5" visible="true" weight="0.3286119" />
+      <window_info anchor="bottom" id="Run" order="5" visible="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Logcat" order="6" weight="0.32719547" />
       <window_info anchor="bottom" id="Debug" order="7" />
       <window_info anchor="bottom" id="Find" order="8" />
@@ -693,25 +702,50 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/tool_disp.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/Machine/machine_edit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="69" column="37" selection-start-line="69" selection-start-column="37" selection-end-line="69" selection-end-column="37" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/Tool/tool_disp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="143" column="1" selection-start-line="143" selection-start-column="1" selection-end-line="143" selection-end-column="1" />
+        <state relative-caret-position="68">
+          <caret line="47" column="31" selection-start-line="47" selection-start-column="31" selection-end-line="47" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/Work_order/workorder_edit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="599" column="9" lean-forward="true" selection-start-line="599" selection-start-column="9" selection-end-line="599" selection-end-column="9" />
+        <state relative-caret-position="131">
+          <caret line="414" column="68" selection-start-line="414" selection-start-column="64" selection-end-line="414" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/Tool/tool_edit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/Tool/tool_main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="78" column="9" lean-forward="true" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/tool_main.xml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/tool_disp.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="1173">
+          <caret line="69" column="37" selection-start-line="69" selection-start-column="37" selection-end-line="69" selection-end-column="37" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/Tool/tool_disp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="64" column="53" lean-forward="true" selection-start-line="64" selection-start-column="53" selection-end-line="64" selection-end-column="53" />
         </state>
       </provider>
     </entry>

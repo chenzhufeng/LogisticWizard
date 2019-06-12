@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.jeremy.logisticwizard.Machine.machine_disp;
 import com.example.jeremy.logisticwizard.Machine.machine_main;
 import com.example.jeremy.logisticwizard.R;
+import com.example.jeremy.logisticwizard.home_page;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -25,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 public class tool_disp extends Activity implements View.OnClickListener {
-
+    private String role = home_page.role;
     private ListView lv;
     private Button editButton;
     private Button deleteButton;
@@ -57,13 +58,20 @@ public class tool_disp extends Activity implements View.OnClickListener {
         Intent tool_info = getIntent();
         Bundle data = tool_info.getExtras();
 
+        if (role.equals("Facility Worker")) {
+            editButton.setVisibility(View.INVISIBLE);
+            deleteButton.setVisibility(View.INVISIBLE);
+        } else {
+            editButton.setVisibility(View.VISIBLE);
+            deleteButton.setVisibility(View.VISIBLE);
+        }
+
         toolName = (String) data.get("toolName");
         toolDescription = (String) data.get("toolDescription");
         toolPrice = (String) data.get("toolPrice");
         toolLocation = (String) data.get("toolLocation");
         toolType = (String) data.get("toolType");
         toolQuant = (String) data.get("toolQuant");
-
 
         final ArrayList<String> listData = new ArrayList<String>();
         LinkedHashMap<String, String> toolInfoHashMap = new LinkedHashMap<>();

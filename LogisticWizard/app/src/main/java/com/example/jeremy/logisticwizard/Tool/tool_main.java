@@ -31,11 +31,11 @@ import java.util.ArrayList;
 import android.widget.AdapterView;
 
 public class tool_main extends AppCompatActivity implements View.OnClickListener {
-
     protected DatabaseReference mDatabase;
     private Button add_tool;
     private ListView lv;
     private TextView bt;
+    private String role = home_page.role;
     ArrayList<tool_info> tool_infoList;
     //added
     View top;
@@ -43,8 +43,6 @@ public class tool_main extends AppCompatActivity implements View.OnClickListener
 
     //just for now
     private ArrayAdapter<String> adapter;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +70,13 @@ public class tool_main extends AppCompatActivity implements View.OnClickListener
 
         add_tool = (Button) findViewById(R.id.add_tool_button);
         add_tool.setOnClickListener(this);
+        if (role.equals("Facility Worker")) {
+            add_tool.setVisibility(View.INVISIBLE);
+            bt.setVisibility(View.INVISIBLE);
+        } else {
+            add_tool.setVisibility(View.VISIBLE);
+            bt.setVisibility(View.VISIBLE);
+        }
 
         // https://www.youtube.com/watch?v=H3JAy94UFw0
 //        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
