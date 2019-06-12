@@ -44,6 +44,7 @@ public class workorder_view extends AppCompatActivity {
     private TextView order_Duedate;
     private TextView order_note;
     private TextView order_machine;
+    private TextView maintenance_worker;
     private ImageView order_image;
     private Button edit_button;
     private Button back_button;
@@ -70,6 +71,7 @@ public class workorder_view extends AppCompatActivity {
         order_image = findViewById(R.id.orderImage);
         order_machine = findViewById(R.id.order_machine);
         order_note = findViewById(R.id.note);
+        maintenance_worker = findViewById(R.id.maintenance_worker);
         maintain_plan = findViewById(R.id.maintain_plan);
 
         edit_button = findViewById(R.id.editButton);
@@ -90,7 +92,7 @@ public class workorder_view extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        if (role.equals("Employee")) {
+        if (role.equals("Facility Worker")) {
             edit_button.setVisibility(View.INVISIBLE);
         }
 
@@ -198,6 +200,22 @@ public class workorder_view extends AppCompatActivity {
                 String orderMachine;
                 orderMachine = (String) dataSnapshot.getValue();
                 order_machine.setText(orderMachine);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        mDatabase.child(orderTitle).child("maintenance_worker").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                String maintenanceWorker;
+                maintenanceWorker = (String) dataSnapshot.getValue();
+                maintenance_worker.setText(maintenanceWorker);
 
             }
 
