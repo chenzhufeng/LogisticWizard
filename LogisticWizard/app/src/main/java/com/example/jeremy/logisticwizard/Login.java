@@ -32,6 +32,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private DatabaseReference mDatabase;
     private ProgressDialog progressDialog2;
     private FirebaseAuth mAuth;
+    private String role;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,16 +55,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         forgetPwd.setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
-
-
     }
 
 
     @Override
     protected void onStart() {
         super.onStart();
-        //fetchTask = FirebaseRemoteConfig.getInstance().fetch();
     }
+
     private void UserLogin(){
         String infoEmail = user_name.getText().toString().trim();
         String infoPassword = password.getText().toString().trim();
@@ -84,16 +83,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         //progressDialog2.dismiss();
                         if (task.isSuccessful()) {
+                            //*
                             FirebaseAuth mAuth = FirebaseAuth.getInstance();
                             FirebaseUser user = mAuth.getCurrentUser();
                             if (user != null) {
                                 String Uid = user.getUid();
                                 getRole(Uid);
                             }
-                            /*
-                            Toast.makeText(Login.this, "Login Successfully!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), home_page.class));
-                            //*/
                         } else {
                             // If sign in fails, display a message to the user.
                             String grab_error = task.getException().getMessage();
@@ -110,7 +106,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         mDatabase.child(Uid).child("Role").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //dbSource.setResult(dataSnapshot);
                 String role = dataSnapshot.getValue(String.class);
                 if (role.equals("None")) {
                     Toast.makeText(Login.this, "Your role has not yet been set", Toast.LENGTH_LONG).show();

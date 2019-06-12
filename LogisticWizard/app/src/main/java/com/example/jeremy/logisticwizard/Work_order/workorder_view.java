@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -32,7 +33,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class workorder_view extends AppCompatActivity {
-
+    private String role = home_page.role;
+    private String name = home_page.name;
     private TextView maintain_plan;
     private TextView order_title;
     private TextView order_status;
@@ -85,13 +87,7 @@ public class workorder_view extends AppCompatActivity {
 
     protected void onStart() {
         super.onStart();
-        String role = home_page.role;
-
-        if (role.equals("Facility Worker")) {
-            edit_button.setVisibility(View.INVISIBLE);
-            delete_button.setVisibility(View.INVISIBLE);
-        }
-
+        //String role = home_page.role;
         order_title.setText(orderTitle);
         mDatabase.child(orderTitle).child("order_status").addValueEventListener(new ValueEventListener() {
             @Override
@@ -126,11 +122,19 @@ public class workorder_view extends AppCompatActivity {
         mDatabase.child(orderTitle).child("order_creator").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 String orderCreator;
                 orderCreator = (String) dataSnapshot.getValue();
+                //Log.d("ORDER", "orderCreator = " + orderCreator, null);
                 order_Creator.setText(orderCreator);
 
+                Log.d("NAME", orderCreator, null);
+                if ((role.equals("Facility Worker")) && (!name.equals(orderCreator))) {
+                    edit_button.setVisibility(View.INVISIBLE);
+                    delete_button.setVisibility(View.INVISIBLE);
+                } else {
+                    edit_button.setVisibility(View.VISIBLE);
+                    delete_button.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
@@ -175,11 +179,9 @@ public class workorder_view extends AppCompatActivity {
         mDatabase.child(orderTitle).child("order_dates").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 String orderDuedate;
                 orderDuedate = (String) dataSnapshot.getValue();
                 order_Duedate.setText(orderDuedate);
-
             }
 
             @Override
@@ -207,11 +209,9 @@ public class workorder_view extends AppCompatActivity {
         mDatabase.child(orderTitle).child("maintenance_worker").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 String maintenanceWorker;
                 maintenanceWorker = (String) dataSnapshot.getValue();
                 maintenance_worker.setText(maintenanceWorker);
-
             }
 
             @Override
@@ -295,8 +295,8 @@ public class workorder_view extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
+
     private void showNormalDialog() {
         /* @setIcon 设置对话框图标
          * @setTitle 设置对话框标题
