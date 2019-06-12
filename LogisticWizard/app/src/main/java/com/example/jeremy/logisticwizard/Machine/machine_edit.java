@@ -21,7 +21,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.example.jeremy.logisticwizard.Custom_object.machine_info;
 import com.example.jeremy.logisticwizard.R;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -46,7 +45,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-public class machine_edit extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+public class machine_edit extends AppCompatActivity implements
+        View.OnClickListener, AdapterView.OnItemSelectedListener {
     //set up variables
     private String machineName;
     private String machineName2;
@@ -77,6 +77,7 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view){
         if(view == save){
             saveInfo();
+            //pass edited information back to display page and so latest info can be displayed
             Intent machine_intent = new Intent(view.getContext(), machine_disp.class);
             machine_intent.putExtra("machineName", machineName2);
             machine_intent.putExtra("machineDescription", machineDescp);
@@ -96,12 +97,13 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
     }
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.machine_edit);
         storageReference = FirebaseStorage.getInstance().getReference();
+
+        //set up machine quantity spinners
         machineQuantitySpinner = findViewById(R.id.quantityMachineSpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.machineQuantityStringArray, android.R.layout.simple_spinner_item);
@@ -109,7 +111,7 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
         machineQuantitySpinner.setAdapter(adapter);
         machineQuantitySpinner.setOnItemSelectedListener(this);
 
-
+        //set up machine maintenance plan spinner
         machinePlanSpinner = findViewById(R.id.maintenancePlanSpinner);
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
                 R.array.machinePlanStringArray, android.R.layout.simple_spinner_item);
@@ -117,9 +119,9 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
         machinePlanSpinner.setAdapter(adapter1);
         machinePlanSpinner.setOnItemSelectedListener(this);
 
+        //get passed in data from previous activities
         Intent machine_info = getIntent();
         Bundle data = machine_info.getExtras();
-
         machineName = (String)data.get("machineName");
         machineDescp = (String)data.get("machineDescription");
         machinePrice = (String)data.get("machinePrice");
@@ -130,8 +132,7 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
         machineQuant = (String)data.get("machineQuant");
         machineImage = (String)data.get("machineImage");
 
-        int machinePlan2 = Integer.parseInt(maintainPlan);
-
+        //link variables with views in xml
         name = findViewById(R.id.nameText);
         type = findViewById(R.id.typeText);
         part = findViewById(R.id.partsText);
@@ -139,9 +140,11 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
         location = findViewById(R.id.locationText);
         description = findViewById(R.id.descriptionText);
         edit_machine_image = findViewById(R.id.edit_machine_image);
-        //make save button onclickable
         save = findViewById(R.id.saveButton);
 
+        //get position of chose element in spinner
+        int machinePlan2 = Integer.parseInt(maintainPlan);
+        //display information on screen
         name.setText(machineName);
         type.setText(machineType);
         part.setText(machineParts);
@@ -186,6 +189,7 @@ public class machine_edit extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    //save edited information to firebase
     private void saveInfo(){
         machineName2 = name.getText().toString().trim();
         machineDescp = description.getText().toString().trim();
