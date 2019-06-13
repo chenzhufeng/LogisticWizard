@@ -314,13 +314,12 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
         String order_machine = machineSpinner.getSelectedItem().toString().trim();
 
 
-        if (order_title.equals("")||order_descp.equals("")||order_note.equals("")||order_DueDate.equals("")
-                ||order_cost.equals("")||order_priority.equals("")||maintainPlan.equals("")||order_status.equals("")
+        if (order_title.equals("")||order_descp.equals("")||order_priority.equals("")||order_status.equals("")
                 ||order_machine.equals("")) {
             Toast.makeText(this,
                     "Please enter all information or leave NONE.", Toast.LENGTH_LONG).show();
             return;
-        }else {
+        } else {
 
             Intent order_intent = new Intent();
             order_intent.putExtra("orderTitle", order_title);

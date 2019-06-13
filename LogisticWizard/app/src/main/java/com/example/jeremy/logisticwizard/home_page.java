@@ -83,7 +83,7 @@ public class home_page extends AppCompatActivity implements View.OnClickListener
         DatabaseReference orderDatabase = FirebaseDatabase.getInstance().getReference("orders");
         workorder_info order = new workorder_info(order_title, order_description, order_note, order_DueDate,
                 order_cost, order_priority, order_plan, order_status, order_image, order_creator, order_machine, maintenance_worker);
-        Toast.makeText(this, "on save to db!"+order, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Work Order Added!", Toast.LENGTH_LONG).show();
         orderDatabase.child(order_title).setValue(order);
 
     }

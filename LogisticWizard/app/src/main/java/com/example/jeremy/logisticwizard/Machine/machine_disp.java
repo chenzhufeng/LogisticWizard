@@ -51,7 +51,7 @@ public class machine_disp extends Activity implements View.OnClickListener{
     String machineParts;
     String machinePlan;
     String machineQuant;
-    String machineImage = "null";
+    String machineImage = "None";
     protected StorageReference mStorage;
     StorageReference imageRef;
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("machines");

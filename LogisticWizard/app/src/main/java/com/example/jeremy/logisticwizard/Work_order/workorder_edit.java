@@ -378,6 +378,7 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
         userDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                maintenanceList.clear();
                 for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
                     String username = userSnapshot.child("Name").getValue(String.class);
                     String role = userSnapshot.child("Role").getValue(String.class);
