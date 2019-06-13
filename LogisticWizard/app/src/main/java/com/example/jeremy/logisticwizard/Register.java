@@ -61,8 +61,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
     protected void onStart() {
         super.onStart();
         getpassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-        //ActionBar actionBar = getSupportActionBar();
-        //actionBar.hide();
+
     }
 
     private void UserRegister(){

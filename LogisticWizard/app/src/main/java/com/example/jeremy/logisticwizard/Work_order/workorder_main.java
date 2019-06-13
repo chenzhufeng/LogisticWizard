@@ -122,6 +122,7 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        //Get data from workorder_add
         if (requestCode == 29 && resultCode == RESULT_OK) {
             if (data != null) {
                 String order_title = data.getStringExtra("orderTitle");
@@ -158,17 +159,17 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
         if (view == newOrder) {
-            //*
+
             if (!role.equals("Facility Worker")) {
-            //*/
+
                 Intent intent = new Intent(view.getContext(), workorder_add.class);
                 startActivityForResult(intent, 29);
-            //*
+
             } else {
                 Intent intent = new Intent(view.getContext(), workorder_add_standard.class);
                 startActivityForResult(intent, 29);
             }
-            //*/
+
         }
     }
 
@@ -179,10 +180,8 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
                     Fragment selectedFragment = null;
                     switch (menuItem.getItemId()){
                         case id.nav_home:
-                            //menuItem.setCheckable(true);
                             Intent intent = new Intent(workorder_main.this, home_page.class);
                             startActivity(intent);
-                            //selectedFragment = new HomeFragment();
                             break;
                         case id.nav_orders:
                             v1.setVisibility(View.INVISIBLE);
@@ -192,9 +191,6 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
                             newOrder.setVisibility(View.INVISIBLE);
                             new_order_button_text.setVisibility(View.INVISIBLE);
 
-                            //setContentView(R.layout.calendar_main_fragment);
-                            //recyclerView.setVisibility(View.GONE);
-                            //need other layouts
 
                             menuItem.setCheckable(true);
                             selectedFragment = new calendar_main_fragment();
@@ -210,7 +206,6 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
                             top.setVisibility(View.INVISIBLE);
                             newOrder.setVisibility(View.INVISIBLE);
                             new_order_button_text.setVisibility(View.INVISIBLE);
-                            //need other layouts
 
                             menuItem.setCheckable(true);
                             selectedFragment = new profile_main_fragment();

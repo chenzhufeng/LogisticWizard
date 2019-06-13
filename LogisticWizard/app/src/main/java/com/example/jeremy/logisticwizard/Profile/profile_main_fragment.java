@@ -90,11 +90,12 @@ public class profile_main_fragment extends Fragment {
             edit.setVisibility(View.INVISIBLE);
         }
 
+
+        //Get the info of current user
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         Uid = user.getUid();
         mDatabase = FirebaseDatabase.getInstance().getReference("users");
-        //mDatabase.child(Uid).child("Name").toString();
         mDatabase.child(Uid).child("Name").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -173,7 +174,6 @@ public class profile_main_fragment extends Fragment {
                         //no(); //just cancel
                     }
                 });
-        // 显示
         normalDialog.show();
     }
 
@@ -211,7 +211,6 @@ public class profile_main_fragment extends Fragment {
                         //no(); //just cancel
                     }
                 });
-        // 显示
         change_phone_Dialog.show();
     }
 
@@ -235,7 +234,6 @@ public class profile_main_fragment extends Fragment {
                         //no(); //just cancel
                     }
                 });
-        // 显示
         normalDialog.show();
     }
 
@@ -245,7 +243,6 @@ public class profile_main_fragment extends Fragment {
         final EditText old_password = textEntryView.findViewById(R.id.oldPassword);
         final EditText new_password = textEntryView.findViewById(R.id.newPassword);
         final EditText confirm_password = textEntryView.findViewById(R.id.confirmPassword);
-        //input_phone.setAutofillHints(phone_number.getText().toString().trim());
         final AlertDialog.Builder change_password_Dialog =
                 new AlertDialog.Builder(getView().getContext());
         change_password_Dialog.setView(textEntryView);
@@ -306,7 +303,6 @@ public class profile_main_fragment extends Fragment {
                         //no(); //just cancel
                     }
                 });
-        // 显示
         change_password_Dialog.show();
     }
 }

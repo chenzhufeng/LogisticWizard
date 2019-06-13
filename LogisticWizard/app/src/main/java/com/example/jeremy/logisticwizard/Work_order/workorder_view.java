@@ -60,7 +60,6 @@ public class workorder_view extends AppCompatActivity {
         setContentView(R.layout.workorder_disp);
         mDatabase = FirebaseDatabase.getInstance().getReference("orders");
         mStorage = FirebaseStorage.getInstance().getReference();
-        //imageRef = mStorage.child("/images/cfd4b4b0-6cff-424d-af23-62d4e792f340");
         order_title = findViewById(R.id.titleText);
         order_Creator = findViewById(R.id.creatorHolder);
         order_status = findViewById(R.id.currentStatusText);
@@ -79,7 +78,7 @@ public class workorder_view extends AppCompatActivity {
 
         Intent machine_info = getIntent();
         Bundle data = machine_info.getExtras();
-
+        //Get order's title from work_order main
         orderTitle = data.get("orderTitle").toString();
 
 
@@ -87,7 +86,6 @@ public class workorder_view extends AppCompatActivity {
 
     protected void onStart() {
         super.onStart();
-        //String role = home_page.role;
         order_title.setText(orderTitle);
         mDatabase.child(orderTitle).child("order_status").addValueEventListener(new ValueEventListener() {
             @Override
@@ -124,7 +122,6 @@ public class workorder_view extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String orderCreator;
                 orderCreator = (String) dataSnapshot.getValue();
-                //Log.d("ORDER", "orderCreator = " + orderCreator, null);
                 order_Creator.setText(orderCreator);
 
                 Log.d("NAME", orderCreator, null);
@@ -165,7 +162,6 @@ public class workorder_view extends AppCompatActivity {
 
                 String orderCost;
                 orderCost = (String) dataSnapshot.getValue();
-                //System.out.println(orderCost);
                 order_cost.setText(orderCost);
 
             }
@@ -298,11 +294,7 @@ public class workorder_view extends AppCompatActivity {
     }
 
     private void showNormalDialog() {
-        /* @setIcon 设置对话框图标
-         * @setTitle 设置对话框标题
-         * @setMessage 设置对话框消息提示
-         * setXXX方法返回Dialog对象，因此可以链式设置属性
-         */
+
         final AlertDialog.Builder normalDialog =
                 new AlertDialog.Builder(this);
 
@@ -326,7 +318,6 @@ public class workorder_view extends AppCompatActivity {
                         //...To-do
                     }
                 });
-        // 显示
         normalDialog.show();
     }
 }

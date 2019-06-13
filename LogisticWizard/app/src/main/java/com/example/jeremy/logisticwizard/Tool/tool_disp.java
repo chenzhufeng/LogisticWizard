@@ -75,6 +75,7 @@ public class tool_disp extends Activity implements View.OnClickListener {
         Intent tool_info = getIntent();
         Bundle data = tool_info.getExtras();
 
+        //Facility Worker cannot edit tools
         if (role.equals("Facility Worker")) {
             editButton.setVisibility(View.INVISIBLE);
             deleteButton.setVisibility(View.INVISIBLE);
@@ -83,6 +84,7 @@ public class tool_disp extends Activity implements View.OnClickListener {
             deleteButton.setVisibility(View.VISIBLE);
         }
 
+        //Get data from tool_main
         toolName = (String) data.get("toolName");
         toolDescription = (String) data.get("toolDescription");
         toolPrice = (String) data.get("toolPrice");
@@ -150,7 +152,6 @@ public class tool_disp extends Activity implements View.OnClickListener {
             intent.putExtra("toolPrice", toolPrice);
             intent.putExtra("toolLocation", toolLocation);
             intent.putExtra("toolType", toolType);
-            //intent.putExtra("toolParts", toolParts);
             intent.putExtra("toolQuant", toolQuant);
             intent.putExtra("toolImage", toolImage);
             startActivity(intent);
@@ -160,11 +161,7 @@ public class tool_disp extends Activity implements View.OnClickListener {
         }
     }
     private void showNormalDialog() {
-        /* @setIcon 设置对话框图标
-         * @setTitle 设置对话框标题
-         * @setMessage 设置对话框消息提示
-         * setXXX方法返回Dialog对象，因此可以链式设置属性
-         */
+
         final AlertDialog.Builder normalDialog =
                 new AlertDialog.Builder(this);
 
@@ -188,7 +185,6 @@ public class tool_disp extends Activity implements View.OnClickListener {
                         //...To-do
                     }
                 });
-        // 显示
         normalDialog.show();
     }
 }

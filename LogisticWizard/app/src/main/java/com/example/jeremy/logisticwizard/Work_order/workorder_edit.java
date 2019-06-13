@@ -274,11 +274,9 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
                         int month = cal.get(Calendar.MONTH);
                         int day = cal.get(Calendar.DAY_OF_MONTH);
 
-                        //this style works well on my emulator: android.R.style.Theme_DeviceDefault_Light_Dialo
                         DatePickerDialog dialog = new DatePickerDialog(workorder_edit.this,
                                 android.R.style.Theme_DeviceDefault_Light_Dialog, mDateSetListener,
                                 year, month, day);
-                        //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                         dialog.show();
                     }
                 });
@@ -433,7 +431,6 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
                 intent.putExtra("orderTitle", orderTitle2);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
-                //finish();
             }
         });
 
@@ -498,8 +495,6 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
             } else {
                 if(filePath != null) {
                     final ProgressDialog progressDialog = new ProgressDialog(this);
-                    //progressDialog.setTitle("Uploading...");
-                    //progressDialog.show();
 
                     StorageReference ref = mStorage.child("images/"+ UUID.randomUUID().toString());
                     orderImage = ref.getPath();
@@ -508,14 +503,12 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
                             .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                 @Override
                                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                    //progressDialog.dismiss();
                                     Toast.makeText(workorder_edit.this, "Uploaded", Toast.LENGTH_SHORT).show();
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    //progressDialog.dismiss();
                                     Toast.makeText(workorder_edit.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             })
@@ -524,7 +517,6 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
                                 public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                                     double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
                                             .getTotalByteCount());
-                                    //progressDialog.setMessage("Uploaded "+(int)progress+"%");
                                 }
                             });
                 }
@@ -537,11 +529,7 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
     }
 
     private void showNormalDialog(){
-        /* @setIcon 设置对话框图标
-         * @setTitle 设置对话框标题
-         * @setMessage 设置对话框消息提示
-         * setXXX方法返回Dialog对象，因此可以链式设置属性
-         */
+
         final AlertDialog.Builder normalDialog =
                 new AlertDialog.Builder(this);
 
@@ -561,7 +549,6 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
                         takeImage();
                     }
                 });
-        // 显示
         normalDialog.show();
     }
 
@@ -614,8 +601,6 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 41 && resultCode == RESULT_OK && data != null ) {
-//            Toast.makeText(this,
-//                    "Error occur:"+resultCode,  Toast.LENGTH_SHORT).show();
             filePath = data.getData();
             try {
                 float scale = this.getResources().getDisplayMetrics().density;
@@ -644,12 +629,6 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
                 e.printStackTrace();
             }
         } else {
-            /*
-            boolean t = true;
-            if(data.getData() == null) {
-                t = false;
-            }
-            //*/
             Toast.makeText(this, "No image added", Toast.LENGTH_SHORT).show();
         }
     }

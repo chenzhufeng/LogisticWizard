@@ -59,7 +59,6 @@ public class workorder_add_standard extends AppCompatActivity implements View.On
     private EditText orderTitle;
     private EditText orderDescription;
     private Spinner orderPriority;
-    //private Spinner orderStatus;
     private Spinner machineSpinner;
     private Button submit;
     private ImageButton image;
@@ -91,12 +90,11 @@ public class workorder_add_standard extends AppCompatActivity implements View.On
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
 
-                //this style works well on my emulator: android.R.style.Theme_DeviceDefault_Light_Dialo
                 DatePickerDialog dialog = new DatePickerDialog(workorder_add_standard.this,
                         android.R.style.Theme_DeviceDefault_Light_Dialog,
                         mDateSetListener,
                         year, month, day);
-                //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
                 dialog.show();
             }
         });
@@ -116,14 +114,6 @@ public class workorder_add_standard extends AppCompatActivity implements View.On
         orderPriority.setAdapter(adapter);
         orderPriority.setOnItemSelectedListener(this);
 
-        /*
-        orderStatus = findViewById(R.id.orderStatus);
-        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
-                R.array.statuses, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        orderStatus.setAdapter(adapter1);
-        orderStatus.setOnItemSelectedListener(this);
-        //*/
 
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
                 R.array.machineQuantityStringArray, android.R.layout.simple_spinner_item);
@@ -246,8 +236,6 @@ public class workorder_add_standard extends AppCompatActivity implements View.On
         if(requestCode == 71 && resultCode == RESULT_OK
                 && data != null )
         {
-//            Toast.makeText(this,
-//                    "Error occur:"+resultCode,  Toast.LENGTH_SHORT).show();
             filePath = data.getData();
             try {
                 float scale = this.getResources().getDisplayMetrics().density;
@@ -275,7 +263,6 @@ public class workorder_add_standard extends AppCompatActivity implements View.On
                 int height = (int)(200*scale+0.5f);
                 Bitmap bitmap= BitmapFactory.decodeStream(getContentResolver().openInputStream(filePath));
                 Picasso.with(this).load(filePath).resize(width, height).into(image);
-                //edit_machine_image.setImageBitmap(bitmap);
             }
             catch (FileNotFoundException e)
             {
@@ -356,11 +343,7 @@ public class workorder_add_standard extends AppCompatActivity implements View.On
     }
 
     private void showNormalDialog(){
-        /* @setIcon 设置对话框图标
-         * @setTitle 设置对话框标题
-         * @setMessage 设置对话框消息提示
-         * setXXX方法返回Dialog对象，因此可以链式设置属性
-         */
+
         final AlertDialog.Builder normalDialog =
                 new AlertDialog.Builder(this);
 
@@ -380,7 +363,6 @@ public class workorder_add_standard extends AppCompatActivity implements View.On
                         takeImage();
                     }
                 });
-        // 显示
         normalDialog.show();
     }
 }

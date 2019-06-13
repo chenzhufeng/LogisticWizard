@@ -29,7 +29,6 @@ public class ToolinfoAdapter extends ArrayAdapter<tool_info> {
         View ListView = inflater.inflate(android.R.layout.simple_list_item_1, null, true);
 
         TextView toolName = (TextView)ListView.findViewById(android.R.id.text1);
-        //Toast.makeText(tool.this, "Please enter an email !", Toast.LENGTH_SHORT).show();
         tool_info tool = tool_infoList.get(position);
         toolName.setText(tool.tool_name);
 

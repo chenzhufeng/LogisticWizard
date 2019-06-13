@@ -98,7 +98,7 @@ public class tool_add extends AppCompatActivity implements View.OnClickListener,
     }
 
     /**
-     * the user wants to add the information of a new machine
+     * the user wants to add the information of a new tool
      * return all information as a string to Inventory(include onSuccess Code)
      *
      */
@@ -215,10 +215,9 @@ public class tool_add extends AppCompatActivity implements View.OnClickListener,
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        //pick image from gallery
         if(requestCode == 73 && resultCode == RESULT_OK && data != null )
         {
-//            Toast.makeText(this,
-//                    "Error occur:"+resultCode,  Toast.LENGTH_SHORT).show();
             filePath = data.getData();
             try {
                 //organize image size and display images on the screen
@@ -235,7 +234,8 @@ public class tool_add extends AppCompatActivity implements View.OnClickListener,
             if(data.hasExtra("data")){
                 Bitmap bitMap = data.getParcelableExtra("data");
             }
-        }else if(requestCode == 74 && resultCode == RESULT_OK
+        }//pick image from camera
+        else if(requestCode == 74 && resultCode == RESULT_OK
                 && data != null ){
             try
             {
