@@ -1,6 +1,5 @@
 package com.example.jeremy.logisticwizard.Machine;
 
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;

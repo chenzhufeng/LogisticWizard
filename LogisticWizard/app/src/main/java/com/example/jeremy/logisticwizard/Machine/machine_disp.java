@@ -40,7 +40,6 @@ public class machine_disp extends Activity implements View.OnClickListener{
     //set up variables
     private ListView lv;
     private Button editButton;
-    private Button backButton;
     private Button historyButton;
     private Button deleteButton;
     private ImageView machine_image;

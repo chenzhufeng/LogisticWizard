@@ -10,9 +10,8 @@ public class machine_info {
     public String maintain_plan;
     public String machine_quant;
     public String machine_image;
-//
-//
-//
+
+
     public machine_info() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
