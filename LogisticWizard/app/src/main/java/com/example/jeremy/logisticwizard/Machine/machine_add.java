@@ -233,8 +233,8 @@ public class machine_add extends AppCompatActivity implements View.OnClickListen
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 73 && resultCode == RESULT_OK && data != null )
         {
-            Toast.makeText(this,
-                    "Error occur:"+resultCode,  Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this,
+//                    "Error occur:"+resultCode,  Toast.LENGTH_SHORT).show();
             filePath = data.getData();
             try {
                 //organize image size and display images on the screen

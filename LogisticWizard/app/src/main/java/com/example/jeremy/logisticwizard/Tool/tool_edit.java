@@ -347,8 +347,8 @@ public class tool_edit extends AppCompatActivity implements AdapterView.OnItemSe
         if(requestCode == 88 && resultCode == RESULT_OK
                 && data != null )
         {
-            Toast.makeText(this,
-                    "Error occur:"+resultCode,  Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this,
+//                    "Error occur:"+resultCode,  Toast.LENGTH_SHORT).show();
             filePath = data.getData();
             try {
                 float scale = this.getResources().getDisplayMetrics().density;
