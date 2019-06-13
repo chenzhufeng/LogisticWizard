@@ -335,6 +335,7 @@
       <find>Toast.make</find>
       <find>adapter3</find>
       <find>added</find>
+      <find>onstart</find>
     </findStrings>
   </component>
   <component name="Git.Settings">

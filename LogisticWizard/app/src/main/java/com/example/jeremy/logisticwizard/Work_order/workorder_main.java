@@ -100,9 +100,7 @@ public class workorder_main extends AppCompatActivity implements View.OnClickLis
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //if (workorder_infoList != null){
                     workorder_infoList.clear();
-                //}
                 for(DataSnapshot machineSnapshot : dataSnapshot.getChildren()){
                     workorder_info workorder = machineSnapshot.getValue(workorder_info.class);
                     workorder_infoList.add(workorder);
