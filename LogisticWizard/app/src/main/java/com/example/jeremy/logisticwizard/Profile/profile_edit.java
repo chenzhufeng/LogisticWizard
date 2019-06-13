@@ -44,21 +44,13 @@ public class profile_edit extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance().getReference("users");
 
-        /*
-        save = findViewById(R.id.save_button);
-        save.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-            }
-        });
-        //*/
     }
 
     public void onStart() {
         super.onStart();
         mDatabase.keepSynced(true);
 
-
+        //Get all users' info from database
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -68,7 +60,6 @@ public class profile_edit extends AppCompatActivity {
                 for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
                     user_info user = userSnapshot.getValue(user_info.class);
                     user_infoList.add(user);
-                    //Toast.makeText(profile_edit.this, "userinfo list:" + user.Role, Toast.LENGTH_LONG).show();
                 }
                 // Specify the adapter
                 mAdapter = new RecyclerViewAdapter_userInfo(getApplicationContext(), user_infoList);

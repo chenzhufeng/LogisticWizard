@@ -94,12 +94,10 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
 
-                //this style works well on my emulator: android.R.style.Theme_DeviceDefault_Light_Dialo
                 DatePickerDialog dialog = new DatePickerDialog(workorder_add.this,
                         android.R.style.Theme_DeviceDefault_Light_Dialog,
                         mDateSetListener,
                         year, month, day);
-                //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
         });
@@ -250,11 +248,10 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        //Choose image from gallery
         if(requestCode == 71 && resultCode == RESULT_OK
                 && data != null )
         {
-//            Toast.makeText(this,
-//                    "Error occur:"+resultCode,  Toast.LENGTH_SHORT).show();
             filePath = data.getData();
             try {
                 float scale = this.getResources().getDisplayMetrics().density;
@@ -262,7 +259,6 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
                 int height = (int)(200*scale+0.5f);
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 Picasso.with(this).load(filePath).resize(width, height).into(image);
-                //image.setImageBitmap(bitmap);
 
             }
             catch (IOException e)
@@ -274,7 +270,8 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
                 Bitmap bitMap = data.getParcelableExtra("data");
 
             }
-        } else if(requestCode == 70 && resultCode == RESULT_OK && data != null ) {
+        }// Choose image from camera
+        else if(requestCode == 70 && resultCode == RESULT_OK && data != null ) {
             try
             {
                 float scale = this.getResources().getDisplayMetrics().density;
@@ -282,7 +279,6 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
                 int height = (int)(200*scale+0.5f);
                 Bitmap bitmap= BitmapFactory.decodeStream(getContentResolver().openInputStream(filePath));
                 Picasso.with(this).load(filePath).resize(width, height).into(image);
-                //edit_machine_image.setImageBitmap(bitmap);
             }
             catch (FileNotFoundException e)
             {
@@ -321,7 +317,7 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
                     "Please enter all information or leave NONE.", Toast.LENGTH_LONG).show();
             return;
         }else {
-
+            //Send data to workorder_main
             Intent order_intent = new Intent();
             order_intent.putExtra("orderTitle", order_title);
             order_intent.putExtra("orderDescription", order_descp);

@@ -40,8 +40,7 @@ public class tool_main extends AppCompatActivity implements View.OnClickListener
     View top;
     View v2;
 
-    //just for now
-    private ArrayAdapter<String> adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +63,7 @@ public class tool_main extends AppCompatActivity implements View.OnClickListener
         v2 = (View) findViewById(R.id.list_view);
 
         tool_infoList = new ArrayList<>();
-        //adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listData);
-        //lv.setAdapter(adapter);
+
 
         add_tool = (Button) findViewById(R.id.add_tool_button);
         add_tool.setOnClickListener(this);
@@ -79,28 +77,6 @@ public class tool_main extends AppCompatActivity implements View.OnClickListener
             bt.setVisibility(View.VISIBLE);
         }
 
-        // https://www.youtube.com/watch?v=H3JAy94UFw0
-//        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String s) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String s) {
-//
-//                adapter.getFilter().filter(s);
-//                return false;
-//            }
-//        });
-//
-//        // https://stackoverflow.com/questions/30455723/android-make-whole-search-bar-clickable
-//        sv.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                sv.setIconified(false);
-//            }
-//        });
 
     }
 
@@ -111,22 +87,16 @@ public class tool_main extends AppCompatActivity implements View.OnClickListener
                     Fragment selectedFragment = null;
                     switch (menuItem.getItemId()){
                         case R.id.nav_home:
-                            //menuItem.setCheckable(true);
                             Intent intent = new Intent(tool_main.this, home_page.class);
                             startActivity(intent);
-                            //selectedFragment = new HomeFragment();
                             break;
                         case R.id.nav_orders:
-                            //Intent intent2 = new Intent(machine_main.this, workorder_main.class);
-                            //intent2.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                            //startActivity(intent2);
                             lv.setVisibility(View.INVISIBLE);
                             add_tool.setVisibility(View.INVISIBLE);
                             top.setVisibility(View.INVISIBLE);
                             v2.setVisibility(View.INVISIBLE);
                             bt.setVisibility(View.INVISIBLE);
 
-                            //need other layouts
 
                             menuItem.setCheckable(true);
                             selectedFragment = new calendar_main_fragment();
@@ -134,15 +104,12 @@ public class tool_main extends AppCompatActivity implements View.OnClickListener
                                     selectedFragment).commit();
                             break;
                         case R.id.nav_profile:
-                            //Intent intent3 = new Intent(machine_main.this, profile_main.class);
-                            //startActivity(intent3);
-                            //menuItem.setCheckable(true);
                             lv.setVisibility(View.INVISIBLE);
                             add_tool.setVisibility(View.INVISIBLE);
                             top.setVisibility(View.INVISIBLE);
                             v2.setVisibility(View.INVISIBLE);
                             bt.setVisibility(View.INVISIBLE);
-                            //need other layouts
+
 
                             selectedFragment = new profile_main_fragment();
                             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -165,7 +132,6 @@ public class tool_main extends AppCompatActivity implements View.OnClickListener
                     tool_info tool = toolSnapshot.getValue(tool_info.class);
                     tool_infoList.add(tool);
                 }
-                //Toast.makeText(tool.this, tool_infoList.get(0).tool_name+tool_infoList.get(1).tool_name, Toast.LENGTH_SHORT).show();
                 ToolinfoAdapter toolinfoAdapter = new ToolinfoAdapter(tool_main.this,
                         tool_infoList);
                 lv.setAdapter(toolinfoAdapter);
@@ -196,14 +162,13 @@ public class tool_main extends AppCompatActivity implements View.OnClickListener
         String toolQuant = tool_infoList.get(i).tool_quant;
         String toolImage = tool_infoList.get(i).tool_image;
 
+        // Send data to tool_disp
         Intent tool_intent = new Intent(view.getContext(), tool_disp.class);
         tool_intent.putExtra("toolName", toolName);
         tool_intent.putExtra("toolDescription", toolDescp);
         tool_intent.putExtra("toolPrice", toolPrice);
         tool_intent.putExtra("toolLocation", toolLocat);
         tool_intent.putExtra("toolType", toolType);
-        //tool_intent.putExtra("toolParts", toolParts);
-        //tool_intent.putExtra("maintainencePlan", maintainPlan);
         tool_intent.putExtra("toolQuant", toolQuant);
         tool_intent.putExtra("toolImage", toolImage);
         startActivity(tool_intent);
@@ -225,8 +190,6 @@ public class tool_main extends AppCompatActivity implements View.OnClickListener
             String toolPrice = data.getStringExtra("toolPrice");
             String toolLocation = data.getStringExtra("toolLocation");
             String toolType = data.getStringExtra("toolType");
-            //String toolParts = data.getStringExtra("toolParts");
-            //String toolPlan = data.getStringExtra("maintainencePlan");
             String toolQuant = data.getStringExtra("toolQuant");
             String toolImage = data.getStringExtra("toolImage");
             Toast.makeText(this, "tool name"+toolName+"lalal", Toast.LENGTH_SHORT).show();
@@ -238,24 +201,11 @@ public class tool_main extends AppCompatActivity implements View.OnClickListener
 
     private void savetoolToDB(String toolName, String toolDescription, String toolPrice, String toolLocation,
                                  String toolType, String toolQuant, String toolImage) {
-        //final String tool_Name = toolName;
-        //currentUserID = mAuthSetting.getCurrentUser().getUid();
-//        toolRef = FirebaseDatabase.getInstance().getReference().child("tool_main");
-//        //userRef2 = userRef.child("comments").child(Rest_ID);
-//        toolRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-        // Log.i("snapshot", "Inside onDataChange!!!");
+
         tool_info tool = new tool_info(toolName, toolDescription, toolPrice, toolLocation,
                 toolType,  toolQuant, toolImage);
         mDatabase.child(toolName).setValue(tool);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
+
 
 
     }

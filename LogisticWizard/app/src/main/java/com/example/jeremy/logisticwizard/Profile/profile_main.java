@@ -36,22 +36,16 @@ public class profile_main extends AppCompatActivity {
                     Fragment selectedFragment = null;
                     switch (menuItem.getItemId()){
                         case R.id.nav_home:
-                            //menuItem.setCheckable(true);
                             Intent intent = new Intent(profile_main.this, home_page.class);
                             startActivity(intent);
-                            //selectedFragment = new HomeFragment();
                             break;
                         case R.id.nav_orders:
-                            //Intent intent2 = new Intent(workOrders.this, workOrders.class);
-                            //startActivity(intent2);
                             menuItem.setCheckable(true);
                             selectedFragment = new calendar_main_fragment();
                             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                                     selectedFragment).commit();
                             break;
                         case R.id.nav_profile:
-                            //Intent intent3 = new Intent(workOrders.this, calendar.class);
-                            //startActivity(intent3);
                             menuItem.setCheckable(true);
                             selectedFragment = new profile_main_fragment();
                             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,

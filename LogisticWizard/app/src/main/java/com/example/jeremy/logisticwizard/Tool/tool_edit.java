@@ -55,17 +55,13 @@ public class tool_edit extends AppCompatActivity implements AdapterView.OnItemSe
     String toolPrice;
     String toolLocat;
     String toolType;
-    String toolParts;
-    String maintainPlan;
     String toolQuant;
     String toolImage;
     List<String> temple=new ArrayList<>();
     private EditText name;
     private EditText type;
-    //private EditText part;
     private EditText price;
     private EditText location;
-    //private Spinner toolPlanSpinner;
     private Spinner toolQuantitySpinner;
     private EditText description;
     private ImageButton edit_tool_image;
@@ -84,8 +80,6 @@ public class tool_edit extends AppCompatActivity implements AdapterView.OnItemSe
             tool_intent.putExtra("toolPrice", toolPrice);
             tool_intent.putExtra("toolLocation", toolLocat);
             tool_intent.putExtra("toolType", toolType);
-            //tool_intent.putExtra("toolParts", toolParts);
-            //tool_intent.putExtra("maintainencePlan", maintainPlan);
             tool_intent.putExtra("toolQuant", toolQuant);
             tool_intent.putExtra("toolImage", toolImage);
             tool_intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -120,13 +114,12 @@ public class tool_edit extends AppCompatActivity implements AdapterView.OnItemSe
         Intent tool_info = getIntent();
         Bundle data = tool_info.getExtras();
 
+        //Get data from tool_disp
         toolName = (String)data.get("toolName");
         toolDescp = (String)data.get("toolDescription");
         toolPrice = (String)data.get("toolPrice");
         toolLocat = (String)data.get("toolLocation");
         toolType = (String)data.get("toolType");
-        //toolParts = (String)data.get("toolParts");
-        //maintainPlan = (String)data.get("maintainencePlan");
         toolQuant = (String)data.get("toolQuant");
         toolImage = (String)data.get("toolImage");
 
@@ -144,7 +137,6 @@ public class tool_edit extends AppCompatActivity implements AdapterView.OnItemSe
 
         name.setText(toolName);
         type.setText(toolType);
-        //part.setText(toolParts);
         price.setText(toolPrice);
         location.setText(toolLocat);
         description.setText(toolDescp);
@@ -195,8 +187,6 @@ public class tool_edit extends AppCompatActivity implements AdapterView.OnItemSe
         toolPrice = price.getText().toString().trim();
         toolLocat = location.getText().toString().trim();
         toolType = type.getText().toString().trim();
-        //toolParts = part.getText().toString().trim();
-        //maintainPlan = toolPlanSpinner.getSelectedItem().toString().trim();
         toolQuant = toolQuantitySpinner.getSelectedItem().toString().trim();
 
         if (toolName2.equals("")||toolDescp.equals("")||toolPrice.equals("")||toolLocat.equals("")
@@ -205,7 +195,7 @@ public class tool_edit extends AppCompatActivity implements AdapterView.OnItemSe
                     "Please enter all information or leave NONE.", Toast.LENGTH_LONG).show();
             return;
         }else {
-            if(!toolName2.equals(toolName)) {
+            if(!toolName2.equals(toolName)) {//Check if changed name
                 mDatabase.child(toolName).removeValue();
             }
 
@@ -255,25 +245,19 @@ public class tool_edit extends AppCompatActivity implements AdapterView.OnItemSe
                                 public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                                     double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
                                             .getTotalByteCount());
-                                    //progressDialog.setMessage("Uploaded "+(int)progress+"%");
                                 }
                             });
                 }
 
                 tool_info tool = new tool_info(toolName2, toolDescp, toolPrice, toolLocat,
                         toolType, toolQuant, toolImage);
-                mDatabase.child(toolName2).setValue(tool);
+                mDatabase.child(toolName2).setValue(tool);// Send data to database
             }
 
         }
     }
 
     private void showNormalDialog(){
-        /* @setIcon 设置对话框图标
-         * @setTitle 设置对话框标题
-         * @setMessage 设置对话框消息提示
-         * setXXX方法返回Dialog对象，因此可以链式设置属性
-         */
         final AlertDialog.Builder normalDialog =
                 new AlertDialog.Builder(this);
 
@@ -293,7 +277,6 @@ public class tool_edit extends AppCompatActivity implements AdapterView.OnItemSe
                         takeImage();
                     }
                 });
-        // 显示
         normalDialog.show();
     }
     private void chooseImage(){
@@ -347,8 +330,6 @@ public class tool_edit extends AppCompatActivity implements AdapterView.OnItemSe
         if(requestCode == 88 && resultCode == RESULT_OK
                 && data != null )
         {
-//            Toast.makeText(this,
-//                    "Error occur:"+resultCode,  Toast.LENGTH_SHORT).show();
             filePath = data.getData();
             try {
                 float scale = this.getResources().getDisplayMetrics().density;
@@ -356,7 +337,6 @@ public class tool_edit extends AppCompatActivity implements AdapterView.OnItemSe
                 int height = (int)(200*scale+0.5f);
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 Picasso.with(this).load(filePath).resize(width, height).into(edit_tool_image);
-                //image.setImageBitmap(bitmap);
 
             }
             catch (IOException e)
@@ -379,7 +359,6 @@ public class tool_edit extends AppCompatActivity implements AdapterView.OnItemSe
                 int height = (int)(200*scale+0.5f);
                 Bitmap bitmap= BitmapFactory.decodeStream(getContentResolver().openInputStream(filePath));
                 Picasso.with(this).load(filePath).resize(width, height).into(edit_tool_image);
-                //edit_machine_image.setImageBitmap(bitmap);
             }
             catch (FileNotFoundException e)
             {
