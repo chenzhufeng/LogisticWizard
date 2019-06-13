@@ -112,10 +112,7 @@
     <last-search-timestamp>1560125331492</last-search-timestamp>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="777a926e-b289-4a35-9844-19c16b4d3546" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/Work_order/workorder_edit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/Work_order/workorder_edit.java" afterDir="false" />
-    </list>
+    <list default="true" id="777a926e-b289-4a35-9844-19c16b4d3546" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,8 +146,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/Work_order/workorder_edit.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="379" selection-start-line="379" selection-end-line="379" />
+            <state relative-caret-position="392">
+              <caret line="401" column="43" selection-start-line="401" selection-start-column="43" selection-end-line="401" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -808,8 +805,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/jeremy/logisticwizard/Work_order/workorder_edit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="379" selection-start-line="379" selection-end-line="379" />
+        <state relative-caret-position="392">
+          <caret line="401" column="43" selection-start-line="401" selection-start-column="43" selection-end-line="401" selection-end-column="43" />
         </state>
       </provider>
     </entry>
