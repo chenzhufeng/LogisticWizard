@@ -57,6 +57,7 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
     private String role = home_page.role;
     private EditText maintain_plan;
     private EditText order_title;
+    private String orderTitle2;
     private Spinner order_status;
     private Spinner order_priority;
     private TextView order_Creator;
@@ -158,6 +159,27 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
                     order_status.setEnabled(false);
                 } else {
                     order_status.setEnabled(true);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }});
+
+        mDatabase.child(orderTitle).child("order_priority").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                String orderPriority;
+                orderPriority = (String) dataSnapshot.getValue();
+                ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(workorder_edit.this,
+                        R.array.priorities, android.R.layout.simple_spinner_item);
+                adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                order_priority.setAdapter(adapter1);
+                if (orderPriority != null) {
+                    int spinnerPosition = adapter1.getPosition(orderPriority);
+                    order_priority.setSelection(spinnerPosition);
                 }
             }
 
@@ -407,10 +429,10 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
             public void onClick(View view) {
                 save_edition();
                 Intent intent = new Intent (view.getContext(), workorder_view.class);
-                intent.putExtra("orderTitle", order_title.getText().toString().trim());
-                //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                //startActivity(intent);
-                finish();
+                intent.putExtra("orderTitle", orderTitle2);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                //finish();
             }
         });
 
@@ -424,7 +446,7 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
     }
 
     private void save_edition(){
-        String orderTitle2 = order_title.getText().toString().trim();
+        orderTitle2 = order_title.getText().toString().trim();
         String orderCreator = order_Creator.getText().toString().trim();
         String orderDescrip = order_description.getText().toString().trim();
         String orderCost = order_cost.getText().toString().trim();
@@ -437,11 +459,17 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
         String orderPlan = maintain_plan.getText().toString().trim();
         String maintenance_worker = maintenanceSpinner.getSelectedItem().toString().trim();
 
-        if (orderTitle2.equals("")||orderCreator.equals("")||orderDescrip.equals("")||orderCost.equals("")
-                || orderDuedate.equals("")||orderStatus.equals("")||orderPriority.equals("")||maintenance_worker.equals("")) {
+        if ((orderTitle2.equals("")||orderCreator.equals("")||orderDescrip.equals("")
+                ||orderStatus.equals("")||orderPriority.equals("")) && (role.equals("Facility Worker"))) {
             Toast.makeText(this,
                     "Please enter all information or leave NONE.", Toast.LENGTH_LONG).show();
-            return;
+        } else if ((orderNote.equals("")||orderPlan.equals("")||orderCost.equals(""))
+                 && (role.equals("Maintenance Worker"))) {
+            Toast.makeText(this,
+                    "Please enter all information or leave NONE.", Toast.LENGTH_LONG).show();
+        } else if (maintenance_worker.equals("") && (role.equals("Admin"))) {
+            Toast.makeText(this,
+                    "Please enter all information or leave NONE.", Toast.LENGTH_LONG).show();
         } else {
             if(!orderTitle2.equals(orderTitle)) {
                 mDatabase.child(orderTitle).removeValue();
