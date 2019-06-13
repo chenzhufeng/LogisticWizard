@@ -585,8 +585,8 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 41 && resultCode == RESULT_OK && data != null ) {
-            Toast.makeText(this,
-                    "Error occur:"+resultCode,  Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this,
+//                    "Error occur:"+resultCode,  Toast.LENGTH_SHORT).show();
             filePath = data.getData();
             try {
                 float scale = this.getResources().getDisplayMetrics().density;
