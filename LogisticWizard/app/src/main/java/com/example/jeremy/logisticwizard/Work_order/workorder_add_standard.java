@@ -5,10 +5,13 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -37,8 +40,12 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -164,11 +171,42 @@ public class workorder_add_standard extends AppCompatActivity implements View.On
         intent.setAction(Intent.ACTION_PICK);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), 71);
     }
-    private void takeImage() {
-        Intent intent = new Intent();
-        intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.addCategory(Intent.CATEGORY_DEFAULT);
-        startActivityForResult(intent, 71);
+    private void takeImage(){
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        File photoFile = null;
+        try {
+            photoFile = createImageFile();
+        } catch (IOException ex) {
+            // Error occurred while creating the File
+
+        }
+        // Continue only if the File was successfully created
+        if (photoFile != null) {
+            filePath = FileProvider.getUriForFile(this,
+                    "com.example.android.fileprovider",
+                    photoFile);
+            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, filePath);
+            startActivityForResult(takePictureIntent, 70);
+        }
+    }
+
+    //Reference: https://developer.android.com/training/camera/photobasics#TaskGallery
+    String currentPhotoPath;
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        currentPhotoPath = image.getAbsolutePath();
+        return image;
     }
 
     @Override
@@ -177,6 +215,8 @@ public class workorder_add_standard extends AppCompatActivity implements View.On
         if(requestCode == 71 && resultCode == RESULT_OK
                 && data != null )
         {
+//            Toast.makeText(this,
+//                    "Error occur:"+resultCode,  Toast.LENGTH_SHORT).show();
             filePath = data.getData();
             try {
                 float scale = this.getResources().getDisplayMetrics().density;
@@ -184,15 +224,35 @@ public class workorder_add_standard extends AppCompatActivity implements View.On
                 int height = (int)(200*scale+0.5f);
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 Picasso.with(this).load(filePath).resize(width, height).into(image);
+                //image.setImageBitmap(bitmap);
 
-            } catch (IOException e) {
+            }
+            catch (IOException e)
+            {
                 e.printStackTrace();
             }
             if(data.hasExtra("data")){
-                Bitmap bitMap = data.getParcelableExtra("data");
-            }
-        }
 
+                Bitmap bitMap = data.getParcelableExtra("data");
+
+            }
+        } else if(requestCode == 70 && resultCode == RESULT_OK && data != null ) {
+            try
+            {
+                float scale = this.getResources().getDisplayMetrics().density;
+                int width = (int)(350*scale+0.5f);
+                int height = (int)(200*scale+0.5f);
+                Bitmap bitmap= BitmapFactory.decodeStream(getContentResolver().openInputStream(filePath));
+                Picasso.with(this).load(filePath).resize(width, height).into(image);
+                //edit_machine_image.setImageBitmap(bitmap);
+            }
+            catch (FileNotFoundException e)
+            {
+                e.printStackTrace();
+            }
+
+
+        }
 
     }
 

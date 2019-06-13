@@ -292,15 +292,6 @@ public class workorder_add extends AppCompatActivity implements View.OnClickList
 
         }
 
-        else{
-            boolean t = true;
-            if(data.getData()==null){
-                t = false;
-            }
-//
-
-        }
-
     }
 
     /**
