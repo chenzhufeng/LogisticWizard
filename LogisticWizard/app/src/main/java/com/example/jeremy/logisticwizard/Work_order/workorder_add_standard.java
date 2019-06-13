@@ -1,6 +1,7 @@
 package com.example.jeremy.logisticwizard.Work_order;
 
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -39,13 +41,14 @@ import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
 public class workorder_add_standard extends AppCompatActivity implements View.OnClickListener,
         AdapterView.OnItemSelectedListener {
     final static int galleryPic = 1;
-
+    private EditText orderDueDate;
     private EditText orderTitle;
     private EditText orderDescription;
     private Spinner orderPriority;
@@ -57,6 +60,7 @@ public class workorder_add_standard extends AppCompatActivity implements View.On
     protected DatabaseReference mDatabase1;
     private String username;
     private List<String> machineList;
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     StorageReference storageReference;
     private Uri filePath;
@@ -70,6 +74,33 @@ public class workorder_add_standard extends AppCompatActivity implements View.On
         orderDescription = findViewById(R.id.orderDescription);
         image = findViewById(R.id.imageButton);
         submit = findViewById(R.id.submitButton);
+        orderDueDate = findViewById(R.id.orderDueDate);
+
+        orderDueDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                //this style works well on my emulator: android.R.style.Theme_DeviceDefault_Light_Dialo
+                DatePickerDialog dialog = new DatePickerDialog(workorder_add_standard.this,
+                        android.R.style.Theme_DeviceDefault_Light_Dialog,
+                        mDateSetListener,
+                        year, month, day);
+                //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                String date = month + "/" + day + "/" + year;
+                orderDueDate.setText(date);
+            }
+        };
 
         orderPriority = findViewById(R.id.orderPriority);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -216,7 +247,7 @@ public class workorder_add_standard extends AppCompatActivity implements View.On
         String order_title = orderTitle.getText().toString().trim();
         String order_descp = orderDescription.getText().toString().trim();
         String order_note = "";
-        String order_DueDate = "";
+        String order_DueDate = orderDueDate.getText().toString().trim();
         String order_cost = "";
         String order_image = "null";
         String order_creator=username;

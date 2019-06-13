@@ -5,16 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Tool.tool_add">
-    <TextView
-        android:id="@+id/addTool_label"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:text="Add tools/parts"
-        android:textSize="20sp"
-        android:textAlignment="center" />
 
 
     <!-- spinner margin top = 20 for now, change back to 10 -->
@@ -28,12 +18,24 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
+            <ImageButton
+                android:id="@+id/add_tool_image"
+                android:layout_width="350dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.488"
+                app:layout_constraintStart_toStartOf="parent"
+                android:onClick="onClick"
+                app:srcCompat="@android:drawable/ic_menu_add" />
+
             <EditText
                 android:id="@+id/enterToolName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:hint="Enter Name..."
                 android:inputType="text"
@@ -104,15 +106,6 @@
                 android:layout_marginRight="10dp"
                 android:textAlignment="center"/>
 
-            <TextView
-                android:id="@+id/dummy_takephoto"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_gravity="start"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="10dp" />
-
 
             <Button
                 android:id="@+id/add_tool_button"
@@ -120,8 +113,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:onClick="onClick"
-                android:text="Add">
-            </Button>
+                android:text="Add"></Button>
         </LinearLayout>
     </ScrollView>
 

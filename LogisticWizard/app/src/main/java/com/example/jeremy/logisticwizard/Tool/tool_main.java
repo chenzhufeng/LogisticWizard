@@ -37,7 +37,6 @@ public class tool_main extends AppCompatActivity implements View.OnClickListener
     private TextView bt;
     private String role = home_page.role;
     ArrayList<tool_info> tool_infoList;
-    //added
     View top;
     View v2;
 
@@ -70,6 +69,8 @@ public class tool_main extends AppCompatActivity implements View.OnClickListener
 
         add_tool = (Button) findViewById(R.id.add_tool_button);
         add_tool.setOnClickListener(this);
+
+        // Check which views to show for the current user
         if (role.equals("Facility Worker")) {
             add_tool.setVisibility(View.INVISIBLE);
             bt.setVisibility(View.INVISIBLE);
@@ -192,9 +193,8 @@ public class tool_main extends AppCompatActivity implements View.OnClickListener
         String toolPrice = tool_infoList.get(i).tool_price;
         String toolLocat = tool_infoList.get(i).tool_location;
         String toolType = tool_infoList.get(i).tool_type;
-        //String toolParts = tool_infoList.get(i).tool_parts;
-        //String maintainPlan = tool_infoList.get(i).maintain_plan;
         String toolQuant = tool_infoList.get(i).tool_quant;
+        String toolImage = tool_infoList.get(i).tool_image;
 
         Intent tool_intent = new Intent(view.getContext(), tool_disp.class);
         tool_intent.putExtra("toolName", toolName);
@@ -205,6 +205,7 @@ public class tool_main extends AppCompatActivity implements View.OnClickListener
         //tool_intent.putExtra("toolParts", toolParts);
         //tool_intent.putExtra("maintainencePlan", maintainPlan);
         tool_intent.putExtra("toolQuant", toolQuant);
+        tool_intent.putExtra("toolImage", toolImage);
         startActivity(tool_intent);
     }
 
@@ -227,15 +228,16 @@ public class tool_main extends AppCompatActivity implements View.OnClickListener
             //String toolParts = data.getStringExtra("toolParts");
             //String toolPlan = data.getStringExtra("maintainencePlan");
             String toolQuant = data.getStringExtra("toolQuant");
+            String toolImage = data.getStringExtra("toolImage");
             Toast.makeText(this, "tool name"+toolName+"lalal", Toast.LENGTH_SHORT).show();
             savetoolToDB(toolName, toolDescription, toolPrice, toolLocation,
-                    toolType, toolQuant);
+                    toolType, toolQuant, toolImage);
         }
     }
 
 
     private void savetoolToDB(String toolName, String toolDescription, String toolPrice, String toolLocation,
-                                 String toolType, String toolQuant) {
+                                 String toolType, String toolQuant, String toolImage) {
         //final String tool_Name = toolName;
         //currentUserID = mAuthSetting.getCurrentUser().getUid();
 //        toolRef = FirebaseDatabase.getInstance().getReference().child("tool_main");
@@ -245,7 +247,7 @@ public class tool_main extends AppCompatActivity implements View.OnClickListener
 //            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
         // Log.i("snapshot", "Inside onDataChange!!!");
         tool_info tool = new tool_info(toolName, toolDescription, toolPrice, toolLocation,
-                toolType,  toolQuant);
+                toolType,  toolQuant, toolImage);
         mDatabase.child(toolName).setValue(tool);
 //            }
 //

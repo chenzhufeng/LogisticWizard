@@ -30,13 +30,24 @@
             android:orientation="vertical"
             android:gravity="center_horizontal">
 
+            <ImageButton
+                android:id="@+id/add_machine_image"
+                android:layout_width="350dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.488"
+                app:layout_constraintStart_toStartOf="parent"
+                android:onClick="onClick"
+                app:srcCompat="@android:drawable/ic_menu_add" />
+
             <EditText
                 android:id="@+id/enterMachineName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:hint="Enter Name..."
                 android:inputType="text" />
@@ -138,15 +149,6 @@
                 android:layout_marginRight="10dp"
                 android:textAlignment="center"/>
 
-
-
-            <ImageButton
-                android:id="@+id/add_machine_image"
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="onClick"
-                app:srcCompat="@android:drawable/ic_menu_add" />
 
             <Button
                 android:id="@+id/add_machine_button"
