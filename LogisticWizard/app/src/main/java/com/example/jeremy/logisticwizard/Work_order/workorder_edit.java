@@ -187,6 +187,27 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
 
             }});
 
+        mDatabase.child(orderTitle).child("order_priority").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                String orderPriority;
+                orderPriority = (String) dataSnapshot.getValue();
+                ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(workorder_edit.this,
+                        R.array.priorities, android.R.layout.simple_spinner_item);
+                adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                order_priority.setAdapter(adapter1);
+                if (orderPriority != null) {
+                    int spinnerPosition = adapter1.getPosition(orderPriority);
+                    order_priority.setSelection(spinnerPosition);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }});
+
         mDatabase.child(orderTitle).child("order_creator").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -385,9 +406,9 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
                 save_edition();
                 Intent intent = new Intent (view.getContext(), workorder_view.class);
                 intent.putExtra("orderTitle", order_title.getText().toString().trim());
-                //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                //startActivity(intent);
-                finish();
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                //finish();
             }
         });
 
@@ -414,12 +435,18 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
         String orderPlan = maintain_plan.getText().toString().trim();
         String maintenance_worker = maintenanceSpinner.getSelectedItem().toString().trim();
 
-        if (orderTitle2.equals("")||orderCreator.equals("")||orderDescrip.equals("")||orderCost.equals("")
-                || orderDuedate.equals("")||orderStatus.equals("")||orderPriority.equals("")||maintenance_worker.equals("")) {
+        if (orderTitle2.equals("")||orderCreator.equals("")||orderDescrip.equals("")
+                ||orderStatus.equals("")||orderPriority.equals("") && (role.equals("Facility Worker"))) {
             Toast.makeText(this,
                     "Please enter all information or leave NONE.", Toast.LENGTH_LONG).show();
-            return;
-        } else {
+        } else if (orderNote.equals("")||orderPlan.equals("")||orderCost.equals("")
+                 && (role.equals("Maintenance Worker"))) {
+            Toast.makeText(this,
+                    "Please enter all information or leave NONE.", Toast.LENGTH_LONG).show();
+        }else if (maintenance_worker.equals("") && (role.equals("Admin"))) {
+            Toast.makeText(this,
+                    "Please enter all information or leave NONE.", Toast.LENGTH_LONG).show();
+        }else {
             if(!orderTitle2.equals(orderTitle)) {
                 mDatabase.child(orderTitle).removeValue();
             }
