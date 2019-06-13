@@ -378,6 +378,29 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
         maintenanceSpinner.setAdapter(adapter3);
         maintenanceSpinner.setOnItemSelectedListener(this);
 
+        // Check which items can be edited by the current user
+        if (role.equals("Facility Worker")) {
+            maintenanceSpinner.setEnabled(false);
+            order_note.setEnabled(false);
+            maintain_plan.setEnabled(false);
+            order_priority.setEnabled(true);
+            order_description.setEnabled(true);
+            order_Duedate.setEnabled(true);
+        } else if (role.equals("Maintenance Worker")) {
+            maintenanceSpinner.setEnabled(true);
+            order_note.setEnabled(true);
+            maintain_plan.setEnabled(true);
+            order_priority.setEnabled(false);
+            order_description.setEnabled(false);
+            order_Duedate.setEnabled(false);
+        } else {
+            maintenanceSpinner.setEnabled(true);
+            order_note.setEnabled(true);
+            maintain_plan.setEnabled(true);
+            order_priority.setEnabled(true);
+            order_description.setEnabled(true);
+            order_Duedate.setEnabled(true);
+        }
 
         save_button.setOnClickListener(new View.OnClickListener() {
             @Override
