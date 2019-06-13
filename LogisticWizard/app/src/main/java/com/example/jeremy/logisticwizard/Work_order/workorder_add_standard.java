@@ -177,8 +177,6 @@ public class workorder_add_standard extends AppCompatActivity implements View.On
         if(requestCode == 71 && resultCode == RESULT_OK
                 && data != null )
         {
-            Toast.makeText(this,
-                    "Error occur:"+resultCode,  Toast.LENGTH_SHORT).show();
             filePath = data.getData();
             try {
                 float scale = this.getResources().getDisplayMetrics().density;
@@ -194,16 +192,7 @@ public class workorder_add_standard extends AppCompatActivity implements View.On
                 Bitmap bitMap = data.getParcelableExtra("data");
             }
         }
-        else{
-            boolean t = true;
-            if (data != null) {
-                if(data.getData()==null) {
-                    t = false;
-                }
-            }
-            Toast.makeText(this,
-                    "Error occur:"+t,  Toast.LENGTH_SHORT).show();
-        }
+
 
     }
 

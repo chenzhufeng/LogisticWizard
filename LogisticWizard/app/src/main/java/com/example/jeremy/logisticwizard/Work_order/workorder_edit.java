@@ -591,12 +591,6 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-        } else {
-            boolean t = true;
-            if(data.getData() == null) {
-                t = false;
-            }
-            Toast.makeText(this, "Error occur:"+t, Toast.LENGTH_SHORT).show();
         }
     }
 }

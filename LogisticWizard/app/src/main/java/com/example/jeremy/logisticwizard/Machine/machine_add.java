@@ -266,14 +266,7 @@ public class machine_add extends AppCompatActivity implements View.OnClickListen
                 e.printStackTrace();
             }
         }
-        else{
-            boolean t = true;
-            if(data.getData()==null){
-                t = false;
-            }
-            Toast.makeText(this,
-                    "Error occur:"+t,  Toast.LENGTH_SHORT).show();
-        }
+
 
     }
 
