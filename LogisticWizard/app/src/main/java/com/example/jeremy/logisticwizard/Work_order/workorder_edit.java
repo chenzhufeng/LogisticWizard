@@ -57,6 +57,7 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
     private String role = home_page.role;
     private EditText maintain_plan;
     private EditText order_title;
+    private String orderTitle2;
     private Spinner order_status;
     private Spinner order_priority;
     private TextView order_Creator;
@@ -384,7 +385,7 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
             public void onClick(View view) {
                 save_edition();
                 Intent intent = new Intent (view.getContext(), workorder_view.class);
-                intent.putExtra("orderTitle", order_title.getText().toString().trim());
+                intent.putExtra("orderTitle", orderTitle2);
                 //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 //startActivity(intent);
                 finish();
@@ -401,7 +402,7 @@ public class workorder_edit extends AppCompatActivity implements AdapterView.OnI
     }
 
     private void save_edition(){
-        String orderTitle2 = order_title.getText().toString().trim();
+        orderTitle2 = order_title.getText().toString().trim();
         String orderCreator = order_Creator.getText().toString().trim();
         String orderDescrip = order_description.getText().toString().trim();
         String orderCost = order_cost.getText().toString().trim();
